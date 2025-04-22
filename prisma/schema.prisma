@@ -13,3 +13,51 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model StadiumBuild {
+  id                String      @id @default(cuid(2))
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  buildTitle        String      @db.VarChar(63)
+  description       String?
+  roundInfos        RoundInfo[]
+}
+
+model RoundInfo {
+  id                String        @id @default(cuid(2))
+  parentBuild       StadiumBuild  @relation(fields: [buildId], references: [id])
+  buildId           String
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  note              String?
+  // TODO...
+}
+
+model Item {
+  id                String        @id @default(cuid(2))
+  name              String
+  description       String?
+  cost              Int
+  statMods          StatMod[]
+  // TODO...
+}
+
+model Power {
+  id                String        @id @default(cuid(2))
+  name              String
+  description       String
+  // TODO...
+}
+
+model Stat {
+  id                Int           @id @default(autoincrement())
+  name              String
+  // TODO...
+}
+
+model StatMod {
+  id                String        @id @default(cuid(2))
+  amount            Int
+
+  Item Item[]
+}
