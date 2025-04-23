@@ -1,3 +1,5 @@
+@use "$lib/scss/_functions.scss" as *;
+
 $primary: #ee6a1d;
 $secondary: #127da1;
 
@@ -9,6 +11,12 @@ $color-text-base: $secondary;
 $color-text-alt: #6f8aad;
 $color-text-titles: $white;
 $color-border: rgba(#7ab1c3, 0.2);
+
+$color-rarities: (
+  common: #13a530,
+  rare: #207cbd,
+  epic: #8426d2
+);
 
 $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-stack-brand: "Gilroy", "Impact", sans-serif;
@@ -27,6 +35,7 @@ $breakpoints: (
 $gutter: 1.5rem;
 $vertical-offset-large: clamp($gutter, 10vw, 7.5rem);
 $navigation-height: 5rem;
+$item-size: #{px-to-rem(40)};
 
 $border-radius: 1rem;
 $border-radius-small: $border-radius * 0.5;
