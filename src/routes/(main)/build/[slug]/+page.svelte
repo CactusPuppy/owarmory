@@ -1,6 +1,6 @@
 <script lang="ts">
   import Hero from "$lib/components/content/Hero.svelte";
-	import { heroes } from "$lib/constants/heroes";
+  import { heroes } from "$lib/constants/heroes";
   import type { Build } from "$lib/types/build";
 
   const build: Build = {
