@@ -1,3 +1,7 @@
 @function returnTheThing() {
   @return theThing;
 }
+
+@function px-to-rem($value) {
+  @return calc($value / 16) * 1rem;
+}
