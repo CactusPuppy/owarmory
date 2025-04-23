@@ -2,6 +2,7 @@
   import Power from "$lib/components/content/Power.svelte";
   import Item from "$lib/components/content/Item.svelte";
 
+  // Placeholder stuff
   const items = [{
     id: 1,
     name: "Some item",
