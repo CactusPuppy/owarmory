@@ -14,7 +14,7 @@
 
   <div class="cost">
     {#if cost}
-      ${cost}
+      ${cost.toLocaleString()}
     {:else}
       Free
     {/if}
