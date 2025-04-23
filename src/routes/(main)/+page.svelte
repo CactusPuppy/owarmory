@@ -1,4 +1,5 @@
 <script>
+  import Heroes from "$lib/components/content/Heroes.svelte";
   import Power from "$lib/components/content/Power.svelte";
   import Item from "$lib/components/content/Item.svelte";
 
@@ -34,7 +35,9 @@
   }]
 </script>
 
-<h1>Welcome to SvelteKit</h1>
+<Heroes />
+
+<h1 class="vertical-offset-large">Welcome to SvelteKit</h1>
 <h2>Smaller title</h2>
 <h3>Smallest title</h3>
 
