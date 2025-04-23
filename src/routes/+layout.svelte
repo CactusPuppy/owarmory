@@ -20,7 +20,7 @@
 
   main {
     max-width: calc(map.get($breakpoints, page-max-width) + ($gutter * 2));
-    padding: 0 $gutter;
+    padding: clamp($gutter, 10vw, 7.5rem) $gutter;
     margin: 0 auto;
   }
 </style>
