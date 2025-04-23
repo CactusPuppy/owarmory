@@ -1,4 +1,10 @@
-<h1>Welcome to SvelteKit</h1>
+<script>
+	import Heroes from "$lib/components/content/Heroes.svelte";
+</script>
+
+<Heroes />
+
+<h1 class="vertical-offset-large">Welcome to SvelteKit</h1>
 <h2>Smaller title</h2>
 <h3>Smallest title</h3>
 
