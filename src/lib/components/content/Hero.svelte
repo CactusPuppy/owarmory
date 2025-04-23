@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { HeroName } from "$lib/types/hero";
+  import type { HeroName } from "$lib/types/hero";
 
   const { hero, large = false } : { hero: HeroName, large?: boolean } = $props();
 </script>
