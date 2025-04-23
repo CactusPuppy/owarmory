@@ -1,4 +1,16 @@
 $primary: #ee6a1d;
+$secondary: #127da1;
+
+$white: #fff;
+$black: #000;
+$color-bg-base: #0e2038;
+$color-bg-dark: #091628;
+$color-text-base: $secondary;
+$color-text-alt: #6f8aad;
+$color-text-titles: $white;
+
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-stack-brand: "Gilroy", "Impact", sans-serif;
 
 $breakpoints: (
   mobile: 420px,
@@ -6,3 +18,6 @@ $breakpoints: (
   desktop: 1024px,
   page-max-width: 1200px,
 );
+
+$gutter: 1.5rem;
+$navigation-height: 5rem;

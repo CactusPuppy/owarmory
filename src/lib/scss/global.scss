@@ -1,0 +1,47 @@
+@import url("$lib/scss/_fonts.scss");
+@import url("$lib/scss/general/_titles.scss");
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $color-bg-base;
+  overflow-x: hidden;
+  color: $color-text-base;
+  font-family: $font-stack;
+  font-size: 16px;
+  line-height: 1.5;
+
+  @include breakpoint(tablet) {
+    font-size: 18px;
+  }
+
+  &::before {
+    z-index: -1;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: min(100%, 3000px);
+    width: 100%;
+    background: linear-gradient(230deg, $secondary, transparent 80%);
+    mask-image: linear-gradient(to bottom, white, transparent);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
+
+a {
+  color: $primary;
+}
+
+p {
+  margin: 1rem 0;
+}
