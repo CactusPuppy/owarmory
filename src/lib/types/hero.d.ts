@@ -1,5 +1,5 @@
 export type HeroName =
-  | "D.va"
+  | "D.Va"
   | "Doomfist"
   | "Hazard"
   | "Junker Queen"
