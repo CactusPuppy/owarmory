@@ -1,5 +1,6 @@
 <script lang="ts">
   import Hero from "$lib/components/content/Hero.svelte";
+	import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
   import type { Build } from "$lib/types/build";
 
   const build: Build = {
@@ -30,6 +31,7 @@
 
   <div class="layout">
     <aside class="sidebar block">
+      <ItemStatistics items={[]} {hero} />
     </aside>
 
     <section class="article block">
