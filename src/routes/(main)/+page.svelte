@@ -2,6 +2,7 @@
   import Heroes from "$lib/components/content/Heroes.svelte";
   import Power from "$lib/components/content/Power.svelte";
   import Item from "$lib/components/content/Item.svelte";
+	import BuildsList from "$lib/components/content/BuildsList.svelte";
 
   // Placeholder stuff
   const items = [{
@@ -37,11 +38,9 @@
 
 <Heroes />
 
-<h1 class="vertical-offset-large">Welcome to SvelteKit</h1>
-<h2>Smaller title</h2>
-<h3>Smallest title</h3>
+<BuildsList header="Latest Builds" />
 
-<div class="block">
+<div class="block vertical-offset-large">
   <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
 
   <div class="list">

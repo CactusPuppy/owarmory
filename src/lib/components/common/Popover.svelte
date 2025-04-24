@@ -24,11 +24,11 @@
 
 <style lang="scss">
   .popover {
-    display: inline-block;
     position: relative;
   }
 
   .toggle {
+    display: block;
     appearance: none;
     margin: 0;
     padding: 0;
