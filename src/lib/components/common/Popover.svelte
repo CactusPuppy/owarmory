@@ -1,9 +1,9 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
 
-  const { children, content } = $props()
+  const { children, content } = $props();
 
-  let active = $state(false)
+  let active = $state(false);
 </script>
 
 <div class="popover">

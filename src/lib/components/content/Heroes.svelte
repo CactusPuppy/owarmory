@@ -2,9 +2,9 @@
 	import { heroes } from "$lib/constants/heroes";
 	import type { HeroData, HeroRole } from "$lib/types/hero";
 	import Hero from "./Hero.svelte";
-  import imageTank from "$lib/images/content/tank.png"
-  import imageDps from "$lib/images/content/dps.png"
-  import imageSupport from "$lib/images/content/support.png"
+  import imageTank from "$lib/images/content/tank.png";
+  import imageDps from "$lib/images/content/dps.png";
+  import imageSupport from "$lib/images/content/support.png";
 
   type RoleGroup = {
     [key in HeroRole]?: HeroData[];
@@ -14,7 +14,7 @@
     tank: imageTank,
     dps: imageDps,
     support: imageSupport
-  }
+  };
 
   const heroesByRole: RoleGroup = heroes.reduce((acc, hero) => {
     if (!acc[hero.role]) acc[hero.role] = [];

@@ -25,14 +25,14 @@
     icon: "https://picsum.photos/seed/c/40",
     rarity: "epic",
     cost: 4000
-  }]
+  }];
 
   const powers = [{
     id: 1,
     name: "Some power",
     description: "I am some description of a power that will appear in the popover",
     icon: "https://picsum.photos/40"
-  }]
+  }];
 </script>
 
 <Heroes />

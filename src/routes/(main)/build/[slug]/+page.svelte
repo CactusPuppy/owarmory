@@ -11,9 +11,9 @@
     author: {
       username: "Some guy"
     }
-  }
+  };
 
-  const { title, hero, introduction, author } = $derived(build)
+  const { title, hero, introduction, author } = $derived(build);
 </script>
 
 <article itemscope itemtype="https://schema.org/Article">

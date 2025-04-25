@@ -6,7 +6,7 @@
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { items, hero } = $props();
 
-  let expanded = $state(false)
+  let expanded = $state(false);
 
   const statistics = $derived([
     {
@@ -52,9 +52,9 @@
       max: 100,
       icon: "https://picsum.photos/seed/g/40"
     }
-  ])
+  ]);
 
-  const shownStatistics = $derived(statistics.slice(0, expanded ? statistics.length : 5))
+  const shownStatistics = $derived(statistics.slice(0, expanded ? statistics.length : 5));
 </script>
 
 <div class="statistics">

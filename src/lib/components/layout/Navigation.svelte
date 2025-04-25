@@ -1,5 +1,5 @@
 <script lang="ts">
-  import imageLogo from "$lib/images/logo.webp"
+  import imageLogo from "$lib/images/logo.webp";
 	import UserMenu from "$lib/components/user/UserMenu.svelte";
 </script>
 

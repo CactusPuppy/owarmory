@@ -1,4 +1,4 @@
-import type { HeroName } from "./hero"
+import type { HeroName } from "./hero";
 
 // Temporary type, will look different
 export type Build = {
