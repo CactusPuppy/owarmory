@@ -1,1 +1,1 @@
-export type CurrentRound = { value: number }
+export type CurrentRound = { value: number };
