@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@prisma/client':
-        specifier: 6.6.0
-        version: 6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3)
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.5
@@ -21,6 +17,9 @@ importers:
       '@playwright/test':
         specifier: ^1.49.1
         version: 1.52.0
+      '@prisma/client':
+        specifier: 6.6.0
+        version: 6.6.0(prisma@6.6.0(typescript@5.8.3))(typescript@5.8.3)
       '@sveltejs/adapter-node':
         specifier: ^5.2.12
         version: 5.2.12(@sveltejs/kit@2.20.7(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.1)(vite@6.3.2(sass-embedded@1.87.0)(yaml@2.7.1)))(svelte@5.28.1)(vite@6.3.2(sass-embedded@1.87.0)(yaml@2.7.1)))
