@@ -2,7 +2,7 @@
   import Heroes from "$lib/components/content/Heroes.svelte";
   import Power from "$lib/components/content/Power.svelte";
   import Item from "$lib/components/content/Item.svelte";
-	import BuildsList from "$lib/components/content/BuildsList.svelte";
+  import BuildsList from "$lib/components/content/BuildsList.svelte";
 
   // Placeholder stuff
   const items = [{
