@@ -14,50 +14,103 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Hero {
+  DVa
+  Doomfist
+  Hazard
+  Junker_Queen
+  Mauga
+  Orisa
+  Ramattra
+  Reinhardt
+  Roadhog
+  Sigma
+  Winston
+  Wrecking_Ball
+  Zarya
+  Ashe
+  Bastion
+  Cassidy
+  Echo
+  Freja
+  Genji
+  Hanzo
+  Junkrat
+  Mei
+  Pharah
+  Reaper
+  Soldier_76
+  Sojourn
+  Sombra
+  Symmetra
+  Torbjörn
+  Tracer
+  Venture
+  Widowmaker
+  Ana
+  Baptiste
+  Brigitte
+  Illari
+  Juno
+  Kiriko
+  Lifeweaver
+  Lúcio
+  Mercy
+  Moira
+  Zenyatta
+}
+
 model StadiumBuild {
-  id                String      @id @default(cuid(2))
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
-  buildTitle        String      @db.VarChar(63)
-  description       String?
-  roundInfos        RoundInfo[]
+  id              String      @id @default(cuid(2))
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  buildTitle      String      @db.VarChar(63)
+  description     String?
+  roundInfos      RoundInfo[]
+  additionalNotes String?
+  hero            Hero
 }
 
 model RoundInfo {
-  id                String        @id @default(cuid(2))
-  parentBuild       StadiumBuild  @relation(fields: [buildId], references: [id])
-  buildId           String
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
-  note              String?
-  // TODO...
+  id          String       @id @default(cuid(2))
+  parentBuild StadiumBuild @relation(fields: [buildId], references: [id])
+  buildId     String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  note        String?
+  power       Power?       @relation(fields: [powerId], references: [id])
+  powerId     String?
+  items       Item[]
 }
 
 model Item {
-  id                String        @id @default(cuid(2))
-  name              String
-  description       String?
-  cost              Int
-  statMods          StatMod[]
-  // TODO...
+  id          String    @id @default(cuid(2))
+  name        String
+  description String?
+  cost        Int
+  statMods    StatMod[]
+  hero        Hero?
+
+  roundInfos RoundInfo[]
 }
 
 model Power {
-  id                String        @id @default(cuid(2))
-  name              String
-  description       String
-  // TODO...
+  id          String @id @default(cuid(2))
+  name        String
+  description String
+
+  roundInfos RoundInfo[]
 }
 
 model Stat {
-  id                Int           @id @default(autoincrement())
-  name              String
-  // TODO...
+  id      Int     @id @default(autoincrement())
+  name    String
+  iconURL String?
 }
 
 model StatMod {
-  id                String        @id @default(cuid(2))
-  amount            Int
+  id     String @id @default(cuid(2))
+  amount Int
 
   Item Item[]
 }
