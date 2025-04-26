@@ -4,10 +4,18 @@
   import Hero from "$lib/components/content/Hero.svelte";
   import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
   import RoundInfo from "$lib/components/content/RoundInfo.svelte";
+  import RoundSelector from "$lib/components/content/RoundSelector.svelte";
   import { heroes } from "$lib/constants/heroes";
+  import { ROUND_MAX } from "$lib/constants/round";
   import { testDataRoundInfos } from "$lib/data/testData";
   import type { Build } from "$lib/types/build";
+  import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
+  import { setContext } from "svelte";
+
+  const currentRound: CurrentRound = $state({ value: ROUND_MAX });
+
+  setContext('currentRound', currentRound);
 
   const build: Build = {
     title: "I am a build for a hero",
@@ -41,6 +49,8 @@
 
   <div class="layout">
     <aside class="sidebar block">
+      <RoundSelector />
+
       <CompoundedBuild {build} />
 
       <h2 class="build-cost">Build cost: {getBuildCostForRound(build, 1).toLocaleString()}</h2>
