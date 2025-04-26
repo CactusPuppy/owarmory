@@ -1,10 +1,10 @@
 import type { Build, RoundInfo, RoundInfoSection } from "$lib/types/build";
 
 // TODO: Replace unknown type with Power[] type
-export function getBuildFinalPowers(build: Build): unknown[] {
+export function getBuildPowersForRound(build: Build, round = 7): unknown[] {
   const powers: unknown[] = [];
 
-  getBuildStandardSections(build).forEach(({ power }) => {
+  getBuildStandardSectionsForRound(build, round).forEach(({ power }) => {
     if (power) powers.push(power);
   });
 
@@ -12,25 +12,25 @@ export function getBuildFinalPowers(build: Build): unknown[] {
 }
 
 // TODO: Replace unknown type with Power[] type
-export function getBuildFinalItems(build: Build): unknown[] {
+export function getBuildItemsForRound(build: Build, round = 7): unknown[] {
   const items: unknown[] = [];
 
-  getBuildStandardSections(build).forEach((section) => {
+  getBuildStandardSectionsForRound(build, round).forEach((section) => {
     items.push(...section.items);
   });
 
   return items;
 }
 
-export function getBuildFinalCost(build: Build): number {
-  return getBuildFinalItems(build).reduce((sum, item) => sum + item.cost, 0);
+export function getBuildCostForRound(build: Build, round = 7): number {
+  return getBuildItemsForRound(build, round).reduce((sum, item) => sum + item.cost, 0);
 }
 
-/** @returns All standard section of a build, excluding all "alternative" options */
-export function getBuildStandardSections(build: Build): RoundInfoSection[] {
+/** @returns All standard section of a build up to a certain round, excluding all "alternative" options */
+export function getBuildStandardSectionsForRound(build: Build, round = 7): RoundInfoSection[] {
   const sections: RoundInfoSection[] = [];
 
-  build.roundInfos.forEach((roundInfo: RoundInfo) => {
+  build.roundInfos.slice(0, round).forEach((roundInfo: RoundInfo) => {
     sections.push(...roundInfo.sections.filter((section) => !section.title));
   });
 

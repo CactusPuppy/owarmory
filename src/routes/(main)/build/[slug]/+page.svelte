@@ -7,7 +7,7 @@
   import { heroes } from "$lib/constants/heroes";
   import { testDataRoundInfos } from "$lib/data/testData";
   import type { Build } from "$lib/types/build";
-  import { getBuildFinalCost } from "$lib/utils/build";
+  import { getBuildCostForRound } from "$lib/utils/build";
 
   const build: Build = {
     title: "I am a build for a hero",
@@ -43,7 +43,7 @@
     <aside class="sidebar block">
       <CompoundedBuild {build} />
 
-      <h2>Build cost: {getBuildFinalCost(build).toLocaleString()}</h2>
+      <h2>Build cost: {getBuildCostForRound(build).toLocaleString()}</h2>
 
       <DashedHeader text="Stats" />
       <ItemStatistics items={[]} {hero} />

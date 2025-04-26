@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Build } from "$lib/types/build";
-  import { getBuildFinalPowers, getBuildFinalItems } from "$lib/utils/build";
+  import { getBuildPowersForRound, getBuildItemsForRound } from "$lib/utils/build";
   import DashedHeader from "./DashedHeader.svelte";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
@@ -11,8 +11,8 @@
 
   const { build }: Props = $props();
 
-  const powers = $derived(getBuildFinalPowers(build));
-  const items = $derived(getBuildFinalItems(build));
+  const powers = $derived(getBuildPowersForRound(build));
+  const items = $derived(getBuildItemsForRound(build));
 </script>
 
 <DashedHeader text="Powers" />
