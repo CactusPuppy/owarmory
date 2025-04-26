@@ -1,8 +1,15 @@
-<script>
+<script lang="ts">
   import Heroes from "$lib/components/content/Heroes.svelte";
   import Power from "$lib/components/content/Power.svelte";
   import Item from "$lib/components/content/Item.svelte";
   import BuildsList from "$lib/components/content/BuildsList.svelte";
+  import type { CurrentRound } from "$lib/types/round";
+  import { ROUND_MAX } from "$lib/constants/round";
+  import { setContext } from "svelte";
+
+  const currentRound: CurrentRound = $state({ value: ROUND_MAX });
+
+  setContext('currentRound', currentRound);
 
   // Placeholder stuff
   const items = [
@@ -44,6 +51,7 @@
 
 <Heroes />
 
+<BuildsList header="Popular Builds" />
 <BuildsList header="Latest Builds" />
 
 <div class="block vertical-offset-large">
