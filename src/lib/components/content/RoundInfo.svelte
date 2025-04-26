@@ -4,13 +4,13 @@
   import Power from "./Power.svelte";
 
   interface Props {
-    roundInfo: RoundInfo
-    header: string
+    roundInfo: RoundInfo;
+    header: string;
   }
 
   const { roundInfo, header = "" }: Props = $props();
 
-  const { note, sections } = $derived(roundInfo)
+  const { note, sections } = $derived(roundInfo);
 </script>
 
 <div class="round-info">

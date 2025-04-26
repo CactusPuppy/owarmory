@@ -7,127 +7,154 @@
 
   const build: Build = {
     title: "I am a build for a hero",
-    introduction: "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    description: "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+    introduction:
+      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+    description:
+      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
     hero: heroes[0],
     author: {
-      username: "Some guy"
+      username: "Some guy",
     },
-    roundInfos: [{
-      id: "1",
-      note: "Some short note on the first round",
-      sections: [{
+    roundInfos: [
+      {
         id: "1",
-        title: "",
-        power: {
-          id: 1,
-          name: "Some power",
-          description: "I am some description of a power that will appear in the popover",
-          icon: "https://picsum.photos/40"
-        },
-        items: [{
-          id: 1,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/a/40",
-          rarity: "common",
-          cost: 4000
-        }, {
-          id: 2,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/b/40",
-          rarity: "rare",
-          cost: 2000
-        }]
-      }, {
+        note: "Some short note on the first round",
+        sections: [
+          {
+            id: "1",
+            title: "",
+            power: {
+              id: 1,
+              name: "Some power",
+              description: "I am some description of a power that will appear in the popover",
+              icon: "https://picsum.photos/40",
+            },
+            items: [
+              {
+                id: 1,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/a/40",
+                rarity: "common",
+                cost: 4000,
+              },
+              {
+                id: 2,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/b/40",
+                rarity: "rare",
+                cost: 2000,
+              },
+            ],
+          },
+          {
+            id: "2",
+            title: "Push maps",
+            power: {
+              id: 1,
+              name: "Some power",
+              description: "I am some description of a power that will appear in the popover",
+              icon: "https://picsum.photos/40",
+            },
+            items: [
+              {
+                id: 1,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/c/40",
+                rarity: "common",
+                cost: 4000,
+              },
+              {
+                id: 2,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/d/40",
+                rarity: "rare",
+                cost: 2000,
+              },
+            ],
+          },
+        ],
+      },
+      {
         id: "2",
-        title: "Push maps",
-        power: {
-          id: 1,
-          name: "Some power",
-          description: "I am some description of a power that will appear in the popover",
-          icon: "https://picsum.photos/40"
-        },
-        items: [{
-          id: 1,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/c/40",
-          rarity: "common",
-          cost: 4000
-        }, {
-          id: 2,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/d/40",
-          rarity: "rare",
-          cost: 2000
-        }]
-      }]
-    }, {
-      id: "2",
-      note: "Some other short note on the second round",
-      sections: [{
-        id: "1",
-        title: "",
-        power: null,
-        items: [{
-          id: 1,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/a/40",
-          rarity: "common",
-          cost: 4000
-        }, {
-          id: 2,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/b/40",
-          rarity: "rare",
-          cost: 2000
-        }]
-      }, {
-        id: "2",
-        title: "Low healing",
-        power: null,
-        items: [{
-          id: 1,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/c/40",
-          rarity: "common",
-          cost: 4000
-        }, {
-          id: 2,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/d/40",
-          rarity: "rare",
-          cost: 2000
-        }]
-      }, {
-        id: "3",
-        title: "Other",
-        power: null,
-        items: [{
-          id: 1,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/c/40",
-          rarity: "common",
-          cost: 4000
-        }, {
-          id: 2,
-          name: "Some item",
-          description: "I am some description of an item that will appear in the popover",
-          icon: "https://picsum.photos/seed/d/40",
-          rarity: "rare",
-          cost: 2000
-        }]
-      }]
-    }]
-  }
+        note: "Some other short note on the second round",
+        sections: [
+          {
+            id: "1",
+            title: "",
+            power: null,
+            items: [
+              {
+                id: 1,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/a/40",
+                rarity: "common",
+                cost: 4000,
+              },
+              {
+                id: 2,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/b/40",
+                rarity: "rare",
+                cost: 2000,
+              },
+            ],
+          },
+          {
+            id: "2",
+            title: "Low healing",
+            power: null,
+            items: [
+              {
+                id: 1,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/c/40",
+                rarity: "common",
+                cost: 4000,
+              },
+              {
+                id: 2,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/d/40",
+                rarity: "rare",
+                cost: 2000,
+              },
+            ],
+          },
+          {
+            id: "3",
+            title: "Other",
+            power: null,
+            items: [
+              {
+                id: 1,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/c/40",
+                rarity: "common",
+                cost: 4000,
+              },
+              {
+                id: 2,
+                name: "Some item",
+                description: "I am some description of an item that will appear in the popover",
+                icon: "https://picsum.photos/seed/d/40",
+                rarity: "rare",
+                cost: 2000,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
 
   const { title, hero, introduction, author, roundInfos, description } = $derived(build);
 </script>
@@ -153,7 +180,7 @@
 
     <section class="article block">
       {#each roundInfos as roundInfo, i (roundInfo.id)}
-        <RoundInfo {roundInfo} header="Round {i + 1}"  />
+        <RoundInfo {roundInfo} header="Round {i + 1}" />
       {/each}
 
       {#if description}

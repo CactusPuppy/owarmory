@@ -2,10 +2,10 @@
   import Build from "./Build.svelte";
 
   interface Props {
-    header: string
+    header: string;
   }
 
-  const { header }: Props = $props()
+  const { header }: Props = $props();
 </script>
 
 <h1>{header}</h1>

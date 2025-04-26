@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import Navigation from "$lib/components/layout/Navigation.svelte";
-	import PageBackground from "$lib/components/layout/PageBackground.svelte";
+  import type { Snippet } from "svelte";
+  import Navigation from "$lib/components/layout/Navigation.svelte";
+  import PageBackground from "$lib/components/layout/PageBackground.svelte";
 
-  const { children }: { children: Snippet } = $props()
+  const { children }: { children: Snippet } = $props();
 </script>
 
 <Navigation />

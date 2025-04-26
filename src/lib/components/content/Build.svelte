@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
-	import { heroes } from "$lib/constants/heroes";
-	import Hero from "./Hero.svelte";
-	import Item from "./Item.svelte";
-	import Power from "./Power.svelte";
+  import { goto } from "$app/navigation";
+  import { heroes } from "$lib/constants/heroes";
+  import Hero from "./Hero.svelte";
+  import Item from "./Item.svelte";
+  import Power from "./Power.svelte";
 
   const power = (id: number) => ({
     id,
     name: "Some power",
     description: "I am some description of a power that will appear in the popover",
-    icon: `https://picsum.photos/seed/${id}/40`
-  })
+    icon: `https://picsum.photos/seed/${id}/40`,
+  });
 
   const item = (id: number) => ({
     id,
@@ -18,18 +18,18 @@
     description: "I am some description of a power that will appear in the popover",
     icon: `https://picsum.photos/seed/${id}/40`,
     rarity: "rare",
-    cost: 2000 * id
-  })
+    cost: 2000 * id,
+  });
 
-  const href = '/build/test'
+  const href = "/build/test";
 
   function onclick(event: MouseEvent): void {
-    const target = event.target as HTMLElement
+    const target = event.target as HTMLElement;
 
-    if (target.nodeName === 'A') return
-    if (target.closest('a')) return
+    if (target.nodeName === "A") return;
+    if (target.closest("a")) return;
 
-    goto(href)
+    goto(href);
   }
 </script>
 
@@ -69,7 +69,9 @@
     flex-wrap: wrap;
     border-radius: $border-radius-small;
     box-shadow: 0 0 0 $color-bg-light;
-    transition: box-shadow $transition-duration, background-color $transition-duration $transition-duration;
+    transition:
+      box-shadow $transition-duration,
+      background-color $transition-duration $transition-duration;
     cursor: pointer;
 
     @include breakpoint(tablet) {

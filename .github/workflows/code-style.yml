@@ -1,0 +1,30 @@
+name: Code Style
+on:
+  pull_request: {}
+
+env:
+  HUSKY: 0
+
+permissions:
+  checks: write
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.1.0
+        with:
+          version: 10.9.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install
+      - name: Lint Action
+        uses: wearerequired/lint-action@v2.3.0
+        with:
+          eslint: true
+          prettier: true

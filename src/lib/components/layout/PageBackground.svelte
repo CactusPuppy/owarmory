@@ -1,5 +1,5 @@
 <script lang="ts">
-  import imageGladius from "$lib/images/backgrounds/gladius.webp"
+  import imageGladius from "$lib/images/backgrounds/gladius.webp";
 </script>
 
 <img src={imageGladius} alt="" />

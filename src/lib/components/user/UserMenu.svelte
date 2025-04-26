@@ -1,5 +1,4 @@
 <script lang="scss">
-
 </script>
 
 <a href="/profile" class="avatar">

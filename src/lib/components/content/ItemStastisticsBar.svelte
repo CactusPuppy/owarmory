@@ -1,14 +1,14 @@
 <script lang="ts">
   interface Props {
-    label: string
-    suffix: string
-    value: number
-    max: number
-    icon: string
-    background?: string
+    label: string;
+    suffix: string;
+    value: number;
+    max: number;
+    icon: string;
+    background?: string;
   }
 
-  const { label, suffix, value, max, icon, background = '' }: Props = $props();
+  const { label, suffix, value, max, icon, background = "" }: Props = $props();
 </script>
 
 <div class="statistic">
@@ -17,7 +17,7 @@
       <img src={icon} alt={label} height="24" width="24" />
     </div>
 
-    <div class="progress" style:width="{100 / max * value}%" style:background></div>
+    <div class="progress" style:width="{(100 / max) * value}%" style:background></div>
   </div>
 
   <div class="value">
@@ -61,7 +61,11 @@
   }
 
   .progress {
-    background: linear-gradient(to bottom, color.adjust($white, $lightness: -10%), color.adjust($white, $lightness: -15%));
+    background: linear-gradient(
+      to bottom,
+      color.adjust($white, $lightness: -10%),
+      color.adjust($white, $lightness: -15%)
+    );
     border: 2px solid color.adjust($white, $lightness: -10%);
     border-radius: $border-radius-small;
     transition: width 500ms;
