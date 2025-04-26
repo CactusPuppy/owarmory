@@ -43,7 +43,7 @@
     <aside class="sidebar block">
       <CompoundedBuild {build} />
 
-      <h2>Build cost: {getBuildCostForRound(build).toLocaleString()}</h2>
+      <h2 class="build-cost">Build cost: {getBuildCostForRound(build, 1).toLocaleString()}</h2>
 
       <DashedHeader text="Stats" />
       <ItemStatistics items={[]} {hero} />
@@ -76,12 +76,10 @@
   }
 
   h2 {
-    margin: 2rem 0;
-    color: $secondary;
-    text-align: center;
+    margin: $vertical-offset-large 0 1rem;
 
     @include breakpoint(tablet) {
-      margin: 4rem 0;
+      margin-bottom: 2rem;
     }
   }
 
@@ -134,5 +132,15 @@
 
   .sidebar {
     min-height: 20rem;
+  }
+
+  .build-cost {
+    margin: 2rem 0;
+    color: $secondary;
+    text-align: center;
+
+    @include breakpoint(tablet) {
+      margin: 4rem 0;
+    }
   }
 </style>
