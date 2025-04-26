@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Build from "./Build.svelte";
+  import Build from "./Build.svelte";
 
   interface Props {
     header: string
