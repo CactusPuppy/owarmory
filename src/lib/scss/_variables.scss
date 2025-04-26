@@ -16,10 +16,12 @@ $color-border: rgba(#7ab1c3, 0.2);
 $color-rarities: (
   common: #13a530,
   rare: #207cbd,
-  epic: #8426d2
+  epic: #8426d2,
 );
 
-$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-stack:
+  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-stack-brand: "Gilroy", "Impact", sans-serif;
 
 $font-size-h1: clamp(2.5rem, 8vw, 3rem);

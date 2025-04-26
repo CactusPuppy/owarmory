@@ -1,16 +1,17 @@
 <script lang="ts">
   import Hero from "$lib/components/content/Hero.svelte";
-	import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
+  import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
   import { heroes } from "$lib/constants/heroes";
   import type { Build } from "$lib/types/build";
 
   const build: Build = {
     title: "I am a build for a hero",
-    introduction: "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+    introduction:
+      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
     hero: heroes[0],
     author: {
-      username: "Some guy"
-    }
+      username: "Some guy",
+    },
   };
 
   const { title, hero, introduction, author } = $derived(build);
@@ -35,8 +36,7 @@
       <ItemStatistics items={[]} {hero} />
     </aside>
 
-    <section class="article block">
-    </section>
+    <section class="article block"></section>
   </div>
 </article>
 

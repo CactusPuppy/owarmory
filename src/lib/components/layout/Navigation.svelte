@@ -1,6 +1,6 @@
 <script lang="ts">
   import imageLogo from "$lib/images/logo.webp";
-	import UserMenu from "$lib/components/user/UserMenu.svelte";
+  import UserMenu from "$lib/components/user/UserMenu.svelte";
 </script>
 
 <nav>
@@ -50,7 +50,6 @@
   .logo {
     &:hover {
       filter: brightness(1.2);
-
     }
     img {
       display: block;

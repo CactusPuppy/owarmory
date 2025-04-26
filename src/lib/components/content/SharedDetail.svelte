@@ -1,8 +1,8 @@
 <script lang="ts">
   interface Props {
-    name: string,
-    description: string,
-    cost?: number
+    name: string;
+    description: string;
+    cost?: number;
   }
 
   const { name, description, cost = 0 }: Props = $props();

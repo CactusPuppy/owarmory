@@ -18,24 +18,27 @@ export default ts.config(
   ...svelte.configs.prettier,
   {
     languageOptions: {
-      globals: { ...globals.browser, ...globals.node }
+      globals: { ...globals.browser, ...globals.node },
     },
     rules: {
       "no-undef": "off",
       semi: ["error", "always"],
-      quotes: ["error", "double"],
       "comma-spacing": ["error"],
-      "comma-dangle": ["error", "always-multiline"],
-      indent: ["error", 2, {
-        SwitchCase: 1
-      }],
+      indent: [
+        "error",
+        2,
+        {
+          SwitchCase: 1,
+        },
+      ],
       "no-trailing-spaces": ["warn"],
       "prefer-const": [
-        "error", {
-          destructuring: "all"
-        }
-      ]
-    }
+        "error",
+        {
+          destructuring: "all",
+        },
+      ],
+    },
   },
   {
     files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
@@ -44,8 +47,8 @@ export default ts.config(
         projectService: true,
         extraFileExtensions: [".svelte"],
         parser: ts.parser,
-        svelteConfig
-      }
-    }
-  }
+        svelteConfig,
+      },
+    },
+  },
 );

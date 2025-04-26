@@ -9,9 +9,10 @@
 <div class="popover">
   <button
     class="toggle"
-    onmouseenter={() => active = true}
-    onmouseleave={() => active = false}
-    onclick={() => active = !active}>
+    onmouseenter={() => (active = true)}
+    onmouseleave={() => (active = false)}
+    onclick={() => (active = !active)}
+  >
     {@render children()}
   </button>
 

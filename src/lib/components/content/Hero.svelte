@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HeroData } from "$lib/types/hero";
 
-  const { hero, large = false } : { hero: HeroData, large?: boolean } = $props();
+  const { hero, large = false }: { hero: HeroData; large?: boolean } = $props();
 </script>
 
 <a href="/hero/{hero.name}" class="hero" class:large>

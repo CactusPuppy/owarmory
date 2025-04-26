@@ -4,35 +4,41 @@
   import Item from "$lib/components/content/Item.svelte";
 
   // Placeholder stuff
-  const items = [{
-    id: 1,
-    name: "Some item",
-    description: "I am some description of an item that will appear in the popover",
-    icon: "https://picsum.photos/seed/a/40",
-    rarity: "common",
-    cost: 4000
-  }, {
-    id: 2,
-    name: "Some item",
-    description: "I am some description of an item that will appear in the popover",
-    icon: "https://picsum.photos/seed/b/40",
-    rarity: "rare",
-    cost: 2000
-  }, {
-    id: 3,
-    name: "Some item",
-    description: "I am some description of an item that will appear in the popover",
-    icon: "https://picsum.photos/seed/c/40",
-    rarity: "epic",
-    cost: 4000
-  }];
+  const items = [
+    {
+      id: 1,
+      name: "Some item",
+      description: "I am some description of an item that will appear in the popover",
+      icon: "https://picsum.photos/seed/a/40",
+      rarity: "common",
+      cost: 4000,
+    },
+    {
+      id: 2,
+      name: "Some item",
+      description: "I am some description of an item that will appear in the popover",
+      icon: "https://picsum.photos/seed/b/40",
+      rarity: "rare",
+      cost: 2000,
+    },
+    {
+      id: 3,
+      name: "Some item",
+      description: "I am some description of an item that will appear in the popover",
+      icon: "https://picsum.photos/seed/c/40",
+      rarity: "epic",
+      cost: 4000,
+    },
+  ];
 
-  const powers = [{
-    id: 1,
-    name: "Some power",
-    description: "I am some description of a power that will appear in the popover",
-    icon: "https://picsum.photos/40"
-  }];
+  const powers = [
+    {
+      id: 1,
+      name: "Some power",
+      description: "I am some description of a power that will appear in the popover",
+      icon: "https://picsum.photos/40",
+    },
+  ];
 </script>
 
 <Heroes />
@@ -42,7 +48,9 @@
 <h3>Smallest title</h3>
 
 <div class="block">
-  <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+  <p>
+    Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation
+  </p>
 
   <div class="list">
     {#each items as item (item.id)}

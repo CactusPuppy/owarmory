@@ -1,10 +1,10 @@
-export type HeroRole = "tank" | "dps" | "support"
+export type HeroRole = "tank" | "dps" | "support";
 
 export type HeroData = {
-  name: string
-  role: HeroRole
-  image: string
-}
+  name: string;
+  role: HeroRole;
+  image: string;
+};
 
 export type HeroName =
   | "D.Va"
@@ -49,4 +49,4 @@ export type HeroName =
   | "Lúcio"
   | "Mercy"
   | "Moira"
-  | "Zenyatta"
+  | "Zenyatta";
