@@ -41,6 +41,7 @@
     &.large {
       width: $power-size-large;
       height: $power-size-large;
+      border-radius: $border-radius;
     }
 
     img {
