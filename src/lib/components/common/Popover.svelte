@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { closeable } from "$lib/actions/closeable";
   import { fly } from "svelte/transition";
 
   const { children, content } = $props();
@@ -12,6 +13,7 @@
     onmouseenter={() => (active = true)}
     onmouseleave={() => (active = false)}
     onclick={() => (active = !active)}
+    use:closeable={{ onclose: () => active = false }}
   >
     {@render children()}
   </button>
