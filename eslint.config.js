@@ -25,7 +25,7 @@ export default ts.config(
       semi: ["error", "always"],
       quotes: ["error", "double"],
       "comma-spacing": ["error"],
-    	"comma-dangle": ["error", "never"],
+      "comma-dangle": ["error", "never"],
       indent: ["error", 2, {
         SwitchCase: 1
       }],
