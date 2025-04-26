@@ -43,5 +43,8 @@
 			"esbuild",
 			"prisma"
 		]
+	},
+	"dependencies": {
+		"@prisma/client": "6.6.0"
 	}
 }
