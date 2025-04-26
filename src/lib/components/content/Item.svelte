@@ -4,7 +4,7 @@
 
   interface Props {
     item: unknown
-    large: boolean
+    large?: boolean
   }
 
   const { item, large = false }: Props = $props();
