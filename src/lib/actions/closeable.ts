@@ -1,6 +1,9 @@
 import type { Action } from "svelte/action";
 
-export const closeable: Action<Node, { onclose?: () => void }> = (node, { onclose = () => null } = {}) => {
+export const closeable: Action<Node, { onclose?: () => void }> = (
+  node,
+  { onclose = () => null } = {},
+) => {
   function click(event: MouseEvent): void {
     if (event.target instanceof Node && node.contains(event.target)) return;
 
@@ -20,6 +23,6 @@ export const closeable: Action<Node, { onclose?: () => void }> = (node, { onclos
     destroy() {
       window.removeEventListener("click", click);
       window.removeEventListener("keydown", keydown);
-    }
+    },
   };
 };
