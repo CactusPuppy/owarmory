@@ -5,9 +5,10 @@
     value: number;
     max: number;
     icon: string;
+    background?: string;
   }
 
-  const { label, suffix, value, max, icon }: Props = $props();
+  const { label, suffix, value, max, icon, background = "" }: Props = $props();
 </script>
 
 <div class="statistic">
@@ -16,7 +17,7 @@
       <img src={icon} alt={label} height="24" width="24" />
     </div>
 
-    <div class="progress" style:width="{(100 / max) * value}%"></div>
+    <div class="progress" style:width="{(100 / max) * value}%" style:background></div>
   </div>
 
   <div class="value">

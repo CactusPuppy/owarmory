@@ -15,6 +15,7 @@
       value: 300,
       max: 300,
       icon: "https://picsum.photos/seed/a/40",
+      background: "linear-gradient(to right, #f5f5f5 80%, #f1790e 80%, #f1790e 95%, #19b7df 95%)",
     },
     {
       label: "Weapon Power",

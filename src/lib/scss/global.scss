@@ -17,11 +17,11 @@ body {
   overflow-x: hidden;
   color: $color-text-base;
   font-family: $font-stack;
-  font-size: 16px;
+  font-size: $font-size-small;
   line-height: 1.5;
 
   @include breakpoint(tablet) {
-    font-size: 18px;
+    font-size: $font-size-base;
   }
 
   &::before {
