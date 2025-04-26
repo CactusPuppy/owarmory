@@ -1,25 +1,25 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { heroes } from "$lib/constants/heroes";
+  import type { Build } from "$lib/types/build";
+  import type { CurrentRound } from "$lib/types/round";
+  import { getContext } from "svelte";
   import Hero from "./Hero.svelte";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
+  import { getBuildItemsForRound, getBuildPowersForRound } from "$lib/utils/build";
+  import { slide } from "svelte/transition";
 
-  const power = (id: number) => ({
-    id,
-    name: "Some power",
-    description: "I am some description of a power that will appear in the popover",
-    icon: `https://picsum.photos/seed/${id}/40`,
-  });
+  interface Props {
+    build: Build
+  }
 
-  const item = (id: number) => ({
-    id,
-    name: "Some power",
-    description: "I am some description of a power that will appear in the popover",
-    icon: `https://picsum.photos/seed/${id}/40`,
-    rarity: "rare",
-    cost: 2000 * id,
-  });
+  const { build }: Props = $props();
+
+  const currentRound: CurrentRound = getContext('currentRound');
+
+  const items = $derived(getBuildItemsForRound(build, currentRound.value));
+  const powers = $derived(getBuildPowersForRound(build, currentRound.value));
 
   const href = "/build/test";
 
@@ -48,12 +48,16 @@
   </div>
 
   <div class="items">
-    {#each { length: 4 }, i}
-      <Power power={power(i + 1)} />
+    {#each powers as power (power.id)}
+      <div transition:slide={{ duration: 100, axis: 'x' }}>
+        <Power {power} />
+      </div>
     {/each}
 
-    {#each { length: 6 }, i}
-      <Item item={item(i + 10)} />
+    {#each items as item (item.id)}
+      <div transition:slide={{ duration: 100, axis: 'x' }}>
+        <Item {item} />
+      </div>
     {/each}
   </div>
 </div>
