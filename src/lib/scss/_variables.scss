@@ -40,6 +40,8 @@ $gutter: 1.5rem;
 $vertical-offset-large: clamp($gutter, 10vw, 7.5rem);
 $navigation-height: 5rem;
 $item-size: #{px-to-rem(40)};
+$item-size-large: #{px-to-rem(80)};
+$power-size-large: 4rem;
 
 $border-radius: 1rem;
 $border-radius-small: $border-radius * 0.5;

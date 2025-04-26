@@ -1,9 +1,13 @@
 <script lang="ts">
+  import CompoundedBuild from "$lib/components/content/CompoundedBuild.svelte";
+  import DashedHeader from "$lib/components/content/DashedHeader.svelte";
   import Hero from "$lib/components/content/Hero.svelte";
   import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
   import RoundInfo from "$lib/components/content/RoundInfo.svelte";
   import { heroes } from "$lib/constants/heroes";
+  import { testDataRoundInfos } from "$lib/data/testData";
   import type { Build } from "$lib/types/build";
+  import { getBuildFinalCost } from "$lib/utils/build";
 
   const build: Build = {
     title: "I am a build for a hero",
@@ -15,145 +19,7 @@
     author: {
       username: "Some guy",
     },
-    roundInfos: [
-      {
-        id: "1",
-        note: "Some short note on the first round",
-        sections: [
-          {
-            id: "1",
-            title: "",
-            power: {
-              id: 1,
-              name: "Some power",
-              description: "I am some description of a power that will appear in the popover",
-              icon: "https://picsum.photos/40",
-            },
-            items: [
-              {
-                id: 1,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/a/40",
-                rarity: "common",
-                cost: 4000,
-              },
-              {
-                id: 2,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/b/40",
-                rarity: "rare",
-                cost: 2000,
-              },
-            ],
-          },
-          {
-            id: "2",
-            title: "Push maps",
-            power: {
-              id: 1,
-              name: "Some power",
-              description: "I am some description of a power that will appear in the popover",
-              icon: "https://picsum.photos/40",
-            },
-            items: [
-              {
-                id: 1,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/c/40",
-                rarity: "common",
-                cost: 4000,
-              },
-              {
-                id: 2,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/d/40",
-                rarity: "rare",
-                cost: 2000,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: "2",
-        note: "Some other short note on the second round",
-        sections: [
-          {
-            id: "1",
-            title: "",
-            power: null,
-            items: [
-              {
-                id: 1,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/a/40",
-                rarity: "common",
-                cost: 4000,
-              },
-              {
-                id: 2,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/b/40",
-                rarity: "rare",
-                cost: 2000,
-              },
-            ],
-          },
-          {
-            id: "2",
-            title: "Low healing",
-            power: null,
-            items: [
-              {
-                id: 1,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/c/40",
-                rarity: "common",
-                cost: 4000,
-              },
-              {
-                id: 2,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/d/40",
-                rarity: "rare",
-                cost: 2000,
-              },
-            ],
-          },
-          {
-            id: "3",
-            title: "Other",
-            power: null,
-            items: [
-              {
-                id: 1,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/c/40",
-                rarity: "common",
-                cost: 4000,
-              },
-              {
-                id: 2,
-                name: "Some item",
-                description: "I am some description of an item that will appear in the popover",
-                icon: "https://picsum.photos/seed/d/40",
-                rarity: "rare",
-                cost: 2000,
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    roundInfos: testDataRoundInfos
   };
 
   const { title, hero, introduction, author, roundInfos, description } = $derived(build);
@@ -175,6 +41,11 @@
 
   <div class="layout">
     <aside class="sidebar block">
+      <CompoundedBuild {build} />
+
+      <h2>Build cost: {getBuildFinalCost(build).toLocaleString()}</h2>
+
+      <DashedHeader text="Stats" />
       <ItemStatistics items={[]} {hero} />
     </aside>
 
@@ -205,10 +76,12 @@
   }
 
   h2 {
-    margin: $vertical-offset-large 0 1rem;
+    margin: 2rem 0;
+    color: $secondary;
+    text-align: center;
 
     @include breakpoint(tablet) {
-      margin-bottom: 2rem;
+      margin: 4rem 0;
     }
   }
 
