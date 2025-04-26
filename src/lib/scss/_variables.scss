@@ -7,6 +7,7 @@ $white: #fff;
 $black: #000;
 $color-bg-base: #0e2038;
 $color-bg-dark: #091628;
+$color-bg-light: #163853;
 $color-bg-hero: #c8ddf8;
 $color-text-base: $secondary;
 $color-text-alt: #6f8aad;
@@ -41,3 +42,6 @@ $item-size: #{px-to-rem(40)};
 $border-radius: 1rem;
 $border-radius-small: $border-radius * 0.5;
 $border-radius-large: $border-radius * 2;
+
+$font-size-small: 16px;
+$font-size-base: 18px;
