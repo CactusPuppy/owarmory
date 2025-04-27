@@ -241,5 +241,5 @@ export const testBuildData: Build = {
   author: {
     username: "Some guy",
   },
-  roundInfos: testDataRoundInfos
+  roundInfos: testDataRoundInfos,
 };
