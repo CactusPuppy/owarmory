@@ -15,31 +15,38 @@
 
   let latestBuilds: Build[] = $state(data.latestBuilds);
   let loading = $state(false);
+  let currentPage = $state(1);
 
   setContext("currentRound", currentRound);
 
-  export const snapshot: Snapshot<{ latestBuilds: Build[]; scrollPosition: number }> = {
-    capture: () => ({ latestBuilds, scrollPosition: window.scrollY }),
-    restore: ({ latestBuilds: storedLatesteBuilds, scrollPosition }) => {
+  export const snapshot: Snapshot<{ latestBuilds: Build[]; currentPage: number; scrollPosition: number }> = {
+    capture: () => ({ latestBuilds, currentPage, scrollPosition: window.scrollY }),
+    restore: ({ latestBuilds: storedLatesteBuilds, currentPage: storedCurrentPage, scrollPosition }) => {
       latestBuilds = storedLatesteBuilds;
+      currentPage = storedCurrentPage;
 
       requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
     },
   };
 
-  async function loadMoreLatestBuilds(): Promise<void> {
+  async function loadMoreLatestBuilds(event: MouseEvent): Promise<void> {
+    event.preventDefault();
+
+    if (loading) return;
+
     loading = true;
 
     try {
       await new Promise((res) => setTimeout(res, 500)); // Fake load times
 
-      const result = (await api<Build[]>("builds/latest")) || [];
+      const result = (await api<Build[]>(`builds/latest?page=${currentPage}`)) || [];
 
       latestBuilds.push(...result);
     } catch (error: unknown) {
       console.error(error);
     } finally {
       loading = false;
+      currentPage++;
     }
   }
 </script>
@@ -51,11 +58,11 @@
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
 <center>
-  <button class="button" disabled={loading} onclick={loadMoreLatestBuilds}>
+  <a href="/latest?page={currentPage + 1}" class="button" class:disabled={loading} onclick={loadMoreLatestBuilds}>
     {#if loading}
       Loading...
     {:else}
       Load more
     {/if}
-  </button>
+  </a>
 </center>
