@@ -49,6 +49,10 @@
   ];
 </script>
 
+<svelte:head>
+  <title>OW Armory - Overwatch Stadium Builds</title>
+</svelte:head>
+
 <Heroes />
 
 <BuildsList header="Popular Builds" />
