@@ -1,0 +1,34 @@
+@use "$lib/scss/_variables.scss" as *;
+
+button {
+  appearance: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: $font-stack-brand;
+  font-size: $font-size-base;
+  cursor: pointer;
+}
+
+.button {
+  color: $primary;
+  border: 2px solid currentColor;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius-small;
+  transition: transform 50ms;
+
+  &:hover,
+  &:active,
+  &:focus-visible {
+    color: $white;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &--secondary {
+    color: $secondary;
+  }
+}

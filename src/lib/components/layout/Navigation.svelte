@@ -23,7 +23,7 @@
     {#if currentUser}
       <UserMenu />
     {:else}
-      <button onclick={login}>Log in</button>
+      <button class="button" onclick={login}>Log in</button>
     {/if}
   </div>
 </nav>
