@@ -9,4 +9,6 @@
   }
 </script>
 
-<button class="button" onclick={logout}> Logout </button>
+<button class="button" onclick={logout}>
+  Logout
+</button>
