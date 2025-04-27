@@ -1,5 +1,7 @@
 import type { Item, Power } from "$src/generated/prisma";
 import type { FullRoundInfo } from "$lib/types/round";
+import type { FullStadiumBuild } from "../types/build";
+import { heroes } from "../constants/heroData";
 
 export const testDataRoundInfos: FullRoundInfo[] = [
   {
@@ -252,3 +254,22 @@ export const testDataRoundInfos: FullRoundInfo[] = [
     ],
   },
 ];
+
+export const testBuildData: FullStadiumBuild = {
+  id: "cuid237846",
+  buildTitle: "I am a build for a hero",
+  authorId: "cuid234780",
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  description:
+    "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+  additionalNotes:
+    "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+  heroName: heroes[Math.floor(Math.random() * heroes.length)].name,
+  author: {
+    id: "cuid234780",
+    username: "Some guy",
+    oauthId: "bca0d6cc-d47d-4e67-8ca2-57d13af97d80",
+  },
+  roundInfos: testDataRoundInfos
+};

@@ -18,17 +18,22 @@ button {
   border-radius: $border-radius-small;
   transition: transform 50ms;
 
-  &:hover,
-  &:active,
-  &:focus-visible {
+  &:not([disabled]):hover,
+  &:not([disabled]):active,
+  &:not([disabled]):focus-visible {
     color: $white;
   }
 
-  &:active {
+  &:not([disabled]):active {
     transform: scale(0.95);
   }
 
   &--secondary {
     color: $secondary;
+  }
+
+  &[disabled] {
+    color: $color-text-alt;
+    border-color: $color-border;
   }
 }

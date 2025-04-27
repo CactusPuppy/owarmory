@@ -1,35 +1,14 @@
 <script lang="ts">
-  import { heroes } from "$lib/constants/heroData";
-  import { testDataRoundInfos } from "$lib/data/testData";
-  import type { FullStadiumBuild } from "$lib/types/build";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
   import Build from "./Build.svelte";
   import RoundSelector from "./RoundSelector.svelte";
 
   interface Props {
     header: string;
+    builds: FullStadiumBuild[];
   }
 
-  const { header }: Props = $props();
-
-  // Temp
-  const build: FullStadiumBuild = {
-    id: "cuid091234",
-    authorId: "cuid23450789",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    buildTitle: "I am a build for a hero",
-    additionalNotes:
-      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    description:
-      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    heroName: heroes[0].name,
-    author: {
-      id: "cuid23450789",
-      username: "Some guy",
-      oauthId: "bca0d6cc-d47d-4e67-8ca2-57d13af97d80",
-    },
-    roundInfos: testDataRoundInfos,
-  };
+  const { header, builds }: Props = $props();
 </script>
 
 <header class="header">
@@ -41,9 +20,10 @@
 </header>
 
 <div class="block list">
-  <Build {build} />
-  <Build {build} />
-  <Build {build} />
+  <!-- eslint-disable-next-line svelte/require-each-key -->
+  {#each builds as build}
+    <Build {build} />
+  {/each}
 </div>
 
 <style lang="scss">
