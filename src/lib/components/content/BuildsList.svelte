@@ -1,29 +1,14 @@
 <script lang="ts">
-  import { heroes } from "$lib/constants/heroes";
-  import { testDataRoundInfos } from "$lib/data/testData";
   import Build from "./Build.svelte";
   import { type Build as BuildType } from "$lib/types/build";
   import RoundSelector from "./RoundSelector.svelte";
 
   interface Props {
     header: string;
+    builds: BuildType[];
   }
 
-  const { header }: Props = $props();
-
-  // Temp
-  const build: BuildType = {
-    title: "I am a build for a hero",
-    introduction:
-      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    description:
-      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    hero: heroes[0],
-    author: {
-      username: "Some guy",
-    },
-    roundInfos: testDataRoundInfos
-  };
+  const { header, builds }: Props = $props();
 </script>
 
 <header class="header">
@@ -35,9 +20,10 @@
 </header>
 
 <div class="block list">
-  <Build {build} />
-  <Build {build} />
-  <Build {build} />
+  <!-- eslint-disable-next-line svelte/require-each-key -->
+  {#each builds as build}
+    <Build {build} />
+  {/each}
 </div>
 
 <style lang="scss">

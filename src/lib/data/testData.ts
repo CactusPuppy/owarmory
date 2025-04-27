@@ -1,3 +1,6 @@
+import { heroes } from "$lib/constants/heroes";
+import type { Build } from "$lib/types/build";
+
 export const testDataRoundInfos = [
   {
     id: "1",
@@ -227,3 +230,16 @@ export const testDataRoundInfos = [
     ],
   },
 ];
+
+export const testBuildData: Build = {
+  title: "I am a build for a hero",
+  introduction:
+    "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+  description:
+    "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+  hero: heroes[Math.floor(Math.random() * heroes.length)],
+  author: {
+    username: "Some guy",
+  },
+  roundInfos: testDataRoundInfos
+};
