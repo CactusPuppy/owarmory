@@ -84,9 +84,6 @@
   }
 
   .expand {
-    appearance: none;
-    border: 0;
-    padding: 0;
     margin: 0.5rem auto 0;
     background: transparent;
     color: $secondary;

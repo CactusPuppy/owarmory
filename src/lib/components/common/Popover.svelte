@@ -58,11 +58,6 @@
 
   .toggle {
     display: block;
-    appearance: none;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
   }
 
   .content {
