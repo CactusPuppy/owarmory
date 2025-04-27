@@ -271,5 +271,5 @@ export const testBuildData: FullStadiumBuild = {
     username: "Some guy",
     oauthId: "bca0d6cc-d47d-4e67-8ca2-57d13af97d80",
   },
-  roundInfos: testDataRoundInfos
+  roundInfos: testDataRoundInfos,
 };
