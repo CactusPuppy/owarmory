@@ -6,4 +6,4 @@ export async function GET({ cookies }) {
   cookies.delete(AUTH_TOKEN_COOKIE_NAME, { path: "/" });
 
   return new Response(JSON.stringify(true), { headers });
-};
+}
