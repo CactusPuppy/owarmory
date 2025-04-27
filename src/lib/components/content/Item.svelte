@@ -1,14 +1,20 @@
-<script>
+<script lang="ts">
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
-  const { item } = $props();
+  interface Props {
+    item: unknown
+    large?: boolean
+  }
 
+  const { item, large = false }: Props = $props();
+
+  // @ts-expect-error There's no type right now
   const { name, description, icon, rarity, cost } = $derived(item);
 </script>
 
 <Popover>
-  <div class="item {rarity}">
+  <div class="item {rarity}" class:large>
     <img src={icon} alt={name} />
   </div>
 
@@ -41,6 +47,11 @@
           --color-rarity: #{color.adjust($color, $lightness: 10%)};
         }
       }
+    }
+
+    &.large {
+      width: $item-size-large;
+      height: $item-size-large;
     }
 
     img {
