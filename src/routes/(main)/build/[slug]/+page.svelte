@@ -33,6 +33,10 @@
   const { title, hero, introduction, author, roundInfos, description } = $derived(build);
 </script>
 
+<svelte:head>
+  <title>{title} | {hero.name} | OW Armory</title>
+</svelte:head>
+
 <article itemscope itemtype="https://schema.org/Article">
   <header class="header">
     <Hero {hero} large />

@@ -5,4 +5,8 @@
   const { children }: { children: Snippet } = $props();
 </script>
 
+<svelte:head>
+  <title>OW Armory - Overwatch Stadium Builds</title>
+</svelte:head>
+
 {@render children()}
