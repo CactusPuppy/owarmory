@@ -23,7 +23,7 @@
 
 <style lang="scss">
   .detail {
-    width: 23rem;
+    width: min(calc(100vw - 2rem), 23rem);
     padding: 1.5rem;
   }
 
