@@ -14,4 +14,4 @@ export async function GET({ cookies }) {
   cookies.set(AUTH_TOKEN_COOKIE_NAME, "some-token", { path: "/", maxAge: 31536000 });
 
   return new Response(JSON.stringify(currentUser), { headers });
-};
+}
