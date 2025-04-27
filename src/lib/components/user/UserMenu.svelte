@@ -1,21 +1,11 @@
 <script lang="ts">
-  import { invalidateAll } from "$app/navigation";
   import type { User } from "$lib/types/user";
-  import { api } from "$lib/utils/api";
   import { getContext } from "svelte";
 
   const currentUser: User = getContext('currentUser');
-
-  // This function is temporary, the log out will be moved to the /account page
-  async function logout(event: MouseEvent) {
-    event.preventDefault();
-
-    await api<User>("logout");
-    invalidateAll();
-  }
 </script>
 
-<a href="/account" class="avatar" onclick={logout}>
+<a href="/account" class="avatar">
   <img src="//:0" alt={currentUser.username} height="64" width="64" />
 </a>
 
