@@ -11,7 +11,7 @@ export function getBuildPowersForRound(build: Build, round = 7): unknown[] {
   return powers;
 }
 
-// TODO: Replace unknown type with Power[] type
+// TODO: Replace unknown type with Item[] type
 export function getBuildItemsForRound(build: Build, round = 7): unknown[] {
   const items: unknown[] = [];
 
@@ -35,4 +35,11 @@ export function getBuildStandardSectionsForRound(build: Build, round = 7): Round
   });
 
   return sections;
+}
+
+// TODO: Replace unknown type with Item[] type
+export function getAllBuildItems(build: Build): unknown[] {
+  return build.roundInfos.flatMap(roundInfo => {
+    return roundInfo.sections.filter(section => !section.title).flatMap(section => section.items);
+  });
 }
