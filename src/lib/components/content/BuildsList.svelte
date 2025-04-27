@@ -28,7 +28,7 @@
 </script>
 
 <header class="header">
-  <h1>{header}</h1>
+  <h2>{header}</h2>
 
   <div class="round-selector">
     <RoundSelector />
@@ -42,8 +42,9 @@
 </div>
 
 <style lang="scss">
-  h1 {
+  h2 {
     margin: 0;
+    font-size: $font-size-h1;
   }
 
   .header {
