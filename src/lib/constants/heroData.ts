@@ -1,3 +1,4 @@
+import { HeroRole } from "$src/generated/prisma";
 import type { HeroData, HeroName } from "../types/hero";
 
 export const heroes: HeroData[] = [
@@ -71,5 +72,8 @@ export const heroes: HeroData[] = [
   },
 ];
 
-export const heroFromHeroName = (heroName: HeroName) =>
-  heroes.find((heroDatum) => heroDatum.name == heroName);
+export const heroFromHeroName = (heroName: HeroName): HeroData =>
+  heroes.find((heroDatum) => heroDatum.name == heroName) ?? {
+    name: "Unknown Hero" as HeroName,
+    role: HeroRole.Damage,
+  };

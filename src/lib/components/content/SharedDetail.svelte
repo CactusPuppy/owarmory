@@ -1,7 +1,7 @@
 <script lang="ts">
   interface Props {
     name: string;
-    description: string;
+    description: string | null;
     cost?: number;
   }
 
@@ -10,7 +10,9 @@
 
 <div class="detail">
   <strong class="name">{name}</strong>
-  <p class="description">{description}</p>
+  {#if description}
+    <p class="description">{description}</p>
+  {/if}
 
   <div class="cost">
     {#if cost}

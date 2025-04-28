@@ -22,7 +22,7 @@
     author: {
       username: "Some guy",
     },
-    roundInfos: testDataRoundInfos
+    roundInfos: testDataRoundInfos,
   };
 </script>
 

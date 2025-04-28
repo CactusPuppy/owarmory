@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Build } from "$lib/types/build";
-  import type { CurrentRound } from "$lib/types/round";
+  import type { FullStadiumBuild } from "$lib/types/build";
+  import type { CurrentRound } from "$src/lib/types/round";
   import { getBuildPowersForRound, getBuildItemsForRound } from "$lib/utils/build";
   import { getContext } from "svelte";
   import DashedHeader from "./DashedHeader.svelte";
@@ -9,12 +9,12 @@
   import { scale } from "svelte/transition";
 
   interface Props {
-    build: Build
+    build: FullStadiumBuild;
   }
 
   const { build }: Props = $props();
 
-  const currentRound: CurrentRound = getContext('currentRound');
+  const currentRound: CurrentRound = getContext("currentRound");
 
   const powers = $derived(getBuildPowersForRound(build, currentRound.value));
   const items = $derived(getBuildItemsForRound(build, currentRound.value));
