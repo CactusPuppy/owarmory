@@ -44,7 +44,7 @@ async function createStats(tx: PrismaTransaction) {
   return await tx.stat.createManyAndReturn({
     data: StatNames.map((statName) => ({
       name: statName,
-      iconURL: `images/stats/${encodeURIComponent(statName)}.webp`,
+      iconURL: `/images/stats/${encodeURIComponent(statName)}.webp`,
     })),
   });
 }
@@ -87,7 +87,7 @@ async function main() {
       const baseData = {
         name: talent.Name,
         description: talent.DescriptionFormatted ?? talent.Description,
-        iconURL: `images/talents/${encodeURIComponent(talent.Name)}.png`,
+        iconURL: `/images/talents/${encodeURIComponent(talent.Name)}.png`,
       };
 
       if (talent.Category.Value == "Power") {
