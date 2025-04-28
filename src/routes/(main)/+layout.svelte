@@ -2,6 +2,7 @@
   import type { Snippet } from "svelte";
   import Navigation from "$lib/components/layout/Navigation.svelte";
   import PageBackground from "$lib/components/layout/PageBackground.svelte";
+  import Footer from "$lib/components/layout/Footer.svelte";
 
   const { children }: { children: Snippet } = $props();
 </script>
@@ -11,6 +12,8 @@
 <main>
   {@render children()}
 </main>
+
+<Footer />
 
 <PageBackground />
 
