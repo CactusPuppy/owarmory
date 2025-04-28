@@ -32,11 +32,11 @@
     roundInfos: testDataRoundInfos,
   };
 
-  // @ts-expect-error author type not defined for now
   const {
     buildTitle: title,
     heroName,
     description,
+    // @ts-expect-error author type not defined for now
     author,
     roundInfos,
     additionalNotes,

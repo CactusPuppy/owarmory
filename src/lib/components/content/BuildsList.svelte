@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { heroes } from "$lib/constants/heroes";
+  import { heroes } from "$lib/constants/heroData";
   import { testDataRoundInfos } from "$lib/data/testData";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
   import Build from "./Build.svelte";
-  import { type Build as BuildType } from "$lib/types/build";
   import RoundSelector from "./RoundSelector.svelte";
 
   interface Props {
@@ -12,13 +12,14 @@
   const { header }: Props = $props();
 
   // Temp
-  const build: BuildType = {
-    title: "I am a build for a hero",
-    introduction:
+  const build: FullStadiumBuild = {
+    buildTitle: "I am a build for a hero",
+    additionalNotes:
       "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
     description:
       "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    hero: heroes[0],
+    heroName: heroes[0].name,
+    // @ts-expect-error author type does not exist yet
     author: {
       username: "Some guy",
     },
