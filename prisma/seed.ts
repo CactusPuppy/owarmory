@@ -1,6 +1,6 @@
 import { promises } from "node:fs";
 import { z } from "zod";
-import { ItemCategory, PrismaClient } from "../src/generated/prisma";
+import { ItemCategory, ItemRarity, PrismaClient } from "../src/generated/prisma";
 import { heroes } from "../src/lib/constants/heroData";
 import { StatNames } from "../src/lib/constants/stats";
 const { readFile } = promises;
@@ -73,6 +73,11 @@ async function main() {
       Survival: ItemCategory.Survival,
       "Weapon Variants": ItemCategory.Weapon,
     };
+    const itemRarityValueToEnum: Record<string, ItemRarity> = {
+      Normal: ItemRarity.Common,
+      Rare: ItemRarity.Rare,
+      Epic: ItemRarity.Epic,
+    };
 
     for (const [index, [guid, talent]] of Object.entries(stadiumData).entries()) {
       console.log(
@@ -97,6 +102,7 @@ async function main() {
           ...baseData,
           cost: talent.Cost,
           category: itemCategoryValueToEnum[talent.Category.Value],
+          rarity: itemRarityValueToEnum[talent.Rarity.Value],
           heroName: talent.Hero
             ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
             : undefined,

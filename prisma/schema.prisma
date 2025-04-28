@@ -20,6 +20,12 @@ enum ItemCategory {
   Survival
 }
 
+enum ItemRarity {
+  Common
+  Rare
+  Epic
+}
+
 enum HeroRole {
   Tank
   Damage
@@ -62,7 +68,8 @@ model RoundInfo {
 model Item {
   id          String    @id @default(cuid(2))
   name        String
-  category    String
+  category    ItemCategory
+  rarity      ItemRarity  @default(Common)
   description String?
   cost        Int
   statMods    StatMod[]
