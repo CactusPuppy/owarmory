@@ -33,8 +33,8 @@ enum HeroRole {
 }
 
 model Hero {
-  name    String   @id
-  role    HeroRole
+  name String   @id
+  role HeroRole
 
   builds StadiumBuild[]
   items  Item[]
@@ -54,31 +54,39 @@ model StadiumBuild {
 }
 
 model RoundInfo {
-  id          String       @id @default(cuid(2))
-  parentBuild StadiumBuild @relation(fields: [buildId], references: [id])
+  id          String             @id @default(cuid(2))
+  parentBuild StadiumBuild       @relation(fields: [buildId], references: [id])
   buildId     String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  sections    RoundInfoSection[]
   note        String?
-  power       Power?       @relation(fields: [powerId], references: [id])
-  powerId     String?
-  items       Item[]
+}
+
+model RoundInfoSection {
+  id                String    @id @default(cuid(2))
+  title             String? // When title is missing, that is the standard section for the round
+  parentRoundInfo   RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
+  parentRoundInfoId String
+  power             Power?    @relation(fields: [powerId], references: [id])
+  powerId           String?
+  items             Item[]
 }
 
 model Item {
-  id          String    @id @default(cuid(2))
+  id          String       @id @default(cuid(2))
   name        String
   category    ItemCategory
-  rarity      ItemRarity  @default(Common)
+  rarity      ItemRarity   @default(Common)
   description String?
   cost        Int
   statMods    StatMod[]
-  hero        Hero?     @relation(fields: [heroName], references: [name])
+  hero        Hero?        @relation(fields: [heroName], references: [name])
   iconURL     String?
-  removed     Boolean   @default(false)
+  removed     Boolean?     @default(false)
 
-  roundInfos RoundInfo[]
-  heroName   String?
+  sections RoundInfoSection[]
+  heroName String?
 }
 
 model Power {
@@ -88,7 +96,7 @@ model Power {
   iconURL     String?
   removed     Boolean @default(false)
 
-  roundInfos RoundInfo[]
+  roundInfos RoundInfoSection[]
 }
 
 model Stat {
