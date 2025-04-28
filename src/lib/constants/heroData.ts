@@ -1,4 +1,4 @@
-import type { HeroData } from "../types/hero";
+import type { HeroData, HeroName } from "../types/hero";
 
 export const heroes: HeroData[] = [
   {
@@ -70,3 +70,6 @@ export const heroes: HeroData[] = [
     role: "Support",
   },
 ];
+
+export const heroFromHeroName = (heroName: HeroName) =>
+  heroes.find((heroDatum) => heroDatum.name == heroName);
