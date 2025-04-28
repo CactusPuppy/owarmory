@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { heroes } from "$lib/constants/heroes";
-  import type { HeroData, HeroRole } from "$lib/types/hero";
+  import { heroes } from "$lib/constants/heroData";
+  import type { HeroData } from "$lib/types/hero";
+  import type { HeroRole } from "$src/generated/prisma";
   import Hero from "./Hero.svelte";
   import imageTank from "$lib/images/content/tank.png";
   import imageDps from "$lib/images/content/dps.png";
@@ -11,9 +12,9 @@
   };
 
   const roleImages: Record<HeroRole, string> = {
-    tank: imageTank,
-    dps: imageDps,
-    support: imageSupport,
+    Tank: imageTank,
+    Damage: imageDps,
+    Support: imageSupport,
   };
 
   const heroesByRole: RoleGroup = heroes.reduce((acc, hero) => {

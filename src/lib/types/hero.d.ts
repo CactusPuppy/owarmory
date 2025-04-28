@@ -1,52 +1,27 @@
-export type HeroRole = "tank" | "dps" | "support";
+import type { HeroRole } from "$src/generated/prisma";
 
 export type HeroData = {
-  name: string;
+  name: HeroName;
   role: HeroRole;
-  image: string;
 };
 
-export type HeroName =
-  | "D.Va"
-  | "Doomfist"
-  | "Hazard"
-  | "Junker Queen"
-  | "Mauga"
-  | "Orisa"
-  | "Ramattra"
-  | "Reinhardt"
-  | "Roadhog"
-  | "Sigma"
-  | "Winston"
-  | "Wrecking Ball"
-  | "Zarya"
-  | "Ashe"
-  | "Bastion"
-  | "Cassidy"
-  | "Echo"
-  | "Freja"
-  | "Genji"
-  | "Hanzo"
-  | "Junkrat"
-  | "Mei"
-  | "Pharah"
-  | "Reaper"
-  | "Soldier: 76"
-  | "Sojourn"
-  | "Sombra"
-  | "Symmetra"
-  | "Torbjörn"
-  | "Tracer"
-  | "Venture"
-  | "Widowmaker"
-  | "Ana"
-  | "Baptiste"
-  | "Brigitte"
-  | "Illari"
-  | "Juno"
-  | "Kiriko"
-  | "Lifeweaver"
-  | "Lúcio"
-  | "Mercy"
-  | "Moira"
-  | "Zenyatta";
+const HeroNames = [
+  "D.Va",
+  "Junker Queen",
+  "Orisa",
+  "Reinhardt",
+  "Zarya",
+  "Ashe",
+  "Cassidy",
+  "Genji",
+  "Mei",
+  "Reaper",
+  "Soldier: 76",
+  "Ana",
+  "Juno",
+  "Kiriko",
+  "Lúcio",
+  "Mercy",
+  "Moira",
+] as const;
+export type HeroName = (typeof HeroNames)[number];
