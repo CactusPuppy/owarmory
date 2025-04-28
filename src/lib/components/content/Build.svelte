@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { heroes } from "$lib/constants/heroes";
+  import { heroes } from "$lib/constants/heroData";
   import type { Build } from "$lib/types/build";
   import type { CurrentRound } from "$lib/types/round";
   import { getContext } from "svelte";
@@ -11,12 +11,12 @@
   import { slide } from "svelte/transition";
 
   interface Props {
-    build: Build
+    build: Build;
   }
 
   const { build }: Props = $props();
 
-  const currentRound: CurrentRound = getContext('currentRound');
+  const currentRound: CurrentRound = getContext("currentRound");
 
   const items = $derived(getBuildItemsForRound(build, currentRound.value));
   const powers = $derived(getBuildPowersForRound(build, currentRound.value));
@@ -49,13 +49,13 @@
 
   <div class="items">
     {#each powers as power (power.id)}
-      <div transition:slide={{ duration: 100, axis: 'x' }}>
+      <div transition:slide={{ duration: 100, axis: "x" }}>
         <Power {power} />
       </div>
     {/each}
 
     {#each items as item (item.id)}
-      <div transition:slide={{ duration: 100, axis: 'x' }}>
+      <div transition:slide={{ duration: 100, axis: "x" }}>
         <Item {item} />
       </div>
     {/each}

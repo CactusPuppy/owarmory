@@ -5,7 +5,7 @@
   import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
   import RoundInfo from "$lib/components/content/RoundInfo.svelte";
   import RoundSelector from "$lib/components/content/RoundSelector.svelte";
-  import { heroes } from "$lib/constants/heroes";
+  import { heroes } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
   import { testDataRoundInfos } from "$lib/data/testData";
   import type { Build } from "$lib/types/build";
@@ -15,7 +15,7 @@
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
-  setContext('currentRound', currentRound);
+  setContext("currentRound", currentRound);
 
   const build: Build = {
     title: "I am a build for a hero",
@@ -27,7 +27,7 @@
     author: {
       username: "Some guy",
     },
-    roundInfos: testDataRoundInfos
+    roundInfos: testDataRoundInfos,
   };
 
   const { title, hero, introduction, author, roundInfos, description } = $derived(build);

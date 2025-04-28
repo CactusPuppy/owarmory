@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -14,50 +14,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Hero {
-  DVa
-  Doomfist
-  Hazard
-  Junker_Queen
-  Mauga
-  Orisa
-  Ramattra
-  Reinhardt
-  Roadhog
-  Sigma
-  Winston
-  Wrecking_Ball
-  Zarya
-  Ashe
-  Bastion
-  Cassidy
-  Echo
-  Freja
-  Genji
-  Hanzo
-  Junkrat
-  Mei
-  Pharah
-  Reaper
-  Soldier_76
-  Sojourn
-  Sombra
-  Symmetra
-  Torbjörn
-  Tracer
-  Venture
-  Widowmaker
-  Ana
-  Baptiste
-  Brigitte
-  Illari
-  Juno
-  Kiriko
-  Lifeweaver
-  Lúcio
-  Mercy
-  Moira
-  Zenyatta
+enum ItemCategory {
+  Weapon
+  Ability
+  Survival
+}
+
+enum ItemRarity {
+  Common
+  Rare
+  Epic
+}
+
+enum HeroRole {
+  Tank
+  Damage
+  Support
+}
+
+model Hero {
+  name    String   @id
+  role    HeroRole
+
+  builds StadiumBuild[]
+  items  Item[]
 }
 
 model StadiumBuild {
@@ -68,7 +48,9 @@ model StadiumBuild {
   description     String?
   roundInfos      RoundInfo[]
   additionalNotes String?
-  hero            Hero
+  hero            Hero        @relation(fields: [heroName], references: [name])
+
+  heroName String
 }
 
 model RoundInfo {
@@ -86,31 +68,42 @@ model RoundInfo {
 model Item {
   id          String    @id @default(cuid(2))
   name        String
+  category    ItemCategory
+  rarity      ItemRarity  @default(Common)
   description String?
   cost        Int
   statMods    StatMod[]
-  hero        Hero?
+  hero        Hero?     @relation(fields: [heroName], references: [name])
+  iconURL     String?
+  removed     Boolean   @default(false)
 
   roundInfos RoundInfo[]
+  heroName   String?
 }
 
 model Power {
-  id          String @id @default(cuid(2))
+  id          String  @id @default(cuid(2))
   name        String
   description String
+  iconURL     String?
+  removed     Boolean @default(false)
 
   roundInfos RoundInfo[]
 }
 
 model Stat {
-  id      Int     @id @default(autoincrement())
-  name    String
-  iconURL String?
+  id       Int       @id @default(autoincrement())
+  name     String
+  iconURL  String?
+  statMods StatMod[]
 }
 
 model StatMod {
-  id     String @id @default(cuid(2))
-  amount Int
+  id           String  @id @default(cuid(2))
+  stat         Stat    @relation(fields: [statId], references: [id])
+  amount       Int
+  isPercentage Boolean @default(false)
 
-  Item Item[]
+  Item   Item[]
+  statId Int
 }
