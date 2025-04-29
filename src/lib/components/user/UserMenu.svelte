@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { User } from "$lib/types/user";
+  import type { User } from "$src/generated/prisma";
   import { getContext } from "svelte";
 
-  const currentUser: User = getContext('currentUser');
+  const currentUser: User = getContext("currentUser");
 </script>
 
 <a href="/account" class="avatar">

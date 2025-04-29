@@ -13,15 +13,20 @@
 
   // Temp
   const build: FullStadiumBuild = {
+    id: "cuid091234",
+    authorId: "cuid23450789",
+    createdAt: new Date(),
+    updatedAt: new Date(),
     buildTitle: "I am a build for a hero",
     additionalNotes:
       "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
     description:
       "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
     heroName: heroes[0].name,
-    // @ts-expect-error author type does not exist yet
     author: {
+      id: "cuid23450789",
       username: "Some guy",
+      oauthId: "bca0d6cc-d47d-4e67-8ca2-57d13af97d80",
     },
     roundInfos: testDataRoundInfos,
   };

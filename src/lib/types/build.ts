@@ -16,6 +16,7 @@ export type ItemCategory = (typeof ItemCategory)[keyof typeof ItemCategory];
 
 export type FullStadiumBuild = Prisma.StadiumBuildGetPayload<{
   include: {
+    author: true;
     roundInfos: {
       include: {
         sections: {

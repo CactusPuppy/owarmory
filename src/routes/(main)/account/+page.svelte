@@ -3,14 +3,13 @@
   import type { CurrentRound } from "$lib/types/round";
   import { ROUND_MAX } from "$lib/constants/round";
   import { getContext, setContext } from "svelte";
-  import type { User } from "$lib/types/user";
+  import type { User } from "$src/generated/prisma";
   import LogoutButton from "$lib/components/content/auth/LogoutButton.svelte";
 
   const currentUser: User = getContext("currentUser");
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
-
 </script>
 
 <svelte:head>
