@@ -2,16 +2,14 @@
   import Item from "../content/Item.svelte";
 
   interface Props {
-    selected: unknown[];
+    currentlySelected: unknown[];
     previouslySelected: unknown[];
     onclick: (item?: unknown) => void;
   }
 
-  const { selected = [], previouslySelected = [], onclick = () => null }: Props = $props();
+  const { currentlySelected = [], previouslySelected = [], onclick = () => null }: Props = $props();
 
   const itemRarities = ["common", "rare", "epic"];
-
-  $inspect('previouslySelected', previouslySelected);
 
   function generateFakeItem(rarity = "") {
     return {
@@ -20,7 +18,7 @@
       description: "Some item description",
       icon: `https://picsum.photos/seed/${Math.floor(Math.random() * 50)}/40`,
       rarity,
-      cost: 2000,
+      cost: Math.ceil(Math.random() * 15) * 100,
     };
   }
 
@@ -28,8 +26,6 @@
     const numberOfTimesInteractedWithItem = previouslySelected.filter(i => i.id === item.id);
 
     if (!numberOfTimesInteractedWithItem?.length) return false;
-
-    console.log('interacted with', numberOfTimesInteractedWithItem.length, numberOfTimesInteractedWithItem.length % 2);
 
     return numberOfTimesInteractedWithItem.length % 2 !== 0;
   }
@@ -43,26 +39,35 @@
       <div class="items">
         {#each { length: 10 }}
           {@const item = generateFakeItem(rarity)}
-          {@const sellable = isCurrentlyOwned(item)}
-          {@const active = selected.find(i => i.id === item.id)}
+          {@const owned = isCurrentlyOwned(item)}
+          {@const active = currentlySelected.some(i => i.id === item.id)}
 
-          <div class="cell">
-            <div
-              class="item"
-              class:active
-              class:sellable>
+          <div class="cell" class:active class:owned>
+            <div class="item">
               <Item {item} {onclick} large />
+            </div>
 
-              {#if sellable}
-                <div class="label" class:active>
-                  {#if sellable && active}
-                    Sold
-                  {:else}
-                    Sell
-                  {/if}
-                </div>
+            <div class="cost">
+              {#if owned}
+                {#if owned && active}
+                  Sold
+                {:else}
+                  Owned
+                {/if}
+              {:else}
+                {#if active}
+                  Purchased
+                {:else}
+                  ${item.cost.toLocaleString()}
+                {/if}
               {/if}
             </div>
+
+            {#if owned && !active}
+              <div class="label">
+                Sell
+              </div>
+            {/if}
           </div>
         {/each}
       </div>
@@ -105,18 +110,20 @@
   }
 
   .cell {
+    position: relative;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .item {
-    position: relative;
     border-radius: 50%;
+    outline-offset: 0.25rem;
 
-    &.sellable {
+    .owned & {
       &:hover {
-        outline: 5px solid $red;
-        outline-offset: 5px;
+        outline: 2px solid $red;
       }
 
       :global(.item) {
@@ -125,30 +132,39 @@
       }
     }
 
-    &.active {
-      outline: 5px solid $primary;
-      outline-offset: 5px;
+    .active & {
+      outline: 2px solid $primary;
 
       &:hover {
-        outline: 5px solid $primary;
+        outline: 2px solid $primary;
       }
+    }
+  }
+
+  .cost {
+    color: $white;
+    font-family: $font-stack-brand;
+    font-size: $font-size-small;
+
+    .owned & {
+      color: $color-text-alt;
+    }
+
+    .active.owned & {
+      color: $primary;
     }
   }
 
   .label {
     position: absolute;
-    top: 50%;
+    top: 1.5rem;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%);
     border-radius: $border-radius-small;
     background: $red;
     color: $white;
     font-family: $font-stack-brand;
     padding: 0.25rem 0.5rem;
     pointer-events: none;
-
-    &.active {
-      background: $secondary;
-    }
   }
 </style>
