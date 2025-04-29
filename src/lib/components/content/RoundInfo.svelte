@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { RoundInfo } from "$lib/types/build";
+  import type { FullRoundInfo } from "$lib/types/round";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
 
   interface Props {
-    roundInfo: RoundInfo;
+    roundInfo: FullRoundInfo;
     header: string;
   }
 

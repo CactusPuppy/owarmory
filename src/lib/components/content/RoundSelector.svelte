@@ -5,11 +5,11 @@
 
   // The round is passed via a context state rune. This is done to prevent having to pass the round
   // down through many components if the components happens to be quite deep.
-  const currentRound: CurrentRound = getContext('currentRound');
+  const currentRound: CurrentRound = getContext("currentRound");
 
   function setCurrentRound(incrementor: 1 | -1): void {
     if (!currentRound) {
-      console.error('No round was passed as context');
+      console.error("No round was passed as context");
       return;
     }
 
@@ -18,7 +18,11 @@
 </script>
 
 <div class="round-selector">
-  <button class="button control" disabled={currentRound.value === ROUND_MIN}  onclick={() => setCurrentRound(-1)}>
+  <button
+    class="button control"
+    disabled={currentRound.value === ROUND_MIN}
+    onclick={() => setCurrentRound(-1)}
+  >
     &lt;
   </button>
 
@@ -30,7 +34,11 @@
     {/if}
   </span>
 
-  <button class="button control" disabled={currentRound.value === ROUND_MAX} onclick={() => setCurrentRound(1)}>
+  <button
+    class="button control"
+    disabled={currentRound.value === ROUND_MAX}
+    onclick={() => setCurrentRound(1)}
+  >
     &gt;
   </button>
 </div>
@@ -67,7 +75,9 @@
     font-family: inherit;
     font-size: inherit;
     color: inherit;
-    transition: opacity 100ms, color 100ms;
+    transition:
+      opacity 100ms,
+      color 100ms;
 
     &:hover {
       background: $white;

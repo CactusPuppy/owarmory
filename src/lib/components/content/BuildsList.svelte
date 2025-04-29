@@ -1,11 +1,11 @@
 <script lang="ts">
+  import type { FullStadiumBuild } from "$src/lib/types/build";
   import Build from "./Build.svelte";
-  import { type Build as BuildType } from "$lib/types/build";
   import RoundSelector from "./RoundSelector.svelte";
 
   interface Props {
     header: string;
-    builds: BuildType[];
+    builds: FullStadiumBuild[];
   }
 
   const { header, builds }: Props = $props();

@@ -5,8 +5,8 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import { setContext } from "svelte";
   import { testBuildData } from "$lib/data/testData";
-  import type { Snapshot } from "./$types.js";
-  import type { Build } from "$lib/types/build.js";
+  import type { Snapshot } from "./$types";
+  import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$lib/utils/api";
 
   const { data } = $props();
@@ -50,6 +50,10 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>OW Armory - Overwatch Stadium Builds</title>
+</svelte:head>
 
 <Heroes />
 
