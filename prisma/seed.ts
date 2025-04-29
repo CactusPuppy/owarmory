@@ -52,7 +52,10 @@ async function createStats(tx: PrismaTransaction) {
 
 async function createHeroes(tx: PrismaTransaction) {
   return await tx.hero.createManyAndReturn({
-    data: heroes,
+    data: heroes.map((heroData) => ({
+      name: heroData.name as string,
+      role: heroData.role as string,
+    })),
   });
 }
 

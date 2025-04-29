@@ -3,7 +3,7 @@
   import UserMenu from "$lib/components/user/UserMenu.svelte";
   import { getContext } from "svelte";
   import { api } from "$lib/utils/api";
-  import { type User } from "$lib/types/user";
+  import type { User } from "$src/generated/prisma";
   import { invalidateAll } from "$app/navigation";
 
   const currentUser = getContext("currentUser");
