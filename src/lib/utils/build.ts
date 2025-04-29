@@ -40,3 +40,11 @@ export function getBuildStandardSectionsForRound(
 
   return sections;
 }
+
+export function getAllBuildItems(build: FullStadiumBuild): Item[] {
+  return build.roundInfos.flatMap((roundInfo) => {
+    return roundInfo.sections
+      .filter((section) => !section.title)
+      .flatMap((section) => section.items);
+  });
+}

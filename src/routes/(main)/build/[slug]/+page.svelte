@@ -1,4 +1,5 @@
 <script lang="ts">
+  import BuildItemOrder from "$lib/components/content/BuildItemOrder.svelte";
   import CompoundedBuild from "$lib/components/content/CompoundedBuild.svelte";
   import DashedHeader from "$lib/components/content/DashedHeader.svelte";
   import Hero from "$lib/components/content/Hero.svelte";
@@ -71,6 +72,8 @@
     </aside>
 
     <section class="article block">
+      <BuildItemOrder {build} />
+
       {#each roundInfos as roundInfo, i (roundInfo.id)}
         <RoundInfo {roundInfo} header="Round {i + 1}" />
       {/each}
