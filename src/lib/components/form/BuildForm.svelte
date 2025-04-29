@@ -4,13 +4,15 @@
   import type { HeroData } from "$lib/types/hero";
   import ItemsGrid from "./ItemsGrid.svelte";
   import Hero from "../content/Hero.svelte";
+  import { ROUND_MAX } from "$lib/constants/round";
+  import { onMount } from "svelte";
 
   interface Props {
     build: Build
     heroEditable?: boolean
   }
 
-  const { build = $bindable(), heroEditable = true }: Props = $props();
+  let { build = $bindable(), heroEditable = true }: Props = $props();
 
   const { title, description, roundInfos } = $derived(build);
 
@@ -19,12 +21,64 @@
 
   let currentRoundIndex = $state(0);
   let currentTalentTypeTab = $state(talentTypes[0]);
-  let selectedHero: HeroData | null = $state(build.hero);
+  const selectedHero: HeroData | null = $state(build.hero);
+  const itemsFromPreviousRounds = $derived.by(getItemsFromPreviousRounds);
+
+  const currentRoundInfos = $derived(build.roundInfos[currentRoundIndex] || {});
+  // Currently only using a single section
+  const currentRoundInfosSection = $derived(currentRoundInfos.sections?.[0] || {});
+
+  // Add empty roundInfos for each round
+  onMount(() => {
+    for (let i = 0; i < ROUND_MAX; i++) {
+      if (build.roundInfos[i]) continue;
+
+      console.log('do the thing');
+
+      build.roundInfos[i] = {
+        id: Math.random().toString(), // Id here is tempoary
+        sections: [{
+          id: Math.random().toString(), // Id here is tempoary
+          title: "",
+          power: null,
+          items: []
+        }],
+        note: ""
+      };
+    }
+  });
 
   function selectHero(event: MouseEvent, hero: HeroData): void {
     event.preventDefault();
 
-    selectedHero = hero;
+    build.hero = hero;
+  }
+
+  function selectItem(item: unknown): void {
+    // Remove item from from future rounds
+    build.roundInfos.slice(currentRoundIndex, ROUND_MAX).forEach(({ sections }) => {
+      sections.forEach(section => {
+        section.items = section.items.filter(i => i.id !== item.id);
+      });
+    });
+
+    // Item is selected in the current round, remove it
+    if (currentRoundInfosSection.items?.find(i => i.id === item.id)) {
+      currentRoundInfosSection.items = currentRoundInfosSection.items.filter(i => i.id !== item.id);
+    } else { // Item is not selected in the current round, add it
+      currentRoundInfosSection.items.push(item);
+    }
+
+    // Update state
+    build = { ...build };
+  }
+
+  function getItemsFromPreviousRounds(): unknown[] {
+    const previousRounds = build.roundInfos.slice(0, currentRoundIndex);
+
+    return previousRounds.flatMap((roundInfo) => {
+      return roundInfo.sections.flatMap((section) => section.items);
+    });
   }
 </script>
 
@@ -71,7 +125,7 @@
   </div>
 
   <div class="tabs-content dark">
-    <ItemsGrid />
+    <ItemsGrid onclick={selectItem} selected={currentRoundInfosSection.items || []} previouslySelected={itemsFromPreviousRounds} />
   </div>
 
   <div class="form-group">
@@ -81,6 +135,8 @@
     </p>
     <textarea class="form-textarea" value={roundInfos[currentRoundIndex]?.note || ""} name="round-notes" aria-describedby="round-notes"></textarea>
   </div>
+
+  {JSON.stringify(build)}
 </div>
 
 <h2>Description</h2>
