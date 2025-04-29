@@ -1,4 +1,4 @@
-import { AUTH_TOKEN_COOKIE_NAME } from "$lib/constants/auth.js";
+import { AUTH_TOKEN_COOKIE_NAME } from "$lib/constants/auth";
 import type { User } from "$src/generated/prisma";
 
 export async function load({ cookies }) {
