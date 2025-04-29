@@ -1,8 +1,10 @@
-import type { Build, RoundInfo, RoundInfoSection } from "$lib/types/build";
+import type { FullStadiumBuild } from "$lib/types/build";
+import type { FullRoundInfo, FullRoundSectionInfo } from "../types/round";
+import type { Item } from "$src/generated/prisma";
+import type { Power } from "$src/generated/prisma";
 
-// TODO: Replace unknown type with Power[] type
-export function getBuildPowersForRound(build: Build, round = 7): unknown[] {
-  const powers: unknown[] = [];
+export function getBuildPowersForRound(build: FullStadiumBuild, round = 7): Power[] {
+  const powers: Power[] = [];
 
   getBuildStandardSectionsForRound(build, round).forEach(({ power }) => {
     if (power) powers.push(power);
@@ -11,9 +13,8 @@ export function getBuildPowersForRound(build: Build, round = 7): unknown[] {
   return powers;
 }
 
-// TODO: Replace unknown type with Item[] type
-export function getBuildItemsForRound(build: Build, round = 7): unknown[] {
-  const items: unknown[] = [];
+export function getBuildItemsForRound(build: FullStadiumBuild, round = 7): Item[] {
+  const items: Item[] = [];
 
   getBuildStandardSectionsForRound(build, round).forEach((section) => {
     items.push(...section.items);
@@ -22,15 +23,18 @@ export function getBuildItemsForRound(build: Build, round = 7): unknown[] {
   return items;
 }
 
-export function getBuildCostForRound(build: Build, round = 7): number {
+export function getBuildCostForRound(build: FullStadiumBuild, round = 7): number {
   return getBuildItemsForRound(build, round).reduce((sum, item) => sum + item.cost, 0);
 }
 
 /** @returns All standard section of a build up to a certain round, excluding all "alternative" options */
-export function getBuildStandardSectionsForRound(build: Build, round = 7): RoundInfoSection[] {
-  const sections: RoundInfoSection[] = [];
+export function getBuildStandardSectionsForRound(
+  build: FullStadiumBuild,
+  round = 7,
+): FullRoundSectionInfo[] {
+  const sections: FullRoundSectionInfo[] = [];
 
-  build.roundInfos.slice(0, round).forEach((roundInfo: RoundInfo) => {
+  build.roundInfos.slice(0, round).forEach((roundInfo: FullRoundInfo) => {
     sections.push(...roundInfo.sections.filter((section) => !section.title));
   });
 
@@ -38,7 +42,7 @@ export function getBuildStandardSectionsForRound(build: Build, round = 7): Round
 }
 
 // TODO: Replace unknown type with Item[] type
-export function getAllBuildItems(build: Build): unknown[] {
+export function getAllBuildItems(build: Build): Item[] {
   return build.roundInfos.flatMap((roundInfo) => {
     return roundInfo.sections
       .filter((section) => !section.title)

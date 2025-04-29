@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -14,50 +14,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Hero {
-  DVa
-  Doomfist
-  Hazard
-  Junker_Queen
-  Mauga
-  Orisa
-  Ramattra
-  Reinhardt
-  Roadhog
-  Sigma
-  Winston
-  Wrecking_Ball
-  Zarya
-  Ashe
-  Bastion
-  Cassidy
-  Echo
-  Freja
-  Genji
-  Hanzo
-  Junkrat
-  Mei
-  Pharah
-  Reaper
-  Soldier_76
-  Sojourn
-  Sombra
-  Symmetra
-  Torbjörn
-  Tracer
-  Venture
-  Widowmaker
-  Ana
-  Baptiste
-  Brigitte
-  Illari
-  Juno
-  Kiriko
-  Lifeweaver
-  Lúcio
-  Mercy
-  Moira
-  Zenyatta
+
+model Hero {
+  name String @id
+  role String
+
+  builds StadiumBuild[]
+  items  Item[]
 }
 
 model StadiumBuild {
@@ -68,49 +31,70 @@ model StadiumBuild {
   description     String?
   roundInfos      RoundInfo[]
   additionalNotes String?
-  hero            Hero
+  hero            Hero        @relation(fields: [heroName], references: [name])
+
+  heroName String
 }
 
 model RoundInfo {
-  id          String       @id @default(cuid(2))
-  parentBuild StadiumBuild @relation(fields: [buildId], references: [id])
+  id          String             @id @default(cuid(2))
+  parentBuild StadiumBuild       @relation(fields: [buildId], references: [id])
   buildId     String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  sections    RoundInfoSection[]
   note        String?
-  power       Power?       @relation(fields: [powerId], references: [id])
-  powerId     String?
-  items       Item[]
+}
+
+model RoundInfoSection {
+  id                String    @id @default(cuid(2))
+  title             String? // When title is missing, that is the standard section for the round
+  parentRoundInfo   RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
+  parentRoundInfoId String
+  power             Power?    @relation(fields: [powerId], references: [id])
+  powerId           String?
+  items             Item[]
 }
 
 model Item {
   id          String    @id @default(cuid(2))
   name        String
+  category    String
+  rarity      String    @default("common")
   description String?
   cost        Int
   statMods    StatMod[]
-  hero        Hero?
+  hero        Hero?     @relation(fields: [heroName], references: [name])
+  iconURL     String?
+  removed     Boolean?  @default(false)
 
-  roundInfos RoundInfo[]
+  sections RoundInfoSection[]
+  heroName String?
 }
 
 model Power {
-  id          String @id @default(cuid(2))
+  id          String  @id @default(cuid(2))
   name        String
   description String
+  iconURL     String?
+  removed     Boolean @default(false)
 
-  roundInfos RoundInfo[]
+  roundInfos RoundInfoSection[]
 }
 
 model Stat {
-  id      Int     @id @default(autoincrement())
-  name    String
-  iconURL String?
+  id       Int       @id @default(autoincrement())
+  name     String
+  iconURL  String?
+  statMods StatMod[]
 }
 
 model StatMod {
-  id     String @id @default(cuid(2))
-  amount Int
+  id           String  @id @default(cuid(2))
+  stat         Stat    @relation(fields: [statId], references: [id])
+  amount       Int
+  isPercentage Boolean @default(false)
 
-  Item Item[]
+  Item   Item[]
+  statId Int
 }
