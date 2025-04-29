@@ -6,6 +6,7 @@
   import Hero from "../content/Hero.svelte";
   import { ROUND_MAX } from "$lib/constants/round";
   import { onMount } from "svelte";
+  import PowersGrid from "./PowersGrid.svelte";
 
   interface Props {
     build: Build
@@ -16,13 +17,20 @@
 
   const { title, description, roundInfos } = $derived(build);
 
-  const talentRoundIndexes = [1, 3, 5, 7];
-  const talentTypes = ["Weapon", "Ability", "Survival", "Power"];
+  const talentRoundIndexes = [0, 2, 4, 6];
+  const powerTalentType = "Power";
+  const itemTalentTypes = ["Weapon", "Ability", "Survival"];
 
   let currentRoundIndex = $state(0);
-  let currentTalentTypeTab = $state(talentTypes[0]);
+  let currentTalentTypeTab = $state(itemTalentTypes[0]);
+
   const selectedHero: HeroData | null = $state(build.hero);
+
+  const previousRounds = $derived(build.roundInfos.slice(0, currentRoundIndex));
+  const futureRounds = $derived(build.roundInfos.slice(currentRoundIndex + 1, ROUND_MAX));
+  const powersFromPreviousRounds = $derived.by(getPowersFromPreviousRounds);
   const itemsFromPreviousRounds = $derived.by(getItemsFromPreviousRounds);
+  const canSelectPowerForCurrentRound = $derived(talentRoundIndexes.includes(currentRoundIndex));
 
   const currentRoundInfos = $derived(build.roundInfos[currentRoundIndex] || {});
   // Currently only using a single section
@@ -32,8 +40,6 @@
   onMount(() => {
     for (let i = 0; i < ROUND_MAX; i++) {
       if (build.roundInfos[i]) continue;
-
-      console.log('do the thing');
 
       build.roundInfos[i] = {
         id: Math.random().toString(), // Id here is tempoary
@@ -48,6 +54,15 @@
     }
   });
 
+  function setRound(index: number): void {
+    currentRoundIndex = index;
+
+    // Reset talent tabs to the first tab if the current tab is "Power" and the new tab can't select powers
+    if (currentTalentTypeTab === powerTalentType && !canSelectPowerForCurrentRound) {
+      currentTalentTypeTab = itemTalentTypes[0];
+    }
+  }
+
   function selectHero(event: MouseEvent, hero: HeroData): void {
     event.preventDefault();
 
@@ -56,14 +71,16 @@
 
   function selectItem(item: unknown): void {
     // Remove item from from future rounds
-    build.roundInfos.slice(currentRoundIndex, ROUND_MAX).forEach(({ sections }) => {
+    futureRounds.forEach(({ sections }) => {
       sections.forEach(section => {
         section.items = section.items.filter(i => i.id !== item.id);
       });
     });
 
+    console.log(currentRoundInfosSection.items);
+
     // Item is selected in the current round, remove it
-    if (currentRoundInfosSection.items?.find(i => i.id === item.id)) {
+    if (currentRoundInfosSection.items.some(i => i.id === item.id)) {
       currentRoundInfosSection.items = currentRoundInfosSection.items.filter(i => i.id !== item.id);
     } else { // Item is not selected in the current round, add it
       currentRoundInfosSection.items.push(item);
@@ -73,12 +90,32 @@
     build = { ...build };
   }
 
-  function getItemsFromPreviousRounds(): unknown[] {
-    const previousRounds = build.roundInfos.slice(0, currentRoundIndex);
+  function selectPower(power: unknown): void {
+    // Remove selected power from from future rounds
+    futureRounds.forEach(({ sections }) => {
+      sections.forEach(section => {
+        if (section.power?.id === power.id) section.power = null;
+      });
+    });
 
+    if (powersFromPreviousRounds.some(p => p.id === power.id)) return;
+
+    currentRoundInfosSection.power = power;
+
+    // Update state
+    build = { ...build };
+  }
+
+  function getItemsFromPreviousRounds(): unknown[] {
     return previousRounds.flatMap((roundInfo) => {
       return roundInfo.sections.flatMap((section) => section.items);
     });
+  }
+
+  function getPowersFromPreviousRounds(): unknown[] {
+    return previousRounds.flatMap((roundInfo) => {
+      return roundInfo.sections.flatMap((section) => section.power);
+    }).filter(Boolean);
   }
 </script>
 
@@ -111,32 +148,40 @@
 
 <div class="tabs">
   {#each { length: 7 }, i}
-    <button type="button" class="tab" class:active={i === currentRoundIndex} onclick={() => currentRoundIndex = i}>Round {i + 1}</button>
+    <button type="button" class="tab" class:active={i === currentRoundIndex} onclick={() => setRound(i)}>Round {i + 1}</button>
   {/each}
 </div>
 
 <div class="tabs-content">
   <div class="tabs dark">
-    {#each talentTypes as talentType (talentType)}
-      <button type="button" class="tab" class:active={currentTalentTypeTab === talentType} onclick={() => currentTalentTypeTab = talentType}>
-        {talentType}
+    {#each itemTalentTypes as itemType (itemType)}
+      <button type="button" class="tab" class:active={currentTalentTypeTab === itemType} onclick={() => currentTalentTypeTab = itemType}>
+        {itemType}
       </button>
     {/each}
+
+    {#if canSelectPowerForCurrentRound}
+      <button type="button" class="tab" class:active={currentTalentTypeTab === powerTalentType} onclick={() => currentTalentTypeTab = powerTalentType}>
+        {powerTalentType}
+      </button>
+    {/if}
   </div>
 
   <div class="tabs-content dark">
-    <ItemsGrid onclick={selectItem} selected={currentRoundInfosSection.items || []} previouslySelected={itemsFromPreviousRounds} />
+    {#if currentTalentTypeTab === powerTalentType}
+      <PowersGrid currentlySelected={currentRoundInfosSection.power} previouslySelected={powersFromPreviousRounds} onclick={selectPower} />
+    {:else}
+      <ItemsGrid onclick={selectItem} currentlySelected={currentRoundInfosSection.items || []} previouslySelected={itemsFromPreviousRounds} />
+    {/if}
   </div>
 
   <div class="form-group">
-    <label for="description">Round notes</label>
+    <label class="form-label" for="round-notes">Round notes</label>
     <p class="form-help" id="round-notes">
       Provide an optional short description on the current round, explaining options, expectations, and possible play styles.
     </p>
     <textarea class="form-textarea" value={roundInfos[currentRoundIndex]?.note || ""} name="round-notes" aria-describedby="round-notes"></textarea>
   </div>
-
-  {JSON.stringify(build)}
 </div>
 
 <h2>Description</h2>

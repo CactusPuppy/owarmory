@@ -150,7 +150,7 @@
       color: $color-text-alt;
     }
 
-    .active.owned & {
+    .active & {
       color: $primary;
     }
   }

@@ -5,15 +5,16 @@
   interface Props {
     power: unknown
     large?: boolean
+    onclick?: (power: unknown) => void
   }
 
-  const { power, large = false }: Props = $props();
+  const { power, large = false, onclick = () => null }: Props = $props();
 
   // @ts-expect-error There's no type right now
   const { name, description, icon } = $derived(power);
 </script>
 
-<Popover>
+<Popover onclick={() => onclick(power)}>
   <div class="power" class:large>
     <img src={icon} alt={name} />
   </div>
