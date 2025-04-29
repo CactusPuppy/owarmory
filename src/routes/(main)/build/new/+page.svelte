@@ -1,12 +1,12 @@
 <script lang="ts">
   import BuildForm from "$lib/components/form/BuildForm.svelte";
-  import { heroes } from "$lib/constants/heroes";
   import type { Build } from "$lib/types/build";
+  import { heroes } from "$src/lib/constants/heroData";
 
   const build: Build = {
-    title: "",
+    buildTitle: "",
     author: "",
-    hero: heroes[0],
+    heroName: heroes[0].name,
     roundInfos: []
   };
 </script>
