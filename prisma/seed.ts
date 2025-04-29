@@ -1,6 +1,7 @@
 import { promises } from "node:fs";
 import { z } from "zod";
-import { ItemCategory, ItemRarity, PrismaClient } from "../src/generated/prisma";
+import { PrismaClient } from "../src/generated/prisma";
+import { ItemRarity, ItemCategory } from "../src/lib/types/build";
 import { heroes } from "../src/lib/constants/heroData";
 import { StatNames } from "../src/lib/constants/stats";
 const { readFile } = promises;

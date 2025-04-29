@@ -8,7 +8,7 @@
     "build": "vite build",
     "start": "node build/index.js",
     "preview": "vite preview",
-    "prepare": "pnpm husky && pnpm prepare:sveltekit && pnpm prisma generate",
+    "prepare": "pnpm prepare:sveltekit && pnpm prisma generate && (pnpm husky || true)",
     "prepare:sveltekit": "svelte-kit sync || echo ''",
     "prepare:husky": "husky",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

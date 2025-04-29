@@ -1,27 +1,26 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { heroes } from "$lib/constants/heroData";
-  import type { Build } from "$lib/types/build";
+  import type { FullStadiumBuild } from "$lib/types/build";
+  import { heroFromHeroName } from "$lib/constants/heroData";
+  import type { HeroName } from "$lib/types/hero";
   import type { CurrentRound } from "$lib/types/round";
   import { getContext } from "svelte";
   import Hero from "./Hero.svelte";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
+
+  const { build }: { build: FullStadiumBuild } = $props();
+
+  const hero = $derived(heroFromHeroName(build.heroName as HeroName));
   import { getBuildItemsForRound, getBuildPowersForRound } from "$lib/utils/build";
   import { slide } from "svelte/transition";
-
-  interface Props {
-    build: Build;
-  }
-
-  const { build }: Props = $props();
 
   const currentRound: CurrentRound = getContext("currentRound");
 
   const items = $derived(getBuildItemsForRound(build, currentRound.value));
   const powers = $derived(getBuildPowersForRound(build, currentRound.value));
 
-  const href = "/build/test";
+  const href = $derived(`/build/${build.id}`);
 
   function onclick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
@@ -37,10 +36,14 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- A proper link can be found right in the div. It doesn't impede a11y. -->
 <div class="build" {onclick}>
-  <Hero hero={heroes[0]} />
+  {#if hero}
+    <Hero {hero} />
+  {:else}
+    <h1>Unknown Hero</h1>
+  {/if}
 
   <div class="meta">
-    <a {href} class="name">Some build name</a>
+    <a {href} class="name">{build.buildTitle}</a>
 
     <div class="author">
       By <a href="/user/username">user</a>
