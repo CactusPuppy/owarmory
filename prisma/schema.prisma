@@ -23,10 +23,19 @@ model Hero {
   items  Item[]
 }
 
+model User {
+  id       String         @id @default(cuid(2))
+  username String
+  oauthId  String         @db.Uuid
+  builds   StadiumBuild[]
+}
+
 model StadiumBuild {
   id              String      @id @default(cuid(2))
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
+  author          User        @relation(fields: [authorId], references: [id])
+  authorId        String
   buildTitle      String      @db.VarChar(63)
   description     String?
   roundInfos      RoundInfo[]
