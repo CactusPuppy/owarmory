@@ -8,11 +8,11 @@
   import { heroes, heroFromHeroName } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
   import { testDataRoundInfos } from "$lib/data/testData";
-  import type { FullStadiumBuild } from "$lib/types/build";
-  import type { CurrentRound } from "$src/lib/types/round";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
+  import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
   import { setContext } from "svelte";
-  import type { HeroName } from "$src/lib/types/hero";
+  import type { HeroName } from "$lib/types/hero";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 

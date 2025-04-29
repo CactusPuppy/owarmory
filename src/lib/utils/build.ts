@@ -1,4 +1,4 @@
-import type { FullStadiumBuild } from "$src/lib/types/build";
+import type { FullStadiumBuild } from "$lib/types/build";
 import type { FullRoundInfo, FullRoundSectionInfo } from "../types/round";
 import type { Item } from "$src/generated/prisma";
 import type { Power } from "$src/generated/prisma";

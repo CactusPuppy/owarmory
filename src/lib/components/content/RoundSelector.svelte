@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ROUND_MAX, ROUND_MIN } from "$lib/constants/round";
-  import type { CurrentRound } from "$src/lib/types/round";
+  import type { CurrentRound } from "$lib/types/round";
   import { getContext } from "svelte";
 
   // The round is passed via a context state rune. This is done to prevent having to pass the round

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import type { FullStadiumBuild } from "$src/lib/types/build";
+  import type { FullStadiumBuild } from "$lib/types/build";
   import { heroFromHeroName } from "$lib/constants/heroData";
-  import type { HeroName } from "$src/lib/types/hero";
-  import type { CurrentRound } from "$src/lib/types/round";
+  import type { HeroName } from "$lib/types/hero";
+  import type { CurrentRound } from "$lib/types/round";
   import { getContext } from "svelte";
   import Hero from "./Hero.svelte";
   import Item from "./Item.svelte";

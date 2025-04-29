@@ -4,11 +4,10 @@
   import Item from "$lib/components/content/Item.svelte";
   import type { Item as ItemType, Power as PowerType } from "$src/generated/prisma";
   import BuildsList from "$lib/components/content/BuildsList.svelte";
-  import type { CurrentRound } from "$src/lib/types/round";
+  import type { CurrentRound } from "$lib/types/round";
   import { ROUND_MAX } from "$lib/constants/round";
   import { setContext } from "svelte";
-  import { ItemRarity } from "$src/generated/prisma";
-  import { ItemCategory } from "$src/generated/prisma";
+  import { ItemRarity, ItemCategory } from "$lib/types/build";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 

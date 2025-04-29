@@ -14,9 +14,4 @@ export default defineConfig({
       },
     },
   },
-  build: {
-    rollupOptions: {
-      external: ["$src/generated/prisma"],
-    },
-  },
 });

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { FullStadiumBuild } from "$lib/types/build";
-  import type { CurrentRound } from "$src/lib/types/round";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
+  import type { CurrentRound } from "$lib/types/round";
   import { getBuildPowersForRound, getBuildItemsForRound } from "$lib/utils/build";
   import { getContext } from "svelte";
   import DashedHeader from "./DashedHeader.svelte";

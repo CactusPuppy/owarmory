@@ -1,7 +1,7 @@
 <script lang="ts">
   import { heroes } from "$lib/constants/heroData";
   import { testDataRoundInfos } from "$lib/data/testData";
-  import type { FullStadiumBuild } from "$src/lib/types/build";
+  import type { FullStadiumBuild } from "$lib/types/build";
   import Build from "./Build.svelte";
   import RoundSelector from "./RoundSelector.svelte";
 

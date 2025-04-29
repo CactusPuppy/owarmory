@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HeroData } from "$lib/types/hero";
-  import { heroImage } from "$src/lib/constants/heroes";
+  import { heroImage } from "$lib/constants/heroes";
 
   const { hero, large = false }: { hero: HeroData; large?: boolean } = $props();
 </script>
