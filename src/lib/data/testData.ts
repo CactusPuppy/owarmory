@@ -60,7 +60,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         },
         items: [
           {
-            id: "item1",
+            id: "item3",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/c/40",
@@ -71,7 +71,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
             removed: false,
           },
           {
-            id: "item2",
+            id: "item4",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/d/40",
@@ -96,9 +96,9 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         id: "section1",
         title: "",
         parentRoundInfoId: "roundinfo1",
-        powerId: "power1",
+        powerId: "power2",
         power: {
-          id: "power1",
+          id: "power2",
           name: "Some power",
           description: "I am some description of a power that will appear in the popover",
           iconURL: "https://picsum.photos/40",
@@ -106,7 +106,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         } satisfies Power,
         items: [
           {
-            id: "item1",
+            id: "item5",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/a/40",
@@ -117,7 +117,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
             removed: false,
           },
           {
-            id: "item2",
+            id: "item6",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/b/40",
@@ -143,7 +143,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         },
         items: [
           {
-            id: "item1",
+            id: "item7",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/c/40",
@@ -154,7 +154,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
             removed: false,
           },
           {
-            id: "item2",
+            id: "item8",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/d/40",
@@ -179,9 +179,9 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         id: "section1",
         title: "",
         parentRoundInfoId: "roundinfo1",
-        powerId: "power1",
+        powerId: "power3",
         power: {
-          id: "power1",
+          id: "power3",
           name: "Some power",
           description: "I am some description of a power that will appear in the popover",
           iconURL: "https://picsum.photos/40",
@@ -189,7 +189,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         } satisfies Power,
         items: [
           {
-            id: "item1",
+            id: "item9",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/a/40",
@@ -200,7 +200,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
             removed: false,
           },
           {
-            id: "item2",
+            id: "item10",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/b/40",
@@ -226,7 +226,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         },
         items: [
           {
-            id: "item1",
+            id: "item11",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/c/40",
@@ -237,7 +237,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
             removed: false,
           },
           {
-            id: "item2",
+            id: "item12",
             name: "Some item",
             description: "I am some description of an item that will appear in the popover",
             iconURL: "https://picsum.photos/seed/d/40",
