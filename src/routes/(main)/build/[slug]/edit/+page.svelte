@@ -13,5 +13,5 @@
 <h1 class="title">Edit "{build.title}"</h1>
 
 <form>
-  <BuildForm {build} />
+  <BuildForm {build} heroEditable={false} />
 </form>

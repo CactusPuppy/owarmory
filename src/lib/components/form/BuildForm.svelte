@@ -3,8 +3,14 @@
   import Heroes from "$lib/components/content/Heroes.svelte";
   import type { HeroData } from "$lib/types/hero";
   import ItemsGrid from "./ItemsGrid.svelte";
+  import Hero from "../content/Hero.svelte";
 
-  const { build = $bindable() }: { build: Build } = $props();
+  interface Props {
+    build: Build
+    heroEditable?: boolean
+  }
+
+  const { build = $bindable(), heroEditable = true }: Props = $props();
 
   const { title, description, roundInfos } = $derived(build);
 
@@ -22,9 +28,13 @@
   }
 </script>
 
-<Heroes onclick={selectHero} highlightedHero={selectedHero}>
-  {#snippet header()}{/snippet}
-</Heroes>
+{#if heroEditable}
+  <Heroes onclick={selectHero} highlightedHero={selectedHero}>
+    {#snippet header()}{/snippet}
+  </Heroes>
+{:else if selectedHero}
+  <Hero hero={selectedHero} large />
+{/if}
 
 <div class="form-group">
   <label class="form-label" for="title">Build title</label>
@@ -120,6 +130,7 @@
     padding: 1.5rem;
     margin-bottom: 3rem;
     border: 1px solid $color-border;
+    border-radius: 0 0 $border-radius $border-radius;
 
     &.dark {
       border-color: $color-bg-dark;
