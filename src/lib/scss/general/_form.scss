@@ -1,0 +1,46 @@
+.form-input {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: $border-radius-small;
+  width: 100%;
+  background: $color-bg-dark;
+  font-family: $font-stack;
+  font-size: inherit;
+  color: $white;
+
+  &--large {
+    font-size: 150%;
+  }
+}
+
+.form-textarea {
+  @extend .form-input;
+  padding: 1rem;
+  min-height: 10rem;
+
+  &--large {
+    min-height: 20rem;
+  }
+}
+
+.form-label {
+  display: block;
+  margin: 0 0 0.25rem 0;
+  font-weight: bold;
+  color: $white;
+  font-family: $font-stack-brand;
+}
+
+.form-help {
+  margin: 0 0 0.5rem;
+  font-size: 85%;
+}
+
+.form-group {
+  margin-top: 2rem;
+
+  &:last-child {
+    margin-top: 0;
+  }
+}

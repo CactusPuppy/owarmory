@@ -5,10 +5,23 @@
   import imageTank from "$lib/images/content/tank.png";
   import imageDps from "$lib/images/content/dps.png";
   import imageSupport from "$lib/images/content/support.png";
+  import type { Snippet } from "svelte";
 
   type RoleGroup = {
     [key in HeroRole]?: HeroData[];
   };
+
+  type Props = {
+    header?: Snippet;
+    highlightedHero: HeroData | null;
+    onclick?: (event: MouseEvent, hero: HeroData) => void;
+  }
+
+  const {
+    header,
+    highlightedHero = null,
+    onclick = () => null,
+  }: Props = $props();
 
   const roleImages: Record<HeroRole, string> = {
     tank: imageTank,
@@ -24,7 +37,11 @@
   }, {} as RoleGroup);
 </script>
 
-<h1>Heroes</h1>
+{#if header}
+  {@render header()}
+{:else}
+  <h1>Heroes</h1>
+{/if}
 
 <div class="roles">
   {#each Object.entries(heroesByRole) as [role, heroNames] (role)}
@@ -33,7 +50,7 @@
 
       <div class="grid">
         {#each heroNames as hero (hero)}
-          <Hero {hero} />
+          <Hero {hero} {onclick} active={highlightedHero?.name === hero.name} />
         {/each}
       </div>
     </div>
