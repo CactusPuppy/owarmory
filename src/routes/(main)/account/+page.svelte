@@ -5,6 +5,7 @@
   import { getContext, setContext } from "svelte";
   import type { User } from "$src/generated/prisma";
   import LogoutButton from "$lib/components/content/auth/LogoutButton.svelte";
+  import { testBuildData } from "$src/lib/data/testData";
 
   const currentUser: User = getContext("currentUser");
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
@@ -22,7 +23,8 @@
   <LogoutButton />
 </header>
 
-<BuildsList header="Your Builds" />
+<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+<BuildsList header="Your Builds" builds={new Array(4).map((_) => testBuildData)} />
 
 <style lang="scss">
   h1 {
