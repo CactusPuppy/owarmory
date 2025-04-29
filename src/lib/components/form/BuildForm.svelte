@@ -2,12 +2,17 @@
   import type { Build } from "$lib/types/build";
   import Heroes from "$lib/components/content/Heroes.svelte";
   import type { HeroData } from "$lib/types/hero";
+  import ItemsGrid from "./ItemsGrid.svelte";
 
   const { build = $bindable() }: { build: Build } = $props();
 
   const { title, description, roundInfos } = $derived(build);
 
+  const talentRoundIndexes = [1, 3, 5, 7];
+  const talentTypes = ["Weapon", "Ability", "Survival", "Power"];
+
   let currentRoundIndex = $state(0);
+  let currentTalentTypeTab = $state(talentTypes[0]);
   let selectedHero: HeroData | null = $state(build.hero);
 
   function selectHero(event: MouseEvent, hero: HeroData): void {
@@ -47,6 +52,18 @@
 </div>
 
 <div class="tabs-content">
+  <div class="tabs dark">
+    {#each talentTypes as talentType (talentType)}
+      <button type="button" class="tab" class:active={currentTalentTypeTab === talentType} onclick={() => currentTalentTypeTab = talentType}>
+        {talentType}
+      </button>
+    {/each}
+  </div>
+
+  <div class="tabs-content dark">
+    <ItemsGrid />
+  </div>
+
   <div class="form-group">
     <label for="description">Round notes</label>
     <p class="form-help" id="round-notes">
@@ -76,6 +93,10 @@
     padding: 0.5rem 1rem;
     background: $color-border;
     border-radius: $border-radius $border-radius 0 0;
+
+    &.dark {
+      background: $color-bg-dark;
+    }
   }
 
   .tab {
@@ -99,5 +120,9 @@
     padding: 1.5rem;
     margin-bottom: 3rem;
     border: 1px solid $color-border;
+
+    &.dark {
+      border-color: $color-bg-dark;
+    }
   }
 </style>
