@@ -44,6 +44,8 @@
 </div>
 
 <style lang="scss">
+  @use "sass:color";
+
   $control-size: 2rem;
 
   // Force monospace size to prevent text from jumping around between different rounds
@@ -65,6 +67,7 @@
   .control {
     height: $control-size;
     width: $control-size;
+    padding: 0;
     border: 2px solid $color-border;
     box-shadow: inset 0 0 0 1px $color-bg-base;
     border-radius: $border-radius-small;
@@ -72,10 +75,15 @@
     font-family: inherit;
     font-size: inherit;
     color: inherit;
-    cursor: pointer;
     transition:
       opacity 100ms,
       color 100ms;
+
+    &:hover {
+      background: $white;
+      background: color.adjust($color-bg-light, $saturation: -10%, $lightness: 10%);
+      color: $white;
+    }
 
     &[disabled] {
       opacity: 0.35;
