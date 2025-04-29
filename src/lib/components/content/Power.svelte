@@ -1,22 +1,22 @@
 <script lang="ts">
+  import type { Power } from "$src/generated/prisma";
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
-    power: unknown
+    power: Power
     large?: boolean
     onclick?: (power: unknown) => void
   }
 
   const { power, large = false, onclick = () => null }: Props = $props();
 
-  // @ts-expect-error There's no type right now
-  const { name, description, icon } = $derived(power);
+  const { name, description, iconURL } = $derived(power);
 </script>
 
 <Popover onclick={() => onclick(power)}>
   <div class="power" class:large>
-    <img src={icon} alt={name} />
+    <img src={iconURL} alt={name} />
   </div>
 
   {#snippet content()}
@@ -52,5 +52,4 @@
       border: 1px solid $color-bg-base;
     }
   }
-
 </style>

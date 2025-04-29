@@ -16,92 +16,25 @@ import imageLucio from "$lib/images/content/heroes/lucio.png";
 import imageMercy from "$lib/images/content/heroes/mercy.png";
 import imageMoira from "$lib/images/content/heroes/moira.png";
 
-import type { HeroData } from "$lib/types/hero";
+import type { HeroName } from "$lib/types/hero";
 
-export const heroes: HeroData[] = [
-  {
-    name: "D.va",
-    role: "tank",
-    image: imageDva,
-  },
-  {
-    name: "Junker Queen",
-    role: "tank",
-    image: imageJunkerQueen,
-  },
-  {
-    name: "Orisa",
-    role: "tank",
-    image: imageOrisa,
-  },
-  {
-    name: "Reinhardt",
-    role: "tank",
-    image: imageReinhardt,
-  },
-  {
-    name: "Zarya",
-    role: "tank",
-    image: imageZarya,
-  },
-  {
-    name: "Ashe",
-    role: "dps",
-    image: imageAshe,
-  },
-  {
-    name: "Cassidy",
-    role: "dps",
-    image: imageCassidy,
-  },
-  {
-    name: "Genji",
-    role: "dps",
-    image: imageGenji,
-  },
-  {
-    name: "Mei",
-    role: "dps",
-    image: imageMei,
-  },
-  {
-    name: "Reaper",
-    role: "dps",
-    image: imageReaper,
-  },
-  {
-    name: "Soldier: 76",
-    role: "dps",
-    image: imageSoldier76,
-  },
-  {
-    name: "Ana",
-    role: "support",
-    image: imageAna,
-  },
-  {
-    name: "Juno",
-    role: "support",
-    image: imageJuno,
-  },
-  {
-    name: "Kiriko",
-    role: "support",
-    image: imageKiriko,
-  },
-  {
-    name: "Lúcio",
-    role: "support",
-    image: imageLucio,
-  },
-  {
-    name: "Mercy",
-    role: "support",
-    image: imageMercy,
-  },
-  {
-    name: "Moira",
-    role: "support",
-    image: imageMoira,
-  },
-];
+const heroImageMap: Record<HeroName, string> = {
+  "D.Va": imageDva,
+  "Junker Queen": imageJunkerQueen,
+  Orisa: imageOrisa,
+  Reinhardt: imageReinhardt,
+  Zarya: imageZarya,
+  Ashe: imageAshe,
+  Cassidy: imageCassidy,
+  Genji: imageGenji,
+  Mei: imageMei,
+  Reaper: imageReaper,
+  "Soldier: 76": imageSoldier76,
+  Ana: imageAna,
+  Juno: imageJuno,
+  Kiriko: imageKiriko,
+  Lúcio: imageLucio,
+  Mercy: imageMercy,
+  Moira: imageMoira,
+};
+export const heroImage = (hero: HeroName) => heroImageMap[hero];

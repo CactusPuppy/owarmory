@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { HeroData } from "$lib/types/hero";
+  import { heroImage } from "$lib/constants/heroes";
 
   interface Props {
     hero: HeroData;
@@ -8,16 +9,22 @@
     onclick?: (event: MouseEvent, hero: HeroData) => void;
   }
 
-  const {
-    hero,
-    large = false,
-    active = false,
-    onclick = () => null,
-  }: Props = $props();
+  const { hero, large = false, active = false, onclick = () => null }: Props = $props();
 </script>
 
-<a href="/hero/{hero.name}" class="hero" class:large class:active onclick={(event: MouseEvent) => onclick(event, hero)}>
-  <img src={hero.image} alt={hero.name} width={large ? 80 : 50} height={large ? 80 : 50} />
+<a
+  href="/hero/{hero.name}"
+  class="hero"
+  class:large
+  class:active
+  onclick={(event: MouseEvent) => onclick(event, hero)}
+>
+  <img
+    src={heroImage(hero.name)}
+    alt={hero.name}
+    width={large ? 80 : 50}
+    height={large ? 80 : 50}
+  />
 </a>
 
 <style lang="scss">

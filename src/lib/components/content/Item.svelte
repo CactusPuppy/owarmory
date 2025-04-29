@@ -1,22 +1,22 @@
 <script lang="ts">
+  import type { Item } from "../../../generated/prisma";
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
-    item: unknown
+    item: Item
     large?: boolean
     onclick?: (item: unknown) => void
   }
 
   const { item, large = false, onclick = () => null }: Props = $props();
 
-  // @ts-expect-error There's no type right now
-  const { name, description, icon, rarity, cost } = $derived(item);
+  const { name, description, iconURL, rarity, cost } = $derived(item);
 </script>
 
 <Popover onclick={() => onclick(item)}>
   <div class="item {rarity}" class:large>
-    <img src={icon} alt={name} />
+    <img src={iconURL} alt={name} />
   </div>
 
   {#snippet content()}
