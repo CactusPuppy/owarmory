@@ -41,8 +41,7 @@ export function getBuildStandardSectionsForRound(
   return sections;
 }
 
-// TODO: Replace unknown type with Item[] type
-export function getAllBuildItems(build: Build): Item[] {
+export function getAllBuildItems(build: FullStadiumBuild): Item[] {
   return build.roundInfos.flatMap((roundInfo) => {
     return roundInfo.sections
       .filter((section) => !section.title)

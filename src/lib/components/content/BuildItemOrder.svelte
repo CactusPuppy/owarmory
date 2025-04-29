@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Build } from "$lib/types/build";
+  import type { FullStadiumBuild } from "$lib/types/build";
   import { getAllBuildItems } from "$lib/utils/build";
   import Item from "./Item.svelte";
   import iconChevronRight from "$lib/images/icons/chevron-right.svg";
 
   interface Props {
-    build: Build
+    build: FullStadiumBuild;
   }
 
   const { build }: Props = $props();
