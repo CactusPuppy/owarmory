@@ -5,12 +5,15 @@
     header: Snippet
     children: Snippet
     outline?: boolean
+    onclick?: () => void
   }
 
-  const { header, children, outline = false }: Props = $props();
+  const { header, children, outline = false, onclick = () => null }: Props = $props();
 </script>
 
-<div class="card" class:outline>
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div class="card" class:outline {onclick}>
   <div class="header">
     {@render header()}
   </div>

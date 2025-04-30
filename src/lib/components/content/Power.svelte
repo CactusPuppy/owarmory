@@ -18,7 +18,7 @@
 </script>
 
 {#if full}
-  <Card {outline}>
+  <Card {outline} onclick={() => onclick(power)}>
     {#snippet header()}
       <div class="power">
         <img src={iconURL} alt={name} />
