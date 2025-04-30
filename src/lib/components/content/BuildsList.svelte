@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { heroes } from "$lib/constants/heroes";
+  import { heroes } from "$lib/constants/heroData";
   import { testDataRoundInfos } from "$lib/data/testData";
+  import type { FullStadiumBuild } from "$lib/types/build";
   import Build from "./Build.svelte";
-  import { type Build as BuildType } from "$lib/types/build";
   import RoundSelector from "./RoundSelector.svelte";
 
   interface Props {
@@ -12,22 +12,28 @@
   const { header }: Props = $props();
 
   // Temp
-  const build: BuildType = {
-    title: "I am a build for a hero",
-    introduction:
+  const build: FullStadiumBuild = {
+    id: "cuid091234",
+    authorId: "cuid23450789",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    buildTitle: "I am a build for a hero",
+    additionalNotes:
       "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
     description:
       "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    hero: heroes[0],
+    heroName: heroes[0].name,
     author: {
+      id: "cuid23450789",
       username: "Some guy",
+      oauthId: "bca0d6cc-d47d-4e67-8ca2-57d13af97d80",
     },
-    roundInfos: testDataRoundInfos
+    roundInfos: testDataRoundInfos,
   };
 </script>
 
 <header class="header">
-  <h1>{header}</h1>
+  <h2>{header}</h2>
 
   <div class="round-selector">
     <RoundSelector />
@@ -41,8 +47,9 @@
 </div>
 
 <style lang="scss">
-  h1 {
+  h2 {
     margin: 0;
+    font-size: $font-size-h1;
   }
 
   .header {

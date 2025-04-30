@@ -1,8 +1,12 @@
-<script lang="scss">
+<script lang="ts">
+  import type { User } from "$src/generated/prisma";
+  import { getContext } from "svelte";
+
+  const currentUser: User = getContext("currentUser");
 </script>
 
-<a href="/profile" class="avatar">
-  <img src="//:0" alt="Username" height="64" width="64" />
+<a href="/account" class="avatar">
+  <img src="//:0" alt={currentUser.username} height="64" width="64" />
 </a>
 
 <style lang="scss">

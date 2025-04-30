@@ -5,11 +5,11 @@
 
   // The round is passed via a context state rune. This is done to prevent having to pass the round
   // down through many components if the components happens to be quite deep.
-  const currentRound: CurrentRound = getContext('currentRound');
+  const currentRound: CurrentRound = getContext("currentRound");
 
   function setCurrentRound(incrementor: 1 | -1): void {
     if (!currentRound) {
-      console.error('No round was passed as context');
+      console.error("No round was passed as context");
       return;
     }
 
@@ -18,7 +18,11 @@
 </script>
 
 <div class="round-selector">
-  <button class="control" disabled={currentRound.value === ROUND_MIN}  onclick={() => setCurrentRound(-1)}>
+  <button
+    class="control"
+    disabled={currentRound.value === ROUND_MIN}
+    onclick={() => setCurrentRound(-1)}
+  >
     &lt;
   </button>
 
@@ -30,12 +34,18 @@
     {/if}
   </span>
 
-  <button class="control" disabled={currentRound.value === ROUND_MAX} onclick={() => setCurrentRound(1)}>
+  <button
+    class="control"
+    disabled={currentRound.value === ROUND_MAX}
+    onclick={() => setCurrentRound(1)}
+  >
     &gt;
   </button>
 </div>
 
 <style lang="scss">
+  @use "sass:color";
+
   $control-size: 2rem;
 
   // Force monospace size to prevent text from jumping around between different rounds
@@ -57,6 +67,7 @@
   .control {
     height: $control-size;
     width: $control-size;
+    padding: 0;
     border: 2px solid $color-border;
     box-shadow: inset 0 0 0 1px $color-bg-base;
     border-radius: $border-radius-small;
@@ -64,8 +75,15 @@
     font-family: inherit;
     font-size: inherit;
     color: inherit;
-    cursor: pointer;
-    transition: opacity 100ms, color 100ms;
+    transition:
+      opacity 100ms,
+      color 100ms;
+
+    &:hover {
+      background: $white;
+      background: color.adjust($color-bg-light, $saturation: -10%, $lightness: 10%);
+      color: $white;
+    }
 
     &[disabled] {
       opacity: 0.35;

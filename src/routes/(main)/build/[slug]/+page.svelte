@@ -1,37 +1,53 @@
 <script lang="ts">
+  import BuildItemOrder from "$lib/components/content/BuildItemOrder.svelte";
   import CompoundedBuild from "$lib/components/content/CompoundedBuild.svelte";
   import DashedHeader from "$lib/components/content/DashedHeader.svelte";
   import Hero from "$lib/components/content/Hero.svelte";
   import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
   import RoundInfo from "$lib/components/content/RoundInfo.svelte";
   import RoundSelector from "$lib/components/content/RoundSelector.svelte";
-  import { heroes } from "$lib/constants/heroes";
+  import { heroes, heroFromHeroName } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
   import { testDataRoundInfos } from "$lib/data/testData";
-  import type { Build } from "$lib/types/build";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
   import { setContext } from "svelte";
+  import type { HeroName } from "$lib/types/hero";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
-  setContext('currentRound', currentRound);
+  setContext("currentRound", currentRound);
 
-  const build: Build = {
-    title: "I am a build for a hero",
-    introduction:
-      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+  const build: FullStadiumBuild = {
+    buildTitle: "I am a build for a hero",
     description:
       "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    hero: heroes[0],
+    additionalNotes:
+      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
+    heroName: heroes[0].name,
+    // @ts-expect-error author type not defined for now
     author: {
       username: "Some guy",
     },
-    roundInfos: testDataRoundInfos
+    roundInfos: testDataRoundInfos,
   };
 
-  const { title, hero, introduction, author, roundInfos, description } = $derived(build);
+  const {
+    buildTitle: title,
+    heroName,
+    description,
+    // @ts-expect-error author type not defined for now
+    author,
+    roundInfos,
+    additionalNotes,
+  } = $derived(build);
+  const hero = $derived(heroFromHeroName(heroName as HeroName));
 </script>
+
+<svelte:head>
+  <title>{title} | {hero.name} | OW Armory</title>
+</svelte:head>
 
 <article itemscope itemtype="https://schema.org/Article">
   <header class="header">
@@ -45,7 +61,7 @@
     </div>
   </header>
 
-  <p class="introduction">{introduction}</p>
+  <p class="introduction">{description}</p>
 
   <div class="layout">
     <aside class="sidebar block">
@@ -60,15 +76,17 @@
     </aside>
 
     <section class="article block">
+      <BuildItemOrder {build} />
+
       {#each roundInfos as roundInfo, i (roundInfo.id)}
         <RoundInfo {roundInfo} header="Round {i + 1}" />
       {/each}
 
-      {#if description}
+      {#if additionalNotes}
         <h2>Description</h2>
 
         <!-- This will probably be markdown at some point, hence it being a div rather than a p tag -->
-        <div class="description">{description}</div>
+        <div class="description">{additionalNotes}</div>
       {/if}
     </section>
   </div>

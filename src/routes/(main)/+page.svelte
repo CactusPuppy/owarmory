@@ -2,52 +2,68 @@
   import Heroes from "$lib/components/content/Heroes.svelte";
   import Power from "$lib/components/content/Power.svelte";
   import Item from "$lib/components/content/Item.svelte";
+  import type { Item as ItemType, Power as PowerType } from "$src/generated/prisma";
   import BuildsList from "$lib/components/content/BuildsList.svelte";
   import type { CurrentRound } from "$lib/types/round";
   import { ROUND_MAX } from "$lib/constants/round";
   import { setContext } from "svelte";
+  import { ItemRarity, ItemCategory } from "$lib/types/build";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
-  setContext('currentRound', currentRound);
+  setContext("currentRound", currentRound);
 
   // Placeholder stuff
-  const items = [
+  const items: ItemType[] = [
     {
-      id: 1,
+      id: "a",
       name: "Some item",
       description: "I am some description of an item that will appear in the popover",
-      icon: "https://picsum.photos/seed/a/40",
-      rarity: "common",
+      iconURL: "https://picsum.photos/seed/a/40",
+      rarity: ItemRarity.Common,
       cost: 4000,
+      category: ItemCategory.Ability,
+      heroName: null,
+      removed: false,
     },
     {
-      id: 2,
+      id: "b",
       name: "Some item",
       description: "I am some description of an item that will appear in the popover",
-      icon: "https://picsum.photos/seed/b/40",
-      rarity: "rare",
+      iconURL: "https://picsum.photos/seed/b/40",
+      rarity: ItemRarity.Rare,
       cost: 2000,
+      category: ItemCategory.Survival,
+      heroName: null,
+      removed: false,
     },
     {
-      id: 3,
+      id: "c",
       name: "Some item",
       description: "I am some description of an item that will appear in the popover",
-      icon: "https://picsum.photos/seed/c/40",
-      rarity: "epic",
+      iconURL: "https://picsum.photos/seed/c/40",
+      rarity: ItemRarity.Epic,
       cost: 4000,
+      category: ItemCategory.Weapon,
+      heroName: null,
+      removed: false,
     },
   ];
 
-  const powers = [
+  const powers: PowerType[] = [
     {
-      id: 1,
+      id: "a",
       name: "Some power",
       description: "I am some description of a power that will appear in the popover",
-      icon: "https://picsum.photos/40",
+      iconURL: "https://picsum.photos/40",
+      removed: false,
     },
   ];
 </script>
+
+<svelte:head>
+  <title>OW Armory - Overwatch Stadium Builds</title>
+</svelte:head>
 
 <Heroes />
 

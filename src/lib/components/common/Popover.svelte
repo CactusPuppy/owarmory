@@ -34,13 +34,18 @@
     onmouseenter={() => (active = true)}
     onmouseleave={() => (active = false)}
     onclick={() => (active = !active)}
-    use:closeable={{ onclose: () => active = false }}
+    use:closeable={{ onclose: () => (active = false) }}
   >
     {@render children()}
   </button>
 
   {#if active}
-    <div class="content" transition:fly={{ y: 10, duration: 50 }} bind:this={element} style:--offset="{offset}px">
+    <div
+      class="content"
+      transition:fly={{ y: 10, duration: 50 }}
+      bind:this={element}
+      style:--offset="{offset}px"
+    >
       {@render content()}
     </div>
   {/if}
@@ -53,11 +58,6 @@
 
   .toggle {
     display: block;
-    appearance: none;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
   }
 
   .content {

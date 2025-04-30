@@ -1,11 +1,17 @@
 <script lang="ts">
   import type { HeroData } from "$lib/types/hero";
+  import { heroImage } from "$lib/constants/heroes";
 
   const { hero, large = false }: { hero: HeroData; large?: boolean } = $props();
 </script>
 
 <a href="/hero/{hero.name}" class="hero" class:large>
-  <img src={hero.image} alt={hero.name} width={large ? 80 : 50} height={large ? 80 : 50} />
+  <img
+    src={heroImage(hero.name)}
+    alt={hero.name}
+    width={large ? 80 : 50}
+    height={large ? 80 : 50}
+  />
 </a>
 
 <style lang="scss">
