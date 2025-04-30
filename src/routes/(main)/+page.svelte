@@ -13,34 +13,47 @@
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   let latestBuilds: Build[] = $state(data.latestBuilds);
-  let page: number = $state(0);
   let loading = $state(false);
+  let currentPage = $state(1);
 
   setContext("currentRound", currentRound);
 
-  export const snapshot: Snapshot<{ latestBuilds: Build[]; scrollPosition: number; page: number }> =
-    {
-      capture: () => ({ latestBuilds, scrollPosition: window.scrollY, page }),
-      restore: ({ latestBuilds: storedLatesteBuilds, scrollPosition, page: storedPage }) => {
-        latestBuilds = storedLatesteBuilds;
-        page = storedPage;
+  export const snapshot: Snapshot<{
+    latestBuilds: Build[];
+    currentPage: number;
+    scrollPosition: number;
+  }> = {
+    capture: () => ({ latestBuilds, currentPage, scrollPosition: window.scrollY }),
+    restore: ({
+      latestBuilds: storedLatesteBuilds,
+      currentPage: storedCurrentPage,
+      scrollPosition,
+    }) => {
+      latestBuilds = storedLatesteBuilds;
+      currentPage = storedCurrentPage;
 
-        requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
-      },
-    };
+      requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
+    },
+  };
 
-  async function loadMoreLatestBuilds(): Promise<void> {
+  async function loadMoreLatestBuilds(event: MouseEvent): Promise<void> {
+    event.preventDefault();
+
+    if (loading) return;
+
     loading = true;
 
     try {
-      const result = (await api<Build[]>("builds/latest", { page: page.toString() })) || [];
+      // Subtracting one because the endpoint uses zero-indexing
+      const result =
+        (await api<Build[]>(`builds/latest`, { page: (currentPage - 1).toString() })) || [];
 
       latestBuilds.push(...result);
-      page += 1;
     } catch (error: unknown) {
       console.error(error);
     } finally {
       loading = false;
+      currentPage++;
     }
   }
 </script>
@@ -56,11 +69,16 @@
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
 <center>
-  <button class="button" disabled={loading} onclick={loadMoreLatestBuilds}>
+  <a
+    href="/latest?page={currentPage + 1}"
+    class="button"
+    class:disabled={loading}
+    onclick={loadMoreLatestBuilds}
+  >
     {#if loading}
       Loading...
     {:else}
       Load more
     {/if}
-  </button>
+  </a>
 </center>

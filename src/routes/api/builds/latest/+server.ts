@@ -3,8 +3,10 @@ import { FullStadiumBuildInclude } from "$src/lib/types/build";
 
 export async function GET({ url }) {
   const headers = { "Content-Type": "application/json" };
-  const page = Number.parseInt(url.searchParams.get("page") ?? "0") || 0;
-  const PAGE_SIZE = Number.parseInt(url.searchParams.get("page_size") ?? "", 10) || 10;
+  const page = Number.parseInt(url.searchParams.get("page") ?? "0", 10) || 0;
+  const MAX_PAGE_SIZE = 100;
+  let PAGE_SIZE = Number.parseInt(url.searchParams.get("page_size") ?? "", 10) || 10;
+  if (PAGE_SIZE > MAX_PAGE_SIZE) PAGE_SIZE = MAX_PAGE_SIZE;
 
   const builds = await prisma.stadiumBuild.findMany({
     orderBy: {

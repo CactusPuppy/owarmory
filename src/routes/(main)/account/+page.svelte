@@ -37,7 +37,9 @@
     loading = true;
 
     try {
-      const result = (await api<Build[]>("builds/user", { page: page.toString() })) || [];
+      const result =
+        (await api<Build[]>("builds/user", { userId: currentUser.id, page: page.toString() })) ||
+        [];
 
       latestBuilds.push(...result);
       page += 1;
