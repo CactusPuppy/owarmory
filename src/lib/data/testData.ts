@@ -19,7 +19,7 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         power: {
           id: "power1",
           name: "Some power",
-          description: "I am some description of a power that will appear in the popover",
+          description: "I am some description of a power that will appear in the popover that has a description that spans more lines than others",
           iconURL: "https://picsum.photos/40",
           removed: false,
         } satisfies Power,
@@ -98,19 +98,11 @@ export const testDataRoundInfos: FullRoundInfo[] = [
         id: "section1",
         title: "",
         parentRoundInfoId: "roundinfo1",
-        powerId: "power2",
-        power: {
-          id: "power2",
-          name: "Some power",
-          description: "I am some description of a power that will appear in the popover",
-          iconURL: "https://picsum.photos/40",
-          removed: false,
-        } satisfies Power,
         items: [
           {
             id: "item5",
             name: "Some item",
-            description: "I am some description of an item that will appear in the popover",
+            description: "I am some description of an item that will appear in the popover with a longer description than the other",
             iconURL: "https://picsum.photos/seed/a/40",
             rarity: "common",
             cost: 4000,

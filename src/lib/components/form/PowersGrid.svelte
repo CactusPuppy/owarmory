@@ -34,7 +34,7 @@
         class="power"
         class:owned
         class:highlighted>
-        <Power {power} {onclick} large />
+        <Power {power} {onclick} full />
       </div>
     {/each}
   </div>
@@ -58,7 +58,7 @@
 
   .powers {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
   }
 
