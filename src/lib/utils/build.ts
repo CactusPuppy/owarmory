@@ -22,7 +22,7 @@ export function getBuildItemsForRound(build: FullStadiumBuild, round = 7): Item[
 
   const ownedItems: Item[] = [];
 
-  items.forEach(item => {
+  items.forEach((item) => {
     if (ownedItems.some((i) => i.id === item.id)) return;
     if (isItemPreviouslyOwned(items, item)) ownedItems.push(item);
   });
