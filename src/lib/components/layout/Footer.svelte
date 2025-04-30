@@ -1,7 +1,7 @@
 <footer class="footer">
   <div>
     Join us on <a
-      href="discord-link"
+      href="https://discord.gg/JNCx6U3g9F"
       target="_blank"
       rel="noreferrer noopener"
       aria-label="Discord (opens in new tab)">Discord</a
