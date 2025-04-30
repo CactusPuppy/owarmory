@@ -50,6 +50,19 @@ export function createRandomRoundInfo(
 ): Prisma.RoundInfoCreateWithoutParentBuildInput {
   const { note = faker.word.words({ count: { min: 7, max: 25 } }) } = overwrites;
 
+  // Because our components freak out when there are dupes,
+  // for fake data, we choose a slice of the talents for each round
+  const availableTalents: AvailableTalents = {
+    powers: allTalents.powers.slice(
+      Math.floor((Math.floor(roundIndex / 2) / (ROUND_MAX / 2)) * allTalents.powers.length),
+      Math.floor(((Math.floor(roundIndex / 2) + 1) / (ROUND_MAX / 2)) * allTalents.powers.length),
+    ),
+    items: allTalents.items.slice(
+      Math.floor((roundIndex / ROUND_MAX) * allTalents.items.length),
+      Math.floor(((roundIndex + 1) / ROUND_MAX) * allTalents.items.length),
+    ),
+  };
+
   return {
     note,
     sections: {
@@ -57,7 +70,7 @@ export function createRandomRoundInfo(
         .fill(0)
         .map((_, i) =>
           createRandomRoundInfoSection(
-            allTalents,
+            availableTalents,
             {
               includePower: roundIndex % 2 == 0,
             },
