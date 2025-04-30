@@ -85,6 +85,12 @@
       color: $white;
     }
 
+    &:hover {
+      background: $white;
+      background: color.adjust($color-bg-light, $saturation: -10%, $lightness: 10%);
+      color: $white;
+    }
+
     &[disabled] {
       opacity: 0.35;
       color: $color-text-alt;

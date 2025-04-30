@@ -4,7 +4,6 @@
   import type { CurrentRound } from "$lib/types/round";
   import { ROUND_MAX } from "$lib/constants/round";
   import { setContext } from "svelte";
-  import { testBuildData } from "$lib/data/testData";
   import type { Snapshot } from "./$types";
   import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$lib/utils/api";
@@ -19,9 +18,17 @@
 
   setContext("currentRound", currentRound);
 
-  export const snapshot: Snapshot<{ latestBuilds: Build[]; currentPage: number; scrollPosition: number }> = {
+  export const snapshot: Snapshot<{
+    latestBuilds: Build[];
+    currentPage: number;
+    scrollPosition: number;
+  }> = {
     capture: () => ({ latestBuilds, currentPage, scrollPosition: window.scrollY }),
-    restore: ({ latestBuilds: storedLatesteBuilds, currentPage: storedCurrentPage, scrollPosition }) => {
+    restore: ({
+      latestBuilds: storedLatesteBuilds,
+      currentPage: storedCurrentPage,
+      scrollPosition,
+    }) => {
       latestBuilds = storedLatesteBuilds;
       currentPage = storedCurrentPage;
 
@@ -37,8 +44,6 @@
     loading = true;
 
     try {
-      await new Promise((res) => setTimeout(res, 500)); // Fake load times
-
       const result = (await api<Build[]>(`builds/latest?page=${currentPage}`)) || [];
 
       latestBuilds.push(...result);
@@ -57,12 +62,17 @@
 
 <Heroes />
 
-<BuildsList header="Popular Builds" builds={[testBuildData, testBuildData, testBuildData]} />
+<BuildsList header="Popular Builds" builds={latestBuilds.slice(0, 3)} />
 
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
 <center>
-  <a href="/latest?page={currentPage + 1}" class="button" class:disabled={loading} onclick={loadMoreLatestBuilds}>
+  <a
+    href="/latest?page={currentPage + 1}"
+    class="button"
+    class:disabled={loading}
+    onclick={loadMoreLatestBuilds}
+  >
     {#if loading}
       Loading...
     {:else}

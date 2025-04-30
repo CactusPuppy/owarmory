@@ -29,6 +29,7 @@ export default ts.config(
         2,
         {
           SwitchCase: 1,
+          offsetTernaryExpressions: true,
         },
       ],
       "no-trailing-spaces": ["warn"],
@@ -37,6 +38,10 @@ export default ts.config(
         {
           destructuring: "all",
         },
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
     },
   },
