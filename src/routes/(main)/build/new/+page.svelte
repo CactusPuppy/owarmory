@@ -17,4 +17,4 @@
 
 <h1 class="title">Create new build</h1>
 
-<BuildForm bind:build method="POST" />
+<BuildForm {build} method="POST" />

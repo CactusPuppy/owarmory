@@ -12,4 +12,4 @@
 
 <h1 class="title">Edit "{build.buildTitle}"</h1>
 
-<BuildForm bind:build method="PATCH" heroEditable={false} />
+<BuildForm {build} method="PATCH" heroEditable={false} />
