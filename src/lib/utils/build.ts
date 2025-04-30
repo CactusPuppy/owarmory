@@ -7,7 +7,7 @@ export function getBuildPowersForRound(build: FullStadiumBuild, round = 7): Powe
   const powers: Power[] = [];
 
   getBuildStandardSectionsForRound(build, round).forEach(({ power }) => {
-    if (power) powers.push(power);
+    if (power && !powers.map((p) => p.id).includes(power.id)) powers.push(power);
   });
 
   return powers;
@@ -17,7 +17,7 @@ export function getBuildItemsForRound(build: FullStadiumBuild, round = 7): Item[
   const items: Item[] = [];
 
   getBuildStandardSectionsForRound(build, round).forEach((section) => {
-    items.push(...section.items);
+    items.push(...section.items.filter((item) => !items.map((i) => i.id).includes(item.id)));
   });
 
   return items;
