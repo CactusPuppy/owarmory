@@ -12,13 +12,17 @@
   import type { Item, Power } from "$src/generated/prisma";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
+  import { api } from "$src/lib/utils/api";
+  import { slide } from "svelte/transition";
 
   interface Props {
     build: FullStadiumBuild;
+    method: "POST" | "PATCH";
+    path?: string;
     heroEditable?: boolean;
   }
 
-  let { build = $bindable(), heroEditable = true }: Props = $props();
+  let { build = $bindable(), method, path = "build/form", heroEditable = true }: Props = $props();
 
   const { roundInfos } = $derived(build);
 
@@ -29,6 +33,8 @@
   let currentRoundIndex = $state(0);
   let currentTalentTypeTab = $state(itemTalentTypes[0]);
   let heroName: HeroName | null = $state(build.heroName);
+  let errorMessage = $state("");
+  let saving = $state(false);
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
@@ -79,8 +85,6 @@
 
   function selectHero(event: MouseEvent, hero: HeroData): void {
     event.preventDefault();
-
-    console.log('select hero', hero)
 
     build.heroName = hero.name;
     heroName = hero.name;
@@ -136,7 +140,7 @@
       .filter(Boolean);
   }
 
-  function removeHeroSpecificTalents() {
+  function removeHeroSpecificTalents(): void {
     build.roundInfos.forEach((roundInfo: FullRoundInfo) => {
       roundInfo.sections.forEach((section: FullRoundSectionInfo) => {
         section.power = null;
@@ -147,136 +151,181 @@
     // Update state
     build = { ...build };
   }
+
+  async function onsubmit(event: SubmitEvent): Promise<void> {
+    event.preventDefault();
+
+    errorMessage = "";
+    saving = true;
+
+    // Temporary fake load times
+    await new Promise((res) => setTimeout(res, 500));
+
+    try {
+      const response = await api(path, null, {
+        method,
+        body: JSON.stringify(build),
+      });
+
+      if (!response) throw new Error("Something went wrong while saving");
+
+      // TODO: Redirect to created build
+    } catch (error: unknown) {
+      console.error(error);
+      errorMessage = error.message;
+
+      window.scrollTo({ top: 0 });
+    } finally {
+      saving = false;
+    }
+  }
 </script>
 
-{#if heroEditable}
-  <Heroes onclick={selectHero} highlightedHero={selectedHero}>
-    {#snippet header()}{/snippet}
-  </Heroes>
-{:else if selectedHero}
-  <Hero hero={selectedHero} large />
+{#if errorMessage}
+  <div class="form-error" in:slide={{ duration: 300 }}>
+    <strong>Error when saving</strong>
+    <p>{errorMessage}</p>
+  </div>
 {/if}
 
-<div class="form-group">
-  <label class="form-label" for="title">Build title</label>
-  <input
-    type="text"
-    class="form-input form-input--large"
-    bind:value={build.buildTitle}
-    name="title"
-    id="title"
-  />
-</div>
+<form {onsubmit}>
+  {#if heroEditable}
+    <Heroes onclick={selectHero} highlightedHero={selectedHero}>
+      {#snippet header()}{/snippet}
+    </Heroes>
+  {:else if selectedHero}
+    <Hero hero={selectedHero} large />
+  {/if}
 
-<div class="form-group">
-  <label class="form-label" for="description">Short description</label>
-  <p class="form-help" id="description">
-    A short introduction to your builds, quickly summarizing the main playstyle and intention. You
-    can provide a more detail description later.
-  </p>
-  <textarea
-    class="form-textarea"
-    bind:value={build.description}
-    name="description"
-    aria-describedby="description"
-  ></textarea>
-</div>
-
-<h2>Powers & Items</h2>
-
-<p class="form-help">
-  Select powers and items per round. You can provide alternative options per round.
-</p>
-
-<div class="tabs">
-  {#each { length: 7 }, i}
-    <button
-      type="button"
-      class="tab"
-      class:active={i === currentRoundIndex}
-      onclick={() => setRound(i)}>Round {i + 1}</button
-    >
-  {/each}
-</div>
-
-<div class="tabs-content">
-  <div class="tabs dark">
-    {#each itemTalentTypes as itemType (itemType)}
-      <button
-        type="button"
-        class="tab"
-        class:active={currentTalentTypeTab === itemType}
-        onclick={() => (currentTalentTypeTab = itemType)}
-      >
-        {itemType}
-      </button>
-    {/each}
-
-    {#if canSelectPowerForCurrentRound}
-      <button
-        type="button"
-        class="tab"
-        class:active={currentTalentTypeTab === powerTalentType}
-        onclick={() => (currentTalentTypeTab = powerTalentType)}
-      >
-        {powerTalentType}
-      </button>
-    {/if}
-  </div>
-
-  <div class="tabs-content dark">
-    {#if currentTalentTypeTab === powerTalentType}
-      <PowersGrid
-        currentlySelected={currentRoundSection.power}
-        previouslySelected={powersFromPreviousRounds}
-        onclick={selectPower}
-      />
-    {:else}
-      <ItemsGrid
-        onclick={selectItem}
-        currentlySelected={currentRoundSection.items || []}
-        previouslySelected={itemsFromPreviousRounds}
-      />
-    {/if}
+  <div class="form-group">
+    <label class="form-label" for="title">Build title</label>
+    <input
+      type="text"
+      class="form-input form-input--large"
+      bind:value={build.buildTitle}
+      name="title"
+      id="title"
+    />
   </div>
 
   <div class="form-group">
-    <label class="form-label" for="round-notes">Round notes</label>
-    <p class="form-help" id="round-notes">
-      Provide an optional short description on the current round, explaining options, expectations,
-      and possible play styles.
+    <label class="form-label" for="description">Short description</label>
+    <p class="form-help" id="description">
+      A short introduction to your builds, quickly summarizing the main playstyle and intention. You
+      can provide a more detail description later.
     </p>
     <textarea
       class="form-textarea"
-      value={roundInfos[currentRoundIndex]?.note || ""}
-      name="round-notes"
-      aria-describedby="round-notes"
+      bind:value={build.description}
+      name="description"
+      aria-describedby="description"
     ></textarea>
   </div>
-</div>
 
-<div class="order">
-  <BuildPowersOrder {build} />
-</div>
+  <h2>Powers & Items</h2>
 
-<div class="order">
-  <BuildItemOrder {build} />
-</div>
-
-<h2>Description</h2>
-
-<div class="form-group">
-  <p class="form-help" id="additional-notes">
-    Explain your build in detail, going over playstyles, item order, possible deviations, and
-    whatever else you might think of.
+  <p class="form-help">
+    Select powers and items per round. You can provide alternative options per round.
   </p>
-  <textarea
-    class="form-textarea form-textarea--large"
-    bind:value={build.additionalNotes}
-    name="additional-notes"
-    aria-describedby="additional-notes"
-  ></textarea>
-</div>
+
+  <div class="tabs">
+    {#each { length: 7 }, i}
+      <button
+        type="button"
+        class="tab"
+        class:active={i === currentRoundIndex}
+        onclick={() => setRound(i)}>Round {i + 1}</button
+      >
+    {/each}
+  </div>
+
+  <div class="tabs-content">
+    <div class="tabs dark">
+      {#each itemTalentTypes as itemType (itemType)}
+        <button
+          type="button"
+          class="tab"
+          class:active={currentTalentTypeTab === itemType}
+          onclick={() => (currentTalentTypeTab = itemType)}
+        >
+          {itemType}
+        </button>
+      {/each}
+
+      {#if canSelectPowerForCurrentRound}
+        <button
+          type="button"
+          class="tab"
+          class:active={currentTalentTypeTab === powerTalentType}
+          onclick={() => (currentTalentTypeTab = powerTalentType)}
+        >
+          {powerTalentType}
+        </button>
+      {/if}
+    </div>
+
+    <div class="tabs-content dark">
+      {#if currentTalentTypeTab === powerTalentType}
+        <PowersGrid
+          currentlySelected={currentRoundSection.power}
+          previouslySelected={powersFromPreviousRounds}
+          onclick={selectPower}
+        />
+      {:else}
+        <ItemsGrid
+          onclick={selectItem}
+          currentlySelected={currentRoundSection.items || []}
+          previouslySelected={itemsFromPreviousRounds}
+        />
+      {/if}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="round-notes">Round notes</label>
+      <p class="form-help" id="round-notes">
+        Provide an optional short description on the current round, explaining options,
+        expectations, and possible play styles.
+      </p>
+      <textarea
+        class="form-textarea"
+        value={roundInfos[currentRoundIndex]?.note || ""}
+        name="round-notes"
+        aria-describedby="round-notes"
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="order">
+    <BuildPowersOrder {build} />
+  </div>
+
+  <div class="order">
+    <BuildItemOrder {build} />
+  </div>
+
+  <h2>Description</h2>
+
+  <div class="form-group">
+    <p class="form-help" id="additional-notes">
+      Explain your build in detail, going over playstyles, item order, possible deviations, and
+      whatever else you might think of.
+    </p>
+    <textarea
+      class="form-textarea form-textarea--large"
+      bind:value={build.additionalNotes}
+      name="additional-notes"
+      aria-describedby="additional-notes"
+    ></textarea>
+  </div>
+
+  <button class="button button--large save" disabled={saving}>
+    {#if saving}
+      Saving...
+    {:else}
+      Save build
+    {/if}
+  </button>
+</form>
 
 <style lang="scss">
   h2 {
@@ -325,5 +374,13 @@
 
   .order {
     margin-bottom: 2rem;
+  }
+
+  .save {
+    margin-top: 3rem;
+  }
+
+  .form-error {
+    margin-bottom: 3rem;
   }
 </style>

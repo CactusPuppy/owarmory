@@ -1,13 +1,13 @@
 <script lang="ts">
   import BuildForm from "$lib/components/form/BuildForm.svelte";
-  import type { Build } from "$lib/types/build";
   import { heroes } from "$src/lib/constants/heroData";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
 
-  const build: Build = {
+  let build: FullStadiumBuild = {
     buildTitle: "",
     author: "",
     heroName: heroes[0].name,
-    roundInfos: []
+    roundInfos: [],
   };
 </script>
 
@@ -17,6 +17,4 @@
 
 <h1 class="title">Create new build</h1>
 
-<form>
-  <BuildForm {build} />
-</form>
+<BuildForm bind:build method="POST" />
