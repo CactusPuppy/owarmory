@@ -20,8 +20,12 @@
 </header>
 
 <div class="block list">
-  <!-- eslint-disable-next-line svelte/require-each-key -->
-  {#each builds as build}
+  {#if !builds.length}
+    <center>
+      <p class="no-content"><i>There's nothing here... yet</i></p>
+    </center>
+  {/if}
+  {#each builds as build (build.id)}
     <Build {build} />
   {/each}
 </div>
@@ -55,5 +59,10 @@
   .list {
     display: grid;
     gap: 2rem;
+  }
+
+  .no-content {
+    color: $color-text-alt;
+    font-size: 1.25em;
   }
 </style>
