@@ -38,6 +38,10 @@ export default ts.config(
           destructuring: "all",
         },
       ],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
     },
   },
   {
