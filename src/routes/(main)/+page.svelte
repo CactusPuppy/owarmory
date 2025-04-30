@@ -4,7 +4,6 @@
   import type { CurrentRound } from "$lib/types/round";
   import { ROUND_MAX } from "$lib/constants/round";
   import { setContext } from "svelte";
-  import { testBuildData } from "$lib/data/testData";
   import type { Snapshot } from "./$types";
   import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$lib/utils/api";
@@ -14,28 +13,30 @@
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   let latestBuilds: Build[] = $state(data.latestBuilds);
+  let page: number = $state(0);
   let loading = $state(false);
 
   setContext("currentRound", currentRound);
 
-  export const snapshot: Snapshot<{ latestBuilds: Build[]; scrollPosition: number }> = {
-    capture: () => ({ latestBuilds, scrollPosition: window.scrollY }),
-    restore: ({ latestBuilds: storedLatesteBuilds, scrollPosition }) => {
-      latestBuilds = storedLatesteBuilds;
+  export const snapshot: Snapshot<{ latestBuilds: Build[]; scrollPosition: number; page: number }> =
+    {
+      capture: () => ({ latestBuilds, scrollPosition: window.scrollY, page }),
+      restore: ({ latestBuilds: storedLatesteBuilds, scrollPosition, page: storedPage }) => {
+        latestBuilds = storedLatesteBuilds;
+        page = storedPage;
 
-      requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
-    },
-  };
+        requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
+      },
+    };
 
   async function loadMoreLatestBuilds(): Promise<void> {
     loading = true;
 
     try {
-      await new Promise((res) => setTimeout(res, 500)); // Fake load times
-
-      const result = (await api<Build[]>("builds/latest")) || [];
+      const result = (await api<Build[]>("builds/latest", { page: page.toString() })) || [];
 
       latestBuilds.push(...result);
+      page += 1;
     } catch (error: unknown) {
       console.error(error);
     } finally {
@@ -50,7 +51,7 @@
 
 <Heroes />
 
-<BuildsList header="Popular Builds" builds={[testBuildData, testBuildData, testBuildData]} />
+<BuildsList header="Popular Builds" builds={latestBuilds?.slice(3)} />
 
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 

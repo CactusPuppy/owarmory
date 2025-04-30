@@ -5,12 +5,48 @@
   import { getContext, setContext } from "svelte";
   import type { User } from "$src/generated/prisma";
   import LogoutButton from "$lib/components/content/auth/LogoutButton.svelte";
-  import { testBuildData } from "$src/lib/data/testData";
+  import type { Snapshot } from "./$types";
+  import type { FullStadiumBuild as Build } from "$lib/types/build";
+  import { api } from "$src/lib/utils/api";
+
+  const { data } = $props();
 
   const currentUser: User = getContext("currentUser");
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
+
+  let latestBuilds: Build[] = $state(data.latestUserBuilds);
+  let page: number = $state(0);
+  let loading = $state(false);
+
+  setContext("currentRound", currentRound);
+
+  export const snapshot: Snapshot<{ latestBuilds: Build[]; scrollPosition: number; page: number }> =
+    {
+      capture: () => ({ latestBuilds, scrollPosition: window.scrollY, page }),
+      restore: ({ latestBuilds: storedLatesteBuilds, scrollPosition, page: storedPage }) => {
+        latestBuilds = storedLatesteBuilds;
+        page = storedPage;
+
+        requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
+      },
+    };
+
+  async function loadMoreLatestBuilds(): Promise<void> {
+    loading = true;
+
+    try {
+      const result = (await api<Build[]>("builds/user", { page: page.toString() })) || [];
+
+      latestBuilds.push(...result);
+      page += 1;
+    } catch (error: unknown) {
+      console.error(error);
+    } finally {
+      loading = false;
+    }
+  }
 </script>
 
 <svelte:head>
@@ -23,8 +59,17 @@
   <LogoutButton />
 </header>
 
-<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-<BuildsList header="Your Builds" builds={new Array(4).map((_) => testBuildData)} />
+<BuildsList header="Your Builds" builds={latestBuilds} />
+
+<center>
+  <button class="button" disabled={loading} onclick={loadMoreLatestBuilds}>
+    {#if loading}
+      Loading...
+    {:else}
+      Load more
+    {/if}
+  </button>
+</center>
 
 <style lang="scss">
   h1 {
