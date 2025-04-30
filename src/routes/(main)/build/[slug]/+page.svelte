@@ -69,7 +69,7 @@
 
       <CompoundedBuild {build} />
 
-      <h2 class="build-cost">Build cost: {getBuildCostForRound(build, 1).toLocaleString()}</h2>
+      <h2 class="build-cost">Build cost: {getBuildCostForRound(build, currentRound.value).toLocaleString()}</h2>
 
       <DashedHeader text="Stats" />
       <ItemStatistics items={[]} {hero} />

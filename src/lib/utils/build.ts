@@ -20,11 +20,30 @@ export function getBuildItemsForRound(build: FullStadiumBuild, round = 7): Item[
     items.push(...section.items);
   });
 
-  return items;
+  const ownedItems: Item[] = [];
+
+  items.forEach(item => {
+    if (ownedItems.some((i) => i.id === item.id)) return;
+    if (isItemPreviouslyOwned(items, item)) ownedItems.push(item);
+  });
+
+  return ownedItems;
 }
 
 export function getBuildCostForRound(build: FullStadiumBuild, round = 7): number {
-  return getBuildItemsForRound(build, round).reduce((sum, item) => sum + item.cost, 0);
+  const items = getBuildItemsForRound(build, round);
+  const summedItemIds: string[] = [];
+
+  let totalCost = 0;
+
+  items.forEach((item) => {
+    if (summedItemIds.includes(item.id)) return;
+
+    summedItemIds.push(item.id);
+    if (isItemPreviouslyOwned(items, item)) totalCost += item.cost;
+  });
+
+  return totalCost;
 }
 
 /** @returns All standard section of a build up to a certain round, excluding all "alternative" options */
