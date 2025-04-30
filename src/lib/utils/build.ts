@@ -48,3 +48,11 @@ export function getAllBuildItems(build: FullStadiumBuild): Item[] {
       .flatMap((section) => section.items);
   });
 }
+
+export function isItemPreviouslyOwned(items: Item[], item: Item) {
+  const numberOfTimesInteractedWithItem = items.filter((i) => i.id === item.id)?.length || 0;
+
+  if (!numberOfTimesInteractedWithItem) return false;
+
+  return numberOfTimesInteractedWithItem % 2 !== 0;
+}

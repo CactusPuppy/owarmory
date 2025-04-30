@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { FullStadiumBuild } from "$lib/types/build";
-  import { getAllBuildItems } from "$lib/utils/build";
+  import { getAllBuildItems, isItemPreviouslyOwned } from "$lib/utils/build";
   import Item from "./Item.svelte";
   import iconChevronRight from "$lib/images/icons/chevron-right.svg";
 
@@ -11,22 +11,13 @@
   const { build }: Props = $props();
 
   const items = $derived(getAllBuildItems(build));
-
-  export function isItemOccuranceSold(items: Item[], item: Item, itemIndex: number) {
-    const numberOfTimesInteractedWithItem =
-      items.slice(0, itemIndex).filter((i) => i.id === item.id)?.length || 0;
-
-    if (!numberOfTimesInteractedWithItem) return false;
-
-    return numberOfTimesInteractedWithItem % 2 !== 0;
-  }
 </script>
 
 <h2>Item purchase order</h2>
 
 <div class="items">
   {#each items as item, i (i + item.id)}
-    {@const sold = isItemOccuranceSold(items, item, i)}
+    {@const sold = isItemPreviouslyOwned(items.slice(0, i), item)}
 
     <div class="cell">
       <div class="item" class:sold>

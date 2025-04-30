@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { isItemPreviouslyOwned } from "$src/lib/utils/build";
   import Item from "../content/Item.svelte";
 
   interface Props {
@@ -21,14 +22,6 @@
       cost: Math.ceil(Math.random() * 15) * 100,
     };
   }
-
-  function isCurrentlyOwned(item: number): boolean {
-    const numberOfTimesInteractedWithItem = previouslySelected.filter(i => i.id === item.id);
-
-    if (!numberOfTimesInteractedWithItem?.length) return false;
-
-    return numberOfTimesInteractedWithItem.length % 2 !== 0;
-  }
 </script>
 
 <div class="rows">
@@ -39,8 +32,8 @@
       <div class="items">
         {#each { length: 10 }, i}
           {@const item = generateFakeItem(rarity + i, rarity)}
-          {@const owned = isCurrentlyOwned(item)}
-          {@const active = currentlySelected.some(i => i.id === item.id)}
+          {@const owned = isItemPreviouslyOwned(previouslySelected, item)}
+          {@const active = currentlySelected.some((i) => i.id === item.id)}
 
           <div class="cell" class:active class:owned>
             <div class="item">
@@ -54,19 +47,15 @@
                 {:else}
                   Owned
                 {/if}
+              {:else if active}
+                Purchased
               {:else}
-                {#if active}
-                  Purchased
-                {:else}
-                  ${item.cost.toLocaleString()}
-                {/if}
+                ${item.cost.toLocaleString()}
               {/if}
             </div>
 
             {#if owned && !active}
-              <div class="label">
-                Sell
-              </div>
+              <div class="label">Sell</div>
             {/if}
           </div>
         {/each}
