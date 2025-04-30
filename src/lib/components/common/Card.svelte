@@ -51,8 +51,9 @@
     }
 
     &.outline {
+      outline-offset: 5px;
       outline: 2px solid $primary;
-      box-shadow: none
+      box-shadow: none;
     }
   }
 

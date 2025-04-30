@@ -8,16 +8,17 @@
     power: Power
     large?: boolean
     full?: boolean
+    outline?: boolean
     onclick?: (power: unknown) => void
   }
 
-  const { power, large = false, full = false, onclick = () => null }: Props = $props();
+  const { power, large = false, full = false, outline = false, onclick = () => null }: Props = $props();
 
   const { name, description, iconURL } = $derived(power);
 </script>
 
 {#if full}
-  <Card outline>
+  <Card {outline}>
     {#snippet header()}
       <div class="power">
         <img src={iconURL} alt={name} />

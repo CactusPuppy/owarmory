@@ -21,7 +21,7 @@
     {#each sections.slice(0, 1) as { id, power, items } (id)}
       <div class="section">
         {#if power}
-          <Power {power} full />
+          <Power {power} full outline />
         {/if}
 
         {#each items as item (item.id)}
