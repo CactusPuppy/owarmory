@@ -68,17 +68,19 @@
 
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
-<center>
-  <a
-    href="/latest?page={currentPage + 1}"
-    class="button"
-    class:disabled={loading}
-    onclick={loadMoreLatestBuilds}
-  >
-    {#if loading}
-      Loading...
-    {:else}
-      Load more
-    {/if}
-  </a>
-</center>
+{#if latestBuilds}
+  <center>
+    <a
+      href="/latest?page={currentPage + 1}"
+      class="button"
+      class:disabled={loading}
+      onclick={loadMoreLatestBuilds}
+    >
+      {#if loading}
+        Loading...
+      {:else}
+        Load more
+      {/if}
+    </a>
+  </center>
+{/if}
