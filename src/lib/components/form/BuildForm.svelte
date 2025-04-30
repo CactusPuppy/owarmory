@@ -10,6 +10,9 @@
   import { heroFromHeroName } from "$src/lib/constants/heroData";
   import type { FullRoundInfo, FullRoundSectionInfo } from "$src/lib/types/round";
   import type { Item, Power } from "$src/generated/prisma";
+  import BuildItemOrder from "../content/BuildItemOrder.svelte";
+  import { getBuildPowersForRound } from "$src/lib/utils/build";
+  import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
 
   interface Props {
     build: FullStadiumBuild;
@@ -234,6 +237,14 @@
   </div>
 </div>
 
+<div class="order">
+  <BuildPowersOrder {build} />
+</div>
+
+<div class="order">
+  <BuildItemOrder {build} />
+</div>
+
 <h2>Description</h2>
 
 <div class="form-group">
@@ -292,5 +303,9 @@
     &.dark {
       border-color: $color-bg-dark;
     }
+  }
+
+  .order {
+    margin-bottom: 2rem;
   }
 </style>

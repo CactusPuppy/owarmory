@@ -16,7 +16,7 @@
       id: Math.random(),
       name: "Some item",
       description: "Some item description",
-      icon: `https://picsum.photos/seed/${Math.floor(Math.random() * 50)}/40`,
+      iconURL: `https://picsum.photos/seed/${Math.floor(Math.random() * 50)}/80`,
       rarity,
       cost: Math.ceil(Math.random() * 15) * 100,
     };

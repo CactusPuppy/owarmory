@@ -14,13 +14,11 @@
       id: Math.random(),
       name: "Some power",
       description: "Some power description",
-      icon: `https://picsum.photos/seed/${Math.floor(Math.random() * 50)}/40`,
+      iconURL: `https://picsum.photos/seed/${Math.floor(Math.random() * 50)}/40`,
       rarity: "power",
       cost: 0,
     };
   }
-
-  $inspect(previouslySelected)
 </script>
 
 <div class="block">
@@ -36,7 +34,7 @@
         class="power"
         class:owned
         class:highlighted>
-        <Power {power} {onclick} />
+        <Power {power} {onclick} large />
       </div>
     {/each}
   </div>

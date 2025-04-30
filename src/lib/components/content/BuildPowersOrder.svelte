@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { FullStadiumBuild } from "$lib/types/build";
-  import { getAllBuildItems } from "$lib/utils/build";
-  import Item from "./Item.svelte";
+  import { getBuildPowersForRound } from "$lib/utils/build";
   import iconChevronRight from "$lib/images/icons/chevron-right.svg";
+  import Power from "./Power.svelte";
 
   interface Props {
     build: FullStadiumBuild;
@@ -10,17 +10,17 @@
 
   const { build }: Props = $props();
 
-  const items = $derived(getAllBuildItems(build));
+  const powers = $derived(getBuildPowersForRound(build, 7));
 </script>
 
-<h2>Item purchase order</h2>
+<h2>Power selection order</h2>
 
-<div class="items">
-  {#each items as item, i (i + item.id)}
+<div class="powers">
+  {#each powers as power, i (i + power.id)}
     <div class="item">
-      <Item {item} />
+      <Power {power} />
 
-      {#if i < items.length - 1}
+      {#if i < powers.length - 1}
         <img src={iconChevronRight} width="18" height="18" alt="" />
       {/if}
     </div>
@@ -37,7 +37,7 @@
     opacity: 0.5;
   }
 
-  .items {
+  .powers {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
