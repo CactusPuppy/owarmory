@@ -112,9 +112,10 @@ async function main() {
           category: itemCategoryValueToEnum[talent.Category.Value],
           rarity: itemRarityValueToEnum[talent.Rarity.Value],
           statMods: {
-            create: talent.Buffs.map((buff) => {
+            create: talent.Buffs.map((buff, i) => {
               const stat = stats.filter((stat) => stat.name === buff.Name)![0].id;
               return {
+                orderIndex: i,
                 statId: stat,
                 amount: buff.Value < 1 ? buff.Value * 100 : buff.Value,
                 isPercentage: buff.Value < 1,

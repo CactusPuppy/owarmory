@@ -65,19 +65,14 @@ export function createRandomRoundInfo(
 
   return {
     note,
+    orderIndex: roundIndex,
     sections: {
       create: Array(faker.number.int({ min: 1, max: 4 }))
         .fill(0)
-        .map((_, i) =>
-          createRandomRoundInfoSection(
-            availableTalents,
-            {
-              includePower: roundIndex % 2 == 0,
-            },
-            {
-              title: i > 0 ? undefined : "",
-            },
-          ),
+        .map((_, sectionIndex) =>
+          createRandomRoundInfoSection(availableTalents, sectionIndex, {
+            includePower: roundIndex % 2 == 0,
+          }),
         ),
     },
   };
@@ -85,6 +80,7 @@ export function createRandomRoundInfo(
 
 export function createRandomRoundInfoSection(
   allTalents: AvailableTalents,
+  sectionIndex: number,
   options: {
     includePower?: boolean;
   } = {},
@@ -93,7 +89,8 @@ export function createRandomRoundInfoSection(
   const { title = faker.word.words({ count: { min: 2, max: 7 } }) } = overwrites;
 
   return {
-    title,
+    title: sectionIndex == 0 ? "" : title,
+    orderIndex: sectionIndex,
     power: options.includePower
       ? {
           connect: { id: faker.helpers.arrayElement(allTalents.powers)!.id },

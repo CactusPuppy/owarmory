@@ -14,14 +14,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Hero {
   name String @id
   role String
 
   builds StadiumBuild[]
   items  Item[]
-  powers  Power[]
+  powers Power[]
 }
 
 model User {
@@ -52,6 +51,7 @@ model RoundInfo {
   buildId     String
   createdAt   DateTime           @default(now())
   updatedAt   DateTime           @updatedAt
+  orderIndex  Int                @default(0)
   sections    RoundInfoSection[]
   note        String?
 }
@@ -61,6 +61,7 @@ model RoundInfoSection {
   title             String? // When title is missing, that is the standard section for the round
   parentRoundInfo   RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
   parentRoundInfoId String
+  orderIndex        Int       @default(0)
   power             Power?    @relation(fields: [powerId], references: [id])
   powerId           String?
   items             Item[]
@@ -103,6 +104,7 @@ model Stat {
 
 model StatMod {
   id           String  @id @default(cuid(2))
+  orderIndex   Int     @default(0)
   stat         Stat    @relation(fields: [statId], references: [id])
   amount       Int
   isPercentage Boolean @default(false)
