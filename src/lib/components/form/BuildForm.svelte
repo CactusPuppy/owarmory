@@ -5,13 +5,12 @@
   import ItemsGrid from "./ItemsGrid.svelte";
   import Hero from "../content/Hero.svelte";
   import { ROUND_MAX } from "$lib/constants/round";
-  import { onMount } from "svelte";
+  import { onMount, untrack } from "svelte";
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
   import type { FullRoundInfo, FullRoundSectionInfo } from "$src/lib/types/round";
   import type { Item, Power } from "$src/generated/prisma";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
-  import { getBuildPowersForRound } from "$src/lib/utils/build";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
 
   interface Props {
@@ -29,8 +28,8 @@
 
   let currentRoundIndex = $state(0);
   let currentTalentTypeTab = $state(itemTalentTypes[0]);
+  let heroName: HeroName | null = $state(build.heroName);
 
-  const heroName: HeroName | null = $state(build.heroName);
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
   const previousRounds: FullRoundInfo[] = $derived(build.roundInfos.slice(0, currentRoundIndex));
@@ -44,6 +43,10 @@
   const currentRound = $derived(build.roundInfos[currentRoundIndex] || {});
   // Currently only using a single section
   const currentRoundSection = $derived(currentRound.sections?.[0] || {});
+
+  $effect(() => {
+    if (selectedHero) untrack(removeHeroSpecificTalents);
+  });
 
   // Add empty roundInfos for each round
   onMount(() => {
@@ -77,7 +80,10 @@
   function selectHero(event: MouseEvent, hero: HeroData): void {
     event.preventDefault();
 
-    build.hero = hero;
+    console.log('select hero', hero)
+
+    build.heroName = hero.name;
+    heroName = hero.name;
   }
 
   function selectItem(item: Item): void {
@@ -128,6 +134,18 @@
         return roundInfo.sections.flatMap((section: FullRoundSectionInfo) => section.power);
       })
       .filter(Boolean);
+  }
+
+  function removeHeroSpecificTalents() {
+    build.roundInfos.forEach((roundInfo: FullRoundInfo) => {
+      roundInfo.sections.forEach((section: FullRoundSectionInfo) => {
+        section.power = null;
+        section.items = section.items.filter((item: Item) => !item.hero);
+      });
+    });
+
+    // Update state
+    build = { ...build };
   }
 </script>
 
