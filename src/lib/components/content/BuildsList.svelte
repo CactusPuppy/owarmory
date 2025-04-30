@@ -20,13 +20,12 @@
 </header>
 
 <div class="block list">
-  {#if !builds.length}
+  {#each builds as build (build.id)}
+    <Build {build} />
+  {:else}
     <center>
       <p class="no-content"><i>There's nothing here... yet</i></p>
     </center>
-  {/if}
-  {#each builds as build (build.id)}
-    <Build {build} />
   {/each}
 </div>
 
