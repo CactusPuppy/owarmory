@@ -1,5 +1,8 @@
 name: Build Check
 
+env:
+  DATABASE_URL: "NOT_AVAILABLE"
+
 on:
   push:
     branches:
