@@ -14,17 +14,38 @@ export const ItemCategory = {
 } as const;
 export type ItemCategory = (typeof ItemCategory)[keyof typeof ItemCategory];
 
-export const FullStadiumBuildInclude = {
+export const FullRoundInfoSectionInclude: Prisma.RoundInfoSectionInclude = {
+  items: {
+    include: {
+      statMods: {
+        include: {
+          stat: true,
+        },
+        orderBy: {
+          orderIndex: "asc",
+        },
+      },
+    },
+  },
+  power: true,
+} as const;
+
+export const FullRoundInfoInclude: Prisma.RoundInfoInclude = {
+  sections: {
+    include: FullRoundInfoSectionInclude,
+    orderBy: {
+      orderIndex: "asc",
+    },
+  },
+} as const;
+
+export const FullStadiumBuildInclude: Prisma.StadiumBuildInclude = {
   author: true,
   hero: true,
   roundInfos: {
-    include: {
-      sections: {
-        include: {
-          items: true,
-          power: true,
-        },
-      },
+    include: FullRoundInfoInclude,
+    orderBy: {
+      orderIndex: "asc",
     },
   },
 } as const;
