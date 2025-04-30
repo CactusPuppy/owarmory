@@ -60,10 +60,10 @@
       if (build.roundInfos[i]) continue;
 
       build.roundInfos[i] = {
-        id: Math.random().toString(), // Id here is tempoary
+        id: Math.random().toString(), // Id here is temporary
         sections: [
           {
-            id: Math.random().toString(), // Id here is tempoary
+            id: Math.random().toString(), // Id here is temporary
             title: "",
             power: null,
             items: [],

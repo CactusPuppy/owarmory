@@ -11,12 +11,12 @@
 
   const itemRarities = ["common", "rare", "epic"];
 
-  function generateFakeItem(rarity = "") {
+  function generateFakeItem(id: string, rarity = "") {
     return {
-      id: Math.random(),
+      id,
       name: "Some item",
       description: "Some item description",
-      iconURL: `https://picsum.photos/seed/${Math.floor(Math.random() * 50)}/80`,
+      iconURL: `https://picsum.photos/seed/${id}/80`,
       rarity,
       cost: Math.ceil(Math.random() * 15) * 100,
     };
@@ -37,8 +37,8 @@
       <h3>{rarity}</h3>
 
       <div class="items">
-        {#each { length: 10 }}
-          {@const item = generateFakeItem(rarity)}
+        {#each { length: 10 }, i}
+          {@const item = generateFakeItem(rarity + i, rarity)}
           {@const owned = isCurrentlyOwned(item)}
           {@const active = currentlySelected.some(i => i.id === item.id)}
 

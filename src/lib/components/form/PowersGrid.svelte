@@ -9,12 +9,12 @@
 
   const { currentlySelected = null, previouslySelected = [], onclick = () => null }: Props = $props();
 
-  function generateFakePower() {
+  function generateFakePower(id: number) {
     return {
-      id: Math.random(),
+      id,
       name: "Some power",
       description: "Some power description",
-      iconURL: `https://picsum.photos/seed/${Math.floor(Math.random() * 50)}/40`,
+      iconURL: `https://picsum.photos/seed/${id}/80`,
       rarity: "power",
       cost: 0,
     };
@@ -25,8 +25,8 @@
   <h3>Powers</h3>
 
   <div class="powers">
-    {#each { length: 12 }}
-      {@const power = generateFakePower()}
+    {#each { length: 12 }, i}
+      {@const power = generateFakePower(i)}
       {@const owned = previouslySelected.some(i => i.id === power.id)}
       {@const highlighted = currentlySelected?.id === power.id}
 
