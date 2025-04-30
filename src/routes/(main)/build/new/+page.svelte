@@ -3,7 +3,7 @@
   import { heroes } from "$src/lib/constants/heroData";
   import type { FullStadiumBuild } from "$src/lib/types/build";
 
-  let build: FullStadiumBuild = {
+  const build: FullStadiumBuild = {
     buildTitle: "",
     author: "",
     heroName: heroes[0].name,

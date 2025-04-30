@@ -3,7 +3,7 @@
   import { testBuildData } from "$lib/data/testData";
   import type { FullStadiumBuild } from "$lib/types/build";
 
-  let build: FullStadiumBuild = testBuildData;
+  const build: FullStadiumBuild = testBuildData;
 </script>
 
 <svelte:head>
