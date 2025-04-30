@@ -101,7 +101,7 @@ export function createRandomRoundInfoSection(
       : undefined,
     items: {
       connect: faker.helpers
-        .arrayElements(allTalents.items, { min: 0, max: 4 })
+        .arrayElements(allTalents.items, { min: 1, max: 4 })
         .map((item) => ({ id: item.id })),
     },
   };
