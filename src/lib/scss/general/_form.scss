@@ -9,6 +9,10 @@
   font-size: inherit;
   color: $white;
 
+  &:focus {
+    outline: 2px solid $white;
+  }
+
   &--large {
     font-size: 150%;
   }
