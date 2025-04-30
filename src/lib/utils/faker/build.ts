@@ -20,6 +20,11 @@ export function createRandomBuild(
     additionalNotes = faker.word.words({ count: { min: 10, max: 50 } }),
   } = overwrites;
 
+  const heroTalents: AvailableTalents = {
+    items: allTalents.items.filter((item) => !item.heroName || item.heroName === hero.name),
+    powers: allTalents.powers.filter((power) => !power.heroName || power.heroName === hero.name),
+  };
+
   return {
     buildTitle,
     description,
@@ -32,19 +37,7 @@ export function createRandomBuild(
     roundInfos: {
       create: Array(ROUND_MAX)
         .fill(0)
-        .map((_, roundIndex) =>
-          createRandomRoundInfo(
-            {
-              items: allTalents.items.filter(
-                (item) => !item.heroName || item.heroName === hero.name,
-              ),
-              powers: allTalents.powers.filter(
-                (power) => !power.heroName || power.heroName === hero.name,
-              ),
-            },
-            roundIndex,
-          ),
-        ),
+        .map((_, roundIndex) => createRandomRoundInfo(heroTalents, roundIndex)),
     },
     additionalNotes,
   };
