@@ -11,14 +11,31 @@
   const { build }: Props = $props();
 
   const items = $derived(getAllBuildItems(build));
+
+  export function isItemOccuranceSold(items: Item[], item: Item, itemIndex: number) {
+    const numberOfTimesInteractedWithItem =
+      items.slice(0, itemIndex).filter((i) => i.id === item.id)?.length || 0;
+
+    if (!numberOfTimesInteractedWithItem) return false;
+
+    return numberOfTimesInteractedWithItem % 2 !== 0;
+  }
 </script>
 
 <h2>Item purchase order</h2>
 
 <div class="items">
   {#each items as item, i (i + item.id)}
-    <div class="item">
-      <Item {item} />
+    {@const sold = isItemOccuranceSold(items, item, i)}
+
+    <div class="cell">
+      <div class="item" class:sold>
+        <Item {item} />
+
+        {#if sold}
+          <div class="label">Sell</div>
+        {/if}
+      </div>
 
       {#if i < items.length - 1}
         <img src={iconChevronRight} width="18" height="18" alt="" />
@@ -44,9 +61,38 @@
     gap: 0.25rem;
   }
 
-  .item {
+  .cell {
     display: flex;
     align-items: center;
     gap: 0.25rem;
+  }
+
+  .item {
+    position: relative;
+    border-radius: 50%;
+
+    &.sold {
+      outline: 2px solid $red;
+      outline-offset: 2px;
+
+      :global(.item) {
+        filter: saturate(0);
+      }
+    }
+  }
+
+  .label {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateY(50%) translateX(-50%);
+    border-radius: $border-radius-small;
+    background: $red;
+    color: $white;
+    font-family: $font-stack-brand;
+    font-size: 75%;
+    line-height: 1;
+    padding: 0.25rem 0.35rem;
+    pointer-events: none;
   }
 </style>
