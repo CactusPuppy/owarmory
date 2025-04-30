@@ -14,18 +14,20 @@ export const ItemCategory = {
 } as const;
 export type ItemCategory = (typeof ItemCategory)[keyof typeof ItemCategory];
 
+export const FullStadiumBuildInclude = {
+  author: true,
+  hero: true,
+  roundInfos: {
+    include: {
+      sections: {
+        include: {
+          items: true,
+          power: true,
+        },
+      },
+    },
+  },
+} as const;
 export type FullStadiumBuild = Prisma.StadiumBuildGetPayload<{
-  include: {
-    author: true;
-    roundInfos: {
-      include: {
-        sections: {
-          include: {
-            power: true;
-            items: true;
-          };
-        };
-      };
-    };
-  };
+  include: typeof FullStadiumBuildInclude;
 }>;

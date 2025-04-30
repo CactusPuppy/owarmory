@@ -19,7 +19,7 @@
 
 <div class="round-selector">
   <button
-    class="control"
+    class="button control"
     disabled={currentRound.value === ROUND_MIN}
     onclick={() => setCurrentRound(-1)}
   >
@@ -35,7 +35,7 @@
   </span>
 
   <button
-    class="control"
+    class="button control"
     disabled={currentRound.value === ROUND_MAX}
     onclick={() => setCurrentRound(1)}
   >
@@ -78,6 +78,12 @@
     transition:
       opacity 100ms,
       color 100ms;
+
+    &:hover {
+      background: $white;
+      background: color.adjust($color-bg-light, $saturation: -10%, $lightness: 10%);
+      color: $white;
+    }
 
     &:hover {
       background: $white;

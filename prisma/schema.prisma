@@ -21,6 +21,7 @@ model Hero {
 
   builds StadiumBuild[]
   items  Item[]
+  powers  Power[]
 }
 
 model User {
@@ -36,7 +37,7 @@ model StadiumBuild {
   updatedAt       DateTime    @updatedAt
   author          User        @relation(fields: [authorId], references: [id])
   authorId        String
-  buildTitle      String      @db.VarChar(63)
+  buildTitle      String
   description     String?
   roundInfos      RoundInfo[]
   additionalNotes String?
@@ -86,6 +87,8 @@ model Power {
   name        String
   description String
   iconURL     String?
+  hero        Hero    @relation(fields: [heroName], references: [name])
+  heroName    String
   removed     Boolean @default(false)
 
   roundInfos RoundInfoSection[]
