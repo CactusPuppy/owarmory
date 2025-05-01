@@ -1,10 +1,9 @@
 import { prisma } from "$src/database/prismaClient.server.js";
 import { FullStadiumBuildInclude } from "$src/lib/types/build";
 import { BUILDS_PAGE_SIZE } from "$src/lib/types/page.js";
+import { headers } from "$src/lib/constants/api";
 
 export async function GET({ url }) {
-  const headers = { "Content-Type": "application/json" };
-
   const page = Number.parseInt(url.searchParams.get("page") ?? "0", BUILDS_PAGE_SIZE) || 0;
   const MAX_PAGE_SIZE = 100;
   let PAGE_SIZE =

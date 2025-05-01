@@ -1,8 +1,7 @@
 import { prisma } from "$src/database/prismaClient.server.js";
+import { headers } from "$src/lib/constants/api";
 
 export async function GET({ params }) {
-  const headers = { "Content-Type": "application/json" };
-
   const { name } = params;
   const user = await prisma.user.findFirst({ where: { name } });
 

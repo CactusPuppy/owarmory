@@ -1,9 +1,8 @@
 import { prisma } from "$src/database/prismaClient.server.js";
 import { BUILDS_PAGE_SIZE } from "$src/lib/types/page.js";
+import { headers } from "$src/lib/constants/api";
 
 export async function GET({ url, params }) {
-  const headers = { "Content-Type": "application/json" };
-
   const { heroName } = params;
 
   const page = Number.parseInt(url.searchParams.get("page") ?? "0") || 0;
