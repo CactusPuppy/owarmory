@@ -17,7 +17,7 @@
   <h2>{header}</h2>
 
   <div class="sections">
-    {#each sections as { id, title, power, items } (id)}
+    {#each sections as { id, title, power, soldItems, purchasedItems } (id)}
       <div class="section">
         <div class="section__title">
           {#if title}
@@ -32,7 +32,11 @@
             <Power {power} />
           {/if}
 
-          {#each items as item (item.id)}
+          {#each soldItems as item (item.id)}
+            <Item {item} sold />
+          {/each}
+
+          {#each purchasedItems as item (item.id)}
             <Item {item} />
           {/each}
         </div>

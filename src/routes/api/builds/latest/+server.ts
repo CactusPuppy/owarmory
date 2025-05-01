@@ -1,13 +1,21 @@
-import { testBuildData } from "$lib/data/testData";
-import type { Build } from "$lib/types/build";
+import { prisma } from "$src/database/prismaClient.server.js";
+import { FullStadiumBuildInclude } from "$src/lib/types/build";
 
-export async function GET() {
+export async function GET({ url }) {
   const headers = { "Content-Type": "application/json" };
+  const page = Number.parseInt(url.searchParams.get("page") ?? "0", 10) || 0;
+  const MAX_PAGE_SIZE = 100;
+  let PAGE_SIZE = Number.parseInt(url.searchParams.get("page_size") ?? "", 10) || 10;
+  if (PAGE_SIZE > MAX_PAGE_SIZE) PAGE_SIZE = MAX_PAGE_SIZE;
 
-  const builds: Build[] = [];
-  for (let index = 0; index < 10; index++) {
-    builds.push(testBuildData);
-  }
+  const builds = await prisma.stadiumBuild.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: FullStadiumBuildInclude,
+    skip: page * PAGE_SIZE,
+    take: PAGE_SIZE,
+  });
 
   return new Response(JSON.stringify(builds), { headers });
 }

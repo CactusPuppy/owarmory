@@ -1,8 +1,14 @@
 export async function api<T>(
   path: string,
+  params?: Record<string, string>,
   serverFetch: typeof fetch | null = null,
   options: RequestInit = {},
 ): Promise<T> {
+  if (params) {
+    const queryString = new URLSearchParams(params).toString();
+    path += `?${queryString}`;
+  }
+
   const response = await (serverFetch || fetch)(`/api/${path}`, options);
   const parsed = await response.json();
 

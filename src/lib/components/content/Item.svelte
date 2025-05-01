@@ -4,18 +4,19 @@
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
-    item: Item
-    large?: boolean
-    onclick?: (item: unknown) => void
+    item: Item;
+    large?: boolean;
+    sold?: boolean;
+    onclick?: (item: unknown) => void;
   }
 
-  const { item, large = false, onclick = () => null }: Props = $props();
+  const { item, sold, large = false, onclick = () => null }: Props = $props();
 
   const { name, description, iconURL, rarity, cost } = $derived(item);
 </script>
 
 <Popover onclick={() => onclick(item)}>
-  <div class="item {rarity}" class:large>
+  <div class="item {rarity}" class:large class:sold>
     <img src={iconURL} alt={name} />
   </div>
 
@@ -58,6 +59,12 @@
     img {
       width: calc(100% - 0.25rem);
       height: auto;
+    }
+
+    &.sold {
+      img {
+        filter: grayscale(100%);
+      }
     }
   }
 </style>

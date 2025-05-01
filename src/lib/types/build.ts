@@ -14,18 +14,47 @@ export const ItemCategory = {
 } as const;
 export type ItemCategory = (typeof ItemCategory)[keyof typeof ItemCategory];
 
+export const FullItemInclude = {
+  statMods: {
+    include: {
+      stat: true,
+    },
+    orderBy: {
+      orderIndex: "asc",
+    },
+  },
+} as const satisfies Prisma.ItemInclude;
+
+export const FullRoundInfoSectionInclude = {
+  purchasedItems: {
+    include: FullItemInclude,
+  },
+  soldItems: {
+    include: FullItemInclude,
+  },
+  power: true,
+} as const satisfies Prisma.RoundInfoSectionInclude;
+
+export const FullRoundInfoInclude = {
+  sections: {
+    include: FullRoundInfoSectionInclude,
+    orderBy: {
+      orderIndex: "asc",
+    },
+  },
+} as const satisfies Prisma.RoundInfoInclude;
+
+export const FullStadiumBuildInclude = {
+  author: true,
+  hero: true,
+  roundInfos: {
+    include: FullRoundInfoInclude,
+    orderBy: {
+      orderIndex: "asc",
+    },
+  },
+} as const satisfies Prisma.StadiumBuildInclude;
+
 export type FullStadiumBuild = Prisma.StadiumBuildGetPayload<{
-  include: {
-    author: true;
-    roundInfos: {
-      include: {
-        sections: {
-          include: {
-            power: true;
-            items: true;
-          };
-        };
-      };
-    };
-  };
+  include: typeof FullStadiumBuildInclude;
 }>;
