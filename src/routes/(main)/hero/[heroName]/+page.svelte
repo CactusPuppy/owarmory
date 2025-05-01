@@ -11,7 +11,7 @@
 
   const { data } = $props();
 
-  const { name } = $derived(data);
+  const { heroName } = $derived(data);
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   let builds: Build[] = $state(data?.builds ?? []);
@@ -40,7 +40,8 @@
     try {
       // Subtracting one because the endpoint uses zero-indexing
       const result =
-        (await api<Build[]>(`builds/user/${name}`, { page: (currentPage - 1).toString() })) || [];
+        (await api<Build[]>(`builds/hero/${heroName}`, { page: (currentPage - 1).toString() })) ||
+        [];
 
       builds.push(...result);
     } catch (error: unknown) {
@@ -53,15 +54,15 @@
 </script>
 
 <svelte:head>
-  <title>OW Armory - Builds by {name}</title>
+  <title>{heroName} | OW Armory</title>
 </svelte:head>
 
-<BuildsList header="Builds by {name}" {builds} />
+<BuildsList header="Builds for {heroName}" {builds} />
 
 {#if builds.length % BUILDS_PAGE_SIZE === 0}
   <center>
     <a
-      href="/user/{name}?page={currentPage + 1}"
+      href="/user/{heroName}?page={currentPage + 1}"
       class="button"
       class:disabled={loading}
       onclick={loadMoreBuilds}
