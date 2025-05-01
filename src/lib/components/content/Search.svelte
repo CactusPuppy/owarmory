@@ -28,6 +28,7 @@
     id="query"
     name="query"
     aria-label="Search"
+    autocomplete="off"
     bind:value={query}
     bind:this={input}
     onkeydown={submit}
