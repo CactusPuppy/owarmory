@@ -2,16 +2,9 @@
   import imageLogo from "$lib/images/logo.webp";
   import UserMenu from "$lib/components/user/UserMenu.svelte";
   import { getContext } from "svelte";
-  import { api } from "$lib/utils/api";
-  import type { User } from "$src/generated/prisma";
-  import { invalidateAll } from "$app/navigation";
+  import { SignIn } from "@auth/sveltekit/components";
 
   const currentUser = getContext("currentUser");
-
-  async function login() {
-    await api<User>("login");
-    invalidateAll();
-  }
 </script>
 
 <nav>
@@ -23,7 +16,11 @@
     {#if currentUser}
       <UserMenu />
     {:else}
-      <button class="button" onclick={login}>Log in</button>
+      <SignIn provider="battlenet">
+        {#snippet submitButton()}
+          <div class="button">Sign in with Battle.net</div>
+        {/snippet}
+      </SignIn>
     {/if}
   </div>
 </nav>

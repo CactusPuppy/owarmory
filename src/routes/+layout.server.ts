@@ -1,15 +1,9 @@
-import { AUTH_TOKEN_COOKIE_NAME } from "$lib/constants/auth";
 import type { User } from "$src/generated/prisma";
-import { api } from "$src/lib/utils/api.js";
 
-export async function load({ cookies, fetch }) {
-  const authToken = cookies.get(AUTH_TOKEN_COOKIE_NAME);
+export async function load({ locals }) {
+  const session = await locals.auth();
 
-  let currentUser: User | null = null;
-
-  if (authToken) {
-    currentUser = await api<User>("login", {}, fetch);
-  }
+  const currentUser: User | null = (session?.user as User) || null;
 
   return {
     currentUser,

@@ -56,6 +56,8 @@
       currentPage++;
     }
   }
+
+  console.log("latestbuilds", latestBuilds);
 </script>
 
 <svelte:head>
@@ -64,7 +66,7 @@
 
 <Heroes />
 
-<BuildsList header="Popular Builds" builds={latestBuilds.slice(0, 3)} />
+<BuildsList header="Popular Builds" builds={(latestBuilds || [])?.slice(0, 3)} />
 
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
