@@ -7,17 +7,18 @@ export function getBuildPowersForRound(build: FullStadiumBuild, round = 7): Powe
   const powers: Power[] = [];
 
   getBuildStandardSectionsForRound(build, round).forEach(({ power }) => {
-    if (power && !powers.map((p) => p.id).includes(power.id)) powers.push(power);
+    if (power) powers.push(power);
   });
 
   return powers;
 }
 
 export function getBuildItemsForRound(build: FullStadiumBuild, round = 7): Item[] {
-  const items: Item[] = [];
+  let items: Item[] = [];
 
   getBuildStandardSectionsForRound(build, round).forEach((section) => {
-    items.push(...section.items.filter((item) => !items.map((i) => i.id).includes(item.id)));
+    items = items.filter((item) => !section.soldItems.map((i) => i.id).includes(item.id));
+    items.push(...section.purchasedItems);
   });
 
   return items;
@@ -45,6 +46,6 @@ export function getAllBuildItems(build: FullStadiumBuild): Item[] {
   return build.roundInfos.flatMap((roundInfo) => {
     return roundInfo.sections
       .filter((section) => !section.title)
-      .flatMap((section) => section.items);
+      .flatMap((section) => section.purchasedItems);
   });
 }

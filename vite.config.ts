@@ -1,8 +1,10 @@
-import { sveltekit } from "@sveltejs/kit/vite";
+/// <reference types="vitest/config" />
 import { defineConfig } from "vite";
+import { sveltekit } from "@sveltejs/kit/vite";
+import { svelteTesting } from "@testing-library/svelte/vite";
 
 export default defineConfig({
-  plugins: [sveltekit()],
+  plugins: [sveltekit(), svelteTesting()],
   css: {
     preprocessorOptions: {
       scss: {
@@ -13,5 +15,10 @@ export default defineConfig({
 				`,
       },
     },
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./vitest-setup.ts"],
+    exclude: ["e2e/**/*.*", "node_modules/**/*.*"],
   },
 });

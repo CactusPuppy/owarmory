@@ -35,14 +35,16 @@ model StadiumBuild {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
   author          User        @relation(fields: [authorId], references: [id])
-  authorId        String
   buildTitle      String
   description     String?
   roundInfos      RoundInfo[]
   additionalNotes String?
   hero            Hero        @relation(fields: [heroName], references: [name])
 
+  authorId String
   heroName String
+
+  // @@index([authorId])
 }
 
 model RoundInfo {
@@ -60,11 +62,13 @@ model RoundInfoSection {
   id                String    @id @default(cuid(2))
   title             String? // When title is missing, that is the standard section for the round
   parentRoundInfo   RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
-  parentRoundInfoId String
   orderIndex        Int       @default(0)
   power             Power?    @relation(fields: [powerId], references: [id])
+  purchasedItems    Item[]    @relation("ItemPurchases")
+  soldItems         Item[]    @relation("ItemSales")
+
+  parentRoundInfoId String
   powerId           String?
-  items             Item[]
 }
 
 model Item {
@@ -79,7 +83,8 @@ model Item {
   iconURL     String?
   removed     Boolean?  @default(false)
 
-  sections RoundInfoSection[]
+  purchaseSections RoundInfoSection[] @relation("ItemPurchases")
+  soldSections     RoundInfoSection[] @relation("ItemSales")
   heroName String?
 }
 

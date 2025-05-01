@@ -24,5 +24,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install
+      - name: Svelte Check
+        run: pnpm check
       - name: Build Check
         run: pnpm run build

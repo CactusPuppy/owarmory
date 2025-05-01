@@ -91,7 +91,7 @@ async function main() {
       const baseData = {
         name: talent.Name,
         description: talent.DescriptionFormatted ?? talent.Description,
-        iconURL: `/images/talents/${encodeURIComponent(talent.Name)}.png`,
+        iconURL: `/images/talents/${talent.Name.trim()}.png`,
         heroName: talent.Hero
           ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
           : undefined,
