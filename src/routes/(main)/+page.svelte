@@ -56,8 +56,6 @@
       currentPage++;
     }
   }
-
-  console.log("latestbuilds", latestBuilds);
 </script>
 
 <svelte:head>
