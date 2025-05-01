@@ -8,6 +8,8 @@
   import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$src/lib/utils/api";
   import { SignOut } from "@auth/sveltekit/components";
+  import { BUILDS_PAGE_SIZE } from "$src/lib/types/page";
+  import type { PageableBuildsSnapshot } from "$src/lib/types/snapshot";
 
   const { data } = $props();
 
@@ -17,32 +19,33 @@
   setContext("currentRound", currentRound);
 
   let latestBuilds: Build[] = $state(data.latestUserBuilds);
-  let page: number = $state(0);
+  let currentPage: number = $state(0);
   let loading = $state(false);
 
   setContext("currentRound", currentRound);
 
-  export const snapshot: Snapshot<{ latestBuilds: Build[]; scrollPosition: number; page: number }> =
-    {
-      capture: () => ({ latestBuilds, scrollPosition: window.scrollY, page }),
-      restore: ({ latestBuilds: storedLatesteBuilds, scrollPosition, page: storedPage }) => {
-        latestBuilds = storedLatesteBuilds;
-        page = storedPage;
+  export const snapshot: Snapshot<PageableBuildsSnapshot> = {
+    capture: () => ({ builds: latestBuilds, scrollPosition: window.scrollY, currentPage }),
+    restore: ({ builds: storedLatestBuilds, scrollPosition, currentPage: storedCurrentPage }) => {
+      latestBuilds = storedLatestBuilds;
+      currentPage = storedCurrentPage;
 
-        requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
-      },
-    };
+      requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
+    },
+  };
 
   async function loadMoreLatestBuilds(): Promise<void> {
     loading = true;
 
     try {
       const result =
-        (await api<Build[]>("builds/user", { userId: currentUser.id, page: page.toString() })) ||
-        [];
+        (await api<Build[]>("builds/user", {
+          userId: currentUser.id,
+          page: currentPage.toString(),
+        })) || [];
 
       latestBuilds.push(...result);
-      page += 1;
+      currentPage += 1;
     } catch (error: unknown) {
       console.error(error);
     } finally {
@@ -67,15 +70,17 @@
 
 <BuildsList header="Your Builds" builds={latestBuilds} />
 
-<center>
-  <button class="button" disabled={loading} onclick={loadMoreLatestBuilds}>
-    {#if loading}
-      Loading...
-    {:else}
-      Load more
-    {/if}
-  </button>
-</center>
+{#if latestBuilds.length % BUILDS_PAGE_SIZE === 0}
+  <center>
+    <button class="button" disabled={loading} onclick={loadMoreLatestBuilds}>
+      {#if loading}
+        Loading...
+      {:else}
+        Load more
+      {/if}
+    </button>
+  </center>
+{/if}
 
 <style lang="scss">
   h1 {

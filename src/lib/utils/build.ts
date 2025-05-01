@@ -35,7 +35,7 @@ export function getBuildStandardSectionsForRound(
 ): FullRoundSectionInfo[] {
   const sections: FullRoundSectionInfo[] = [];
 
-  build.roundInfos.slice(0, round).forEach((roundInfo: FullRoundInfo) => {
+  build.roundInfos?.slice(0, round).forEach((roundInfo: FullRoundInfo) => {
     sections.push(...roundInfo.sections.filter((section) => !section.title));
   });
 

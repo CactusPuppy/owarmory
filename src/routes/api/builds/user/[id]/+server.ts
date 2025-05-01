@@ -1,19 +1,17 @@
 import { prisma } from "$src/database/prismaClient.server.js";
-import { error } from "@sveltejs/kit";
+import { BUILDS_PAGE_SIZE } from "$src/lib/types/page.js";
 
-export async function GET({ url }) {
-  const targetUserId = url.searchParams.get("userId");
-  if (!targetUserId) {
-    error(400, "Must specify a user to get builds from");
-  }
+export async function GET({ url, params }) {
+  const { id } = params;
 
   const headers = { "Content-Type": "application/json" };
   const page = Number.parseInt(url.searchParams.get("page") ?? "0") || 0;
-  const PAGE_SIZE = Number.parseInt(url.searchParams.get("page_size") ?? "", 10) || 10;
+  const PAGE_SIZE =
+    Number.parseInt(url.searchParams.get("page_size") ?? "", BUILDS_PAGE_SIZE) || BUILDS_PAGE_SIZE;
 
-  const builds = prisma.stadiumBuild.findMany({
+  const builds = await prisma.stadiumBuild.findMany({
     where: {
-      authorId: targetUserId,
+      authorId: id,
     },
     orderBy: {
       createdAt: "desc",

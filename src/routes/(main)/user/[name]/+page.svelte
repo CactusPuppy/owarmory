@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Heroes from "$lib/components/content/Heroes.svelte";
   import BuildsList from "$lib/components/content/BuildsList.svelte";
   import type { CurrentRound } from "$lib/types/round";
   import { ROUND_MAX } from "$lib/constants/round";
@@ -8,28 +7,30 @@
   import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$lib/utils/api";
   import type { PageableBuildsSnapshot } from "$src/lib/types/snapshot";
+  import { BUILDS_PAGE_SIZE } from "$src/lib/types/page";
 
   const { data } = $props();
 
+  const { name } = $derived(data);
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
-  let latestBuilds: Build[] = $state(data?.latestBuilds ?? []);
+  let builds: Build[] = $state(data?.builds ?? []);
   let loading = $state(false);
   let currentPage = $state(1);
 
   setContext("currentRound", currentRound);
 
   export const snapshot: Snapshot<PageableBuildsSnapshot> = {
-    capture: () => ({ builds: latestBuilds, currentPage, scrollPosition: window.scrollY }),
+    capture: () => ({ builds, currentPage, scrollPosition: window.scrollY }),
     restore: ({ builds: storedLatesteBuilds, currentPage: storedCurrentPage, scrollPosition }) => {
-      latestBuilds = storedLatesteBuilds;
+      builds = storedLatesteBuilds;
       currentPage = storedCurrentPage;
 
       requestAnimationFrame(() => window.scrollTo(scrollX, scrollPosition));
     },
   };
 
-  async function loadMoreLatestBuilds(event: MouseEvent): Promise<void> {
+  async function loadMoreBuilds(event: MouseEvent): Promise<void> {
     event.preventDefault();
 
     if (loading) return;
@@ -39,9 +40,9 @@
     try {
       // Subtracting one because the endpoint uses zero-indexing
       const result =
-        (await api<Build[]>(`builds/latest`, { page: (currentPage - 1).toString() })) || [];
+        (await api<Build[]>(`builds/user/${name}`, { page: (currentPage - 1).toString() })) || [];
 
-      latestBuilds.push(...result);
+      builds.push(...result);
     } catch (error: unknown) {
       console.error(error);
     } finally {
@@ -52,22 +53,18 @@
 </script>
 
 <svelte:head>
-  <title>OW Armory - Overwatch Stadium Builds</title>
+  <title>OW Armory - Builds by {name}</title>
 </svelte:head>
 
-<Heroes />
+<BuildsList header="Builds by {name}" {builds} />
 
-<BuildsList header="Popular Builds" builds={(latestBuilds || [])?.slice(0, 3)} />
-
-<BuildsList header="Latest Builds" builds={latestBuilds} />
-
-{#if latestBuilds}
+{#if builds.length % BUILDS_PAGE_SIZE === 0}
   <center>
     <a
-      href="/latest?page={currentPage + 1}"
+      href="/user/{name}?page={currentPage + 1}"
       class="button"
       class:disabled={loading}
-      onclick={loadMoreLatestBuilds}
+      onclick={loadMoreBuilds}
     >
       {#if loading}
         Loading...
