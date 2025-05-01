@@ -2,7 +2,7 @@
   import imageLogo from "$lib/images/logo.webp";
   import UserMenu from "$lib/components/user/UserMenu.svelte";
   import { getContext } from "svelte";
-  import { SignIn } from "@auth/sveltekit/components";
+  import SignInButton from "$lib/components/auth/SignInButton.svelte";
 
   const currentUser = getContext("currentUser");
 </script>
@@ -16,11 +16,7 @@
     {#if currentUser}
       <UserMenu />
     {:else}
-      <SignIn provider="battlenet">
-        {#snippet submitButton()}
-          <div class="button">Sign in with Battle.net</div>
-        {/snippet}
-      </SignIn>
+      <SignInButton />
     {/if}
   </div>
 </nav>
