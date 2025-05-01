@@ -8,7 +8,6 @@ export async function load({ cookies, fetch }) {
   let currentUser: User | null = null;
 
   if (authToken) {
-    // Pretend to get user
     currentUser = await api<User>("login", {}, fetch);
   }
 
