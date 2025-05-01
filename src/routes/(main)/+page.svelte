@@ -12,7 +12,7 @@
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
-  let latestBuilds: Build[] = $state(data.latestBuilds);
+  let latestBuilds: Build[] = $state(data?.latestBuilds ?? []);
   let loading = $state(false);
   let currentPage = $state(1);
 
