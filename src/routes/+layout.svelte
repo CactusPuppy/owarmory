@@ -1,9 +1,9 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
   import "$lib/scss/global.scss";
-  import type { PageData } from "./$types";
+  import type { LayoutData } from "./$types";
 
-  const { data, children }: { data: PageData; children: Snippet } = $props();
+  const { data, children }: { data: LayoutData; children: Snippet } = $props();
 </script>
 
 <svelte:head>

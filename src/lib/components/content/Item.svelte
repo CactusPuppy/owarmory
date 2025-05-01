@@ -3,13 +3,13 @@
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
-  const { item, large }: { item: Item; large?: boolean } = $props();
+  const { item, sold, large }: { item: Item; sold?: boolean; large?: boolean } = $props();
 
   const { name, description, iconURL, rarity, cost } = $derived(item);
 </script>
 
 <Popover>
-  <div class="item {rarity}" class:large>
+  <div class="item {rarity}" class:large class:sold>
     <img src={iconURL} alt={name} />
   </div>
 
@@ -52,6 +52,12 @@
     img {
       width: calc(100% - 0.25rem);
       height: auto;
+    }
+
+    &.sold {
+      img {
+        filter: grayscale(100%);
+      }
     }
   }
 </style>
