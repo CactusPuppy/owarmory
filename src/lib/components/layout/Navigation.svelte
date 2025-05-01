@@ -5,6 +5,7 @@
   import { api } from "$lib/utils/api";
   import type { User } from "$src/generated/prisma";
   import { invalidateAll } from "$app/navigation";
+  import Search from "../content/Search.svelte";
 
   const currentUser = getContext("currentUser");
 
@@ -19,6 +20,8 @@
     <a href="/" class="logo">
       <img src={imageLogo} height="64" width="175" alt="OW Armory" />
     </a>
+
+    <Search />
 
     {#if currentUser}
       <UserMenu />

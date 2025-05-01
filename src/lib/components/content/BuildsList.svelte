@@ -46,6 +46,10 @@
       align-items: flex-end;
       justify-content: space-between;
     }
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   .round-selector {
