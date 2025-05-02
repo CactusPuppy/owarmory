@@ -32,6 +32,9 @@
       note: "",
     };
   }
+
+  const { data } = $props();
+  const { availableTalents } = data;
 </script>
 
 <svelte:head>
@@ -40,4 +43,4 @@
 
 <h1 class="title">Create new build</h1>
 
-<BuildForm {build} method="POST" />
+<BuildForm {availableTalents} {build} method="POST" />

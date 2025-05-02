@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 
 import type { Hero, Item, Power, Prisma, User } from "$src/generated/prisma";
 import { ROUND_MAX } from "$src/lib/constants/round";
-import type { AvailableTalents } from "../talents.server";
+import type { AvailableTalents } from "$src/lib/types/talent";
 
 type SelectedTalentsForBuild = {
   boughtItems: Item[];

@@ -14,15 +14,23 @@
   import { api } from "$src/lib/utils/api";
   import { slide } from "svelte/transition";
   import { getBuildItemsForRound, getBuildPowersForRound } from "$src/lib/utils/build";
+  import type { AvailableTalents } from "$src/lib/types/talent";
 
   interface Props {
+    availableTalents: AvailableTalents;
     build: FlatFullStadiumBuild;
     method: "POST" | "PATCH";
     path?: string;
     heroEditable?: boolean;
   }
 
-  let { build = $bindable(), method, path = "build/form", heroEditable = true }: Props = $props();
+  let {
+    availableTalents,
+    build = $bindable(),
+    method,
+    path = "build/form",
+    heroEditable = true,
+  }: Props = $props();
 
   const { roundInfos } = $derived(build);
 
@@ -37,6 +45,15 @@
   let saving = $state(false);
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
+
+  const availableItems = $derived(
+    availableTalents.items
+      .filter((item) => item.heroName == null || item.heroName == heroName)
+      .filter((item) => item.category == currentTalentTypeTab),
+  );
+  const availablePowers = $derived(
+    availableTalents.powers.filter((power) => power.heroName == heroName),
+  );
 
   const futureRounds: FlatFullRoundInfo[] = $derived(
     build.roundInfos!.slice(currentRoundIndex + 1, ROUND_MAX),
@@ -253,13 +270,14 @@
     <div class="tabs-content dark">
       {#if currentTalentTypeTab === powerTalentType}
         <PowersGrid
+          {availablePowers}
           currentlySelected={currentRoundSection.power}
           previouslySelected={powersFromPreviousRounds}
           onclick={selectPower}
         />
       {:else}
         <ItemsGrid
-          category={currentTalentTypeTab}
+          {availableItems}
           onclick={selectItem}
           currentlyPurchasing={currentRoundSection.purchasedItems}
           currentlySelling={currentRoundSection.soldItems}
