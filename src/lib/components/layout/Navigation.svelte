@@ -4,6 +4,7 @@
   import { getContext } from "svelte";
   import SignInButton from "$lib/components/auth/SignInButton.svelte";
   import Search from "$src/lib/components/layout/Search.svelte";
+  import CreateBuildButton from "../content/CreateBuildButton.svelte";
 
   const currentUser = getContext("currentUser");
 </script>
@@ -16,11 +17,15 @@
 
     <Search />
 
-    {#if currentUser}
-      <UserMenu />
-    {:else}
-      <SignInButton />
-    {/if}
+    <div class="actions">
+      {#if currentUser}
+        <UserMenu />
+      {:else}
+        <SignInButton secondary />
+      {/if}
+
+      <CreateBuildButton />
+    </div>
   </div>
 </nav>
 
@@ -70,5 +75,11 @@
     img {
       display: block;
     }
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
   }
 </style>
