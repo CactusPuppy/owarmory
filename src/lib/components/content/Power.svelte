@@ -6,14 +6,15 @@
   interface Props {
     power: Power;
     large?: boolean;
+    onclick?: (power: Power) => void;
   }
 
-  const { power, large = false }: Props = $props();
+  const { power, large = false, onclick = () => null }: Props = $props();
 
   const { name, description, iconURL } = $derived(power);
 </script>
 
-<Popover>
+<Popover onclick={() => onclick(power)}>
   <div class="power" class:large>
     <img src={iconURL} alt={name} />
   </div>

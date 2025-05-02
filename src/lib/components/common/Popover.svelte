@@ -1,9 +1,16 @@
 <script lang="ts">
   import { tick } from "svelte";
   import { closeable } from "$lib/actions/closeable";
+  import type { Snippet } from "svelte";
   import { fly } from "svelte/transition";
 
-  const { children, content } = $props();
+  interface Props {
+    children: Snippet;
+    content: Snippet;
+    onclick?: () => void
+  }
+
+  const { children, content, onclick = () => null }: Props = $props();
 
   let active = $state(false);
   let element: HTMLElement | null = $state(null);
@@ -26,14 +33,20 @@
     if (left - gap < 0) offset = left - gap;
     else if (right - window.innerWidth + gap > 0) offset = right - window.innerWidth + gap;
   }
+
+  function click() {
+    active = !active;
+    onclick();
+  }
 </script>
 
 <div class="popover">
   <button
+    type="button"
     class="toggle"
     onmouseenter={() => (active = true)}
     onmouseleave={() => (active = false)}
-    onclick={() => (active = !active)}
+    onclick={click}
     use:closeable={{ onclose: () => (active = false) }}
   >
     {@render children()}

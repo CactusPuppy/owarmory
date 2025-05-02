@@ -1,14 +1,21 @@
 <script lang="ts">
-  import type { Item } from "../../../generated/prisma";
+  import type { Item } from "$src/generated/prisma";
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
-  const { item, sold, large }: { item: Item; sold?: boolean; large?: boolean } = $props();
+  interface Props {
+    item: Item;
+    large?: boolean;
+    sold?: boolean;
+    onclick?: (item: Item) => void;
+  }
+
+  const { item, sold, large = false, onclick = () => null }: Props = $props();
 
   const { name, description, iconURL, rarity, cost } = $derived(item);
 </script>
 
-<Popover>
+<Popover onclick={() => onclick(item)}>
   <div class="item {rarity}" class:large class:sold>
     <img src={iconURL} alt={name} />
   </div>

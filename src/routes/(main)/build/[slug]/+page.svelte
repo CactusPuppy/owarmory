@@ -10,15 +10,15 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
-  import { setContext } from "svelte";
-  import type { HeroName } from "$lib/types/hero";
+  import { getContext, setContext } from "svelte";
+  import type { HeroName } from "$src/lib/types/hero";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
 
-  const { data } = $props();
-  const { build } = data;
+  const build = getContext<FullStadiumBuild>("build");
 
   const {
     buildTitle: title,
