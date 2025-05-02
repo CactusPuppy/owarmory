@@ -31,7 +31,7 @@
   </Card>
 {:else}
   <Popover onclick={() => onclick(item)}>
-    <div class="item {rarity}" class:large class:sold>
+    <div class="item {rarity.toLowerCase()}" class:large class:sold>
       <img src={iconURL} alt={name} />
     </div>
 
