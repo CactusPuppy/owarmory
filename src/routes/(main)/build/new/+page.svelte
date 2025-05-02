@@ -1,11 +1,15 @@
 <script lang="ts">
   import BuildForm from "$lib/components/form/BuildForm.svelte";
   import { heroes } from "$src/lib/constants/heroData";
-  import type { FullStadiumBuild } from "$src/lib/types/build";
+  import type { FlatFullStadiumBuild } from "$src/lib/types/build";
+  import { redirect } from "@sveltejs/kit";
+  import { getContext } from "svelte";
 
-  let build: FullStadiumBuild = {
+  const currentUser = getContext("currentUser");
+  if (!currentUser) redirect(307, "/");
+
+  const build: FlatFullStadiumBuild = {
     buildTitle: "",
-    author: "",
     heroName: heroes[0].name,
     roundInfos: [],
   };

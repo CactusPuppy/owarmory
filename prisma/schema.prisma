@@ -14,13 +14,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Hero {
   name String @id
   role String
 
   builds StadiumBuild[]
   items  Item[]
+  powers Power[]
 }
 
 model User {
@@ -35,14 +35,16 @@ model StadiumBuild {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
   author          User        @relation(fields: [authorId], references: [id])
-  authorId        String
-  buildTitle      String      @db.VarChar(63)
+  buildTitle      String
   description     String?
   roundInfos      RoundInfo[]
   additionalNotes String?
   hero            Hero        @relation(fields: [heroName], references: [name])
 
+  authorId String
   heroName String
+
+  // @@index([authorId])
 }
 
 model RoundInfo {
@@ -51,6 +53,7 @@ model RoundInfo {
   buildId     String
   createdAt   DateTime           @default(now())
   updatedAt   DateTime           @updatedAt
+  orderIndex  Int                @default(0)
   sections    RoundInfoSection[]
   note        String?
 }
@@ -59,10 +62,13 @@ model RoundInfoSection {
   id                String    @id @default(cuid(2))
   title             String? // When title is missing, that is the standard section for the round
   parentRoundInfo   RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
-  parentRoundInfoId String
+  orderIndex        Int       @default(0)
   power             Power?    @relation(fields: [powerId], references: [id])
+  purchasedItems    Item[]    @relation("ItemPurchases")
+  soldItems         Item[]    @relation("ItemSales")
+
+  parentRoundInfoId String
   powerId           String?
-  items             Item[]
 }
 
 model Item {
@@ -77,7 +83,8 @@ model Item {
   iconURL     String?
   removed     Boolean?  @default(false)
 
-  sections RoundInfoSection[]
+  purchaseSections RoundInfoSection[] @relation("ItemPurchases")
+  soldSections     RoundInfoSection[] @relation("ItemSales")
   heroName String?
 }
 
@@ -86,6 +93,8 @@ model Power {
   name        String
   description String
   iconURL     String?
+  hero        Hero    @relation(fields: [heroName], references: [name])
+  heroName    String
   removed     Boolean @default(false)
 
   roundInfos RoundInfoSection[]
@@ -100,6 +109,7 @@ model Stat {
 
 model StatMod {
   id           String  @id @default(cuid(2))
+  orderIndex   Int     @default(0)
   stat         Stat    @relation(fields: [statId], references: [id])
   amount       Int
   isPercentage Boolean @default(false)

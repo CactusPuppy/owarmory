@@ -5,14 +5,20 @@
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
-    power: Power
-    large?: boolean
-    full?: boolean
-    outline?: boolean
-    onclick?: (power: unknown) => void
+    power: Power;
+    large?: boolean;
+    full?: boolean;
+    outline?: boolean;
+    onclick?: (power: Power) => void;
   }
 
-  const { power, large = false, full = false, outline = false, onclick = () => null }: Props = $props();
+  const {
+    power,
+    large = false,
+    full = false,
+    outline = false,
+    onclick = () => null,
+  }: Props = $props();
 
   const { name, description, iconURL } = $derived(power);
 </script>

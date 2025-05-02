@@ -18,15 +18,25 @@
 
   <div class="sections">
     <!-- Temporarily only showing 1 section -->
-    {#each sections.slice(0, 1) as { id, power, items } (id)}
+    {#each sections.slice(0, 1) as { id, title: _title, power, soldItems, purchasedItems } (id)}
       <div class="section">
         {#if power}
           <Power {power} full outline />
         {/if}
 
-        {#each items as item (item.id)}
-          <Item {item} full />
-        {/each}
+        <div class="section__items">
+          {#if power}
+            <Power {power} />
+          {/if}
+
+          {#each soldItems as item (item.id)}
+            <Item {item} sold />
+          {/each}
+
+          {#each purchasedItems as item (item.id)}
+            <Item {item} />
+          {/each}
+        </div>
       </div>
     {/each}
   </div>

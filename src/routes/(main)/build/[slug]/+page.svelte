@@ -6,38 +6,24 @@
   import ItemStatistics from "$lib/components/content/ItemStatistics.svelte";
   import RoundInfo from "$lib/components/content/RoundInfo.svelte";
   import RoundSelector from "$lib/components/content/RoundSelector.svelte";
-  import { heroes, heroFromHeroName } from "$lib/constants/heroData";
+  import { heroFromHeroName } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
-  import { testDataRoundInfos } from "$lib/data/testData";
-  import type { FullStadiumBuild } from "$src/lib/types/build";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
-  import { setContext } from "svelte";
-  import type { HeroName } from "$lib/types/hero";
+  import { getContext, setContext } from "svelte";
+  import type { HeroName } from "$src/lib/types/hero";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
 
-  const build: FullStadiumBuild = {
-    buildTitle: "I am a build for a hero",
-    description:
-      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    additionalNotes:
-      "Some short description, consectetur adipiscing elit. Donec ornare justo quis felis feugiat vestibulum. Nulla facilisi. Aliquam volutpat sed ipsum vel finibus. Morbi diam erat, congue ut gravida vitae.",
-    heroName: heroes[0].name,
-    // @ts-expect-error author type not defined for now
-    author: {
-      username: "Some guy",
-    },
-    roundInfos: testDataRoundInfos,
-  };
+  const build = getContext<FullStadiumBuild>("build");
 
   const {
     buildTitle: title,
     heroName,
     description,
-    // @ts-expect-error author type not defined for now
     author,
     roundInfos,
     additionalNotes,

@@ -1,9 +1,15 @@
 <script lang="ts">
   import BuildForm from "$lib/components/form/BuildForm.svelte";
-  import { testBuildData } from "$lib/data/testData";
-  import type { FullStadiumBuild } from "$lib/types/build";
+  import { setAvailableTalentsContext } from "$src/lib/contexts/availableTalentsContext";
+  import { getBuildContext } from "$src/lib/contexts/buildContext";
+  import type { PageData } from "./$types";
 
-  let build: FullStadiumBuild = testBuildData;
+  const { data }: { data: PageData } = $props();
+
+  const { availableTalents } = data;
+  setAvailableTalentsContext(availableTalents);
+
+  const build = getBuildContext();
 </script>
 
 <svelte:head>
