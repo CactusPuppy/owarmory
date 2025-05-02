@@ -25,10 +25,6 @@
         {/if}
 
         <div class="section__items">
-          {#if power}
-            <Power {power} />
-          {/if}
-
           {#each soldItems as item (item.id)}
             <Item {item} sold />
           {/each}
