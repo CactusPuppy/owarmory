@@ -13,6 +13,11 @@
     outline: 2px solid $white;
   }
 
+  &::placeholder {
+    font-style: italic;
+    color: $color-text-alt;
+  }
+
   &--large {
     font-size: 150%;
   }

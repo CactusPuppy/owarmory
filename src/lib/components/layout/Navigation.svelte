@@ -52,10 +52,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     height: 100%;
     max-width: calc(map.get($breakpoints, page-max-width) + ($gutter * 2));
     padding: 0 $gutter;
     margin: 0 auto;
+
+    @include breakpoint(tablet) {
+      gap: 3rem;
+    }
   }
 
   .logo {
