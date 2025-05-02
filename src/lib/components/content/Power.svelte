@@ -4,9 +4,9 @@
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
-    power: Power
-    large?: boolean
-    onclick?: (power: unknown) => void
+    power: Power;
+    large?: boolean;
+    onclick?: (power: Power) => void;
   }
 
   const { power, large = false, onclick = () => null }: Props = $props();

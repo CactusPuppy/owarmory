@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FullStadiumBuild } from "$lib/types/build";
+  import type { FlatFullRoundInfo, FlatFullStadiumBuild } from "$lib/types/build";
   import Heroes from "$lib/components/content/Heroes.svelte";
   import type { HeroData, HeroName } from "$lib/types/hero";
   import ItemsGrid from "./ItemsGrid.svelte";
@@ -8,7 +8,6 @@
   import { onMount, untrack } from "svelte";
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
-  import type { FullRoundInfo, FullRoundSectionInfo } from "$src/lib/types/round";
   import type { Item, Power } from "$src/generated/prisma";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
@@ -16,7 +15,7 @@
   import { slide } from "svelte/transition";
 
   interface Props {
-    build: FullStadiumBuild;
+    build: FlatFullStadiumBuild;
     method: "POST" | "PATCH";
     path?: string;
     heroEditable?: boolean;
@@ -32,15 +31,15 @@
 
   let currentRoundIndex = $state(0);
   let currentTalentTypeTab = $state(itemTalentTypes[0]);
-  let heroName: HeroName | null = $state(build.heroName);
+  let heroName: HeroName | null = $state(build.heroName as HeroName);
   let errorMessage = $state("");
   let saving = $state(false);
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
   const previousRounds: FullRoundInfo[] = $derived(build.roundInfos.slice(0, currentRoundIndex));
-  const futureRounds: FullRoundInfo[] = $derived(
-    build.roundInfos.slice(currentRoundIndex + 1, ROUND_MAX),
+  const futureRounds: FlatFullRoundInfo[] = $derived(
+    build.roundInfos!.slice(currentRoundIndex + 1, ROUND_MAX),
   );
   const powersFromPreviousRounds = $derived.by(getPowersFromPreviousRounds);
   const itemsFromPreviousRounds = $derived.by(getItemsFromPreviousRounds);

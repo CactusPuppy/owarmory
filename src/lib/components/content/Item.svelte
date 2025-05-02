@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Item } from "../../../generated/prisma";
+  import type { Item } from "$src/generated/prisma";
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
@@ -7,7 +7,7 @@
     item: Item;
     large?: boolean;
     sold?: boolean;
-    onclick?: (item: unknown) => void;
+    onclick?: (item: Item) => void;
   }
 
   const { item, sold, large = false, onclick = () => null }: Props = $props();
