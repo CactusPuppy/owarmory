@@ -1,18 +1,16 @@
 <script lang="ts">
   import Power from "../content/Power.svelte";
   import type { Power as PowerType } from "$src/generated/prisma";
-  import { getAvailableTalentsContext } from "$src/lib/contexts/availableTalentsContext";
 
   interface Props {
+    availablePowers: PowerType[];
     currentlySelected: PowerType | null;
     previouslySelected: PowerType[];
     onclick: (item: PowerType) => void;
   }
 
-  const availableTalents = getAvailableTalentsContext();
-  const { powers: availablePowers } = availableTalents;
-
   const {
+    availablePowers = [],
     currentlySelected = null,
     previouslySelected = [],
     onclick = () => null,

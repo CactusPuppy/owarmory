@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FullStadiumBuild } from "$src/lib/types/build";
+  import type { BuildData } from "$src/lib/types/build";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildPowersForRound, getBuildItemsForRound } from "$lib/utils/build";
   import { getContext } from "svelte";
@@ -9,7 +9,7 @@
   import { scale } from "svelte/transition";
 
   interface Props {
-    build: FullStadiumBuild;
+    build: BuildData;
   }
 
   const { build }: Props = $props();

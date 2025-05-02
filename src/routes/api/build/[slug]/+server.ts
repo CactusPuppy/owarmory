@@ -1,10 +1,9 @@
 import { prisma } from "$src/database/prismaClient.server";
 import { FullStadiumBuildInclude } from "$src/lib/types/build";
 import { error } from "@sveltejs/kit";
+import { headers } from "$src/lib/constants/api";
 
 export async function GET({ params }) {
-  const headers = { "Content-Type": "application/json" };
-
   const build = await prisma.stadiumBuild.findFirst({
     where: {
       id: params.slug,
