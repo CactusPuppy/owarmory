@@ -1,39 +1,33 @@
 <script lang="ts">
   import Power from "../content/Power.svelte";
+  import type { Power as PowerType } from "$src/generated/prisma";
+  import { getAvailableTalentsContext } from "$src/lib/contexts/availableTalentsContext";
 
   interface Props {
-    currentlySelected: unknown | null;
-    previouslySelected: unknown[];
-    onclick: (item?: unknown) => void;
+    currentlySelected: PowerType | null;
+    previouslySelected: PowerType[];
+    onclick: (item: PowerType) => void;
   }
 
-  const { currentlySelected = null, previouslySelected = [], onclick = () => null }: Props = $props();
+  const availableTalents = getAvailableTalentsContext();
+  const { powers: availablePowers } = availableTalents;
 
-  function generateFakePower(id: number) {
-    return {
-      id,
-      name: "Some power",
-      description: "Some power description",
-      iconURL: `https://picsum.photos/seed/${id}/80`,
-      rarity: "power",
-      cost: 0,
-    };
-  }
+  const {
+    currentlySelected = null,
+    previouslySelected = [],
+    onclick = () => null,
+  }: Props = $props();
 </script>
 
 <div class="block">
   <h3>Powers</h3>
 
   <div class="powers">
-    {#each { length: 12 }, i}
-      {@const power = generateFakePower(i)}
-      {@const owned = previouslySelected.some(i => i.id === power.id)}
+    {#each availablePowers as power (power.id)}
+      {@const owned = previouslySelected.some((i) => i.id === power.id)}
       {@const highlighted = currentlySelected?.id === power.id}
 
-      <div
-        class="power"
-        class:owned
-        class:highlighted>
+      <div class="power" class:owned class:highlighted>
         <Power {power} {onclick} large />
       </div>
     {/each}

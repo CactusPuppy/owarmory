@@ -3,7 +3,9 @@ import type { FullRoundSectionInfo } from "../types/round";
 import type { Item } from "$src/generated/prisma";
 import type { Power } from "$src/generated/prisma";
 
-export function getBuildPowersForRound(build: FullStadiumBuild, round = 7): Power[] {
+type BuildRoundSectionData = FullRoundSectionInfo | FlatFullRoundInfoSection;
+
+export function getBuildPowersForRound(build: BuildData, round = 7): Power[] {
   const powers: Power[] = [];
 
   getBuildStandardSectionsForRound(build, round).forEach(({ power }) => {
@@ -45,7 +47,7 @@ export function getAllBuildItems(build: BuildData): Item[] {
   return build.roundInfos.flatMap((roundInfo) => {
     return roundInfo.sections
       .filter((section) => !section.title)
-      .flatMap((section) => section.purchasedItems);
+      .flatMap((section) => [...section.soldItems, ...section.purchasedItems]);
   });
 }
 

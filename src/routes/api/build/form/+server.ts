@@ -1,15 +1,16 @@
 import { heroes } from "$src/lib/constants/heroData.js";
-import type { FullStadiumBuild } from "$src/lib/types/build.js";
-import type { FullRoundInfo } from "$src/lib/types/round.js";
+import type { BuildData } from "$src/lib/types/build.js";
+import type { HeroName } from "$src/lib/types/hero.js";
 
 const headers = { "Content-Type": "application/json" };
 
 export async function POST({ request }) {
-  const build: FullStadiumBuild = await request.json();
+  const build: BuildData = await request.json();
 
   try {
     validate(build);
   } catch (error: unknown) {
+    // @ts-expect-error unknown type does not have message
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
   }
 
@@ -22,7 +23,7 @@ export async function POST({ request }) {
 }
 
 export async function PATCH({ request }) {
-  const build: FullStadiumBuild = await request.json();
+  const build: BuildData = await request.json();
 
   // Pretend to fetch the build to PATCH
   await new Promise((res) => setTimeout(res, 500));
@@ -30,6 +31,7 @@ export async function PATCH({ request }) {
   try {
     validate(build);
   } catch (error: unknown) {
+    // @ts-expect-error unknown type does not have message
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
   }
 
@@ -41,7 +43,7 @@ export async function PATCH({ request }) {
   return new Response(JSON.stringify(response), { headers });
 }
 
-function validate(build: FullStadiumBuild) {
+function validate(build: BuildData) {
   // Title
   if (!build.buildTitle) throw new Error("No build title was given.");
   if (build.buildTitle.length < 10)
@@ -57,15 +59,15 @@ function validate(build: FullStadiumBuild) {
 
   // Hero
   if (!build.heroName) throw new Error("No hero was selected.");
-  if (!heroes.map((hero) => hero.name).includes(build.heroName))
+  if (!heroes.map((hero) => hero.name).includes(build.heroName as HeroName))
     throw new Error("An invalid hero was selected.");
 
   // Rounds
   if (build.roundInfos.length < 7) throw new Error("Not all rounds were given.");
-  if (build.roundInfos.some((i: FullRoundInfo) => i.sections?.length !== 1))
+  if (build.roundInfos.some((i) => i.sections?.length !== 1))
     throw new Error("Some rounds contain invalid data.");
 
   // Description
-  if (build.additionalNotes.length > 5000)
+  if (build.additionalNotes && build.additionalNotes.length > 5000)
     throw new Error("Given description was too long. Max 5000 characters.");
 }

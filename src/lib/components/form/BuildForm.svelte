@@ -13,6 +13,7 @@
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
   import { slide } from "svelte/transition";
+  import { getBuildItemsForRound, getBuildPowersForRound } from "$src/lib/utils/build";
 
   interface Props {
     build: FlatFullStadiumBuild;
@@ -37,15 +38,17 @@
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
-  const previousRounds: FullRoundInfo[] = $derived(build.roundInfos.slice(0, currentRoundIndex));
   const futureRounds: FlatFullRoundInfo[] = $derived(
     build.roundInfos!.slice(currentRoundIndex + 1, ROUND_MAX),
+  );
+  const otherRounds: FlatFullRoundInfo[] = $derived(
+    build.roundInfos!.filter((_, index) => index !== currentRoundIndex),
   );
   const powersFromPreviousRounds = $derived.by(getPowersFromPreviousRounds);
   const itemsFromPreviousRounds = $derived.by(getItemsFromPreviousRounds);
   const canSelectPowerForCurrentRound = $derived(talentRoundIndexes.includes(currentRoundIndex));
 
-  const currentRound = $derived(build.roundInfos[currentRoundIndex] || {});
+  const currentRound = $derived(build.roundInfos![currentRoundIndex] || {});
   // Currently only using a single section
   const currentRoundSection = $derived(currentRound.sections?.[0] || {});
 
@@ -56,16 +59,15 @@
   // Add empty roundInfos for each round
   onMount(() => {
     for (let i = 0; i < ROUND_MAX; i++) {
-      if (build.roundInfos[i]) continue;
+      if (build.roundInfos![i]) continue;
 
-      build.roundInfos[i] = {
-        id: Math.random().toString(), // Id here is temporary
+      build.roundInfos![i] = {
         sections: [
           {
-            id: Math.random().toString(), // Id here is temporary
             title: "",
             power: null,
-            items: [],
+            purchasedItems: [] as Item[],
+            soldItems: [] as Item[],
           },
         ],
         note: "",
@@ -90,19 +92,28 @@
   }
 
   function selectItem(item: Item): void {
-    // Remove item from from future rounds
-    futureRounds.forEach(({ sections }) => {
-      sections.forEach((section: FullRoundSectionInfo) => {
-        section.items = section.items.filter((i: Item) => i.id !== item.id);
-      });
-    });
+    // Remove item from future standard sections until a sale occurs of the item
+    for (const futureRound of futureRounds) {
+      if (futureRound.sections[0].soldItems.some((soldItem) => soldItem.id == item.id)) break;
+      futureRound.sections[0].purchasedItems = futureRound.sections[0].purchasedItems.filter(
+        (i) => i.id !== item.id,
+      );
+    }
 
-    // Item is selected in the current round, remove it
-    if (currentRoundSection.items.some((i: Item) => i.id === item.id)) {
-      currentRoundSection.items = currentRoundSection.items.filter((i: Item) => i.id !== item.id);
+    // If item is being sold this round, remove its sale
+    if (currentRoundSection.soldItems.some((i) => i.id === item.id)) {
+      currentRoundSection.soldItems = currentRoundSection.soldItems.filter((i) => i.id !== item.id);
+    } else if (currentRoundSection.purchasedItems.some((i) => i.id === item.id)) {
+      // If item is being purchased this round, remove its purchase
+      currentRoundSection.purchasedItems = currentRoundSection.purchasedItems.filter(
+        (i) => i.id !== item.id,
+      );
+    } else if (getBuildItemsForRound(build, currentRoundIndex).some((i) => i.id === item.id)) {
+      // Item is currently in inventory, add to sale
+      currentRoundSection.soldItems.push(item);
     } else {
-      // Item is not selected in the current round, add it
-      currentRoundSection.items.push(item);
+      // Item is not in inventory, add to purchases
+      currentRoundSection.purchasedItems.push(item);
     }
 
     // Update state
@@ -110,40 +121,34 @@
   }
 
   function selectPower(power: Power): void {
-    // Remove selected power from from future rounds
-    futureRounds.forEach(({ sections }) => {
-      sections.forEach((section: FullRoundSectionInfo) => {
+    // Remove selected power from other rounds
+    otherRounds.forEach(({ sections }) => {
+      sections.forEach((section) => {
         if (section.power?.id === power.id) section.power = null;
       });
     });
 
-    if (powersFromPreviousRounds.some((p) => p.id === power.id)) return;
-
-    currentRoundSection.power = power;
+    if (currentRoundSection.power?.id === power.id) currentRoundSection.power = null;
+    else currentRoundSection.power = power;
 
     // Update state
     build = { ...build };
   }
 
   function getItemsFromPreviousRounds(): Item[] {
-    return previousRounds.flatMap((roundInfo) => {
-      return roundInfo.sections.flatMap((section: FullRoundSectionInfo) => section.items);
-    });
+    return getBuildItemsForRound(build, currentRoundIndex);
   }
 
   function getPowersFromPreviousRounds(): Power[] {
-    return previousRounds
-      .flatMap((roundInfo) => {
-        return roundInfo.sections.flatMap((section: FullRoundSectionInfo) => section.power);
-      })
-      .filter(Boolean);
+    return getBuildPowersForRound(build, currentRoundIndex);
   }
 
   function removeHeroSpecificTalents(): void {
-    build.roundInfos.forEach((roundInfo: FullRoundInfo) => {
-      roundInfo.sections.forEach((section: FullRoundSectionInfo) => {
-        section.power = null;
-        section.items = section.items.filter((item: Item) => !item.hero);
+    build.roundInfos.forEach((roundInfo) => {
+      roundInfo.sections.forEach((section) => {
+        if (section.power?.heroName !== heroName) section.power = null;
+        section.purchasedItems = section.purchasedItems.filter((item) => heroName != item.heroName);
+        section.soldItems = section.soldItems.filter((item) => heroName != item.heroName);
       });
     });
 
@@ -161,7 +166,7 @@
     await new Promise((res) => setTimeout(res, 500));
 
     try {
-      const response = await api(path, null, {
+      const response = await api(path, {}, null, {
         method,
         body: JSON.stringify(build),
       });
@@ -171,7 +176,10 @@
       // TODO: Redirect to created build
     } catch (error: unknown) {
       console.error(error);
-      errorMessage = error.message;
+      errorMessage =
+        error && typeof error === "object" && "message" in error
+          ? (error as Error).message
+          : "Unspecified Error";
 
       window.scrollTo({ top: 0 });
     } finally {
@@ -272,8 +280,10 @@
         />
       {:else}
         <ItemsGrid
+          category={currentTalentTypeTab}
           onclick={selectItem}
-          currentlySelected={currentRoundSection.items || []}
+          currentlyPurchasing={currentRoundSection.purchasedItems}
+          currentlySelling={currentRoundSection.soldItems}
           previouslySelected={itemsFromPreviousRounds}
         />
       {/if}
