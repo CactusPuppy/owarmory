@@ -5,33 +5,16 @@
   const currentUser: User = getContext("currentUser");
 </script>
 
-<a href="/account" class="avatar">
-  <img src="//:0" alt={currentUser.username} height="64" width="64" />
-</a>
+<div class="user">
+  Signed in as <a href="/account">{currentUser.name}</a>
+</div>
 
 <style lang="scss">
-  .avatar {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 50%;
-    border: 2px solid $white;
-    background: $color-bg-dark;
-    color: $color-text-base;
-    text-decoration: none;
-    overflow: hidden;
+  a {
+    font-family: $font-stack-brand;
+  }
 
-    &:hover {
-      filter: brightness(1.2);
-    }
-
-    img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 50%;
-      width: 100%;
-      height: auto;
-      background: $color-bg-dark;
-    }
+  .user {
+    font-size: $font-size-small;
   }
 </style>

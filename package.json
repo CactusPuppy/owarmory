@@ -67,5 +67,10 @@
   "lint-staged": {
     "*.svelte*": "eslint --fix",
     "*.{ts,js,svelte,svelte.ts,svelte.js,scss}": "prettier --write"
+  },
+  "dependencies": {
+    "@auth/core": "^0.39.0",
+    "@auth/prisma-adapter": "^2.9.0",
+    "@auth/sveltekit": "^1.9.1"
   }
 }

@@ -19,9 +19,9 @@ button {
   font-family: $font-stack-brand;
   font-size: $font-size-base;
 
-  &:not([disabled]):hover,
-  &:not([disabled]):active,
-  &:not([disabled]):focus-visible {
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled):focus-visible {
     color: $white;
   }
 
@@ -42,5 +42,6 @@ button {
   &.disabled {
     color: $color-text-alt;
     border-color: $color-border;
+    cursor: default;
   }
 }

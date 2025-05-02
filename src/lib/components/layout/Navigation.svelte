@@ -2,16 +2,9 @@
   import imageLogo from "$lib/images/logo.webp";
   import UserMenu from "$lib/components/user/UserMenu.svelte";
   import { getContext } from "svelte";
-  import { api } from "$lib/utils/api";
-  import type { User } from "$src/generated/prisma";
-  import { invalidateAll } from "$app/navigation";
+  import SignInButton from "$lib/components/auth/SignInButton.svelte";
 
   const currentUser = getContext("currentUser");
-
-  async function login() {
-    await api<User>("login");
-    invalidateAll();
-  }
 </script>
 
 <nav>
@@ -23,7 +16,7 @@
     {#if currentUser}
       <UserMenu />
     {:else}
-      <button class="button" onclick={login}>Log in</button>
+      <SignInButton />
     {/if}
   </div>
 </nav>

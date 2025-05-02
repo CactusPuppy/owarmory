@@ -4,10 +4,10 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import { getContext, setContext } from "svelte";
   import type { User } from "$src/generated/prisma";
-  import LogoutButton from "$lib/components/content/auth/LogoutButton.svelte";
   import type { Snapshot } from "./$types";
   import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$src/lib/utils/api";
+  import { SignOut } from "@auth/sveltekit/components";
 
   const { data } = $props();
 
@@ -52,13 +52,17 @@
 </script>
 
 <svelte:head>
-  <title>Account | {currentUser.username} | OW Armory</title>
+  <title>Account | {currentUser.name} | OW Armory</title>
 </svelte:head>
 
 <header class="header">
-  <h1>Hey, {currentUser.username}</h1>
+  <h1>Hey, {currentUser.name}</h1>
 
-  <LogoutButton />
+  <SignOut>
+    {#snippet submitButton()}
+      <div class="button">Sign out</div>
+    {/snippet}
+  </SignOut>
 </header>
 
 <BuildsList header="Your Builds" builds={latestBuilds} />
