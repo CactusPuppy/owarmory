@@ -18,6 +18,7 @@ button {
   text-decoration: none;
   font-family: $font-stack-brand;
   font-size: $font-size-base;
+  white-space: nowrap;
 
   &:not([disabled]):not(.disabled):hover,
   &:not([disabled]):not(.disabled):active,
