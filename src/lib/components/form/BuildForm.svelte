@@ -5,7 +5,7 @@
   import ItemsGrid from "./ItemsGrid.svelte";
   import Hero from "../content/Hero.svelte";
   import { ROUND_MAX } from "$lib/constants/round";
-  import { onMount, untrack } from "svelte";
+  import { untrack } from "svelte";
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
   import type { Item, Power } from "$src/generated/prisma";
@@ -54,25 +54,6 @@
 
   $effect(() => {
     if (selectedHero) untrack(removeHeroSpecificTalents);
-  });
-
-  // Add empty roundInfos for each round
-  onMount(() => {
-    for (let i = 0; i < ROUND_MAX; i++) {
-      if (build.roundInfos![i]) continue;
-
-      build.roundInfos![i] = {
-        sections: [
-          {
-            title: "",
-            power: null,
-            purchasedItems: [] as Item[],
-            soldItems: [] as Item[],
-          },
-        ],
-        note: "",
-      };
-    }
   });
 
   function setRound(index: number): void {

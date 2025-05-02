@@ -1,6 +1,8 @@
 <script lang="ts">
   import BuildForm from "$lib/components/form/BuildForm.svelte";
+  import type { Item } from "$src/generated/prisma/client.js";
   import { heroes } from "$src/lib/constants/heroData";
+  import { ROUND_MAX } from "$src/lib/constants/round.js";
   import type { FlatFullStadiumBuild } from "$src/lib/types/build";
   import { redirect } from "@sveltejs/kit";
   import { getContext } from "svelte";
@@ -13,6 +15,23 @@
     heroName: heroes[0].name,
     roundInfos: [],
   };
+
+  // Add empty roundInfos for each round
+  for (let i = 0; i < ROUND_MAX; i++) {
+    if (build.roundInfos![i]) continue;
+
+    build.roundInfos![i] = {
+      sections: [
+        {
+          title: "",
+          power: null,
+          purchasedItems: [] as Item[],
+          soldItems: [] as Item[],
+        },
+      ],
+      note: "",
+    };
+  }
 </script>
 
 <svelte:head>
