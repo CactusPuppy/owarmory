@@ -90,7 +90,7 @@ model StadiumBuild {
   authorId String
   heroName String
 
-  // @@index([authorId])
+  @@index([authorId])
 }
 
 model RoundInfo {
