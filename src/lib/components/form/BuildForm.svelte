@@ -176,10 +176,8 @@
       // TODO: Redirect to created build
     } catch (error: unknown) {
       console.error(error);
-      errorMessage =
-        error && typeof error === "object" && "message" in error
-          ? (error as Error).message
-          : "Unspecified Error";
+      // @ts-expect-error unknown has no message field
+      errorMessage = error.message;
 
       window.scrollTo({ top: 0 });
     } finally {
