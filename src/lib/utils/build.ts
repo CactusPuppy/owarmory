@@ -36,7 +36,7 @@ export function getBuildStandardSectionsForRound(
 ): BuildRoundSectionData[] {
   const sections: BuildRoundSectionData[] = [];
 
-  build.roundInfos?.slice(0, round).forEach((roundInfo) => {
+  build.roundInfos.slice(0, round).forEach((roundInfo) => {
     sections.push(...roundInfo.sections.filter((section) => !section.title));
   });
 
