@@ -15,12 +15,13 @@
   import { slide } from "svelte/transition";
   import { getBuildItemsForRound, getBuildPowersForRound } from "$src/lib/utils/build";
   import type { AvailableTalents } from "$src/lib/types/talent";
+  import type { SlashPrefixedString } from "$src/lib/types/path";
 
   interface Props {
     availableTalents: AvailableTalents;
     build: FlatFullStadiumBuild;
     method: "POST" | "PATCH";
-    path?: string;
+    path?: SlashPrefixedString;
     heroEditable?: boolean;
   }
 
@@ -28,7 +29,7 @@
     availableTalents,
     build = $bindable(),
     method,
-    path = "build/form",
+    path = "/build/form",
     heroEditable = true,
   }: Props = $props();
 
