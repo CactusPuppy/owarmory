@@ -33,6 +33,11 @@ button {
     color: $secondary;
   }
 
+  &--large {
+    font-size: 125%;
+    padding: 1rem 2rem;
+  }
+
   &[disabled],
   &.disabled {
     color: $color-text-alt;
