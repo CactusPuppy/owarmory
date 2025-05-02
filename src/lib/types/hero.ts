@@ -30,3 +30,6 @@ const HeroNames = [
   "Moira",
 ] as const;
 export type HeroName = (typeof HeroNames)[number];
+export function isHeroName(str: string): str is HeroName {
+  return HeroNames.includes(str as HeroName);
+}

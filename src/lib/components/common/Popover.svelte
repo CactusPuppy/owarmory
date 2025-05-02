@@ -7,7 +7,7 @@
   interface Props {
     children: Snippet;
     content: Snippet;
-    onclick?: () => void
+    onclick?: () => void;
   }
 
   const { children, content, onclick = () => null }: Props = $props();
@@ -83,5 +83,7 @@
     border-radius: $border-radius;
     border-top: 2px solid $color-text-alt;
     border-bottom: 2px solid $color-text-alt;
+    padding: 1.5rem;
+    width: min(calc(100vw - 2rem), 23rem);
   }
 </style>

@@ -1,60 +1,65 @@
 <script lang="ts">
-  import { isItemPreviouslyOwned } from "$src/lib/utils/build";
   import Item from "../content/Item.svelte";
+  import type { Item as ItemType } from "$src/generated/prisma";
+  import { ItemRarity } from "$src/lib/types/build";
+  import { getAvailableTalentsContext } from "$src/lib/contexts/availableTalentsContext";
 
   interface Props {
-    currentlySelected: unknown[];
-    previouslySelected: unknown[];
-    onclick: (item?: unknown) => void;
+    category: string;
+    currentlyPurchasing: ItemType[];
+    currentlySelling: ItemType[];
+    previouslySelected: ItemType[];
+    onclick: (item: ItemType) => void;
   }
 
-  const { currentlySelected = [], previouslySelected = [], onclick = () => null }: Props = $props();
+  const availableTalents = getAvailableTalentsContext();
+  const { items } = availableTalents;
 
-  const itemRarities = ["common", "rare", "epic"];
+  const {
+    category,
+    currentlyPurchasing = [],
+    currentlySelling = [],
+    previouslySelected = [],
+    onclick = () => null,
+  }: Props = $props();
+  const availableItems = $derived(items.filter((item) => item.category === category));
 
-  function generateFakeItem(id: string, rarity = "") {
-    return {
-      id,
-      name: "Some item",
-      description: "Some item description",
-      iconURL: `https://picsum.photos/seed/${id}/80`,
-      rarity,
-      cost: Math.ceil(Math.random() * 15) * 100,
-    };
-  }
+  const itemRarities = Object.values(ItemRarity);
 </script>
 
 <div class="rows">
   {#each itemRarities as rarity (rarity)}
+    {@const items = availableItems.filter((item) => item.rarity === rarity)}
+
     <div class="row {rarity}">
       <h3>{rarity}</h3>
 
       <div class="items">
-        {#each { length: 10 }, i}
-          {@const item = generateFakeItem(rarity + i, rarity)}
-          {@const owned = isItemPreviouslyOwned(previouslySelected, item)}
-          {@const active = currentlySelected.some((i) => i.id === item.id)}
+        {#each items as item (item.id)}
+          {@const owned = previouslySelected.some((i) => i.id === item.id)}
+          {@const buying = currentlyPurchasing.some((i) => i.id === item.id)}
+          {@const selling = currentlySelling.some((i) => i.id == item.id)}
 
-          <div class="cell" class:active class:owned>
+          <div class="cell" class:active={buying || selling} class:owned>
             <div class="item">
               <Item {item} {onclick} large />
             </div>
 
             <div class="cost">
               {#if owned}
-                {#if owned && active}
+                {#if owned && selling}
                   Sold
                 {:else}
                   Owned
                 {/if}
-              {:else if active}
+              {:else if buying}
                 Purchased
               {:else}
                 ${item.cost.toLocaleString()}
               {/if}
             </div>
 
-            {#if owned && !active}
+            {#if owned && !selling}
               <div class="label">Sell</div>
             {/if}
           </div>

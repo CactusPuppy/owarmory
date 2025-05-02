@@ -91,11 +91,15 @@ async function main() {
       const baseData = {
         name: talent.Name,
         description: talent.DescriptionFormatted ?? talent.Description,
-        iconURL: `/images/talents/${encodeURIComponent(talent.Name)}.png`,
+        iconURL: `/images/talents/${talent.Name.trim()}.png`,
+        heroName: talent.Hero
+          ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
+          : undefined,
       };
 
       if (talent.Category.Value == "Power") {
         await tx.power.create({
+          // @ts-expect-error Some items do not belong to heroes, but all powers do
           data: baseData,
         });
         continue;
@@ -107,13 +111,11 @@ async function main() {
           cost: talent.Cost,
           category: itemCategoryValueToEnum[talent.Category.Value],
           rarity: itemRarityValueToEnum[talent.Rarity.Value],
-          heroName: talent.Hero
-            ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
-            : undefined,
           statMods: {
-            create: talent.Buffs.map((buff) => {
+            create: talent.Buffs.map((buff, i) => {
               const stat = stats.filter((stat) => stat.name === buff.Name)![0].id;
               return {
+                orderIndex: i,
                 statId: stat,
                 amount: buff.Value < 1 ? buff.Value * 100 : buff.Value,
                 isPercentage: buff.Value < 1,

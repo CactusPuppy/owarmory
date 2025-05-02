@@ -1,28 +1,51 @@
 <script lang="ts">
   import type { Power } from "$src/generated/prisma";
+  import Card from "../common/Card.svelte";
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
-    power: Power
-    large?: boolean
-    onclick?: (power: unknown) => void
+    power: Power;
+    large?: boolean;
+    full?: boolean;
+    outline?: boolean;
+    onclick?: (power: Power) => void;
   }
 
-  const { power, large = false, onclick = () => null }: Props = $props();
+  const {
+    power,
+    large = false,
+    full = false,
+    outline = false,
+    onclick = () => null,
+  }: Props = $props();
 
   const { name, description, iconURL } = $derived(power);
 </script>
 
-<Popover onclick={() => onclick(power)}>
-  <div class="power" class:large>
-    <img src={iconURL} alt={name} />
-  </div>
+{#if full}
+  <Card {outline} onclick={() => onclick(power)}>
+    {#snippet header()}
+      <div class="power">
+        <img src={iconURL} alt={name} />
+      </div>
 
-  {#snippet content()}
-    <SharedDetail {name} {description} />
-  {/snippet}
-</Popover>
+      {name}
+    {/snippet}
+
+    <SharedDetail {description} />
+  </Card>
+{:else}
+  <Popover onclick={() => onclick(power)}>
+    <div class="power" class:large>
+      <img src={iconURL} alt={name} />
+    </div>
+
+    {#snippet content()}
+      <SharedDetail {name} {description} />
+    {/snippet}
+  </Popover>
+{/if}
 
 <style lang="scss">
   @use "sass:color";

@@ -13,15 +13,11 @@
 
   type Props = {
     header?: Snippet;
-    highlightedHero: HeroData | null;
+    highlightedHero?: HeroData | null;
     onclick?: (event: MouseEvent, hero: HeroData) => void;
-  }
+  };
 
-  const {
-    header,
-    highlightedHero = null,
-    onclick = () => null,
-  }: Props = $props();
+  const { header, highlightedHero = null, onclick = () => null }: Props = $props();
 
   const roleImages: Record<HeroRole, string> = {
     Tank: imageTank,
