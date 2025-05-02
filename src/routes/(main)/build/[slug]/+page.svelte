@@ -10,15 +10,15 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
-  import { setContext } from "svelte";
-  import type { HeroName } from "$lib/types/hero";
+  import { getContext, setContext } from "svelte";
+  import type { HeroName } from "$src/lib/types/hero";
+  import type { FullStadiumBuild } from "$src/lib/types/build";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
 
-  const { data } = $props();
-  const { build } = data;
+  const build = getContext<FullStadiumBuild>("build");
 
   const {
     buildTitle: title,
@@ -43,7 +43,7 @@
       <h1 class="title">{title}</h1>
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
-      <a class="author" href="/user/{author.username}" itemprop="author">{author.username}</a>
+      <a class="author" href="/user/{author.name}" itemprop="author">{author.name}</a>
     </div>
   </header>
 
@@ -55,7 +55,9 @@
 
       <CompoundedBuild {build} />
 
-      <h2 class="build-cost">Build cost: {getBuildCostForRound(build, 1).toLocaleString()}</h2>
+      <h2 class="build-cost">
+        Build cost: {getBuildCostForRound(build, currentRound.value).toLocaleString()}
+      </h2>
 
       <DashedHeader text="Stats" />
       <ItemStatistics items={[]} {hero} />

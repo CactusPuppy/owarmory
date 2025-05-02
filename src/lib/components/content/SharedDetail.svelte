@@ -1,7 +1,7 @@
 <script lang="ts">
   interface Props {
-    name: string;
-    description: string | null;
+    name?: string;
+    description?: string | null;
     cost?: number;
   }
 
@@ -9,7 +9,10 @@
 </script>
 
 <div class="detail">
-  <strong class="name">{name}</strong>
+  {#if name}
+    <strong class="name">{name}</strong>
+  {/if}
+
   {#if description}
     <p class="description">{description}</p>
   {/if}
@@ -18,20 +21,23 @@
     {#if cost}
       ${cost.toLocaleString()}
     {:else}
-      Free
+      <strong>Power</strong>
     {/if}
   </div>
 </div>
 
 <style lang="scss">
   .detail {
-    width: min(calc(100vw - 2rem), 23rem);
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .name {
+    padding-bottom: 1rem;
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba($color-text-alt, 0.35);
     color: $color-text-titles;
     font-size: 1.2em;
     line-height: 1.1;
@@ -41,16 +47,20 @@
 
   .description {
     margin: 0;
-    padding: 0.5rem 0;
-    border-top: 1px solid rgba($color-text-alt, 0.5);
-    border-bottom: 1px solid rgba($color-text-alt, 0.5);
+    padding: 0 0 0.5rem;
     color: $color-text-alt;
   }
 
   .cost {
-    margin-top: 1rem;
+    padding-top: 0.5rem;
+    margin-top: auto;
+    border-top: 1px solid rgba($color-text-alt, 0.35);
     color: $white;
     font-weight: bold;
     font-family: $font-stack-brand;
+
+    strong {
+      color: $primary;
+    }
   }
 </style>

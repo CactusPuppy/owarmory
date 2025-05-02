@@ -2,10 +2,23 @@
   import type { HeroData } from "$lib/types/hero";
   import { heroImage } from "$lib/constants/heroes";
 
-  const { hero, large = false }: { hero: HeroData; large?: boolean } = $props();
+  interface Props {
+    hero: HeroData;
+    large?: boolean;
+    active?: boolean;
+    onclick?: (event: MouseEvent, hero: HeroData) => void;
+  }
+
+  const { hero, large = false, active = false, onclick = () => null }: Props = $props();
 </script>
 
-<a href="/hero/{hero.name}" class="hero" class:large>
+<a
+  href="/hero/{hero.name}"
+  class="hero"
+  class:large
+  class:active
+  onclick={(event: MouseEvent) => onclick(event, hero)}
+>
   <img
     src={heroImage(hero.name)}
     alt={hero.name}
@@ -38,6 +51,12 @@
       &:hover {
         transform: scale(1.05);
       }
+    }
+
+    &.active {
+      transform: scale(1.25);
+      border-color: $primary;
+      box-shadow: 0 0 0 2px $primary;
     }
 
     img {

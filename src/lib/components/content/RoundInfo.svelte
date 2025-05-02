@@ -17,15 +17,12 @@
   <h2>{header}</h2>
 
   <div class="sections">
-    {#each sections as { id, title, power, soldItems, purchasedItems } (id)}
+    <!-- Temporarily only showing 1 section -->
+    {#each sections.slice(0, 1) as { id, title: _title, power, soldItems, purchasedItems } (id)}
       <div class="section">
-        <div class="section__title">
-          {#if title}
-            <strong>Alternative</strong> - <em>{title}</em>
-          {:else}
-            <strong>Standard</strong>
-          {/if}
-        </div>
+        {#if power}
+          <Power {power} full outline />
+        {/if}
 
         <div class="section__items">
           {#if power}
@@ -52,6 +49,11 @@
 </div>
 
 <style lang="scss">
+  h2 {
+    margin: 0 0 var(--gap);
+    font-size: $font-size-h3;
+  }
+
   .round-info {
     --gap: 1rem;
     margin: calc(var(--gap) * 2) 0 0;
@@ -61,38 +63,10 @@
     }
   }
 
-  h2 {
-    margin: 0 0 var(--gap);
-    font-size: $font-size-h3;
-  }
-
-  .sections {
-    display: grid;
-    gap: var(--gap);
-
-    @include breakpoint(tablet) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
   .section {
-    border: 1px solid $color-border;
-    border-radius: $border-radius;
-  }
-
-  .section__title {
-    padding: 0.25rem 1rem;
-    background: $color-border;
-    border-radius: $border-radius $border-radius 0 0;
-    color: $white;
-    font-size: $font-size-small;
-  }
-
-  .section__items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
   }
 
   .note {
