@@ -2,10 +2,10 @@
   import type { Snippet } from "svelte";
 
   interface Props {
-    header: Snippet
-    children: Snippet
-    outline?: boolean
-    onclick?: () => void
+    header: Snippet;
+    children: Snippet;
+    outline?: boolean;
+    onclick?: () => void;
   }
 
   const { header, children, outline = false, onclick = () => null }: Props = $props();

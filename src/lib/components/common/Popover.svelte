@@ -7,7 +7,7 @@
   interface Props {
     children: Snippet;
     content: Snippet;
-    onclick?: () => void
+    onclick?: () => void;
   }
 
   const { children, content, onclick = () => null }: Props = $props();
