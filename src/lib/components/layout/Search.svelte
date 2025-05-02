@@ -48,7 +48,7 @@
 
   .form-input {
     width: 100%;
-    background: color.adjust($color-bg-base, $lightness: 7.5);
+    background: color.adjust($color-bg-base, $lightness: 7.5%);
   }
 
   .submit {
