@@ -55,8 +55,6 @@
 
 <Heroes />
 
-<BuildsList header="Popular Builds" builds={(latestBuilds || [])?.slice(0, 3)} />
-
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
 {#if latestBuilds}
