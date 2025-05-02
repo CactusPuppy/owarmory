@@ -10,15 +10,16 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
-  import { getContext, setContext } from "svelte";
+  import { setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
+  import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
 
-  const build = getContext<FullStadiumBuild>("build");
+  const build = getBuildContext();
 
   const {
     buildTitle: title,
@@ -27,7 +28,8 @@
     author,
     roundInfos,
     additionalNotes,
-  } = $derived(build);
+  } = $derived(build as FullStadiumBuild);
+
   const hero = $derived(heroFromHeroName(heroName as HeroName));
 </script>
 

@@ -1,5 +1,5 @@
 import { getContext, setContext } from "svelte";
-import type { BuildData } from "../types/build";
+import type { BuildData } from "$src/lib/types/build";
 
 const key = "build";
 

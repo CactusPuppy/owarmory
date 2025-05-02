@@ -2,27 +2,21 @@
   import Item from "../content/Item.svelte";
   import type { Item as ItemType } from "$src/generated/prisma";
   import { ItemRarity } from "$src/lib/types/build";
-  import { getAvailableTalentsContext } from "$src/lib/contexts/availableTalentsContext";
 
   interface Props {
-    category: string;
+    availableItems: ItemType[];
     currentlyPurchasing: ItemType[];
     currentlySelling: ItemType[];
     previouslySelected: ItemType[];
     onclick: (item: ItemType) => void;
   }
-
-  const availableTalents = getAvailableTalentsContext();
-  const { items } = availableTalents;
-
   const {
-    category,
+    availableItems = [],
     currentlyPurchasing = [],
     currentlySelling = [],
     previouslySelected = [],
     onclick = () => null,
   }: Props = $props();
-  const availableItems = $derived(items.filter((item) => item.category === category));
 
   const itemRarities = Object.values(ItemRarity);
 </script>
