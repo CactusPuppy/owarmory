@@ -9,7 +9,7 @@ export async function load({ fetch, params }) {
   if (!heroes.some(({ name }) => name === heroName)) error(404, { message: "Hero not found" });
 
   const builds =
-    (await api<Build[]>(`builds/hero/${encodeURIComponent(heroName)}`, {}, fetch)) || [];
+    (await api<Build[]>(`/builds/hero/${encodeURIComponent(heroName)}`, {}, fetch)) || [];
 
   return {
     builds,

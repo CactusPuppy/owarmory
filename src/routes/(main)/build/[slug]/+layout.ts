@@ -3,7 +3,7 @@ import { api } from "$lib/utils/api.js";
 import { error } from "@sveltejs/kit";
 
 export async function load({ params, fetch }) {
-  const build = await api<Build>(`build/${params.slug}`, {}, fetch);
+  const build = await api<Build>(`/build/${params.slug}`, {}, fetch);
 
   if (!build) error(404, "Build not found");
 

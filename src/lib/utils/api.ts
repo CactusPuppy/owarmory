@@ -1,5 +1,7 @@
+import type { SlashPrefixedString } from "$lib/types/path";
+
 export async function api<T>(
-  path: string,
+  path: SlashPrefixedString,
   params?: Record<string, string>,
   serverFetch: typeof fetch | null = null,
   options: RequestInit = {},
@@ -9,7 +11,7 @@ export async function api<T>(
     path += `?${queryString}`;
   }
 
-  const response = await (serverFetch || fetch)(`/api/${path}`, options);
+  const response = await (serverFetch || fetch)(`/api${path}`, options);
   const parsed = await response.json();
 
   if (!response.ok) throw { message: parsed.message, status: response.status };
