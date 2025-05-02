@@ -19,11 +19,21 @@
   }: Props = $props();
 
   const itemRarities = Object.values(ItemRarity);
+
+  function sortItems(a: ItemType, b: ItemType): number {
+    // Hero specific items always come after general items
+    if (a.heroName !== b.heroName) {
+      return a.heroName ? 1 : -1;
+    }
+
+    // Sort by cost
+    return a.cost - b.cost;
+  }
 </script>
 
 <div class="rows">
   {#each itemRarities as rarity (rarity)}
-    {@const items = availableItems.filter((item) => item.rarity === rarity)}
+    {@const items = availableItems.filter((item) => item.rarity === rarity).sort(sortItems)}
 
     <div class="row {rarity}">
       <h3>{rarity}</h3>
