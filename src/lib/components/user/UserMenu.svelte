@@ -15,6 +15,7 @@
   }
 
   .user {
+    white-space: nowrap;
     font-size: $font-size-small;
   }
 </style>
