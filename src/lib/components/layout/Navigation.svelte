@@ -3,6 +3,7 @@
   import UserMenu from "$lib/components/user/UserMenu.svelte";
   import { getContext } from "svelte";
   import SignInButton from "$lib/components/auth/SignInButton.svelte";
+  import Search from "$src/lib/components/layout/Search.svelte";
 
   const currentUser = getContext("currentUser");
 </script>
