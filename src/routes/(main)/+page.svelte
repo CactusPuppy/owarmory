@@ -37,7 +37,7 @@
     loading = true;
 
     try {
-      const result = (await api<Build[]>(`builds/latest`, { page: currentPage.toString() })) || [];
+      const result = (await api<Build[]>("/builds/latest", { page: currentPage.toString() })) || [];
 
       latestBuilds.push(...result);
     } catch (error: unknown) {

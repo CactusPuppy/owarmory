@@ -8,12 +8,12 @@ export async function load({ fetch, params }) {
 
   let user;
   try {
-    user = await api<User>(`user/${encodeURIComponent(name)}`, {}, fetch);
+    user = await api<User>(`/user/${encodeURIComponent(name)}`, {}, fetch);
   } catch {
     error(404, { message: "User not found" });
   }
 
-  const builds = (await api<Build[]>(`builds/user/${user.id}`, {}, fetch)) || [];
+  const builds = (await api<Build[]>(`/builds/user/${user.id}`, {}, fetch)) || [];
 
   return {
     builds,

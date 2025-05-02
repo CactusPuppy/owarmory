@@ -39,7 +39,7 @@
 
     try {
       const result =
-        (await api<Build[]>(`builds/user/${currentUser.id}`, {
+        (await api<Build[]>(`/builds/user/${currentUser.id}`, {
           page: currentPage.toString(),
         })) || [];
 

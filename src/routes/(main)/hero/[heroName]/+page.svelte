@@ -39,7 +39,7 @@
 
     try {
       const result =
-        (await api<Build[]>(`builds/hero/${heroName}`, { page: currentPage.toString() })) || [];
+        (await api<Build[]>(`/builds/hero/${heroName}`, { page: currentPage.toString() })) || [];
 
       builds.push(...result);
     } catch (error: unknown) {

@@ -4,7 +4,7 @@ import { api } from "$lib/utils/api.js";
 export async function load({ url, fetch }) {
   const query = url.searchParams.get("query") || "";
 
-  const builds = (await api<Build[]>(`builds/search`, { query }, fetch)) || [];
+  const builds = (await api<Build[]>(`/builds/search`, { query }, fetch)) || [];
 
   return {
     builds,
