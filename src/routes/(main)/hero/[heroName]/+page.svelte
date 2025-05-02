@@ -38,10 +38,8 @@
     loading = true;
 
     try {
-      // Subtracting one because the endpoint uses zero-indexing
       const result =
-        (await api<Build[]>(`builds/hero/${heroName}`, { page: (currentPage - 1).toString() })) ||
-        [];
+        (await api<Build[]>(`builds/hero/${heroName}`, { page: currentPage.toString() })) || [];
 
       builds.push(...result);
     } catch (error: unknown) {

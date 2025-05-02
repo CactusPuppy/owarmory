@@ -37,9 +37,7 @@
     loading = true;
 
     try {
-      // Subtracting one because the endpoint uses zero-indexing
-      const result =
-        (await api<Build[]>(`builds/latest`, { page: (currentPage - 1).toString() })) || [];
+      const result = (await api<Build[]>(`builds/latest`, { page: currentPage.toString() })) || [];
 
       latestBuilds.push(...result);
     } catch (error: unknown) {
