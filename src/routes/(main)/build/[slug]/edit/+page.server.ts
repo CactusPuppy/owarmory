@@ -13,8 +13,8 @@ export async function load({ params, fetch }) {
 
   if (!isHeroName(build.heroName)) error(500, "Unknown hero name from build " + build.id);
   const [items, powers] = await Promise.all([
-    api<Item[]>("/talents/items", { hero: build.heroName }, fetch),
-    api<Power[]>("/talents/powers", { hero: build.heroName }, fetch),
+    api<Item[]>("talents/items", { hero: build.heroName }, fetch),
+    api<Power[]>("talents/powers", { hero: build.heroName }, fetch),
   ]);
 
   return {
