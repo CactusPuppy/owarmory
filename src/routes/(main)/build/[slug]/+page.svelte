@@ -14,6 +14,8 @@
   import type { HeroName } from "$src/lib/types/hero";
   import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
+  import snarkdown from "snarkdown";
+  import DOMPurify from "isomorphic-dompurify";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -75,8 +77,10 @@
       {#if additionalNotes}
         <h2>Description</h2>
 
-        <!-- This will probably be markdown at some point, hence it being a div rather than a p tag -->
-        <div class="description">{additionalNotes}</div>
+        <div class="description">
+          <!-- eslint-disable-next-line svelte/no-at-html-tags It's sanitized! -->
+          {@html DOMPurify.sanitize(snarkdown(additionalNotes))}
+        </div>
       {/if}
     </section>
   </div>
