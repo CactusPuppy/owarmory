@@ -53,7 +53,7 @@
 </script>
 
 <svelte:head>
-  <title>OW Armory - Builds by {name}</title>
+  <title>{name} | OW Armory</title>
 </svelte:head>
 
 <BuildsList header="Builds by {name}" {builds} />
