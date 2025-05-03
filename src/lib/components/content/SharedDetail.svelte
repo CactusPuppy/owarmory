@@ -6,6 +6,10 @@
   }
 
   const { name, description, cost = 0 }: Props = $props();
+
+  function wrapBracketsWithMark(text: string): string {
+    return text.replace(/\[[^\]]+\]/g, (match) => `<mark>${match}</mark>`);
+  }
 </script>
 
 <div class="detail">
@@ -14,7 +18,8 @@
   {/if}
 
   {#if description}
-    <p class="description">{description}</p>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags This should be safe, right? The input is determined by us. -->
+    <p class="description">{@html wrapBracketsWithMark(description)}</p>
   {/if}
 
   <div class="cost">
@@ -51,6 +56,11 @@
     color: $color-text-alt;
     font-size: $font-size-small;
     line-height: 1.5;
+
+    :global(mark) {
+      background: transparent;
+      color: $white;
+    }
   }
 
   .cost {
