@@ -28,6 +28,7 @@
     position: relative;
     display: grid;
     grid-template-rows: 3.5rem auto;
+    height: 100%;
     border-radius: $border-radius;
     background: $color-border;
     box-shadow: inset 0 0 1px $color-text-alt;
@@ -66,7 +67,7 @@
     gap: 1rem;
     font-family: $font-stack-brand;
     color: $white;
-    font-size: 115%;
+    line-height: 1;
   }
 
   .content {
