@@ -74,6 +74,7 @@
     "@auth/prisma-adapter": "^2.9.0",
     "@auth/sveltekit": "^1.9.1",
     "isomorphic-dompurify": "^2.24.0",
+    "seedrandom": "^3.0.5",
     "snarkdown": "^2.0.0"
   }
 }
