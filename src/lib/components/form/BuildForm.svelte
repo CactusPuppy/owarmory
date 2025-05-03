@@ -196,7 +196,7 @@
 
       const { newBuild } = response;
 
-      await goto(`/build/${newBuild.id}-${toSlug(newBuild.buildTitle)}`);
+      await goto(buildPath(build));
     } catch (error: unknown) {
       console.error(error);
 
