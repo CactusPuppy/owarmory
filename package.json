@@ -17,7 +17,8 @@
     "lint": "prettier --check . && eslint .",
     "db:fake": "tsx prisma/faker.ts",
     "test:e2e": "playwright test",
-    "test:unit": "vitest",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
     "test": "pnpm run test:unit && pnpm run test:e2e"
   },
   "devDependencies": {

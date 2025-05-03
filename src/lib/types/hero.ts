@@ -10,7 +10,7 @@ export type HeroData = {
   role: HeroRole;
 };
 
-const HeroNames = [
+export const HeroNames = [
   "D.Va",
   "Junker Queen",
   "Orisa",
