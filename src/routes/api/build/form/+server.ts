@@ -1,14 +1,18 @@
-import { heroes } from "$src/lib/constants/heroData.js";
-import type { BuildData } from "$src/lib/types/build.js";
-import type { HeroName } from "$src/lib/types/hero.js";
+import { z, ZodError } from "zod";
+
+import { BuildErrorMap } from "$src/lib/utils/build.js";
+import { BuildDataSchema, type BuildData, type ValidatedBuildData } from "$src/lib/types/build.js";
+import { prisma } from "$src/database/prismaClient.server.js";
+import type { Prisma, StadiumBuild, User } from "$src/generated/prisma/client.js";
 
 const headers = { "Content-Type": "application/json" };
 
 export async function POST({ request }) {
   const build: BuildData = await request.json();
+  let validatedBuild: ValidatedBuildData;
 
   try {
-    validate(build);
+    validatedBuild = validate(build);
   } catch (error: unknown) {
     // @ts-expect-error unknown type does not have message
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
@@ -43,31 +47,12 @@ export async function PATCH({ request }) {
   return new Response(JSON.stringify(response), { headers });
 }
 
-function validate(build: BuildData) {
-  // Title
-  if (!build.buildTitle) throw new Error("No build title was given.");
-  if (build.buildTitle.length < 10)
-    throw new Error("Given title was too short. Requires at least 10 characters.");
-  if (build.buildTitle.length > 70) throw new Error("Given title was too long. Max 70 characters.");
+function validate(build: BuildData): z.infer<typeof BuildDataSchema> {
+  const { success, data, error } = BuildDataSchema.safeParse(build, { errorMap: BuildErrorMap });
 
-  // Introduction
-  if (!build.description) throw new Error("No introduction was given.");
-  if (build.description.length < 20)
-    throw new Error("Given introduction was too short. Requires at least 20 characters.");
-  if (build.description.length > 200)
-    throw new Error("Given introduction was too long. Max 200 characters.");
+  if (!success) {
+    throw error;
+  }
 
-  // Hero
-  if (!build.heroName) throw new Error("No hero was selected.");
-  if (!heroes.map((hero) => hero.name).includes(build.heroName as HeroName))
-    throw new Error("An invalid hero was selected.");
-
-  // Rounds
-  if (build.roundInfos.length < 7) throw new Error("Not all rounds were given.");
-  if (build.roundInfos.some((i) => i.sections?.length !== 1))
-    throw new Error("Some rounds contain invalid data.");
-
-  // Description
-  if (build.additionalNotes && build.additionalNotes.length > 5000)
-    throw new Error("Given description was too long. Max 5000 characters.");
+  return data;
 }
