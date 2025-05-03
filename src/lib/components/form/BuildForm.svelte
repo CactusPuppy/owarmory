@@ -91,28 +91,50 @@
   }
 
   function selectItem(item: Item): void {
-    // Remove item from future standard sections until a sale occurs of the item
-    for (const futureRound of futureRounds) {
-      if (futureRound.sections[0].soldItems.some((soldItem) => soldItem.id == item.id)) break;
-      futureRound.sections[0].purchasedItems = futureRound.sections[0].purchasedItems.filter(
-        (i) => i.id !== item.id,
-      );
-    }
-
-    // If item is being sold this round, remove its sale
     if (currentRoundSection.soldItems.some((i) => i.id === item.id)) {
+      // If item is being sold this round, remove its sale
       currentRoundSection.soldItems = currentRoundSection.soldItems.filter((i) => i.id !== item.id);
+      // Remove purchase item from future standard sections until a sale occurs of the item
+      for (const futureRound of futureRounds) {
+        if (futureRound.sections[0].soldItems.some((soldItem) => soldItem.id == item.id)) break;
+        futureRound.sections[0].purchasedItems = futureRound.sections[0].purchasedItems.filter(
+          (i) => i.id !== item.id,
+        );
+      }
     } else if (currentRoundSection.purchasedItems.some((i) => i.id === item.id)) {
       // If item is being purchased this round, remove its purchase
       currentRoundSection.purchasedItems = currentRoundSection.purchasedItems.filter(
         (i) => i.id !== item.id,
       );
+      // Remove sale item from future standard sections until purchased again
+      for (const futureRound of futureRounds) {
+        if (futureRound.sections[0].purchasedItems.some((soldItem) => soldItem.id == item.id))
+          break;
+        futureRound.sections[0].soldItems = futureRound.sections[0].soldItems.filter(
+          (i) => i.id !== item.id,
+        );
+      }
     } else if (getBuildItemsForRound(build, currentRoundIndex).some((i) => i.id === item.id)) {
       // Item is currently in inventory, add to sale
+      // Remove sale item from future standard sections until purchased again
+      for (const futureRound of futureRounds) {
+        if (futureRound.sections[0].purchasedItems.some((soldItem) => soldItem.id == item.id))
+          break;
+        futureRound.sections[0].soldItems = futureRound.sections[0].soldItems.filter(
+          (i) => i.id !== item.id,
+        );
+      }
       currentRoundSection.soldItems.push(item);
     } else {
       // Item is not in inventory, add to purchases
       currentRoundSection.purchasedItems.push(item);
+      // Remove purchase item from future standard sections until a sale occurs of the item
+      for (const futureRound of futureRounds) {
+        if (futureRound.sections[0].soldItems.some((soldItem) => soldItem.id == item.id)) break;
+        futureRound.sections[0].purchasedItems = futureRound.sections[0].purchasedItems.filter(
+          (i) => i.id !== item.id,
+        );
+      }
     }
 
     // Update state
