@@ -1,16 +1,16 @@
 <script lang="ts">
-  import type { Item } from "$src/generated/prisma";
+  import type { FullItem } from "$src/lib/types/build";
   import Card from "../common/Card.svelte";
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
     // This item should include the StatMod and Stat include
-    item: Item;
+    item: FullItem;
     large?: boolean;
     full?: boolean;
     sold?: boolean;
-    onclick?: (item: Item) => void;
+    onclick?: (item: FullItem) => void;
   }
 
   const { item, sold = false, full = false, large = false, onclick = () => null }: Props = $props();

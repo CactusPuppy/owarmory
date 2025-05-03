@@ -1,6 +1,5 @@
-import type { BuildData, FlatFullRoundInfoSection } from "$lib/types/build";
+import type { BuildData, FlatFullRoundInfoSection, FullItem } from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
-import type { Item } from "$src/generated/prisma";
 import type { Power } from "$src/generated/prisma";
 
 type BuildRoundSectionData = FullRoundSectionInfo | FlatFullRoundInfoSection;
@@ -15,12 +14,12 @@ export function getBuildPowersForRound(build: BuildData, round = 7): Power[] {
   return powers;
 }
 
-export function getBuildItemsForRound(build: BuildData, round = 7): Item[] {
+export function getBuildItemsForRound(build: BuildData, round = 7): FullItem[] {
   const items = getBuildStandardSectionsForRound(build, round).reduce((acc, section) => {
     acc = acc.filter((item) => section.soldItems.every((i) => i.id !== item.id));
     acc.push(...section.purchasedItems);
     return acc;
-  }, [] as Item[]);
+  }, [] as FullItem[]);
 
   return items;
 }
@@ -43,7 +42,7 @@ export function getBuildStandardSectionsForRound(
   return sections;
 }
 
-export function getAllBuildItems(build: BuildData): Item[] {
+export function getAllBuildItems(build: BuildData): FullItem[] {
   return build.roundInfos.flatMap((roundInfo) => {
     return roundInfo.sections
       .filter((section) => !section.title)
@@ -51,7 +50,7 @@ export function getAllBuildItems(build: BuildData): Item[] {
   });
 }
 
-export function isItemPreviouslyOwned(items: Item[], item: Item) {
+export function isItemPreviouslyOwned(items: FullItem[], item: FullItem) {
   const numberOfTimesInteractedWithItem = items.filter((i) => i.id === item.id)?.length || 0;
 
   if (!numberOfTimesInteractedWithItem) return false;

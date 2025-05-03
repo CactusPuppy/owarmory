@@ -8,7 +8,8 @@
   import { untrack } from "svelte";
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
-  import type { Item, Power } from "$src/generated/prisma";
+  import type { Power } from "$src/generated/prisma";
+  import type { FullItem } from "$lib/types/build";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
@@ -90,7 +91,7 @@
     heroName = hero.name;
   }
 
-  function selectItem(item: Item): void {
+  function selectItem(item: FullItem): void {
     // Remove item from future standard sections until a sale occurs of the item
     for (const futureRound of futureRounds) {
       if (futureRound.sections[0].soldItems.some((soldItem) => soldItem.id == item.id)) break;
@@ -134,7 +135,7 @@
     build = { ...build };
   }
 
-  function getItemsFromPreviousRounds(): Item[] {
+  function getItemsFromPreviousRounds(): FullItem[] {
     return getBuildItemsForRound(build, currentRoundIndex);
   }
 

@@ -1,13 +1,12 @@
 <script lang="ts">
   import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
-  import type { StatMod } from "$src/generated/prisma";
+  import type { FullStatMod } from "$src/lib/types/build";
 
   interface Props {
     name?: string;
     description?: string | null;
     cost?: number;
-    // This type should include the `stat` include
-    statMods?: StatMod[];
+    statMods?: FullStatMod[];
   }
 
   const { name, description, cost = 0, statMods }: Props = $props();
