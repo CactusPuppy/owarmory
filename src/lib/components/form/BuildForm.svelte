@@ -268,7 +268,7 @@
       {/if}
     </div>
 
-    <div class="tabs-content dark">
+    <div class="tabs-content dark inset">
       {#if currentTalentTypeTab === powerTalentType}
         <PowersGrid
           {availablePowers}
@@ -287,7 +287,7 @@
       {/if}
     </div>
 
-    <div class="form-group">
+    <div class="form-group inset">
       <label class="form-label" for="round-notes">Round notes</label>
       <p class="form-help" id="round-notes">
         Provide an optional short description on the current round, explaining options,
@@ -348,6 +348,7 @@
 
     &.dark {
       background: $color-bg-dark;
+      border-radius: 0;
     }
   }
 
@@ -369,14 +370,19 @@
   }
 
   .tabs-content {
-    padding: 1.5rem;
     margin-bottom: 3rem;
     border: 1px solid $color-border;
     border-radius: 0 0 $border-radius $border-radius;
 
     &.dark {
-      border-color: $color-bg-dark;
+      border: 0;
+      border-radius: 0;
+      margin: 0;
     }
+  }
+
+  .inset {
+    padding: 1.5rem;
   }
 
   .order {
