@@ -216,7 +216,7 @@
     <label class="form-label" for="description">Short description</label>
     <p class="form-help" id="description">
       A short introduction to your builds, quickly summarizing the main playstyle and intention. You
-      can provide a more detail description later.
+      can provide a more detailed description later.
     </p>
     <textarea
       class="form-textarea"
