@@ -10,19 +10,22 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
-  import { setContext } from "svelte";
+  import { getContext, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
   import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
+  import type { User } from "@auth/sveltekit";
+  import { buildEditPath } from "$src/lib/utils/routes";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
 
   const build = getBuildContext();
+  const currentUser: User = getContext("currentUser");
 
   const {
     buildTitle: title,
@@ -56,6 +59,12 @@
 
   <div class="layout">
     <aside class="sidebar block">
+      {#if currentUser.id === (build as FullStadiumBuild).authorId}
+        <a class="button button--full-width edit" href={buildEditPath(build as FullStadiumBuild)}
+          >Edit this build</a
+        >
+      {/if}
+
       <RoundSelector />
 
       <CompoundedBuild {build} />
@@ -90,7 +99,7 @@
 </article>
 
 <style lang="scss">
-  a {
+  a:not(.button) {
     color: $secondary;
     text-decoration: none;
 
@@ -157,6 +166,10 @@
 
   .sidebar {
     min-height: 20rem;
+  }
+
+  .edit {
+    margin-bottom: 2rem;
   }
 
   .build-cost {
