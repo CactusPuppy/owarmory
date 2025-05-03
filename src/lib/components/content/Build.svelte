@@ -4,7 +4,10 @@
   import { heroFromHeroName } from "$lib/constants/heroData";
   import type { HeroName } from "$lib/types/hero";
   import type { CurrentRound } from "$lib/types/round";
+  import { getBuildItemsForRound, getBuildPowersForRound } from "$lib/utils/build";
+  import { slide } from "svelte/transition";
   import { getContext } from "svelte";
+  import { buildPath } from "$src/lib/utils/routes";
   import Hero from "./Hero.svelte";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
@@ -12,9 +15,6 @@
   const { build }: { build: FullStadiumBuild } = $props();
 
   const hero = $derived(heroFromHeroName(build.heroName as HeroName));
-  import { getBuildItemsForRound, getBuildPowersForRound } from "$lib/utils/build";
-  import { slide } from "svelte/transition";
-  import { buildPath } from "$src/lib/utils/routes";
 
   const currentRound: CurrentRound = getContext("currentRound");
 
