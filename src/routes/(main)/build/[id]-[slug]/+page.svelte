@@ -60,9 +60,9 @@
   <div class="layout">
     <aside class="sidebar block">
       {#if currentUser.id === (build as FullStadiumBuild).authorId}
-        <a class="button button--full-width edit" href={buildEditPath(build as FullStadiumBuild)}
-          >Edit this build</a
-        >
+        <a class="button button--full-width edit" href={buildEditPath(build as FullStadiumBuild)}>
+          Edit this build
+        </a>
       {/if}
 
       <RoundSelector />
