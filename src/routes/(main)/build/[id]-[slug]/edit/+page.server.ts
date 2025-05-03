@@ -7,7 +7,7 @@ import { error } from "@sveltejs/kit";
 export async function load({ params, fetch }) {
   const build = await prisma.stadiumBuild.findFirstOrThrow({
     where: {
-      id: params.slug,
+      id: params.id,
     },
   });
 

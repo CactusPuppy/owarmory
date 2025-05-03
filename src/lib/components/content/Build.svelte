@@ -7,6 +7,7 @@
   import { getBuildItemsForRound, getBuildPowersForRound } from "$lib/utils/build";
   import { slide } from "svelte/transition";
   import { getContext } from "svelte";
+  import { buildPath } from "$src/lib/utils/routes";
   import Hero from "./Hero.svelte";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
@@ -20,7 +21,7 @@
   const items = $derived(getBuildItemsForRound(build, currentRound.value));
   const powers = $derived(getBuildPowersForRound(build, currentRound.value));
 
-  const href = $derived(`/build/${build.id}`);
+  const href = $derived(buildPath(build));
 
   function onclick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
