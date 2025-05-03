@@ -142,6 +142,7 @@
     border-radius: $border-radius;
     backdrop-filter: saturate(0);
     box-shadow: inset 0 0 0 2px $red;
+    z-index: 2;
     font-family: $font-stack-brand;
     font-size: 125%;
     background: rgba(color.adjust($red, $lightness: -20%, $saturation: -20%), 0.5);
