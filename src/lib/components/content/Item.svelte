@@ -5,6 +5,7 @@
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
+    // This item should include the StatMod and Stat include
     item: Item;
     large?: boolean;
     full?: boolean;
@@ -14,7 +15,7 @@
 
   const { item, sold = false, full = false, large = false, onclick = () => null }: Props = $props();
 
-  const { name, description, iconURL, rarity, cost } = $derived(item);
+  const { name, description, iconURL, rarity, cost, statMods } = $derived(item);
 </script>
 
 {#if full}
@@ -27,7 +28,7 @@
       {name}
     {/snippet}
 
-    <SharedDetail {description} {cost} />
+    <SharedDetail {description} {cost} {statMods} />
   </Card>
 {:else}
   <Popover onclick={() => onclick(item)}>
@@ -36,7 +37,7 @@
     </div>
 
     {#snippet content()}
-      <SharedDetail {name} {description} {cost} />
+      <SharedDetail {name} {description} {cost} {statMods} />
     {/snippet}
   </Popover>
 {/if}

@@ -1,13 +1,16 @@
 <script lang="ts">
   import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
+  import type { StatMod } from "$src/generated/prisma";
 
   interface Props {
     name?: string;
     description?: string | null;
     cost?: number;
+    // This type should include the `stat` include
+    statMods?: StatMod[];
   }
 
-  const { name, description, cost = 0 }: Props = $props();
+  const { name, description, cost = 0, statMods }: Props = $props();
 
   function wrapBracketsWithMark(text: string): string {
     return text.replace(/\[[^\]]+\]/g, (match) => `<mark>${match}</mark>`);
@@ -24,6 +27,23 @@
     <p class="description">{@html wrapBracketsWithMark(description)}</p>
   {/if}
 
+  {#if statMods?.length}
+    <div class="stat-mods">
+      {#each statMods as { id, amount, isPercentage, stat } (id)}
+        {@const { name, iconURL } = stat}
+
+        <div class="stat-mod">
+          <img src={iconURL} alt="" width="18" height="18" />
+
+          <div>
+            <strong>{amount}{isPercentage ? "%" : ""}</strong>
+            {name}
+          </div>
+        </div>
+      {/each}
+    </div>
+  {/if}
+
   <div class="cost">
     {#if cost}
       <CurrencyIcon />
@@ -35,6 +55,8 @@
 </div>
 
 <style lang="scss">
+  @use "sass:color";
+
   .detail {
     display: flex;
     flex-direction: column;
@@ -63,6 +85,24 @@
     :global(mark) {
       background: transparent;
       color: $white;
+    }
+  }
+
+  .stat-mods {
+    padding: 0 0 0.5rem;
+  }
+
+  .stat-mod {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: color.adjust($color-text-alt, $lightness: 15%);
+    font-size: $font-size-small;
+    line-height: 1.5;
+
+    strong {
+      color: $white;
+      font-family: $font-stack-brand;
     }
   }
 
