@@ -2,6 +2,7 @@
   import Item from "../content/Item.svelte";
   import type { Item as ItemType } from "$src/generated/prisma";
   import { ItemRarity } from "$src/lib/types/build";
+  import iconCurrency from "$lib/images/icons/currency.svg";
 
   interface Props {
     availableItems: ItemType[];
@@ -59,7 +60,8 @@
               {:else if buying}
                 Purchased
               {:else}
-                ${item.cost.toLocaleString()}
+                <img src={iconCurrency} alt="$" height="16" width="20" />
+                {item.cost.toLocaleString()}
               {/if}
             </div>
 
@@ -144,6 +146,9 @@
   }
 
   .cost {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
     color: $white;
     font-family: $font-stack-brand;
     font-size: $font-size-small;
