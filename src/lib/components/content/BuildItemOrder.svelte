@@ -50,6 +50,9 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 0.25rem;
+    padding: 0.75rem;
+    border-radius: $border-radius-small;
+    background: $color-bg-dark;
   }
 
   .cell {
