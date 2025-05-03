@@ -66,7 +66,7 @@
   const itemsFromPreviousRounds = $derived.by(getItemsFromPreviousRounds);
   const canSelectPowerForCurrentRound = $derived(talentRoundIndexes.includes(currentRoundIndex));
 
-  const currentRound = $derived(build.roundInfos![currentRoundIndex] || {});
+  const currentRound = $derived(roundInfos![currentRoundIndex] || {});
   // Currently only using a single section
   const currentRoundSection = $derived(currentRound.sections?.[0] || {});
 
@@ -295,7 +295,7 @@
       </p>
       <textarea
         class="form-textarea"
-        value={roundInfos[currentRoundIndex]?.note || ""}
+        bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
         name="round-notes"
         aria-describedby="round-notes"
       ></textarea>
