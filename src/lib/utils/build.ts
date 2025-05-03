@@ -1,4 +1,4 @@
-import type { BuildData, FlatFullRoundInfoSection } from "$lib/types/build";
+import type { BuildData, FlatFullRoundInfoSection, StatTotal } from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
 import type { Item } from "$src/generated/prisma";
 import type { Power } from "$src/generated/prisma";
@@ -57,4 +57,26 @@ export function isItemPreviouslyOwned(items: Item[], item: Item) {
   if (!numberOfTimesInteractedWithItem) return false;
 
   return numberOfTimesInteractedWithItem % 2 !== 0;
+}
+
+export function getAllItemStatModifiers(items: Item[]): Record<string, StatTotal> {
+  const statTotals: Record<string, StatTotal> = {};
+
+  for (const item of items) {
+    // TODO: What type does item need to be to include statMods?
+    for (const statMod of item.statMods) {
+      const { isPercentage } = statMod;
+      const { id, name } = statMod.stat;
+      const amount = statMod.amount;
+
+      if (!(name in statTotals)) {
+        statTotals[name] = { id, isPercentage, totalAmount: 0 };
+      }
+
+      const summary = statTotals[name];
+      summary.totalAmount += amount;
+    }
+  }
+
+  return statTotals;
 }

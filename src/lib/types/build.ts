@@ -85,3 +85,9 @@ export type FlatFullStadiumBuild = Omit<
 };
 
 export type BuildData = FullStadiumBuild | FlatFullStadiumBuild;
+
+export type StatTotal = {
+  id: number;
+  isPercentage: boolean;
+  totalAmount: number;
+};

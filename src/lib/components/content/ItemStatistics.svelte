@@ -1,6 +1,9 @@
 <script lang="ts">
   import { slide } from "svelte/transition";
   import ItemStastisticsBar from "./ItemStastisticsBar.svelte";
+  import type { ComponentProps } from "svelte";
+  import { getAllItemStatModifiers } from "$src/lib/utils/build";
+  import type { StatTotal } from "$src/lib/types/build";
 
   // Hero will be used at some point for the health value
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -8,7 +11,9 @@
 
   let expanded = $state(false);
 
-  const statistics = $derived([
+  const statTotals: Record<string, StatTotal> = $derived(getAllItemStatModifiers(items) || []);
+
+  const statistics: ComponentProps<typeof ItemStastisticsBar>[] = $derived([
     {
       label: "Life",
       suffix: "",
@@ -17,86 +22,32 @@
       icon: "/images/stats/Life.webp",
       background: "linear-gradient(to right, #f5f5f5 80%, #f1790e 80%, #f1790e 95%, #19b7df 95%)",
     },
-    {
-      label: "Weapon Power",
-      suffix: "%",
-      value: items.reduce(() => 0, 20),
-      max: 100,
-      icon: "/images/stats/Weapon Power.webp",
-    },
-    {
-      label: "Ability Power",
-      suffix: "%",
-      value: items.reduce(() => 0, 15),
-      max: 100,
-      icon: "/images/stats/Ability Power.webp",
-    },
-    {
-      label: "Attack Speed",
-      suffix: "%",
-      value: items.reduce(() => 0, 40),
-      max: 100,
-      icon: "/images/stats/Attack Speed.webp",
-    },
-    {
-      label: "Cooldown Reduction",
-      suffix: "%",
-      value: items.reduce(() => 0, 10),
-      max: 100,
-      icon: "/images/stats/Cooldown Reduction.webp",
-    },
-    {
-      label: "Max Ammo",
-      suffix: "%",
-      value: items.reduce(() => 0, 20),
-      max: 100,
-      icon: "/images/stats/Max Ammo.webp",
-    },
-    {
-      label: "Weapon Lifesteal",
-      suffix: "%",
-      value: items.reduce(() => 0, 0),
-      max: 100,
-      icon: "/images/stats/Weapon Lifesteal.webp",
-    },
-    {
-      label: "Ability Lifesteal",
-      suffix: "%",
-      value: items.reduce(() => 0, 20),
-      max: 100,
-      icon: "/images/stats/Ability Lifesteal.webp",
-    },
-    {
-      label: "Move Speed",
-      suffix: "%",
-      value: items.reduce(() => 0, 30),
-      max: 100,
-      icon: "/images/stats/Move Speed.webp",
-    },
-    {
-      label: "Reload Speed",
-      suffix: "%",
-      value: items.reduce(() => 0, 5),
-      max: 100,
-      icon: "/images/stats/Reload Speed.webp",
-    },
-    {
-      label: "Melee Damage",
-      suffix: "%",
-      value: items.reduce(() => 0, 10),
-      max: 100,
-      icon: "/images/stats/Weapon Lifesteal.webp",
-    },
-    {
-      label: "Critical Damage",
-      suffix: "%",
-      value: items.reduce(() => 0, 15),
-      max: 100,
-      icon: "/images/stats/Critical Damage.webp",
-    },
+    getSimplePercentageStatistic("Weapon Power"),
+    getSimplePercentageStatistic("Ability Power"),
+    getSimplePercentageStatistic("Attack Speed"),
+    getSimplePercentageStatistic("Cooldown Reduction"),
+    getSimplePercentageStatistic("Max Ammo"),
+    getSimplePercentageStatistic("Weapon Lifesteal"),
+    getSimplePercentageStatistic("Ability Lifesteal"),
+    getSimplePercentageStatistic("Move Speed"),
+    getSimplePercentageStatistic("Reload Speed"),
+    getSimplePercentageStatistic("Melee Damage"),
+    getSimplePercentageStatistic("Critical Damage"),
   ]);
 
   const shownStatistics = $derived(statistics.slice(0, expanded ? statistics.length : 5));
+
+  function getSimplePercentageStatistic(name: string): ComponentProps<typeof ItemStastisticsBar> {
+    const value = statTotals[name]?.totalAmount || 0;
+
+    return {
+      label: name,
+      suffix: "%",
+      value,
+      max: 100,
+      icon: `/images/stats/${name}.webp`,
+    };
+  }
 </script>
 
 <div class="statistics">
