@@ -26,7 +26,7 @@
       {@const highlighted = currentlySelected?.id === power.id}
 
       <div class="power" class:owned class:highlighted>
-        <Power {power} {onclick} large />
+        <Power {power} {onclick} full />
       </div>
     {/each}
   </div>
@@ -44,7 +44,7 @@
   .block {
     padding: 1rem;
     border-radius: $border-radius;
-    background: $color-bg-dark;
+    background: color.adjust($color-bg-dark, $lightness: 1%);
     border: 2px solid $primary;
   }
 
@@ -59,6 +59,12 @@
     position: relative;
     border-radius: $border-radius-small;
     outline-offset: 0.25rem;
+    height: 100%;
+    cursor: pointer;
+
+    &:hover {
+      outline: 2px solid $secondary;
+    }
 
     &.owned {
       filter: saturate(0);
