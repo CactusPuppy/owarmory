@@ -6,7 +6,7 @@ import { headers } from "$src/lib/constants/api";
 export async function GET({ params }) {
   const build = await prisma.stadiumBuild.findFirst({
     where: {
-      id: params.slug,
+      id: params.id,
     },
     include: FullStadiumBuildInclude,
   });
