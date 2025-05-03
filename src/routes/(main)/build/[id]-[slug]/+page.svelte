@@ -17,6 +17,7 @@
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
+  import { cleanName } from "$src/lib/utils/user";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -48,7 +49,7 @@
       <h1 class="title">{title}</h1>
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
-      <a class="author" href="/user/{author.name}" itemprop="author">{author.name}</a>
+      <a class="author" href="/user/{author.name}" itemprop="author">{cleanName(author.name!)}</a>
     </div>
   </header>
 

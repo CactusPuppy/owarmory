@@ -1,12 +1,13 @@
 <script lang="ts">
   import type { User } from "$src/generated/prisma";
+  import { cleanName } from "$src/lib/utils/user";
   import { getContext } from "svelte";
 
   const currentUser: User = getContext("currentUser");
 </script>
 
 <div class="user">
-  Signed in as <a href="/account">{currentUser.name}</a>
+  Signed in as <a href="/account">{cleanName(currentUser.name!)}</a>
 </div>
 
 <style lang="scss">
