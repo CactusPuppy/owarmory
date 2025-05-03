@@ -25,8 +25,8 @@
   {#each itemRarities as rarity (rarity)}
     {@const items = availableItems.filter((item) => item.rarity === rarity)}
 
-    <div class="row {rarity}">
-      <h3>{rarity}</h3>
+    <div class="row {rarity.toLowerCase()}">
+      <h3>{rarity.toLowerCase()}</h3>
 
       <div class="items">
         {#each items as item (item.id)}
