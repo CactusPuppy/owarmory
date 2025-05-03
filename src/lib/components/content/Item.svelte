@@ -45,6 +45,7 @@
   @use "sass:color";
 
   .item {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,18 +53,28 @@
     width: $item-size;
     height: $item-size;
     overflow: hidden;
-    padding: 0.25rem;
     border: 2px solid var(--color-rarity);
-    box-shadow: inset 0 0 0 1px $color-bg-base;
     background: var(--color-rarity);
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 50%;
+      border: 2px solid $color-bg-base;
+    }
 
     @each $rarity, $color in $color-rarities {
       &.#{$rarity} {
         --color-rarity: #{$color};
-
-        &:hover {
-          --color-rarity: #{color.adjust($color, $lightness: 10%)};
-        }
       }
     }
 
