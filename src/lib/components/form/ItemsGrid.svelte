@@ -81,7 +81,7 @@
   .row {
     padding: 1rem;
     border-radius: $border-radius;
-    background: $color-bg-dark;
+    background: color.adjust($color-bg-dark, $lightness: 1%);
     border: 2px solid var(--color-rarity);
 
     @each $rarity, $color in $color-rarities {
@@ -108,6 +108,10 @@
   .item {
     border-radius: 50%;
     outline-offset: 0.25rem;
+
+    &:hover {
+      outline: 2px solid $secondary;
+    }
 
     .owned & {
       &:hover {

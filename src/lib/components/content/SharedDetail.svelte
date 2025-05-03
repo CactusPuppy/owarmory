@@ -49,6 +49,8 @@
     margin: 0;
     padding: 0 0 0.5rem;
     color: $color-text-alt;
+    font-size: $font-size-small;
+    line-height: 1.5;
   }
 
   .cost {
