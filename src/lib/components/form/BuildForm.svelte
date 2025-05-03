@@ -18,7 +18,7 @@
   import type { SlashPrefixedString } from "$src/lib/types/path";
   import type { z } from "zod";
   import { goto } from "$app/navigation";
-  import { toSlug } from "$src/lib/utils/slug";
+  import { buildPath } from "$lib/utils/routes";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -196,7 +196,7 @@
 
       const { newBuild } = response;
 
-      await goto(buildPath(build));
+      await goto(buildPath(newBuild));
     } catch (error: unknown) {
       console.error(error);
 
