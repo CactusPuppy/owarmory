@@ -20,19 +20,31 @@
 {#if full}
   <Card>
     {#snippet header()}
-      <div class="item {rarity}">
-        <img src={iconURL} alt={name} />
+      <div class="item {rarity.toLowerCase()}" class:sold>
+        <div class="icon">
+          <img src={iconURL} alt={name} />
+        </div>
       </div>
 
       {name}
     {/snippet}
+
+    {#if sold}
+      <div class="sold-overlay">Sell</div>
+    {/if}
 
     <SharedDetail {description} {cost} />
   </Card>
 {:else}
   <Popover onclick={() => onclick(item)}>
     <div class="item {rarity.toLowerCase()}" class:large class:sold>
-      <img src={iconURL} alt={name} />
+      <div class="icon">
+        <img src={iconURL} alt={name} />
+      </div>
+
+      {#if sold}
+        <div class="label">Sell</div>
+      {/if}
     </div>
 
     {#snippet content()}
@@ -45,6 +57,16 @@
   @use "sass:color";
 
   .item {
+    position: relative;
+
+    @each $rarity, $color in $color-rarities {
+      &.#{$rarity} {
+        --color-rarity: #{$color};
+      }
+    }
+  }
+
+  .icon {
     position: relative;
     display: flex;
     align-items: center;
@@ -72,26 +94,58 @@
       border: 2px solid $color-bg-base;
     }
 
-    @each $rarity, $color in $color-rarities {
-      &.#{$rarity} {
-        --color-rarity: #{$color};
-      }
-    }
-
-    &.large {
+    .large & {
       width: $item-size-large;
       height: $item-size-large;
+    }
+
+    .sold & {
+      --color-rarity: #{$red};
+      background: transparent;
+
+      img {
+        filter: grayscale(100%);
+        border-radius: 50%;
+      }
     }
 
     img {
       width: calc(100% - 0.25rem);
       height: auto;
     }
+  }
 
-    &.sold {
-      img {
-        filter: grayscale(100%);
-      }
-    }
+  .label {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateY(50%) translateX(-50%);
+    border-radius: $border-radius-small;
+    background: $red;
+    color: $white;
+    font-family: $font-stack-brand;
+    font-size: 85%;
+    line-height: 1;
+    padding: 0.25rem 0.35rem;
+    pointer-events: none;
+  }
+
+  .sold-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: $border-radius;
+    backdrop-filter: saturate(0);
+    box-shadow: inset 0 0 0 2px $red;
+    font-family: $font-stack-brand;
+    font-size: 125%;
+    background: rgba(color.adjust($red, $lightness: -20%, $saturation: -20%), 0.5);
+    color: $red;
+    pointer-events: none;
   }
 </style>

@@ -46,6 +46,7 @@
       border-radius: 0 $border-radius $border-radius 0;
       box-shadow: 0 0 1px $color-text-alt;
       background: $color-bg-dark;
+      z-index: 1;
     }
 
     &::after {
