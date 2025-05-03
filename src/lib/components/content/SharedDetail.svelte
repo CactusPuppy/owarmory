@@ -1,5 +1,5 @@
 <script lang="ts">
-  import iconCurrency from "$lib/images/icons/currency.svg";
+  import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
 
   interface Props {
     name?: string;
@@ -21,7 +21,7 @@
 
   <div class="cost">
     {#if cost}
-      <img src={iconCurrency} alt="$" height="18" width="22" />
+      <CurrencyIcon />
       {cost.toLocaleString()}
     {:else}
       <strong>Power</strong>

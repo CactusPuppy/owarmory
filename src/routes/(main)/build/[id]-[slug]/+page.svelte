@@ -16,6 +16,7 @@
   import type { FullStadiumBuild } from "$src/lib/types/build";
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
+  import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -60,7 +61,9 @@
       <CompoundedBuild {build} />
 
       <h2 class="build-cost">
-        Build cost: {getBuildCostForRound(build, currentRound.value).toLocaleString()}
+        Build cost:<br />
+        <CurrencyIcon scale={1.5} />
+        {getBuildCostForRound(build, currentRound.value).toLocaleString()}
       </h2>
 
       <DashedHeader text="Stats" />
