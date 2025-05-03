@@ -7,21 +7,79 @@ import type { Prisma, StadiumBuild, User } from "$src/generated/prisma/client.js
 
 const headers = { "Content-Type": "application/json" };
 
-export async function POST({ request }) {
+export async function POST({ locals, request }) {
+  const session = await locals.auth();
+
+  const currentUser: User | null = (session?.user as User) || null;
+
+  if (!currentUser)
+    return new Response(JSON.stringify({ message: "Must be logged in to create a build!" }), {
+      headers,
+    });
+
   const build: BuildData = await request.json();
   let validatedBuild: ValidatedBuildData;
 
   try {
     validatedBuild = validate(build);
   } catch (error: unknown) {
+    if (error instanceof ZodError) {
+      return new Response(JSON.stringify({ message: JSON.stringify(error) }), {
+        headers: { ...headers, "X-Error-Type": "validation" },
+        status: 400,
+      });
+    }
     // @ts-expect-error unknown type does not have message
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
   }
 
   // Pretend to post `data` to the DB
-  await new Promise((res) => setTimeout(res, 500));
+  let newBuild: StadiumBuild;
+  try {
+    newBuild = await prisma.stadiumBuild.create({
+      data: {
+        buildTitle: validatedBuild.buildTitle,
+        authorId: currentUser.id,
+        heroName: validatedBuild.heroName,
+        additionalNotes: validatedBuild.additionalNotes,
+        roundInfos: {
+          create: validatedBuild.roundInfos.map(
+            (roundInfo, i): Prisma.RoundInfoCreateWithoutParentBuildInput => ({
+              note: roundInfo.note,
+              orderIndex: i,
+              sections: {
+                create: roundInfo.sections.map(
+                  (section, i): Prisma.RoundInfoSectionCreateWithoutParentRoundInfoInput => ({
+                    orderIndex: i,
+                    power: section.power
+                      ? {
+                          connect: {
+                            id: section.power?.id,
+                          },
+                        }
+                      : undefined,
+                    purchasedItems: {
+                      connect: section.purchasedItems.map((item) => ({ id: item.id })),
+                    },
+                    soldItems: {
+                      connect: section.soldItems.map((item) => ({ id: item.id })),
+                    },
+                  }),
+                ),
+              },
+            }),
+          ),
+        },
+      },
+    });
+  } catch (error: unknown) {
+    console.error(error);
+    return new Response(JSON.stringify({ message: String(error) }), { headers, status: 500 });
+  }
 
-  const response = {};
+  const response = {
+    newBuild,
+  };
 
   return new Response(JSON.stringify(response), { headers });
 }
