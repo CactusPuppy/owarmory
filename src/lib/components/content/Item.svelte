@@ -140,13 +140,13 @@
     bottom: 0;
     left: 0;
     border-radius: $border-radius;
+    background: rgba(color.adjust($red, $lightness: -20%, $saturation: -20%), 0.5);
     backdrop-filter: saturate(0);
     box-shadow: inset 0 0 0 2px $red;
     z-index: 2;
+    pointer-events: none;
     font-family: $font-stack-brand;
     font-size: 125%;
-    background: rgba(color.adjust($red, $lightness: -20%, $saturation: -20%), 0.5);
     color: $red;
-    pointer-events: none;
   }
 </style>
