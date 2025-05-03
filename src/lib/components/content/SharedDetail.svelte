@@ -1,4 +1,6 @@
 <script lang="ts">
+  import iconCurrency from "$lib/images/icons/currency.svg";
+
   interface Props {
     name?: string;
     description?: string | null;
@@ -19,7 +21,8 @@
 
   <div class="cost">
     {#if cost}
-      ${cost.toLocaleString()}
+      <img src={iconCurrency} alt="$" height="18" width="22" />
+      {cost.toLocaleString()}
     {:else}
       <strong>Power</strong>
     {/if}
@@ -54,6 +57,9 @@
   }
 
   .cost {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding-top: 0.5rem;
     margin-top: auto;
     border-top: 1px solid rgba($color-text-alt, 0.35);
