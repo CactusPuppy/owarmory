@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FlatFullRoundInfo, FlatFullStadiumBuild } from "$lib/types/build";
+  import type { FlatFullRoundInfo, FlatFullStadiumBuild, BuildDataSchema } from "$lib/types/build";
   import Heroes from "$lib/components/content/Heroes.svelte";
   import type { HeroData, HeroName } from "$lib/types/hero";
   import ItemsGrid from "./ItemsGrid.svelte";
@@ -8,7 +8,7 @@
   import { untrack } from "svelte";
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
-  import type { Item, Power } from "$src/generated/prisma";
+  import type { Item, Power, StadiumBuild } from "$src/generated/prisma";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
@@ -16,6 +16,9 @@
   import { getBuildItemsForRound, getBuildPowersForRound } from "$src/lib/utils/build";
   import type { AvailableTalents } from "$src/lib/types/talent";
   import type { SlashPrefixedString } from "$src/lib/types/path";
+  import type { z } from "zod";
+  import { goto } from "$app/navigation";
+  import { buildPath } from "$lib/utils/routes";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -42,7 +45,7 @@
   let currentRoundIndex = $state(0);
   let currentTalentTypeTab = $state(itemTalentTypes[0]);
   let heroName: HeroName | null = $state(build.heroName as HeroName);
-  let errorMessage = $state("");
+  let issues: string[] = $state([]);
   let saving = $state(false);
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
@@ -180,25 +183,33 @@
   async function onsubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
 
-    errorMessage = "";
+    issues = [];
     saving = true;
 
-    // Temporary fake load times
-    await new Promise((res) => setTimeout(res, 500));
-
     try {
-      const response = await api(path, {}, null, {
+      const response = (await api(path, {}, null, {
         method,
         body: JSON.stringify(build),
-      });
+      })) as { newBuild: StadiumBuild };
 
       if (!response) throw new Error("Something went wrong while saving");
 
-      // TODO: Redirect to created build
+      const { newBuild } = response;
+
+      await goto(buildPath(newBuild));
     } catch (error: unknown) {
       console.error(error);
-      // @ts-expect-error unknown has no message field
-      errorMessage = error.message;
+
+      if (error && typeof error == "object" && "message" in error) {
+        if ("errorType" in error && error.errorType == "validation") {
+          const zodError = JSON.parse(error.message as string) as z.ZodError<
+            typeof BuildDataSchema
+          >;
+          issues = zodError.issues.map((issue) => issue.message);
+        } else {
+          issues = [error.message as string];
+        }
+      }
 
       window.scrollTo({ top: 0 });
     } finally {
@@ -207,10 +218,14 @@
   }
 </script>
 
-{#if errorMessage}
+{#if issues.length}
   <div class="form-error" in:slide={{ duration: 300 }}>
-    <strong>Error when saving</strong>
-    <p>{errorMessage}</p>
+    <strong>Error(s) when saving</strong>
+    <ul>
+      {#each issues as issue, i (i)}
+        <li>{issue.toString()}</li>
+      {/each}
+    </ul>
   </div>
 {/if}
 
@@ -238,7 +253,7 @@
     <label class="form-label" for="description">Short description</label>
     <p class="form-help" id="description">
       A short introduction to your builds, quickly summarizing the main playstyle and intention. You
-      can provide a more detail description later.
+      can provide a more detailed description later.
     </p>
     <textarea
       class="form-textarea"
