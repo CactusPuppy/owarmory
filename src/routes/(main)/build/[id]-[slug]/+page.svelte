@@ -61,8 +61,9 @@
       <CompoundedBuild {build} />
 
       <h2 class="build-cost">
-        Build cost:<br />
-        <CurrencyIcon scale={1.5} />
+        Build Cost: <br />
+
+        <CurrencyIcon scale={1.35} />
         {getBuildCostForRound(build, currentRound.value).toLocaleString()}
       </h2>
 
@@ -97,14 +98,6 @@
     &:hover {
       color: $white;
       text-decoration: underline;
-    }
-  }
-
-  h2 {
-    margin: $vertical-offset-large 0 1rem;
-
-    @include breakpoint(tablet) {
-      margin-bottom: 2rem;
     }
   }
 
@@ -151,7 +144,7 @@
     @include breakpoint(tablet) {
       display: grid;
       grid-template-columns: 23rem auto;
-      gap: 4rem;
+      gap: clamp(1rem, 4vw, 4rem);
     }
   }
 
@@ -165,7 +158,7 @@
     text-align: center;
 
     @include breakpoint(tablet) {
-      margin: 4rem 0;
+      margin: 3rem 0;
     }
   }
 </style>
