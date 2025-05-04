@@ -1,16 +1,43 @@
 <script lang="ts">
   import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
+  import type { FullStatMod } from "$src/lib/types/build";
+  import StatMods from "./StatMods.svelte";
 
   interface Props {
     name?: string;
     description?: string | null;
     cost?: number;
+    statMods?: FullStatMod[];
   }
 
-  const { name, description, cost = 0 }: Props = $props();
+  const { name, description, cost = 0, statMods }: Props = $props();
 
+  const normalStatMods = $derived(
+    statMods
+      ?.filter((statMod) => !statMod.hidden && !statMod.isShownPostDescription)
+      .sort((a, b) => a.orderIndex - b.orderIndex) ?? [],
+  );
+  const postDescriptionMods = $derived(
+    statMods
+      ?.filter((statMod) => !statMod.hidden && statMod.isShownPostDescription)
+      .sort((a, b) => a.orderIndex - b.orderIndex) ?? [],
+  );
+
+  function parseDescription(text: string): string {
+    let output = wrapBracketsWithMark(text);
+    output = wrapNumbersWithMark(output);
+
+    return output;
+  }
+
+  /** Replace [word] with <mark>[word]</mark> */
   function wrapBracketsWithMark(text: string): string {
     return text.replace(/\[[^\]]+\]/g, (match) => `<mark>${match}</mark>`);
+  }
+
+  /** Replace 10, 10%, 10s, and 10m with <mark>{match}<mark> */
+  function wrapNumbersWithMark(text: string): string {
+    return text.replace(/\d+(?:\.\d+)?(?:%|s|m)?/g, "<mark>$&</mark>");
   }
 </script>
 
@@ -19,9 +46,17 @@
     <strong class="name">{name}</strong>
   {/if}
 
+  {#if normalStatMods.length}
+    <StatMods statMods={normalStatMods} />
+  {/if}
+
   {#if description}
     <!-- eslint-disable-next-line svelte/no-at-html-tags This should be safe, right? The input is determined by us. -->
-    <p class="description">{@html wrapBracketsWithMark(description)}</p>
+    <p class="description">{@html parseDescription(description)}</p>
+  {/if}
+
+  {#if postDescriptionMods.length}
+    <StatMods statMods={postDescriptionMods} />
   {/if}
 
   <div class="cost">
@@ -35,6 +70,8 @@
 </div>
 
 <style lang="scss">
+  @use "sass:color";
+
   .detail {
     display: flex;
     flex-direction: column;
