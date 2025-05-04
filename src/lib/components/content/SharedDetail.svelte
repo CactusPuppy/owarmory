@@ -55,23 +55,6 @@
     <p class="description">{@html parseDescription(description)}</p>
   {/if}
 
-  {#if statMods?.length}
-    <div class="stat-mods">
-      {#each statMods as { id, amount, isPercentage, stat } (id)}
-        {@const { name, iconURL } = stat}
-
-        <div class="stat-mod">
-          <img src={iconURL} alt="" width="18" height="18" />
-
-          <div>
-            <strong>{amount}{isPercentage ? "%" : ""}</strong>
-            {name}
-          </div>
-        </div>
-      {/each}
-    </div>
-  {/if}
-
   {#if postDescriptionMods.length}
     <StatMods statMods={postDescriptionMods} />
   {/if}
