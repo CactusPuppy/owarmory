@@ -41,6 +41,9 @@
 
 <svelte:head>
   <title>{title} | {hero.name} | OW Armory</title>
+  <meta property="og:title" content="{title} | {hero.name} | OW Armory" />
+  <meta property="og:description" content={description} />
+  <meta name="description" content={description} />
 </svelte:head>
 
 <article itemscope itemtype="https://schema.org/Article">
