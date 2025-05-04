@@ -1,20 +1,21 @@
 <script lang="ts">
-  import type { Item } from "$src/generated/prisma";
+  import type { FullItem } from "$src/lib/types/build";
   import Card from "../common/Card.svelte";
   import Popover from "../common/Popover.svelte";
   import SharedDetail from "./SharedDetail.svelte";
 
   interface Props {
-    item: Item;
+    // This item should include the StatMod and Stat include
+    item: FullItem;
     large?: boolean;
     full?: boolean;
     sold?: boolean;
-    onclick?: (item: Item) => void;
+    onclick?: (item: FullItem) => void;
   }
 
   const { item, sold = false, full = false, large = false, onclick = () => null }: Props = $props();
 
-  const { name, description, iconURL, rarity, cost } = $derived(item);
+  const { name, description, iconURL, rarity, cost, statMods } = $derived(item);
   const imageSize = $derived(large ? 80 : 40);
 </script>
 
@@ -28,7 +29,7 @@
       {name}
     {/snippet}
 
-    <SharedDetail {description} {cost} />
+    <SharedDetail {description} {cost} {statMods} />
   </Card>
 {:else}
   <Popover onclick={() => onclick(item)}>
@@ -37,7 +38,7 @@
     </div>
 
     {#snippet content()}
-      <SharedDetail {name} {description} {cost} />
+      <SharedDetail {name} {description} {cost} {statMods} />
     {/snippet}
   </Popover>
 {/if}
