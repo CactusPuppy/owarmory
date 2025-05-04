@@ -64,7 +64,6 @@ export function getAllItemStatModifiers(items: FullItem[]): Record<string, StatT
   const statTotals: Record<string, StatTotal> = {};
 
   for (const item of items) {
-    // TODO: What type does item need to be to include statMods?
     for (const statMod of item.statMods) {
       const { isPercentage } = statMod;
       const { id, name } = statMod.stat;
