@@ -91,8 +91,6 @@ export function ZodIssuePathInBuildToHumanString(path: z.ZodIssue["path"]): stri
 }
 
 export function filterUniqueBuilds(builds: FullStadiumBuild[]): FullStadiumBuild[] {
-  if (!builds?.length) return [];
-
   const uniqueIds: string[] = [];
   const filteredBuilds = [];
 
