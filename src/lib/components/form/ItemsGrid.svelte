@@ -1,6 +1,6 @@
 <script lang="ts">
   import Item from "../content/Item.svelte";
-  import type { Item as ItemType } from "$src/generated/prisma";
+  import type { FullItem as ItemType } from "$lib/types/build";
   import { ItemRarity } from "$src/lib/types/build";
   import iconCurrency from "$lib/images/icons/currency.svg";
 

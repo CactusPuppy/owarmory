@@ -1,7 +1,8 @@
-import type { BuildData, FlatFullRoundInfoSection, StatTotal } from "$lib/types/build";
+import type { BuildData, FlatFullRoundInfoSection, StatTotal, FullItem } from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
-import type { Item } from "$src/generated/prisma";
 import type { Power } from "$src/generated/prisma";
+import type { z } from "zod";
+import { camelCaseToTitleCase } from "./string";
 
 type BuildRoundSectionData = FullRoundSectionInfo | FlatFullRoundInfoSection;
 
@@ -15,12 +16,12 @@ export function getBuildPowersForRound(build: BuildData, round = 7): Power[] {
   return powers;
 }
 
-export function getBuildItemsForRound(build: BuildData, round = 7): Item[] {
+export function getBuildItemsForRound(build: BuildData, round = 7): FullItem[] {
   const items = getBuildStandardSectionsForRound(build, round).reduce((acc, section) => {
     acc = acc.filter((item) => section.soldItems.every((i) => i.id !== item.id));
     acc.push(...section.purchasedItems);
     return acc;
-  }, [] as Item[]);
+  }, [] as FullItem[]);
 
   return items;
 }
@@ -43,7 +44,7 @@ export function getBuildStandardSectionsForRound(
   return sections;
 }
 
-export function getAllBuildItems(build: BuildData): Item[] {
+export function getAllBuildItems(build: BuildData): FullItem[] {
   return build.roundInfos.flatMap((roundInfo) => {
     return roundInfo.sections
       .filter((section) => !section.title)
@@ -51,7 +52,7 @@ export function getAllBuildItems(build: BuildData): Item[] {
   });
 }
 
-export function isItemPreviouslyOwned(items: Item[], item: Item) {
+export function isItemPreviouslyOwned(items: FullItem[], item: FullItem) {
   const numberOfTimesInteractedWithItem = items.filter((i) => i.id === item.id)?.length || 0;
 
   if (!numberOfTimesInteractedWithItem) return false;
@@ -79,4 +80,33 @@ export function getAllItemStatModifiers(items: Item[]): Record<string, StatTotal
   }
 
   return statTotals;
+}
+
+export const BuildErrorMap: z.ZodErrorMap = (issue, ctx) => {
+  const humanReadablePath = ZodIssuePathInBuildToHumanString(issue.path);
+
+  return { message: `${humanReadablePath}: ${ctx.defaultError}` };
+};
+
+export function ZodIssuePathInBuildToHumanString(path: z.ZodIssue["path"]): string {
+  const result: string[] = [];
+
+  if (path.length < 1) return "";
+
+  for (const pathSection of path) {
+    if (typeof pathSection == "string") {
+      if (pathSection == "roundInfos") {
+        result.push("Rounds");
+      } else {
+        result.push(camelCaseToTitleCase(pathSection));
+      }
+    } else {
+      const label = result[result.length - 1];
+      // HACK: this assumes that the last letter of the label is "s" for plurality
+      result[result.length - 1] =
+        `${label.slice(0, label.length - 1)} ${(pathSection + 1).toString(10)}`;
+    }
+  }
+
+  return result.join(": ");
 }

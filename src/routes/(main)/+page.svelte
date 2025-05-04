@@ -51,6 +51,7 @@
 
 <svelte:head>
   <title>OW Armory - Overwatch Stadium Builds</title>
+  <meta property="og:title" content="OW Armory - Overwatch Stadium Builds" />
 </svelte:head>
 
 <Heroes />

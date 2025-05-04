@@ -13,6 +13,13 @@ export async function GET({ url }) {
     error(400, `Specified hero ${heroName} is not a valid hero name`);
 
   const powers = await prisma.item.findMany({
+    include: {
+      statMods: {
+        include: {
+          stat: true,
+        },
+      },
+    },
     where: {
       OR: heroName
         ? [

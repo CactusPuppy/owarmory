@@ -24,6 +24,7 @@ button {
   &:not([disabled]):not(.disabled):active,
   &:not([disabled]):not(.disabled):focus-visible {
     color: $white;
+    text-decoration: none;
   }
 
   &:not([disabled]):active {
@@ -37,6 +38,12 @@ button {
   &--large {
     font-size: 125%;
     padding: 1rem 2rem;
+  }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 
   &[disabled],
