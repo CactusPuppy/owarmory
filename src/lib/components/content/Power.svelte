@@ -21,6 +21,8 @@
   }: Props = $props();
 
   const { name, description, iconURL } = $derived(power);
+
+  const imageSize = $derived(large ? 60 : 34);
 </script>
 
 {#if full}
@@ -38,7 +40,7 @@
 {:else}
   <Popover onclick={() => onclick(power)}>
     <div class="power" class:large>
-      <img src={iconURL} alt={name} />
+      <img src={iconURL} alt={name} width={imageSize} height={imageSize} />
     </div>
 
     {#snippet content()}
