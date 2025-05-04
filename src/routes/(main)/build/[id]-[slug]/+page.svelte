@@ -19,6 +19,7 @@
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
   import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import type { User } from "$src/generated/prisma";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
