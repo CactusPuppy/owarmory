@@ -1,4 +1,4 @@
-import type { BuildData, FlatFullRoundInfoSection } from "$lib/types/build";
+import type { BuildData, FlatFullRoundInfoSection, FullStadiumBuild } from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
 import type { Item } from "$src/generated/prisma";
 import type { Power } from "$src/generated/prisma";
@@ -57,4 +57,21 @@ export function isItemPreviouslyOwned(items: Item[], item: Item) {
   if (!numberOfTimesInteractedWithItem) return false;
 
   return numberOfTimesInteractedWithItem % 2 !== 0;
+}
+
+export function filterUniqueBuilds(builds: FullStadiumBuild[]): FullStadiumBuild[] {
+  if (!builds?.length) return [];
+
+  const uniqueIds: string[] = [];
+  const filteredBuilds = [];
+
+  for (let i = 0; i < builds.length; i++) {
+    const build = builds[i];
+    if (uniqueIds.includes(build.id)) continue;
+
+    uniqueIds.push(build.id);
+    filteredBuilds.push(build);
+  }
+
+  return filteredBuilds;
 }
