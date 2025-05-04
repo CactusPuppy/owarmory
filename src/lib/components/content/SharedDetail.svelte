@@ -103,24 +103,6 @@
     }
   }
 
-  .stat-mods {
-    padding: 0 0 0.5rem;
-  }
-
-  .stat-mod {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: color.adjust($color-text-alt, $lightness: 15%);
-    font-size: $font-size-small;
-    line-height: 1.5;
-
-    strong {
-      color: $white;
-      font-family: $font-stack-brand;
-    }
-  }
-
   .cost {
     display: flex;
     align-items: center;
