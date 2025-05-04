@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { FullStatMod } from "$src/lib/types/build";
   import { DefaultStatIconPath } from "$src/lib/constants/stats";
-  import { StatDisplayName } from "$src/lib/utils/stat";
+  import { statDisplayName } from "$src/lib/utils/stat";
 
   interface Props {
     statMods: FullStatMod[];
@@ -19,7 +19,7 @@
 
       <div>
         <strong>{amount}{isPercentage ? "%" : ""}</strong>
-        {StatDisplayName(name)}
+        {statDisplayName(name)}
       </div>
     </div>
   {/each}
