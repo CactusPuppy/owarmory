@@ -17,6 +17,7 @@
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
+  import { toSimpleDate } from "$src/lib/utils/datetime";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -31,6 +32,7 @@
     author,
     roundInfos,
     additionalNotes,
+    updatedAt,
   } = $derived(build as FullStadiumBuild);
 
   const hero = $derived(heroFromHeroName(heroName as HeroName));
@@ -49,6 +51,12 @@
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
       <a class="author" href="/user/{author.name}" itemprop="author">{author.name}</a>
+
+      <span class="divider">•</span>
+
+      <time class="datetime" itemprop="dateModified" datetime={updatedAt.toString()}>
+        Last updated on {toSimpleDate(updatedAt.toString())}
+      </time>
     </div>
   </header>
 
@@ -125,6 +133,17 @@
     @include breakpoint(tablet) {
       margin: -0.5rem 0;
     }
+  }
+
+  .divider {
+    opacity: 0.5;
+    color: $color-text-alt;
+  }
+
+  .datetime {
+    color: $color-text-alt;
+    font-size: $font-size-small;
+    font-style: italic;
   }
 
   .introduction {
