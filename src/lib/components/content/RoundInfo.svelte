@@ -24,15 +24,13 @@
           <Power {power} full outline />
         {/if}
 
-        <div class="section__items">
-          {#each soldItems as item (item.id)}
-            <Item {item} sold />
-          {/each}
+        {#each soldItems as item (item.id)}
+          <Item {item} sold full />
+        {/each}
 
-          {#each purchasedItems as item (item.id)}
-            <Item {item} />
-          {/each}
-        </div>
+        {#each purchasedItems as item (item.id)}
+          <Item {item} full />
+        {/each}
       </div>
     {/each}
   </div>

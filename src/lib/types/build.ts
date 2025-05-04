@@ -1,4 +1,7 @@
 import type { Power, Prisma } from "$src/generated/prisma";
+import { z } from "zod";
+import { HeroNames } from "./hero";
+import { ROUND_MAX } from "../constants/round";
 
 export const ItemRarity = {
   Common: "Common",
@@ -98,3 +101,61 @@ export type FlatFullStadiumBuild = Omit<
 };
 
 export type BuildData = FullStadiumBuild | FlatFullStadiumBuild;
+
+export const HeroNameSchema = z.enum(HeroNames, { message: "Invalid hero name provided" });
+
+export const ItemSchema = z.object({
+  id: z.string().cuid2({ message: "Invalid power id" }),
+  name: z.string({ message: "Invalid item name" }),
+  category: z.enum(["Weapon", "Ability", "Survival"], { message: "Invalid item category" }),
+  rarity: z.enum(["Common", "Rare", "Epic"], { message: "Invalid rarity name" }),
+  description: z.string().nullable(),
+  cost: z.number().int().nonnegative(),
+  heroName: HeroNameSchema.nullable(),
+  iconURL: z.string().nullable(),
+  removed: z.boolean(),
+});
+
+export const PowerSchema = z.object({
+  id: z.string().cuid2({ message: "Invalid power id" }),
+  name: z.string({ message: "Invalid power name" }),
+  description: z.string(),
+  iconURL: z.string().nullable(),
+  heroName: HeroNameSchema,
+  removed: z.boolean(),
+});
+
+export const RoundInfoSectionSchema = z.object({
+  title: z.string().max(50, { message: "Section title is too long! Maximum 50 characters" }),
+  power: PowerSchema.nullable(),
+  purchasedItems: z.array(ItemSchema),
+  soldItems: z.array(ItemSchema),
+});
+
+export const RoundInfoSchema = z.object({
+  note: z.string().max(1500, "Round note is too long! Maximum 1500 characters").nullable(),
+  sections: z
+    .array(RoundInfoSectionSchema)
+    .max(5, "Too many sections provided! Maximum of 5 sections per round"),
+});
+
+export const BuildDataSchema = z.object({
+  buildTitle: z
+    .string({ message: "No title provided" })
+    .min(10, { message: "Title is too short, minimum of 10 characters" })
+    .max(70, { message: "Title is too long, maximum of 70 characters" }),
+  heroName: HeroNameSchema,
+  description: z
+    .string({ message: "No short description provided" })
+    .min(20, { message: "Short description is too short! Minimum 20 characters" })
+    .max(300, { message: "Short description is too long! Maximum 300 characters" }),
+  roundInfos: z
+    .array(RoundInfoSchema)
+    .length(ROUND_MAX, { message: `Must provide ${ROUND_MAX} rounds of information` }),
+  additionalNotes: z
+    .string()
+    .max(5000, { message: "Description is too long! Maximum 5000" })
+    .nullable(),
+});
+
+export type ValidatedBuildData = z.infer<typeof BuildDataSchema>;

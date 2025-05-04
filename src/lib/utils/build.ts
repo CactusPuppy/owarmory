@@ -1,6 +1,8 @@
 import type { BuildData, FlatFullRoundInfoSection, FullItem } from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
 import type { Power } from "$src/generated/prisma";
+import type { z } from "zod";
+import { camelCaseToTitleCase } from "./string";
 
 type BuildRoundSectionData = FullRoundSectionInfo | FlatFullRoundInfoSection;
 
@@ -56,4 +58,33 @@ export function isItemPreviouslyOwned(items: FullItem[], item: FullItem) {
   if (!numberOfTimesInteractedWithItem) return false;
 
   return numberOfTimesInteractedWithItem % 2 !== 0;
+}
+
+export const BuildErrorMap: z.ZodErrorMap = (issue, ctx) => {
+  const humanReadablePath = ZodIssuePathInBuildToHumanString(issue.path);
+
+  return { message: `${humanReadablePath}: ${ctx.defaultError}` };
+};
+
+export function ZodIssuePathInBuildToHumanString(path: z.ZodIssue["path"]): string {
+  const result: string[] = [];
+
+  if (path.length < 1) return "";
+
+  for (const pathSection of path) {
+    if (typeof pathSection == "string") {
+      if (pathSection == "roundInfos") {
+        result.push("Rounds");
+      } else {
+        result.push(camelCaseToTitleCase(pathSection));
+      }
+    } else {
+      const label = result[result.length - 1];
+      // HACK: this assumes that the last letter of the label is "s" for plurality
+      result[result.length - 1] =
+        `${label.slice(0, label.length - 1)} ${(pathSection + 1).toString(10)}`;
+    }
+  }
+
+  return result.join(": ");
 }

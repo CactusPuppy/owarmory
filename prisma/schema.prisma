@@ -122,13 +122,13 @@ model Item {
   id          String    @id @default(cuid(2))
   name        String
   category    String
-  rarity      String    @default("common")
+  rarity      String    @default("Common")
   description String?
   cost        Int
   statMods    StatMod[]
   hero        Hero?     @relation(fields: [heroName], references: [name])
   iconURL     String?
-  removed     Boolean?  @default(false)
+  removed     Boolean  @default(false)
 
   purchaseSections RoundInfoSection[] @relation("ItemPurchases")
   soldSections     RoundInfoSection[] @relation("ItemSales")

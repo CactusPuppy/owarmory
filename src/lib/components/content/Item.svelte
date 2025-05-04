@@ -16,6 +16,7 @@
   const { item, sold = false, full = false, large = false, onclick = () => null }: Props = $props();
 
   const { name, description, iconURL, rarity, cost, statMods } = $derived(item);
+  const imageSize = $derived(large ? 80 : 40);
 </script>
 
 {#if full}
@@ -33,7 +34,7 @@
 {:else}
   <Popover onclick={() => onclick(item)}>
     <div class="item {rarity.toLowerCase()}" class:large class:sold>
-      <img src={iconURL} alt={name} />
+      <img src={iconURL} alt={name} width={imageSize} height={imageSize} />
     </div>
 
     {#snippet content()}
