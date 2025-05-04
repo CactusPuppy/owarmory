@@ -1,16 +1,27 @@
 <script lang="ts">
   import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
-  import type { StatMod } from "$src/generated/prisma";
+  import type { FullStatMod } from "$src/lib/types/build";
+  import StatMods from "./StatMods.svelte";
 
   interface Props {
     name?: string;
     description?: string | null;
     cost?: number;
-    // This type should include the `stat` include
-    statMods?: StatMod[];
+    statMods?: FullStatMod[];
   }
 
   const { name, description, cost = 0, statMods }: Props = $props();
+
+  const normalStatMods = $derived(
+    statMods
+      ?.filter((statMod) => !statMod.hidden && !statMod.isShownPostDescription)
+      .sort((a, b) => a.orderIndex - b.orderIndex) ?? [],
+  );
+  const postDescriptionMods = $derived(
+    statMods
+      ?.filter((statMod) => !statMod.hidden && statMod.isShownPostDescription)
+      .sort((a, b) => a.orderIndex - b.orderIndex) ?? [],
+  );
 
   function parseDescription(text: string): string {
     let output = wrapBracketsWithMark(text);
@@ -35,6 +46,10 @@
     <strong class="name">{name}</strong>
   {/if}
 
+  {#if normalStatMods.length}
+    <StatMods statMods={normalStatMods} />
+  {/if}
+
   {#if description}
     <!-- eslint-disable-next-line svelte/no-at-html-tags This should be safe, right? The input is determined by us. -->
     <p class="description">{@html parseDescription(description)}</p>
@@ -55,6 +70,10 @@
         </div>
       {/each}
     </div>
+  {/if}
+
+  {#if postDescriptionMods.length}
+    <StatMods statMods={postDescriptionMods} />
   {/if}
 
   <div class="cost">
