@@ -60,7 +60,7 @@ export function isItemPreviouslyOwned(items: FullItem[], item: FullItem) {
   return numberOfTimesInteractedWithItem % 2 !== 0;
 }
 
-export function getAllItemStatModifiers(items: Item[]): Record<string, StatTotal> {
+export function getAllItemStatModifiers(items: FullItem[]): Record<string, StatTotal> {
   const statTotals: Record<string, StatTotal> = {};
 
   for (const item of items) {
