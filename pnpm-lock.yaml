@@ -7,7 +7,7 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
       '@auth/core':
         specifier: ^0.39.0
         version: 0.39.0
@@ -17,13 +17,6 @@ importers:
       '@auth/sveltekit':
         specifier: ^1.9.1
         version: 1.9.1(@sveltejs/kit@2.20.7(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.1)(vite@6.3.2(@types/node@22.15.3)(sass-embedded@1.87.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.28.1)(vite@6.3.2(@types/node@22.15.3)(sass-embedded@1.87.0)(tsx@4.19.3)(yaml@2.7.1)))(svelte@5.28.1)
-      isomorphic-dompurify:
-        specifier: ^2.24.0
-        version: 2.24.0
-      snarkdown:
-        specifier: ^2.0.0
-        version: 2.0.0
-    devDependencies:
       '@eslint/compat':
         specifier: ^1.2.5
         version: 1.2.8(eslint@9.25.1)
@@ -57,6 +50,9 @@ importers:
       '@types/node':
         specifier: ^22.15.3
         version: 22.15.3
+      '@types/seedrandom':
+        specifier: ^3.0.8
+        version: 3.0.8
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
@@ -75,6 +71,9 @@ importers:
       husky:
         specifier: ^9.1.7
         version: 9.1.7
+      isomorphic-dompurify:
+        specifier: ^2.24.0
+        version: 2.24.0
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
@@ -93,6 +92,12 @@ importers:
       sass-embedded:
         specifier: ^1.87.0
         version: 1.87.0
+      seedrandom:
+        specifier: ^3.0.5
+        version: 3.0.5
+      snarkdown:
+        specifier: ^2.0.0
+        version: 2.0.0
       svelte:
         specifier: ^5.0.0
         version: 5.28.1
@@ -727,6 +732,9 @@ packages:
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
+
+  '@types/seedrandom@3.0.8':
+    resolution: {integrity: sha512-TY1eezMU2zH2ozQoAFAQFOPpvP15g+ZgSfTZt31AUUH/Rxtnz3H+A/Sv1Snw2/amp//omibc+AEkTaA8KUeOLQ==}
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
@@ -1813,6 +1821,9 @@ packages:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
 
+  seedrandom@3.0.5:
+    resolution: {integrity: sha512-8OwmbklUNzwezjGInmZ+2clQmExQPvomqjL7LFqOYqtmuxRgQYqOD3mHaU+MvZn5FLUeVxVfQjwLZW/n/JFuqg==}
+
   semver@7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
     engines: {node: '>=10'}
@@ -2687,6 +2698,8 @@ snapshots:
       undici-types: 6.21.0
 
   '@types/resolve@1.20.2': {}
+
+  '@types/seedrandom@3.0.8': {}
 
   '@types/trusted-types@2.0.7':
     optional: true
@@ -3753,6 +3766,8 @@ snapshots:
   saxes@6.0.0:
     dependencies:
       xmlchars: 2.2.0
+
+  seedrandom@3.0.5: {}
 
   semver@7.7.1: {}
 
