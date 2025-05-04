@@ -154,7 +154,7 @@ export const BuildDataSchema = z.object({
     .length(ROUND_MAX, { message: `Must provide ${ROUND_MAX} rounds of information` }),
   additionalNotes: z
     .string()
-    .max(5000, { message: "Description is too long! Maximum 5000" })
+    .max(10000, { message: "Description is too long! Maximum 10000" })
     .nullable(),
 });
 
