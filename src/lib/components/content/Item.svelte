@@ -41,7 +41,7 @@
   <Popover onclick={() => onclick(item)}>
     <div class="item {rarity.toLowerCase()}" class:large class:sold>
       <div class="icon">
-        <img src={iconURL} alt={name} />
+        <img src={iconURL} alt={name} height={imageSize} />
       </div>
 
       {#if sold}
