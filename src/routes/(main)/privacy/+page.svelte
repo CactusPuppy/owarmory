@@ -1,6 +1,6 @@
 <h1>Privacy Policy</h1>
 
-<small>Last updated 03 may 2025</small>
+<small>Last updated 03 May 2025</small>
 
 <ul>
   <li>
