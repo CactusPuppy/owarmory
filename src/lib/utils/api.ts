@@ -12,9 +12,10 @@ export async function api<T>(
   }
 
   const response = await (serverFetch || fetch)(`/api${path}`, options);
+  const errorType = response.headers.get("X-Error-Type");
   const parsed = await response.json();
 
-  if (!response.ok) throw { message: parsed.message, status: response.status };
+  if (!response.ok) throw { message: parsed.message, status: response.status, errorType };
 
   return parsed;
 }

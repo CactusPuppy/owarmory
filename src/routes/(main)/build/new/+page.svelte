@@ -14,6 +14,7 @@
     buildTitle: "",
     heroName: heroes[0].name,
     roundInfos: [],
+    additionalNotes: null,
   };
 
   // Add empty roundInfos for each round
