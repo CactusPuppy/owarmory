@@ -8,7 +8,8 @@
   import { untrack } from "svelte";
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
-  import type { Item, Power, StadiumBuild } from "$src/generated/prisma";
+  import type { FullItem as Item } from "$lib/types/build";
+  import type { Power, StadiumBuild } from "$src/generated/prisma";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
