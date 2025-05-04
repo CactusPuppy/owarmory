@@ -82,7 +82,10 @@
     if (selectedHero) untrack(removeHeroSpecificTalents);
   });
 
-  $effect(validateItemsForCurrentRound);
+  $effect(() => {
+    validateItemsForCurrentRound();
+    validateFinalPowers();
+  });
 
   function setRound(index: number): void {
     currentRoundIndex = index;
@@ -190,6 +193,11 @@
   function validateItemsForCurrentRound(): void {
     const items = getBuildItemsForRound(build, currentRoundIndex + 1);
     validations[`items-length-${currentRoundIndex}`] = items.length <= 6;
+  }
+
+  function validateFinalPowers(): void {
+    const powers = getBuildPowersForRound(build, ROUND_MAX);
+    validations[`powers-length`] = powers.length == 4;
   }
 
   async function onsubmit(event: SubmitEvent): Promise<void> {
@@ -372,6 +380,12 @@
 
   <div class="order">
     <BuildPowersOrder {build} />
+
+    {#if validations[`powers-length`] === false}
+      <div class="form-text-error" transition:slide={{ duration: 100 }}>
+        Please select 4 powers.
+      </div>
+    {/if}
   </div>
 
   <div class="order">
