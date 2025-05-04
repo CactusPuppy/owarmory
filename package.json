@@ -22,6 +22,9 @@
     "test": "pnpm run test:unit && pnpm run test:e2e"
   },
   "devDependencies": {
+    "@auth/core": "^0.39.0",
+    "@auth/prisma-adapter": "^2.9.0",
+    "@auth/sveltekit": "^1.9.1",
     "@eslint/compat": "^1.2.5",
     "@eslint/js": "^9.18.0",
     "@faker-js/faker": "^9.7.0",
@@ -33,18 +36,22 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.7",
     "@types/node": "^22.15.3",
+    "@types/seedrandom": "^3.0.8",
     "dotenv": "^16.5.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-svelte": "^3.0.0",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
+    "isomorphic-dompurify": "^2.24.0",
     "jsdom": "^26.1.0",
     "lint-staged": "^15.5.1",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
     "prisma": "^6.6.0",
     "sass-embedded": "^1.87.0",
+    "seedrandom": "^3.0.5",
+    "snarkdown": "^2.0.0",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "tsx": "^4.19.3",
@@ -68,12 +75,5 @@
   "lint-staged": {
     "*.svelte*": "eslint --fix",
     "*.{ts,js,svelte,svelte.ts,svelte.js,scss}": "prettier --write"
-  },
-  "dependencies": {
-    "@auth/core": "^0.39.0",
-    "@auth/prisma-adapter": "^2.9.0",
-    "@auth/sveltekit": "^1.9.1",
-    "isomorphic-dompurify": "^2.24.0",
-    "snarkdown": "^2.0.0"
   }
 }

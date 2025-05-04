@@ -3,7 +3,7 @@ import { z } from "zod";
 import { PrismaClient } from "../src/generated/prisma";
 import { ItemRarity, ItemCategory } from "../src/lib/types/build";
 import { heroes } from "../src/lib/constants/heroData";
-import { StatNames } from "../src/lib/constants/stats";
+import { CustomStats } from "../src/lib/constants/stats";
 const { readFile } = promises;
 
 type PrismaTransaction = Parameters<Parameters<typeof prisma.$transaction>[0]>[0];
@@ -21,8 +21,19 @@ const Buff = z.object({
   Name: z.string(),
   Description: z.string(),
   DescriptionFormatted: z.string(),
+  ShowPostDescription: z.boolean().optional(),
+  Hidden: z.boolean().optional(),
   FormattedText: z.string(),
   Value: z.number(),
+});
+
+const CustomBuff = z.object({
+  StatType: z.literal("Custom"),
+  Name: z.string(),
+  Amount: z.number(),
+  IsPercentage: z.boolean().optional(),
+  ShowPostDescription: z.boolean().optional(),
+  Hidden: z.boolean().optional(),
 });
 
 const StadiumDataSchema = z.record(
@@ -36,19 +47,10 @@ const StadiumDataSchema = z.record(
     Hero: GuidValue.nullable(),
     Rarity: GuidValue,
     Category: GuidValue,
-    Buffs: z.array(Buff),
+    Buffs: z.array(z.union([Buff, CustomBuff])),
     GameValues: z.array(z.any()),
   }),
 );
-
-async function createStats(tx: PrismaTransaction) {
-  return await tx.stat.createManyAndReturn({
-    data: StatNames.map((statName) => ({
-      name: statName,
-      iconURL: `/images/stats/${encodeURIComponent(statName)}.webp`,
-    })),
-  });
-}
 
 async function createHeroes(tx: PrismaTransaction) {
   return await tx.hero.createManyAndReturn({
@@ -64,9 +66,6 @@ async function main() {
   prisma.$transaction(async (tx) => {
     console.log("Creating heroes...");
     const heroes = await createHeroes(tx);
-
-    console.log("Creating stats...");
-    const stats = await createStats(tx);
 
     console.log("Reading stadium data...");
     const stadiumData = StadiumDataSchema.parse(
@@ -113,10 +112,50 @@ async function main() {
           rarity: itemRarityValueToEnum[talent.Rarity.Value],
           statMods: {
             create: talent.Buffs.map((buff, i) => {
-              const stat = stats.filter((stat) => stat.name === buff.Name)![0].id;
+              if ("StatType" in buff) {
+                // Custom stat
+                const customStat = CustomStats.find((stat) => stat.Name == buff.Name);
+                const isPercentage = buff.IsPercentage || Math.abs(buff.Amount) < 1;
+                return {
+                  orderIndex: i,
+                  stat: {
+                    connectOrCreate: {
+                      where: {
+                        name: buff.Name,
+                      },
+                      create: {
+                        statType: "Custom",
+                        name: buff.Name,
+                        iconURL: customStat?.OverrideIconName
+                          ? `/images/stats/${encodeURIComponent(customStat.OverrideIconName)}.webp`
+                          : null,
+                      },
+                    },
+                  },
+                  isShownPostDescription: buff.ShowPostDescription,
+                  hidden: buff.Hidden,
+                  amount: isPercentage ? buff.Amount * 100 : buff.Amount,
+                  isPercentage,
+                };
+              }
+
               return {
                 orderIndex: i,
-                statId: stat,
+                stat: {
+                  connectOrCreate: {
+                    where: {
+                      name: buff.Name,
+                    },
+                    create: {
+                      statType: "Preset",
+                      name: buff.Name,
+                      description: buff.DescriptionFormatted,
+                      iconURL: `/images/stats/${encodeURIComponent(buff.Name)}.webp`,
+                    },
+                  },
+                },
+                isShownPostDescription: buff.ShowPostDescription,
+                hidden: buff.Hidden,
                 amount: buff.Value < 1 ? buff.Value * 100 : buff.Value,
                 isPercentage: buff.Value < 1,
               };

@@ -1,23 +1,85 @@
-import { heroes } from "$src/lib/constants/heroData.js";
-import type { BuildData } from "$src/lib/types/build.js";
-import type { HeroName } from "$src/lib/types/hero.js";
+import { z, ZodError } from "zod";
+
+import { BuildErrorMap } from "$src/lib/utils/build.js";
+import { BuildDataSchema, type BuildData, type ValidatedBuildData } from "$src/lib/types/build.js";
+import { prisma } from "$src/database/prismaClient.server.js";
+import type { Prisma, StadiumBuild, User } from "$src/generated/prisma/client.js";
 
 const headers = { "Content-Type": "application/json" };
 
-export async function POST({ request }) {
+export async function POST({ locals, request }) {
+  const session = await locals.auth();
+
+  const currentUser: User | null = (session?.user as User) || null;
+
+  if (!currentUser)
+    return new Response(JSON.stringify({ message: "Must be logged in to create a build!" }), {
+      headers,
+    });
+
   const build: BuildData = await request.json();
+  let validatedBuild: ValidatedBuildData;
 
   try {
-    validate(build);
+    validatedBuild = validate(build);
   } catch (error: unknown) {
+    if (error instanceof ZodError) {
+      return new Response(JSON.stringify({ message: JSON.stringify(error) }), {
+        headers: { ...headers, "X-Error-Type": "validation" },
+        status: 400,
+      });
+    }
     // @ts-expect-error unknown type does not have message
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
   }
 
   // Pretend to post `data` to the DB
-  await new Promise((res) => setTimeout(res, 500));
+  let newBuild: StadiumBuild;
+  try {
+    newBuild = await prisma.stadiumBuild.create({
+      data: {
+        buildTitle: validatedBuild.buildTitle,
+        authorId: currentUser.id,
+        heroName: validatedBuild.heroName,
+        additionalNotes: validatedBuild.additionalNotes,
+        roundInfos: {
+          create: validatedBuild.roundInfos.map(
+            (roundInfo, i): Prisma.RoundInfoCreateWithoutParentBuildInput => ({
+              note: roundInfo.note,
+              orderIndex: i,
+              sections: {
+                create: roundInfo.sections.map(
+                  (section, i): Prisma.RoundInfoSectionCreateWithoutParentRoundInfoInput => ({
+                    orderIndex: i,
+                    power: section.power
+                      ? {
+                          connect: {
+                            id: section.power?.id,
+                          },
+                        }
+                      : undefined,
+                    purchasedItems: {
+                      connect: section.purchasedItems.map((item) => ({ id: item.id })),
+                    },
+                    soldItems: {
+                      connect: section.soldItems.map((item) => ({ id: item.id })),
+                    },
+                  }),
+                ),
+              },
+            }),
+          ),
+        },
+      },
+    });
+  } catch (error: unknown) {
+    console.error(error);
+    return new Response(JSON.stringify({ message: String(error) }), { headers, status: 500 });
+  }
 
-  const response = {};
+  const response = {
+    newBuild,
+  };
 
   return new Response(JSON.stringify(response), { headers });
 }
@@ -43,31 +105,12 @@ export async function PATCH({ request }) {
   return new Response(JSON.stringify(response), { headers });
 }
 
-function validate(build: BuildData) {
-  // Title
-  if (!build.buildTitle) throw new Error("No build title was given.");
-  if (build.buildTitle.length < 10)
-    throw new Error("Given title was too short. Requires at least 10 characters.");
-  if (build.buildTitle.length > 70) throw new Error("Given title was too long. Max 70 characters.");
+function validate(build: BuildData): z.infer<typeof BuildDataSchema> {
+  const { success, data, error } = BuildDataSchema.safeParse(build, { errorMap: BuildErrorMap });
 
-  // Introduction
-  if (!build.description) throw new Error("No introduction was given.");
-  if (build.description.length < 20)
-    throw new Error("Given introduction was too short. Requires at least 20 characters.");
-  if (build.description.length > 200)
-    throw new Error("Given introduction was too long. Max 200 characters.");
+  if (!success) {
+    throw error;
+  }
 
-  // Hero
-  if (!build.heroName) throw new Error("No hero was selected.");
-  if (!heroes.map((hero) => hero.name).includes(build.heroName as HeroName))
-    throw new Error("An invalid hero was selected.");
-
-  // Rounds
-  if (build.roundInfos.length < 7) throw new Error("Not all rounds were given.");
-  if (build.roundInfos.some((i) => i.sections?.length !== 1))
-    throw new Error("Some rounds contain invalid data.");
-
-  // Description
-  if (build.additionalNotes && build.additionalNotes.length > 5000)
-    throw new Error("Given description was too long. Max 5000 characters.");
+  return data;
 }
