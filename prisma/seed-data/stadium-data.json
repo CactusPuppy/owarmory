@@ -1815,6 +1815,11 @@
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "25 Life",
         "Value": 25.0
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Knockback Resist",
+        "Amount": 0.5
       }
     ],
     "GameValues": [
@@ -2976,7 +2981,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 50
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000015E3.130",
@@ -3164,6 +3175,11 @@
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "50 Life",
         "Value": 50.0
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Commanding Shout] Overhealth",
+        "Amount": 0.3
       }
     ],
     "GameValues": [
@@ -3221,6 +3237,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "25% Ability Power",
         "Value": 0.25
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Commanding Shout] Radius",
+        "Amount": 0.5
       }
     ],
     "GameValues": [
@@ -4911,6 +4932,11 @@
         "DescriptionFormatted": "Increases the rate of fire of your Weapon.",
         "FormattedText": "10% Attack Speed",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Pulsar Torpedoes] Projectile Speed",
+        "Amount": 0.35
       }
     ],
     "GameValues": [
@@ -5058,7 +5084,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Glide Boost] Duration",
+        "Amount": 0.25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000013B9.130",
@@ -5093,7 +5130,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 75
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000013BF.130",
@@ -5287,6 +5330,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Hyper Ring] Duration",
+        "Amount": 0.25
       }
     ],
     "GameValues": [
@@ -5718,7 +5766,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 75
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000013C7.130",
@@ -5762,6 +5816,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "15% Ability Power",
         "Value": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 50
       }
     ],
     "GameValues": [
@@ -8191,6 +8250,12 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "5% Weapon Power",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Faster Scope Speed",
+        "Amount": 2,
+        "IsPercentage": true
       }
     ],
     "GameValues": [
@@ -8332,7 +8397,13 @@
       "GUID": "0000000068D3.01C",
       "Value": "Weapon Variants"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Max Ammo",
+        "Amount": 4
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001169.130",
@@ -8683,6 +8754,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "20% Ability Power",
         "Value": 0.2
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Biotic Grenade] Radius",
+        "Amount": 0.3
       }
     ],
     "GameValues": [
@@ -8894,7 +8970,13 @@
       "GUID": "0000000068D3.01C",
       "Value": "Weapon Variants"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "[Biotic Grenade] Duration",
+        "Amount": 0.15
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000000F62.130",
@@ -9099,7 +9181,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 50
+      }
+    ],
     "GameValues": [
       {
         "GUID": "00000000116D.130",
@@ -9134,7 +9222,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Nano Boost] Duration",
+        "Amount": 0.15
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000000F18.130",
@@ -10124,7 +10223,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001799.130",
@@ -10219,6 +10324,11 @@
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "25 Life",
         "Value": 25.0
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Boosters] Duration",
+        "Amount": 0.25
       }
     ],
     "GameValues": [
@@ -10261,7 +10371,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 50
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000001D5.130",
@@ -11756,6 +11872,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "10% Weapon Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "s [Dragonblade] Duration",
+        "Amount": 4
       }
     ],
     "GameValues": [
@@ -11989,6 +12110,11 @@
         "DescriptionFormatted": "Reduces the time you must wait after using an ability before it is usable again.",
         "FormattedText": "5% Cooldown Reduction",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Move Speed during [Deflect]",
+        "Amount": 0.15
       }
     ],
     "GameValues": [
@@ -12198,6 +12324,11 @@
         "DescriptionFormatted": "Restores health based on how much damage you deal with your Abilities.",
         "FormattedText": "15% Ability Lifesteal",
         "Value": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Swift Strike] Width",
+        "Amount": 0.5
       }
     ],
     "GameValues": [
@@ -12853,6 +12984,11 @@
         "DescriptionFormatted": "Increases the rate of fire of your Weapon.",
         "FormattedText": "5% Attack Speed",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
       }
     ],
     "GameValues": [
@@ -12988,7 +13124,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Ultimate Cost Reduction",
+        "Amount": 0.15
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001562.130",
@@ -13032,6 +13174,16 @@
         "DescriptionFormatted": "Reduces the time you must wait after using an ability before it is usable again.",
         "FormattedText": "5% Cooldown Reduction",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 50
+      },
+      {
+        "StatType": "Custom",
+        "Name": "s [Deflect] Duration",
+        "Amount": 1
       }
     ],
     "GameValues": [
@@ -14288,6 +14440,12 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "15% Weapon Power",
         "Value": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Healing Ofuda] Projectile Speed",
+        "Amount": 1,
+        "IsPercentage": true
       }
     ],
     "GameValues": [
@@ -15179,6 +15337,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Kitsune Rush] Duration",
+        "Amount": 0.35
       }
     ],
     "GameValues": [
@@ -16209,6 +16372,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Guardian Angel] Range",
+        "Amount": 0.33
       }
     ],
     "GameValues": [
@@ -16429,6 +16597,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "10% Weapon Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Caduceus Staff] Range",
+        "Amount": 0.33
       }
     ],
     "GameValues": [
@@ -16573,6 +16746,11 @@
         "DescriptionFormatted": "Reduces the time you must wait after using an ability before it is usable again.",
         "FormattedText": "10% Cooldown Reduction",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Resurrection] Range",
+        "Amount": 0.75
       }
     ],
     "GameValues": [
@@ -16764,7 +16942,13 @@
       "GUID": "000000005FDC.01C",
       "Value": "Ability"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "[Guardian Angel] Move Speed",
+        "Amount": 0.15
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001638.130",
@@ -16844,7 +17028,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "[Caduceus Staff] Damage Boost",
+        "Amount": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Ultimate Charge from Damage Boost",
+        "Amount": 0.15
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001639.130",
@@ -17724,6 +17919,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "10% Weapon Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Max [Biotic Energy]",
+        "Amount": 50
       }
     ],
     "GameValues": [
@@ -18600,6 +18800,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "10% Weapon Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Biotic Grasp] Secondary Fire Range",
+        "Amount": 0.15
       }
     ],
     "GameValues": [
@@ -18744,6 +18949,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "15% Ability Power",
         "Value": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Biotic Orb] Tendril Range",
+        "Amount": 0.3
       }
     ],
     "GameValues": [
@@ -20049,6 +20259,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Javelin Spin] Duration",
+        "Amount": 0.35
       }
     ],
     "GameValues": [
@@ -20260,7 +20475,13 @@
       "GUID": "000000005FDC.01C",
       "Value": "Ability"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "00000000179A.130",
@@ -20856,7 +21077,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 50
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000011E8.130",
@@ -20912,6 +21139,11 @@
         "DescriptionFormatted": "Restores health based on how much damage you deal with your Abilities.",
         "FormattedText": "20% Ability Lifesteal",
         "Value": 0.2
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Fortify] Duration",
+        "Amount": 0.5
       }
     ],
     "GameValues": [
@@ -21741,6 +21973,16 @@
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "50 Life",
         "Value": 50.0
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Move Speed during [Wraith Form]",
+        "Amount": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Wraith Form] Duration",
+        "Amount": 0.33
       }
     ],
     "GameValues": [
@@ -22804,6 +23046,16 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "20% Ability Power",
         "Value": 0.2
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Death Blossom] Radius",
+        "Amount": 0.25
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Move Speed during [Death Blossom]",
+        "Amount": 0.2
       }
     ],
     "GameValues": [
@@ -23456,6 +23708,16 @@
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "25 Life",
         "Value": 25.0
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Barrier Field] Health",
+        "Amount": 0.2
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Barrier Field] Size",
+        "Amount": 0.2
       }
     ],
     "GameValues": [
@@ -23513,6 +23775,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Fire Strike] Radius",
+        "Amount": 0.5
       }
     ],
     "GameValues": [
@@ -23841,6 +24108,16 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "5% Weapon Power",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Knockback Resist",
+        "Amount": 0.4
       }
     ],
     "GameValues": [
@@ -24516,6 +24793,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "20% Ability Power",
         "Value": 0.2
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Fire Strike] Projectile Speed",
+        "Amount": 0.5
       }
     ],
     "GameValues": [
@@ -25685,6 +25967,11 @@
         "DescriptionFormatted": "Increases the rate of fire of your Weapon.",
         "FormattedText": "5% Attack Speed",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Spring] Move Speed",
+        "Amount": 0.25
       }
     ],
     "GameValues": [
@@ -25841,6 +26128,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Biotic Field] Duration",
+        "Amount": 0.3
       }
     ],
     "GameValues": [
@@ -26384,6 +26676,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "5% Weapon Power",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Reduced [Wraith Form] Self-Damage",
+        "Amount": 0.9
       }
     ],
     "GameValues": [
@@ -26621,6 +26918,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Biotic Field] Radius",
+        "Amount": 0.3
       }
     ],
     "GameValues": [
@@ -28779,6 +29081,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "15% Ability Power",
         "Value": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Dynamite] Explosion Radius",
+        "Amount": 0.4
       }
     ],
     "GameValues": [
@@ -29533,6 +29840,11 @@
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "50 Life",
         "Value": 50.0
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
       }
     ],
     "GameValues": [
@@ -30202,6 +30514,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Projected Barrier] Range",
+        "Amount": 0.2
       }
     ],
     "GameValues": [
@@ -30581,6 +30898,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "5% Ability Power",
         "Value": 0.05
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
       }
     ],
     "GameValues": [
@@ -31199,6 +31521,11 @@
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "25 Life",
         "Value": 25.0
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Barrier Duration]",
+        "Amount": 0.4
       }
     ],
     "GameValues": [
@@ -32944,6 +33271,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "20% Ability Power",
         "Value": 0.2
+      },
+      {
+        "StatType": "Custom",
+        "Name": "[Amp It Up] Duration",
+        "Amount": 0.33
       }
     ],
     "GameValues": [
@@ -34317,7 +34649,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "00000000107E.130",
@@ -34391,7 +34729,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001095.130",
@@ -34483,7 +34827,13 @@
       "GUID": "000000005FDC.01C",
       "Value": "Ability"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Starting Ultimate Charge",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001096.130",
@@ -35107,6 +35457,11 @@
         "DescriptionFormatted": "Increases the rate of fire of your Weapon.",
         "FormattedText": "10% Attack Speed",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Increased Damage to Barriers",
+        "Amount": 0.3
       }
     ],
     "GameValues": [
@@ -35218,7 +35573,7 @@
       {
         "GUID": "000000001304.130",
         "Buff": null,
-        "Value": 0.25,
+        "Value": 0.5,
         "Loadouts": [
           {
             "GUID": "000000000013.09E",
@@ -35249,7 +35604,7 @@
       {
         "GUID": "000000001306.130",
         "Buff": null,
-        "Value": 0.4,
+        "Value": 0.3,
         "Loadouts": []
       }
     ]
@@ -36026,13 +36381,9 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "000000001091.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Life",
-        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "FormattedText": "8% Life",
-        "Value": 0.08
+        "StatType": "Custom",
+        "Name": "Health, Armor, Shields",
+        "Amount": 0.08
       }
     ],
     "GameValues": [
@@ -36066,7 +36417,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Incoming Negative Effect Duration",
+        "Amount": -0.4
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000010A1.130",
@@ -36313,7 +36675,25 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 10
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Health",
+        "Amount": -100,
+        "Hidden": true
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 100,
+        "Hidden": true
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001523.130",
@@ -36345,7 +36725,25 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Health",
+        "Amount": -100,
+        "Hidden": true
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 100,
+        "Hidden": true
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001524.130",
@@ -36377,7 +36775,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001526.130",
@@ -36409,7 +36813,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001255.130",
@@ -37594,6 +38004,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "10% Weapon Power",
         "Value": 0.1
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 25
       }
     ],
     "GameValues": [
@@ -39285,6 +39700,11 @@
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "15% Ability Power",
         "Value": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 50
       }
     ],
     "GameValues": [
@@ -40078,13 +40498,9 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "0000000010A9.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Life",
-        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "FormattedText": "15% Life",
-        "Value": 0.15
+        "StatType": "Custom",
+        "Name": "Health, Armor, Shields",
+        "Amount": 0.15
       }
     ],
     "GameValues": [
@@ -40118,7 +40534,7 @@
     "GUID": "000000000D45.134",
     "Name": "Vanadium Injection",
     "Description": "While at <fg#ffffffff>100%% Ultimate Charge</fg>, gain:",
-    "DescriptionFormatted": "While at 100%% Ultimate Charge, gain:",
+    "DescriptionFormatted": "While at 100% Ultimate Charge, gain:",
     "Cost": 10000,
     "Hero": null,
     "Role": null,
@@ -40132,13 +40548,19 @@
     },
     "Buffs": [
       {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 50
+      },
+      {
         "GameValueGUID": "00000000171F.130",
         "IconGUID": "000000000ADC.129",
         "Name": "Life",
         "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "FormattedText": "50 Life",
-        "Value": 50.0
+        "Value": 50.0,
+        "ShowPostDescription": true
       },
       {
         "GameValueGUID": "0000000010BB.130",
@@ -40147,7 +40569,8 @@
         "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon.",
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
         "FormattedText": "10% Weapon Power",
-        "Value": 0.1
+        "Value": 0.1,
+        "ShowPostDescription": true
       },
       {
         "GameValueGUID": "0000000010BC.130",
@@ -40156,7 +40579,8 @@
         "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
         "FormattedText": "10% Ability Power",
-        "Value": 0.1
+        "Value": 0.1,
+        "ShowPostDescription": true
       },
       {
         "GameValueGUID": "0000000010BD.130",
@@ -40165,7 +40589,8 @@
         "Description": "Increases the rate of fire of your Weapon.",
         "DescriptionFormatted": "Increases the rate of fire of your Weapon.",
         "FormattedText": "10% Attack Speed",
-        "Value": 0.1
+        "Value": 0.1,
+        "ShowPostDescription": true
       },
       {
         "GameValueGUID": "0000000010BE.130",
@@ -40174,7 +40599,8 @@
         "Description": "Reduces the time you must wait after using an ability before it is usable again.",
         "DescriptionFormatted": "Reduces the time you must wait after using an ability before it is usable again.",
         "FormattedText": "10% Cooldown Reduction",
-        "Value": 0.1
+        "Value": 0.1,
+        "ShowPostDescription": true
       },
       {
         "GameValueGUID": "0000000010BF.130",
@@ -40183,7 +40609,8 @@
         "Description": "Increases how fast you move.",
         "DescriptionFormatted": "Increases how fast you move.",
         "FormattedText": "10% Move Speed",
-        "Value": 0.1
+        "Value": 0.1,
+        "ShowPostDescription": true
       }
     ],
     "GameValues": [
@@ -40622,7 +41049,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 25
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000012FB.130",
@@ -40654,7 +41087,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Amount": 50
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001535.130",
@@ -40704,7 +41143,13 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 50
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001539.130",
@@ -40763,6 +41208,11 @@
         "DescriptionFormatted": "Increases the damage of Quick Melee and Melee Weapons.",
         "FormattedText": "15% Melee Damage",
         "Value": 0.15
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Amount": 50
       }
     ],
     "GameValues": [

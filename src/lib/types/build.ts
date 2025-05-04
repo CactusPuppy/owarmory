@@ -22,6 +22,9 @@ export const FullItemInclude = {
         include: {
           statMods: {
             include: FullStatModInclude,
+            orderBy: {
+              orderIndex: "asc",
+            },
           },
         },
       },

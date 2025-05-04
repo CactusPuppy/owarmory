@@ -1,6 +1,8 @@
 <script lang="ts">
   import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
   import type { FullStatMod } from "$src/lib/types/build";
+  import { DefaultStatIconPath } from "$src/lib/constants/stats";
+  import { StatDisplayName } from "$src/lib/utils/stat";
 
   interface Props {
     name?: string;
@@ -10,6 +12,16 @@
   }
 
   const { name, description, cost = 0, statMods }: Props = $props();
+  const normalStatMods = $derived(
+    statMods
+      ?.filter((statMod) => !statMod.hidden && !statMod.isShownPostDescription)
+      .sort((a, b) => a.orderIndex - b.orderIndex) ?? [],
+  );
+  const postDescriptionMods = $derived(
+    statMods
+      ?.filter((statMod) => !statMod.hidden && statMod.isShownPostDescription)
+      .sort((a, b) => a.orderIndex - b.orderIndex) ?? [],
+  );
 
   function wrapBracketsWithMark(text: string): string {
     return text.replace(/\[[^\]]+\]/g, (match) => `<mark>${match}</mark>`);
@@ -21,18 +33,35 @@
     <strong class="name">{name}</strong>
   {/if}
 
+  {#if normalStatMods.length}
+    <div class="stat-mods">
+      {#each normalStatMods as { id, amount, isPercentage, stat } (id)}
+        {@const { name, iconURL } = stat}
+
+        <div class="stat-mod">
+          <img src={iconURL ?? DefaultStatIconPath} alt="" width="18" height="18" />
+
+          <div>
+            <strong>{amount}{isPercentage ? "%" : ""}</strong>
+            {StatDisplayName(name)}
+          </div>
+        </div>
+      {/each}
+    </div>
+  {/if}
+
   {#if description}
     <!-- eslint-disable-next-line svelte/no-at-html-tags This should be safe, right? The input is determined by us. -->
     <p class="description">{@html wrapBracketsWithMark(description)}</p>
   {/if}
 
-  {#if statMods?.length}
+  {#if postDescriptionMods.length}
     <div class="stat-mods">
-      {#each statMods as { id, amount, isPercentage, stat } (id)}
+      {#each postDescriptionMods as { id, amount, isPercentage, stat } (id)}
         {@const { name, iconURL } = stat}
 
         <div class="stat-mod">
-          <img src={iconURL} alt="" width="18" height="18" />
+          <img src={iconURL ?? DefaultStatIconPath} alt="" width="18" height="18" />
 
           <div>
             <strong>{amount}{isPercentage ? "%" : ""}</strong>
