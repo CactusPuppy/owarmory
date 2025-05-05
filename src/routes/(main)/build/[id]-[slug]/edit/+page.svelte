@@ -1,13 +1,10 @@
 <script lang="ts">
   import BuildForm from "$lib/components/form/BuildForm.svelte";
-  import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { PageData } from "./$types";
 
   const { data }: { data: PageData } = $props();
 
-  const { availableTalents } = data;
-
-  const build = getBuildContext();
+  const { build, availableTalents } = $derived(data);
 </script>
 
 <svelte:head>

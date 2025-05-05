@@ -12,7 +12,6 @@
   import { getBuildCostForRound } from "$lib/utils/build";
   import { getContext, onMount, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
-  import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
@@ -23,12 +22,15 @@
   import BuildsList from "$src/lib/components/content/BuildsList.svelte";
   import { api } from "$src/lib/utils/api";
 
+  const { data } = $props();
+
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
 
-  const build = getBuildContext();
   const currentUser: User = getContext("currentUser");
+
+  const { build } = $derived(data);
 
   const {
     id,
