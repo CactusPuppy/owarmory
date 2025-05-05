@@ -20,6 +20,7 @@
   import type { z } from "zod";
   import { goto } from "$app/navigation";
   import { buildPath } from "$lib/utils/routes";
+  import Textarea from "./Textarea.svelte";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -250,19 +251,10 @@
     />
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="description">Short description</label>
-    <p class="form-help" id="description">
-      A short introduction to your builds, quickly summarizing the main playstyle and intention. You
-      can provide a more detailed description later.
-    </p>
-    <textarea
-      class="form-textarea"
-      bind:value={build.description}
-      name="description"
-      aria-describedby="description"
-    ></textarea>
-  </div>
+  <Textarea label="Short description" id="description" bind:value={build.description}>
+    A short introduction to your builds, quickly summarizing the main playstyle and intention. You
+    can provide a more detailed description later.
+  </Textarea>
 
   <h2>Powers & Items</h2>
 
@@ -325,18 +317,15 @@
       {/if}
     </div>
 
-    <div class="form-group inset">
-      <label class="form-label" for="round-notes">Round notes</label>
-      <p class="form-help" id="round-notes">
+    <div class="inset">
+      <Textarea
+        label="Round notes"
+        id="round-notes"
+        bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
+      >
         Provide an optional short description on the current round, explaining options,
         expectations, and possible play styles.
-      </p>
-      <textarea
-        class="form-textarea"
-        bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
-        name="round-notes"
-        aria-describedby="round-notes"
-      ></textarea>
+      </Textarea>
     </div>
   </div>
 
@@ -350,18 +339,10 @@
 
   <h2>Description</h2>
 
-  <div class="form-group">
-    <p class="form-help" id="additional-notes">
-      Explain your build in detail, going over playstyles, item order, possible deviations, and
-      whatever else you might think of.
-    </p>
-    <textarea
-      class="form-textarea form-textarea--large"
-      bind:value={build.additionalNotes}
-      name="additional-notes"
-      aria-describedby="additional-notes"
-    ></textarea>
-  </div>
+  <Textarea label="Round notes" id="additional-notes" bind:value={build.additionalNotes}>
+    Explain your build in detail, going over playstyles, item order, possible deviations, and
+    whatever else you might think of.
+  </Textarea>
 
   <button class="button button--large save" disabled={saving}>
     {#if saving}
