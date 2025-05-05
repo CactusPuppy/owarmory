@@ -5,7 +5,7 @@
 
   const { data }: { data: PageData } = $props();
 
-  const { availableTalents } = data;
+  const { availableTalents, tags } = data;
 
   const build = getBuildContext();
 </script>
@@ -16,4 +16,4 @@
 
 <h1 class="title">Edit "{build.buildTitle}"</h1>
 
-<BuildForm {availableTalents} {build} method="PATCH" heroEditable={false} />
+<BuildForm {availableTalents} {tags} {build} method="PATCH" heroEditable={false} />
