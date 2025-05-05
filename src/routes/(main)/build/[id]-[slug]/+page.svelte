@@ -10,7 +10,7 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound } from "$lib/utils/build";
-  import { getContext, setContext } from "svelte";
+  import { getContext, onMount, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
   import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
@@ -20,6 +20,8 @@
   import type { User } from "@auth/sveltekit";
   import { buildEditPath } from "$src/lib/utils/routes";
   import Heroes from "$src/lib/components/content/Heroes.svelte";
+  import BuildsList from "$src/lib/components/content/BuildsList.svelte";
+  import { api } from "$src/lib/utils/api";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -29,6 +31,7 @@
   const currentUser: User = getContext("currentUser");
 
   const {
+    id,
     buildTitle: title,
     heroName,
     description,
@@ -38,6 +41,21 @@
   } = $derived(build as FullStadiumBuild);
 
   const hero = $derived(heroFromHeroName(heroName as HeroName));
+
+  let similarBuilds: FullStadiumBuild[] = $state([]);
+
+  onMount(getSimilarBuilds);
+
+  async function getSimilarBuilds() {
+    const builds = await api<FullStadiumBuild[]>(
+      `/builds/hero/${heroName}`,
+      { page_size: "4" },
+      fetch,
+    );
+    const buildsExcludingCurrentBuild = builds.filter((b) => b.id !== id);
+
+    similarBuilds = buildsExcludingCurrentBuild.slice(0, 3);
+  }
 </script>
 
 <svelte:head>
@@ -102,9 +120,15 @@
   </div>
 </article>
 
-<div class="heroes">
+{#if similarBuilds.length}
+  <section class="heroes">
+    <BuildsList header="Similar builds" builds={similarBuilds} />
+  </section>
+{/if}
+
+<section class="heroes">
   <Heroes />
-</div>
+</section>
 
 <style lang="scss">
   a:not(.button) {
