@@ -19,6 +19,7 @@
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
   import type { User } from "@auth/sveltekit";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import Heroes from "$src/lib/components/content/Heroes.svelte";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -100,6 +101,10 @@
     </section>
   </div>
 </article>
+
+<div class="heroes">
+  <Heroes />
+</div>
 
 <style lang="scss">
   a:not(.button) {
@@ -183,5 +188,9 @@
     @include breakpoint(tablet) {
       margin: 4rem 0;
     }
+  }
+
+  .heroes {
+    margin-top: $vertical-offset-large;
   }
 </style>
