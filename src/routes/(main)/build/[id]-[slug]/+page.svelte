@@ -19,6 +19,7 @@
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
   import type { User } from "@auth/sveltekit";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import Tags from "$src/lib/components/content/Tags.svelte";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -34,6 +35,7 @@
     author,
     roundInfos,
     additionalNotes,
+    tags,
   } = $derived(build as FullStadiumBuild);
 
   const hero = $derived(heroFromHeroName(heroName as HeroName));
@@ -55,6 +57,8 @@
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
       <a class="author" href="/user/{author.name}" itemprop="author">{author.name}</a>
+
+      <Tags {tags} />
     </div>
   </header>
 

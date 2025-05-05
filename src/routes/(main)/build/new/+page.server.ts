@@ -8,12 +8,14 @@ export async function load({ locals, fetch }) {
   const currentUser: User | null = (session?.user as User) || null;
   if (!currentUser) redirect(307, "/");
 
-  const [items, powers] = await Promise.all([
+  const [items, powers, tags] = await Promise.all([
     api<Item[]>("/talents/items", {}, fetch),
     api<Power[]>("/talents/powers", {}, fetch),
+    api<Power[]>("/tags", {}, fetch),
   ]);
 
   return {
+    tags,
     availableTalents: {
       items,
       powers,

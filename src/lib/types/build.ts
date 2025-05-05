@@ -63,6 +63,7 @@ export const FullRoundInfoInclude = {
 export const FullStadiumBuildInclude = {
   author: true,
   hero: true,
+  tags: true,
   roundInfos: {
     include: FullRoundInfoInclude,
     orderBy: {
@@ -156,6 +157,7 @@ export const BuildDataSchema = z.object({
     .string()
     .max(5000, { message: "Description is too long! Maximum 5000" })
     .nullable(),
+  tags: z.array(z.number()).max(3, { message: "You can select up to 3 tags" }),
 });
 
 export type ValidatedBuildData = z.infer<typeof BuildDataSchema>;

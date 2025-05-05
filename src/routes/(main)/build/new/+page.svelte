@@ -29,7 +29,7 @@
   }
 
   const { data } = $props();
-  const { availableTalents } = data;
+  const { availableTalents, tags } = data;
 </script>
 
 <svelte:head>
@@ -38,4 +38,4 @@
 
 <h1 class="title">Create new build</h1>
 
-<BuildForm {availableTalents} {build} method="POST" />
+<BuildForm {availableTalents} {tags} {build} method="POST" />
