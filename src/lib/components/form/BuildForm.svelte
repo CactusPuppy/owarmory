@@ -21,6 +21,7 @@
   import { buildPath } from "$lib/utils/routes";
   import Textarea from "./Textarea.svelte";
   import Issues from "./Issues.svelte";
+  import TextInput from "./TextInput.svelte";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -235,16 +236,7 @@
     <Hero hero={selectedHero} large />
   {/if}
 
-  <div class="form-group">
-    <label class="form-label" for="title">Build title</label>
-    <input
-      type="text"
-      class="form-input form-input--large"
-      bind:value={build.buildTitle}
-      name="title"
-      id="title"
-    />
-  </div>
+  <TextInput label="Build title" id="title" large bind:value={build.buildTitle} />
 
   <Textarea label="Short description" id="description" bind:value={build.description}>
     A short introduction to your builds, quickly summarizing the main playstyle and intention. You
