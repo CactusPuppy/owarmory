@@ -1,30 +1,14 @@
 <script lang="ts">
   import type { Item as ItemType } from "$src/generated/prisma/client.js";
   import Item from "$src/lib/components/content/Item.svelte";
+  import { getContext } from "svelte";
 
   const { data } = $props();
   const { items } = $derived(data);
 
-  // ChatGPT special; group items by hero and sort to put null first
-  const groups = $derived.by(() => {
-    const groups = new Map<string | null, ItemType[]>();
+  const talentFilter: (talents: Item[]) => void = getContext("talentFilter");
 
-    for (const item of items) {
-      const key = item.heroName ?? null;
-      if (!groups.has(key)) groups.set(key, []);
-
-      groups.get(key)?.push(item);
-    }
-
-    // Sort to put null first
-    const sortedGroups = [...groups.entries()].sort(([a], [b]) => {
-      if (a === null) return -1;
-      if (b === null) return 1;
-      return a.localeCompare(b);
-    });
-
-    return sortedGroups;
-  });
+  const groups = $derived.by(() => talentFilter<ItemType[]>(items));
 </script>
 
 <h1>All items</h1>

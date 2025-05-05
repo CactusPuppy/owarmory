@@ -1,30 +1,14 @@
 <script lang="ts">
   import type { Power as PowerType } from "$src/generated/prisma/client.js";
   import Power from "$src/lib/components/content/Power.svelte";
+  import { getContext } from "svelte";
 
   const { data } = $props();
   const { powers } = $derived(data);
 
-  // ChatGPT special; group powers by hero and sort to put null first
-  const groups = $derived.by(() => {
-    const groups = new Map<string, PowerType[]>();
+  const talentFilter: (talents: Power[]) => void = getContext("talentFilter");
 
-    for (const power of powers) {
-      const key = power.heroName;
-      if (!groups.has(key)) groups.set(key, []);
-
-      groups.get(key)?.push(power);
-    }
-
-    // Sort to put null first
-    const sortedGroups = [...groups.entries()].sort(([a], [b]) => {
-      if (a === null) return -1;
-      if (b === null) return 1;
-      return a.localeCompare(b);
-    });
-
-    return sortedGroups;
-  });
+  const groups = $derived.by(() => talentFilter<PowerType[]>(powers));
 </script>
 
 <h1>All powers</h1>
