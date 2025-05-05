@@ -11,8 +11,6 @@
   const groups = $derived.by(() => talentFilter<PowerType[]>(powers));
 </script>
 
-<h1>All powers</h1>
-
 {#each groups as [heroName, powers] (heroName)}
   <h2>{heroName}</h2>
 

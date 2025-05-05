@@ -11,8 +11,6 @@
   const groups = $derived.by(() => talentFilter<ItemType[]>(items));
 </script>
 
-<h1>All items</h1>
-
 {#each groups as [heroName, items] (heroName)}
   <h2>{heroName || "General"}</h2>
 

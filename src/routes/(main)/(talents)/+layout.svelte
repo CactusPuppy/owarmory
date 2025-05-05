@@ -1,12 +1,18 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import { setContext } from "svelte";
 
   const { children } = $props();
+
+  let query = $state("");
 
   function setTalentFilter<T extends { heroName?: string | null }>(talents: T[]) {
     const groups = new Map<string | null, T[]>();
 
     for (const talent of talents) {
+      // Search the full talent object, matching on anything inside it.
+      if (!JSON.stringify(talent).toLowerCase().includes(query.toLowerCase())) continue;
+
       const key = talent.heroName ?? null;
       if (!groups.has(key)) groups.set(key, []);
       groups.get(key)!.push(talent);
@@ -24,4 +30,15 @@
   setContext("talentFilter", setTalentFilter);
 </script>
 
-{@render children()}
+<h1>All {page.url.pathname.split("/")[1]}</h1>
+
+<input
+  type="text"
+  class="form-input form-input--large"
+  placeholder="Search all..."
+  bind:value={query}
+/>
+
+{#key query}
+  {@render children()}
+{/key}
