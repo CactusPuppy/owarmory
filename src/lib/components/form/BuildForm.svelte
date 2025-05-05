@@ -13,7 +13,6 @@
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
-  import { slide } from "svelte/transition";
   import { getBuildItemsForRound, getBuildPowersForRound } from "$src/lib/utils/build";
   import type { AvailableTalents } from "$src/lib/types/talent";
   import type { SlashPrefixedString } from "$src/lib/types/path";
@@ -21,6 +20,7 @@
   import { goto } from "$app/navigation";
   import { buildPath } from "$lib/utils/routes";
   import Textarea from "./Textarea.svelte";
+  import Issues from "./Issues.svelte";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -221,13 +221,8 @@
 </script>
 
 {#if issues.length}
-  <div class="form-error" in:slide={{ duration: 300 }}>
-    <strong>Error(s) when saving</strong>
-    <ul>
-      {#each issues as issue, i (i)}
-        <li>{issue.toString()}</li>
-      {/each}
-    </ul>
+  <div class="issues">
+    <Issues {issues} />
   </div>
 {/if}
 
@@ -412,7 +407,7 @@
     margin-top: 3rem;
   }
 
-  .form-error {
+  .issues {
     margin-bottom: 3rem;
   }
 </style>
