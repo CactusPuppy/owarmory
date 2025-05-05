@@ -266,18 +266,6 @@
     ></textarea>
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="tags">Tags</label>
-    <p class="form-help" id="tags">
-      Select prefined tags that help others find your build. Select up to 3.
-    </p>
-    <select multiple class="form-input" name="tags" aria-describedby="tags" bind:value={build.tags}>
-      {#each tags as { id, label } (id)}
-        <option value={id}>{label}</option>
-      {/each}
-    </select>
-  </div>
-
   <h2>Powers & Items</h2>
 
   <p class="form-help">
@@ -375,6 +363,25 @@
       name="additional-notes"
       aria-describedby="additional-notes"
     ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="tags">Tags</label>
+    <p class="form-help" id="tags">
+      Select predefined tags that help others find your build. Select up to 3.
+    </p>
+    <select
+      multiple
+      size="3"
+      class="form-select"
+      name="tags"
+      aria-describedby="tags"
+      bind:value={build.tags}
+    >
+      {#each tags as { id, label } (id)}
+        <option value={id}>{label}</option>
+      {/each}
+    </select>
   </div>
 
   <button class="button button--large save" disabled={saving}>
