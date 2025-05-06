@@ -5,6 +5,8 @@
 
   const { children } = $props();
 
+  const label = $derived(page.url.pathname.split("/")[1]);
+
   let query = $state("");
 
   function setTalentFilter<T extends { heroName?: string | null }>(talents: T[]) {
@@ -31,7 +33,7 @@
   setContext("talentFilter", setTalentFilter);
 </script>
 
-<h1>All {page.url.pathname.split("/")[1]}</h1>
+<h1>All {label}</h1>
 
 <div class="navigation">
   <TalentsNavigation />
@@ -40,7 +42,7 @@
 <input
   type="text"
   class="form-input form-input--large"
-  placeholder="Search all..."
+  placeholder="Search all {label}..."
   bind:value={query}
 />
 
