@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import TalentsNavigation from "$lib/components/content/TalentsNavigation.svelte";
   import { setContext } from "svelte";
 
   const { children } = $props();
@@ -32,6 +33,10 @@
 
 <h1>All {page.url.pathname.split("/")[1]}</h1>
 
+<div class="navigation">
+  <TalentsNavigation />
+</div>
+
 <input
   type="text"
   class="form-input form-input--large"
@@ -42,3 +47,17 @@
 {#key query}
   {@render children()}
 {/key}
+
+<style lang="scss">
+  h1 {
+    margin: 0;
+  }
+
+  .navigation {
+    margin: 2rem 0 1rem;
+
+    @include breakpoint(tablet) {
+      margin-top: 3rem;
+    }
+  }
+</style>
