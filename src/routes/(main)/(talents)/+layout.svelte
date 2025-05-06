@@ -18,7 +18,7 @@
 
     for (const talent of talents) {
       // Search the full talent object, matching on anything inside it.
-      if (!JSON.stringify(talent).toLowerCase().includes(query.toLowerCase())) continue;
+      if (!matchQuery(JSON.stringify(talent))) continue;
 
       const key = talent.heroName ?? null;
       if (!groups.has(key)) groups.set(key, []);
@@ -32,6 +32,12 @@
     });
 
     return sortedGroups;
+  }
+
+  function matchQuery(talentString: string): boolean {
+    const queryWords = query.toLowerCase().split(/\s+/).filter(Boolean);
+
+    return queryWords.every((word) => talentString.toLowerCase().includes(word));
   }
 
   setContext("talentFilter", setTalentFilter);
