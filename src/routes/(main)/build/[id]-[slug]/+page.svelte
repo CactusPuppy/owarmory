@@ -18,6 +18,7 @@
   import type { User } from "@auth/sveltekit";
   import { buildEditPath } from "$src/lib/utils/routes";
   import { markdown } from "$src/lib/utils/markdown";
+  import TalentRichPreviews from "$src/lib/components/content/TalentRichPreviews.svelte";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -92,8 +93,7 @@
         <h1 aria-level="2">Description</h1>
 
         <div class="description markdown">
-          <!-- eslint-disable-next-line svelte/no-at-html-tags It's sanitized! -->
-          {@html markdown(additionalNotes)}
+          <TalentRichPreviews text={markdown(additionalNotes)} sanitized />
         </div>
       {/if}
     </section>

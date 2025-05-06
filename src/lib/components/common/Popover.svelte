@@ -7,17 +7,30 @@
   interface Props {
     children: Snippet;
     content: Snippet;
+    inline?: boolean;
+    transition?: boolean;
     onclick?: () => void;
+    onshow?: () => void;
   }
 
-  const { children, content, onclick = () => null }: Props = $props();
+  const {
+    children,
+    content,
+    inline = false,
+    transition = true,
+    onclick = () => null,
+    onshow = () => null,
+  }: Props = $props();
 
   let active = $state(false);
   let element: HTMLElement | null = $state(null);
   let offset = $state(0);
 
   $effect(() => {
-    if (active) positionPopover();
+    if (active) {
+      onshow();
+      positionPopover();
+    }
   });
 
   async function positionPopover(): Promise<void> {
@@ -40,10 +53,11 @@
   }
 </script>
 
-<div class="popover">
+<div class="popover" class:inline>
   <button
     type="button"
     class="toggle"
+    class:inline
     onmouseenter={() => (active = true)}
     onmouseleave={() => (active = false)}
     onclick={click}
@@ -55,7 +69,7 @@
   {#if active}
     <div
       class="content"
-      transition:fly={{ y: 10, duration: 50 }}
+      transition:fly={{ y: 10, duration: transition ? 50 : 0 }}
       bind:this={element}
       style:--offset="{offset}px"
     >
@@ -85,5 +99,9 @@
     border-bottom: 2px solid $color-text-alt;
     padding: 1.5rem;
     width: min(calc(100vw - 2rem), 23rem);
+  }
+
+  .inline {
+    display: inline;
   }
 </style>

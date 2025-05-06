@@ -353,7 +353,9 @@
   <div class="form-group">
     <p class="form-help" id="additional-notes">
       Explain your build in detail, going over playstyles, item order, possible deviations, and
-      whatever else you might think of.
+      whatever else you might think of.<br />
+      Markdown enabled. <strong>**bold**</strong>, <em>_italic_</em>, and more.<br />
+      Insert powers and items using &#123;&#123;Item Name&#125;&#125;.
     </p>
     <textarea
       class="form-textarea form-textarea--large"
