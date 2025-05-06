@@ -23,10 +23,6 @@
 {/each}
 
 <style lang="scss">
-  h1 {
-    margin-top: 0;
-  }
-
   h2 {
     margin-top: $vertical-offset-large;
   }
