@@ -89,9 +89,9 @@
       {/each}
 
       {#if additionalNotes}
-        <h2>Description</h2>
+        <h1 aria-level="2">Description</h1>
 
-        <div class="description">
+        <div class="description markdown">
           <!-- eslint-disable-next-line svelte/no-at-html-tags It's sanitized! -->
           {@html markdown(additionalNotes)}
         </div>
@@ -109,6 +109,10 @@
       color: $white;
       text-decoration: underline;
     }
+  }
+
+  h1 {
+    margin: $vertical-offset-large 0 calc($vertical-offset-large * 0.5);
   }
 
   h2 {

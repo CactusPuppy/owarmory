@@ -4,6 +4,7 @@ import DOMPurify from "isomorphic-dompurify";
 export function markdown(text: string): string {
   let parsed = snarkdown(text);
   parsed = updateLinkTargets(parsed);
+  parsed = updateHeadingAriaLevels(parsed);
 
   return DOMPurify.sanitize(parsed);
 }
@@ -16,4 +17,9 @@ function updateLinkTargets(text: string): string {
     /(<a href="(https?:)?\/\/.*?")>/g,
     '$1 target="_blank" rel="noreferrer noopener nofollow">',
   );
+}
+
+// Insert aria-level tags for h1 and h2 titles, retaining their styling, but making sure we control their importance.
+function updateHeadingAriaLevels(text: string): string {
+  return text.replace(/<h1>/g, '<h1 aria-level="3">').replace(/<h2>/g, '<h2 aria-level="3">');
 }
