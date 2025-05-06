@@ -2,13 +2,14 @@
   import type { Item as ItemType } from "$src/generated/prisma/client.js";
   import Item from "$src/lib/components/content/Item.svelte";
   import { getContext } from "svelte";
+  import { type TalentFilterFn } from "../+layout.svelte";
 
   const { data } = $props();
   const { items } = $derived(data);
 
-  const talentFilter: (talents: Item[]) => void = getContext("talentFilter");
+  const talentFilter = getContext("talentFilter") as TalentFilterFn<ItemType>;
 
-  const groups = $derived.by(() => talentFilter<ItemType[]>(items));
+  const groups = $derived.by(() => talentFilter(items));
 </script>
 
 {#each groups as [heroName, items] (heroName)}

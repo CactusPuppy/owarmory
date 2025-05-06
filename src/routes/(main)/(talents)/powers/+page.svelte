@@ -2,13 +2,14 @@
   import type { Power as PowerType } from "$src/generated/prisma/client.js";
   import Power from "$src/lib/components/content/Power.svelte";
   import { getContext } from "svelte";
+  import { type TalentFilterFn } from "../+layout.svelte";
 
   const { data } = $props();
   const { powers } = $derived(data);
 
-  const talentFilter: (talents: Power[]) => void = getContext("talentFilter");
+  const talentFilter = getContext("talentFilter") as TalentFilterFn<PowerType>;
 
-  const groups = $derived.by(() => talentFilter<PowerType[]>(powers));
+  const groups = $derived.by(() => talentFilter(powers));
 </script>
 
 {#each groups as [heroName, powers] (heroName)}

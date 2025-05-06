@@ -1,3 +1,7 @@
+<script module>
+  export type TalentFilterFn<T> = (talents: T[]) => [string | null, T[]][];
+</script>
+
 <script lang="ts">
   import { page } from "$app/state";
   import TalentsNavigation from "$lib/components/content/TalentsNavigation.svelte";
