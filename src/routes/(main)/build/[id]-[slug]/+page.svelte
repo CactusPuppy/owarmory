@@ -14,11 +14,10 @@
   import type { HeroName } from "$src/lib/types/hero";
   import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
-  import snarkdown from "snarkdown";
-  import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
   import type { User } from "@auth/sveltekit";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import { markdown } from "$src/lib/utils/markdown";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -94,7 +93,7 @@
 
         <div class="description">
           <!-- eslint-disable-next-line svelte/no-at-html-tags It's sanitized! -->
-          {@html DOMPurify.sanitize(snarkdown(additionalNotes))}
+          {@html markdown(additionalNotes)}
         </div>
       {/if}
     </section>
