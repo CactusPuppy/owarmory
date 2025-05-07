@@ -33,14 +33,11 @@
   }
 
   .footer {
+    margin-top: auto;
     padding: 1rem $gutter;
     background: rgba($color-bg-dark, 0.75);
     color: $color-text-alt;
     font-size: $font-size-small;
-
-    @include breakpoint(tablet) {
-      line-height: 1;
-    }
   }
 
   .content {
