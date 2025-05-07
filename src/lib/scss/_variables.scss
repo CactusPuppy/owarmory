@@ -41,6 +41,7 @@ $breakpoints: (
 $gutter: 1.5rem;
 $vertical-offset-large: clamp($gutter, 10vw, 7.5rem);
 $navigation-height: 5rem;
+$footer-height: 3rem;
 $item-size: #{px-to-rem(40)};
 $item-size-large: #{px-to-rem(80)};
 $power-size-large: 4rem;

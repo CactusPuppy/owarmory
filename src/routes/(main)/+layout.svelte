@@ -28,6 +28,7 @@
 
   main {
     max-width: calc(map.get($breakpoints, page-max-width) + ($gutter * 2));
+    min-height: calc(100vh - $navigation-height - $footer-height);
     padding: $vertical-offset-large $gutter;
     margin: 0 auto;
   }

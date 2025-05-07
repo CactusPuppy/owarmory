@@ -43,7 +43,7 @@
 
   nav {
     height: $navigation-height;
-    background: rgba($color-bg-dark, 0.5);
+    background: rgba($color-bg-dark, 0.75);
     mask-image: linear-gradient(
       to right,
       transparent,
