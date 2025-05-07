@@ -1,6 +1,10 @@
 @use "$lib/scss/_variables.scss" as *;
 
 .markdown {
+  :first-child {
+    margin-top: 0;
+  }
+
   h1,
   h2,
   h3,

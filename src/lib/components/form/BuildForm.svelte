@@ -20,6 +20,7 @@
   import type { z } from "zod";
   import { goto } from "$app/navigation";
   import { buildPath } from "$lib/utils/routes";
+  import MarkdownPreviewDescription from "./MarkdownPreviewDescription.svelte";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -357,12 +358,15 @@
       Markdown enabled. <strong>**bold**</strong>, <em>_italic_</em>, and more.<br />
       Insert powers and items using &#123;&#123;Item Name&#125;&#125;.
     </p>
-    <textarea
-      class="form-textarea form-textarea--large"
-      bind:value={build.additionalNotes}
-      name="additional-notes"
-      aria-describedby="additional-notes"
-    ></textarea>
+
+    <MarkdownPreviewDescription value={build.additionalNotes}>
+      <textarea
+        class="form-textarea form-textarea--large"
+        bind:value={build.additionalNotes}
+        name="additional-notes"
+        aria-describedby="additional-notes"
+      ></textarea>
+    </MarkdownPreviewDescription>
   </div>
 
   <button class="button button--large save" disabled={saving}>
