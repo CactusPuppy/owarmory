@@ -54,9 +54,6 @@
   const validations: Record<string, boolean> = $state({});
   const containsErrors = $derived(!Object.values(validations).every(Boolean));
 
-  const validations: Record<string, boolean> = $state({});
-  const containsErrors = $derived(!Object.values(validations).every(Boolean));
-
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
   const availableItems = $derived(
