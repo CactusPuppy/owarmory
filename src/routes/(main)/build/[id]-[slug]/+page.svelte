@@ -18,7 +18,6 @@
   import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
   import { toSimpleDate } from "$src/lib/utils/datetime";
-  import type { User } from "@auth/sveltekit";
   import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
   import type { User } from "$src/generated/prisma";
