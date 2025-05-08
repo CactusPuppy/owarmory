@@ -1,4 +1,9 @@
-import type { BuildData, FlatFullRoundInfoSection, FullItem, FullStadiumBuild } from "$lib/types/build";
+import type {
+  BuildData,
+  FlatFullRoundInfoSection,
+  FullItem,
+  FullStadiumBuild,
+} from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
 import type { Power } from "$src/generated/prisma";
 import type { z } from "zod";
@@ -90,14 +95,14 @@ export function ZodIssuePathInBuildToHumanString(path: z.ZodIssue["path"]): stri
 }
 
 export function filterUniqueBuilds(builds: FullStadiumBuild[]): FullStadiumBuild[] {
-  const uniqueIds: string[] = [];
+  const uniqueIds: Set<string> = new Set();
   const filteredBuilds = [];
 
   for (let i = 0; i < builds.length; i++) {
     const build = builds[i];
-    if (uniqueIds.includes(build.id)) continue;
+    if (uniqueIds.has(build.id)) continue;
 
-    uniqueIds.push(build.id);
+    uniqueIds.add(build.id);
     filteredBuilds.push(build);
   }
 
