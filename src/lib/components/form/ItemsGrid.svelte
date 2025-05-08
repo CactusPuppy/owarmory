@@ -9,6 +9,7 @@
     currentlyPurchasing: ItemType[];
     currentlySelling: ItemType[];
     previouslySelected: ItemType[];
+    filtered: ItemType[];
     onclick: (item: ItemType) => void;
   }
   const {
@@ -16,6 +17,7 @@
     currentlyPurchasing = [],
     currentlySelling = [],
     previouslySelected = [],
+    filtered = [],
     onclick = () => null,
   }: Props = $props();
 
@@ -28,7 +30,12 @@
     }
 
     // Sort by cost
-    return a.cost - b.cost;
+    if (a.cost !== b.cost) {
+      return a.cost - b.cost;
+    }
+
+    // Lastly, sort by name
+    return a.name.localeCompare(b.name);
   }
 </script>
 
@@ -44,8 +51,9 @@
           {@const owned = previouslySelected.some((i) => i.id === item.id)}
           {@const buying = currentlyPurchasing.some((i) => i.id === item.id)}
           {@const selling = currentlySelling.some((i) => i.id == item.id)}
+          {@const faded = !filtered.some((i) => i.id == item.id)}
 
-          <div class="cell" class:active={buying || selling} class:owned>
+          <div class="cell" class:active={buying || selling} class:owned class:faded>
             <div class="item">
               <Item {item} {onclick} large />
             </div>
@@ -143,6 +151,12 @@
         outline: 2px solid $primary;
       }
     }
+
+    .faded & {
+      :global(.item) {
+        opacity: 0.25;
+      }
+    }
   }
 
   .cost {
@@ -159,6 +173,10 @@
 
     .active & {
       color: $primary;
+    }
+
+    .faded & {
+      opacity: 0.25;
     }
   }
 

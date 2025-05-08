@@ -9,20 +9,25 @@
   import { heroFromHeroName } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
-  import { getBuildCostForRound } from "$lib/utils/build";
-  import { setContext } from "svelte";
+  import { getBuildCostForRound, getBuildItemsForRound } from "$lib/utils/build";
+  import { getContext, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
   import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
+  import { toSimpleDate } from "$src/lib/utils/datetime";
+  import { cleanName } from "$src/lib/utils/user";
+  import { buildEditPath } from "$src/lib/utils/routes";
+  import type { User } from "$src/generated/prisma";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
   setContext("currentRound", currentRound);
 
   const build = getBuildContext();
+  const currentUser: User = getContext("currentUser");
 
   const {
     buildTitle: title,
@@ -31,6 +36,7 @@
     author,
     roundInfos,
     additionalNotes,
+    updatedAt,
   } = $derived(build as FullStadiumBuild);
 
   const hero = $derived(heroFromHeroName(heroName as HeroName));
@@ -38,6 +44,9 @@
 
 <svelte:head>
   <title>{title} | {hero.name} | OW Armory</title>
+  <meta property="og:title" content="{title} | {hero.name} | OW Armory" />
+  <meta property="og:description" content={description} />
+  <meta name="description" content={description} />
 </svelte:head>
 
 <article itemscope itemtype="https://schema.org/Article">
@@ -48,7 +57,13 @@
       <h1 class="title">{title}</h1>
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
-      <a class="author" href="/user/{author.name}" itemprop="author">{author.name}</a>
+      <a class="author" href="/user/{author.name}" itemprop="author">{cleanName(author.name!)}</a>
+
+      <span class="divider">•</span>
+
+      <time class="datetime" itemprop="dateModified" datetime={updatedAt.toString()}>
+        Last updated on {toSimpleDate(updatedAt.toString())}
+      </time>
     </div>
   </header>
 
@@ -56,18 +71,25 @@
 
   <div class="layout">
     <aside class="sidebar block">
+      {#if currentUser.id === (build as FullStadiumBuild).authorId}
+        <a class="button button--full-width edit" href={buildEditPath(build as FullStadiumBuild)}>
+          Edit this build
+        </a>
+      {/if}
+
       <RoundSelector />
 
       <CompoundedBuild {build} />
 
       <h2 class="build-cost">
-        Build cost:<br />
-        <CurrencyIcon scale={1.5} />
+        Build Cost: <br />
+
+        <CurrencyIcon scale={1.35} />
         {getBuildCostForRound(build, currentRound.value).toLocaleString()}
       </h2>
 
       <DashedHeader text="Stats" />
-      <ItemStatistics items={[]} {hero} />
+      <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {hero} />
     </aside>
 
     <section class="article block">
@@ -90,21 +112,13 @@
 </article>
 
 <style lang="scss">
-  a {
+  a:not(.button) {
     color: $secondary;
     text-decoration: none;
 
     &:hover {
       color: $white;
       text-decoration: underline;
-    }
-  }
-
-  h2 {
-    margin: $vertical-offset-large 0 1rem;
-
-    @include breakpoint(tablet) {
-      margin-bottom: 2rem;
     }
   }
 
@@ -125,6 +139,17 @@
     @include breakpoint(tablet) {
       margin: -0.5rem 0;
     }
+  }
+
+  .divider {
+    opacity: 0.5;
+    color: $color-text-alt;
+  }
+
+  .datetime {
+    color: $color-text-alt;
+    font-size: $font-size-small;
+    font-style: italic;
   }
 
   .introduction {
@@ -151,12 +176,16 @@
     @include breakpoint(tablet) {
       display: grid;
       grid-template-columns: 23rem auto;
-      gap: 4rem;
+      gap: clamp(1rem, 4vw, 4rem);
     }
   }
 
   .sidebar {
     min-height: 20rem;
+  }
+
+  .edit {
+    margin-bottom: 2rem;
   }
 
   .build-cost {
@@ -165,7 +194,7 @@
     text-align: center;
 
     @include breakpoint(tablet) {
-      margin: 4rem 0;
+      margin: 3rem 0;
     }
   }
 </style>

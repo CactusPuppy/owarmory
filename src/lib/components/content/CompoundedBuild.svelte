@@ -24,13 +24,15 @@
 
 <div class="grid">
   {#each powers as power (power.id)}
-    <div in:scale={{ duration: 50, start: 0.75 }}>
+    <div class="cell" in:scale={{ duration: 50, start: 0.75 }}>
       <Power {power} large />
     </div>
   {/each}
 
   {#each { length: 4 - powers.length }}
-    <div class="empty"></div>
+    <div class="cell">
+      <div class="empty"></div>
+    </div>
   {/each}
 </div>
 
@@ -38,25 +40,42 @@
 
 <div class="grid items">
   {#each items as item (item.id)}
-    <div in:scale={{ duration: 50, start: 0.75 }}>
+    <div class="cell" in:scale={{ duration: 50, start: 0.75 }}>
       <Item {item} large />
     </div>
   {/each}
 
   {#each { length: 6 - items.length }}
-    <div class="empty item"></div>
+    <div class="cell">
+      <div class="empty item"></div>
+    </div>
   {/each}
 </div>
 
 <style lang="scss">
   .grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    gap: 1rem 0;
+
+    @include breakpoint(tablet) {
+      gap: 1rem;
+    }
 
     &.items {
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      @include breakpoint(tablet) {
+        gap: 2rem;
+      }
     }
+  }
+
+  .cell {
+    display: flex;
+    justify-content: center;
   }
 
   .empty {

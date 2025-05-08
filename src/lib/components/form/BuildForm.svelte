@@ -49,6 +49,7 @@
   let heroName: HeroName | null = $state(build.heroName as HeroName);
   let issues: string[] = $state([]);
   let saving = $state(false);
+  let query = $state("");
 
   const validations: Record<string, boolean> = $state({});
   const containsErrors = $derived(!Object.values(validations).every(Boolean));
@@ -63,6 +64,9 @@
   const availablePowers = $derived(
     availableTalents.powers.filter((power) => power.heroName == heroName),
   );
+
+  const filteredItems = $derived(availableItems.filter(filterTalents));
+  const filteredPowers = $derived(availablePowers.filter(filterTalents));
 
   const futureRounds: FlatFullRoundInfo[] = $derived(
     build.roundInfos!.slice(currentRoundIndex + 1, ROUND_MAX),
@@ -221,6 +225,12 @@
       saving = false;
     }
   }
+
+  function filterTalents(talent: Item[] | Power[]): boolean {
+    // Filter on the full object by stringifying it. Bit ugly, but that makes it easy to filter by name,
+    // description, and stat names all at once.
+    return JSON.stringify(talent).toLowerCase().includes(query.toLowerCase());
+  }
 </script>
 
 {#if issues.length}
@@ -318,12 +328,22 @@
       {/if}
     </div>
 
+    <div class="inset">
+      <input
+        type="text"
+        class="form-input"
+        placeholder="Search powers and items..."
+        bind:value={query}
+      />
+    </div>
+
     <div class="tabs-content dark inset">
       {#if currentTalentTypeTab === powerTalentType}
         <PowersGrid
           {availablePowers}
           currentlySelected={currentRoundSection.power}
           previouslySelected={powersFromPreviousRounds}
+          filtered={filteredPowers}
           onclick={selectPower}
         />
       {:else}
@@ -333,6 +353,7 @@
           currentlyPurchasing={currentRoundSection.purchasedItems}
           currentlySelling={currentRoundSection.soldItems}
           previouslySelected={itemsFromPreviousRounds}
+          filtered={filteredItems}
         />
       {/if}
     </div>
@@ -443,6 +464,10 @@
 
   .inset {
     padding: 1.5rem;
+
+    + .inset {
+      padding-top: 0;
+    }
   }
 
   .order {
