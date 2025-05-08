@@ -1,5 +1,11 @@
-import { describe, it, expect } from "vitest";
-import { ZodIssuePathInBuildToHumanString } from "./build";
+import { describe, it, expect, beforeAll } from "vitest";
+import { filterUniqueBuilds, ZodIssuePathInBuildToHumanString } from "./build";
+import { FullStadiumBuildInclude, type FullStadiumBuild } from "../types/build";
+import { faker } from "@faker-js/faker";
+import { createRandomBuild } from "./faker/build";
+import { heroes } from "../constants/heroData";
+import { prisma } from "$src/database/testPrismaClient.server";
+import { createRandomUser } from "./faker/user";
 
 describe("ZodIssuePathInBuildToHumanString", () => {
   it("Returns the first element with just one item", () => {
@@ -36,5 +42,62 @@ describe("ZodIssuePathInBuildToHumanString", () => {
     expect(ZodIssuePathInBuildToHumanString(["roundInfos", 4, "sections", 1, "power", "id"])).toBe(
       "Round 5: Section 2: Power: Id",
     );
+  });
+});
+
+describe("filterUniqueBuilds", () => {
+  beforeAll(async () => {
+    prisma.$transaction(async (tx) => {
+      const items = await tx.item.findMany();
+      const powers = await tx.power.findMany();
+      const SEED_USER_COUNT = 5;
+      console.log(`Creating ${SEED_USER_COUNT} fake users...`);
+      const users = await tx.user.createManyAndReturn({
+        data: Array(SEED_USER_COUNT)
+          .fill(0)
+          .map((_) => createRandomUser()),
+      });
+
+      const SEED_BUILD_COUNT = 64;
+      console.log(`Creating ${SEED_BUILD_COUNT} fake builds...`);
+      await Promise.all(
+        Array(SEED_BUILD_COUNT)
+          .fill(0)
+          .map((_) =>
+            tx.stadiumBuild.create({
+              data: createRandomBuild(
+                faker.helpers.arrayElement(users),
+                faker.helpers.arrayElement(heroes),
+                {
+                  items,
+                  powers,
+                },
+              ),
+            }),
+          ),
+      );
+    });
+  });
+
+  it("Returns an empty array when given an empty array", () => {
+    expect(filterUniqueBuilds([])).toEqual([]);
+  });
+
+  it("Returns the same array when all builds have unique IDs", async () => {
+    const builds = await prisma.stadiumBuild.findMany({ include: FullStadiumBuildInclude });
+    expect(filterUniqueBuilds(builds)).toEqual(builds);
+  });
+
+  it("Filters out builds with duplicate IDs", async () => {
+    let builds = await prisma.stadiumBuild.findMany({ include: FullStadiumBuildInclude });
+    builds = builds.reduce((acc, next) => {
+      if (faker.number.float() < 0.1) {
+        acc.push(next);
+      }
+      acc.push(next);
+      return acc;
+    }, [] as FullStadiumBuild[]);
+    const expected = new Set(builds.map((build) => build.id));
+    expect(filterUniqueBuilds(builds).map((build) => build.id)).toEqual(Array.from(expected));
   });
 });
