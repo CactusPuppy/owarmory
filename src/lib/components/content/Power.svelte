@@ -69,12 +69,16 @@
       height: $power-size-large;
       border-radius: $border-radius;
     }
+  }
 
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: $border-radius-small;
-      border: 1px solid $color-bg-base;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: $border-radius-small;
+    border: 2px solid $color-bg-base;
+
+    .large & {
+      border-radius: $border-radius;
     }
   }
 </style>

@@ -23,8 +23,21 @@
       .sort((a, b) => a.orderIndex - b.orderIndex) ?? [],
   );
 
+  function parseDescription(text: string): string {
+    let output = wrapBracketsWithMark(text);
+    output = wrapNumbersWithMark(output);
+
+    return output;
+  }
+
+  /** Replace [word] with <mark>[word]</mark> */
   function wrapBracketsWithMark(text: string): string {
     return text.replace(/\[[^\]]+\]/g, (match) => `<mark>${match}</mark>`);
+  }
+
+  /** Replace 10, 10%, 10s, and 10m with <mark>{match}<mark> */
+  function wrapNumbersWithMark(text: string): string {
+    return text.replace(/\d+(?:\.\d+)?(?:%|s|m)?/g, "<mark>$&</mark>");
   }
 </script>
 
@@ -39,7 +52,7 @@
 
   {#if description}
     <!-- eslint-disable-next-line svelte/no-at-html-tags This should be safe, right? The input is determined by us. -->
-    <p class="description">{@html wrapBracketsWithMark(description)}</p>
+    <p class="description">{@html parseDescription(description)}</p>
   {/if}
 
   {#if postDescriptionMods.length}
@@ -57,6 +70,8 @@
 </div>
 
 <style lang="scss">
+  @use "sass:color";
+
   .detail {
     display: flex;
     flex-direction: column;
