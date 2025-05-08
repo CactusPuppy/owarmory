@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Item as ItemType } from "$src/generated/prisma/client.js";
+  import type { FullItem as ItemType } from "$src/lib/types/build.js";
   import Item from "$src/lib/components/content/Item.svelte";
 
   const { data } = $props();
