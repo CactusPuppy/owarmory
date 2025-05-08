@@ -9,7 +9,7 @@
   import { heroFromHeroName } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
-  import { getBuildCostForRound } from "$lib/utils/build";
+  import { getBuildCostForRound, getBuildItemsForRound } from "$lib/utils/build";
   import { getContext, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
   import { getBuildContext } from "$src/lib/contexts/buildContext";
@@ -17,8 +17,9 @@
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
-  import type { User } from "@auth/sveltekit";
+  import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import type { User } from "$src/generated/prisma";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -54,7 +55,7 @@
       <h1 class="title">{title}</h1>
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
-      <a class="author" href="/user/{author.name}" itemprop="author">{author.name}</a>
+      <a class="author" href="/user/{author.name}" itemprop="author">{cleanName(author.name!)}</a>
     </div>
   </header>
 
@@ -79,7 +80,7 @@
       </h2>
 
       <DashedHeader text="Stats" />
-      <ItemStatistics items={[]} {hero} />
+      <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {hero} />
     </aside>
 
     <section class="article block">
