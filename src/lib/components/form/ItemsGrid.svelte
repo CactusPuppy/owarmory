@@ -30,7 +30,12 @@
     }
 
     // Sort by cost
-    return a.cost - b.cost;
+    if (a.cost !== b.cost) {
+      return a.cost - b.cost;
+    }
+
+    // Lastly, sort by name
+    return a.name.localeCompare(b.name);
   }
 </script>
 
