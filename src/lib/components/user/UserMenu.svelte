@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { User } from "$src/generated/prisma";
+  import { cleanName } from "$src/lib/utils/user";
   import { getContext } from "svelte";
   import iconUser from "$lib/images/icons/user.svg";
 
@@ -8,7 +9,7 @@
 
 <div class="user">
   <span class="user__desktop">
-    Signed in as <a href="/account">{currentUser.name}</a>
+    Signed in as <a href="/account">{cleanName(currentUser.name!)}</a>
   </span>
 
   <a href="/account" class="user__mobile">
