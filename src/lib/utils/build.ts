@@ -1,4 +1,4 @@
-import type { BuildData, FlatFullRoundInfoSection, FullItem } from "$lib/types/build";
+import type { BuildData, FlatFullRoundInfoSection, StatTotal, FullItem } from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
 import type { Power } from "$src/generated/prisma";
 import type { z } from "zod";
@@ -58,6 +58,27 @@ export function isItemPreviouslyOwned(items: FullItem[], item: FullItem) {
   if (!numberOfTimesInteractedWithItem) return false;
 
   return numberOfTimesInteractedWithItem % 2 !== 0;
+}
+
+export function getAllItemStatModifiers(items: FullItem[]): Record<string, StatTotal> {
+  const statTotals: Record<string, StatTotal> = {};
+
+  for (const item of items) {
+    for (const statMod of item.statMods) {
+      const { isPercentage } = statMod;
+      const { id, name } = statMod.stat;
+      const amount = statMod.amount;
+
+      if (!(name in statTotals)) {
+        statTotals[name] = { id, isPercentage, totalAmount: 0 };
+      }
+
+      const summary = statTotals[name];
+      summary.totalAmount += amount;
+    }
+  }
+
+  return statTotals;
 }
 
 export const BuildErrorMap: z.ZodErrorMap = (issue, ctx) => {
