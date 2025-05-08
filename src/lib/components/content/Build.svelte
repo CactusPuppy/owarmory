@@ -11,6 +11,7 @@
   import Hero from "./Hero.svelte";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
+  import { cleanName } from "$src/lib/utils/user";
 
   const { build }: { build: FullStadiumBuild } = $props();
 
@@ -47,7 +48,7 @@
     <a {href} class="name">{build.buildTitle}</a>
 
     <div class="author">
-      By <a href="/user/username">user</a>
+      By <a href="/user/username">{cleanName(build.author.name!)}</a>
     </div>
   </div>
 
