@@ -20,6 +20,7 @@
   import type { z } from "zod";
   import { goto } from "$app/navigation";
   import { buildPath } from "$lib/utils/routes";
+  import { validateLength } from "$src/lib/actions/validateLength";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -49,6 +50,9 @@
   let issues: string[] = $state([]);
   let saving = $state(false);
   let query = $state("");
+
+  const validations: Record<string, boolean> = $state({});
+  const containsErrors = $derived(!Object.values(validations).every(Boolean));
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
@@ -254,9 +258,11 @@
     <input
       type="text"
       class="form-input form-input--large"
-      bind:value={build.buildTitle}
+      class:form-input--error={validations.title}
       name="title"
       id="title"
+      bind:value={build.buildTitle}
+      use:validateLength={{ min: 10, max: 70, oninput: (isValid) => (validations.title = isValid) }}
     />
   </div>
 
@@ -268,9 +274,15 @@
     </p>
     <textarea
       class="form-textarea"
-      bind:value={build.description}
+      class:form-textarea--error={validations.description}
       name="description"
       aria-describedby="description"
+      bind:value={build.description}
+      use:validateLength={{
+        min: 20,
+        max: 300,
+        oninput: (isValid) => (validations.description = isValid),
+      }}
     ></textarea>
   </div>
 
@@ -354,9 +366,14 @@
       </p>
       <textarea
         class="form-textarea"
-        bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
         name="round-notes"
         aria-describedby="round-notes"
+        bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
+        use:validateLength={{
+          min: 0,
+          max: 500,
+          oninput: (isValid) => (validations[`note-${currentRound}`] = isValid),
+        }}
       ></textarea>
     </div>
   </div>
@@ -378,13 +395,18 @@
     </p>
     <textarea
       class="form-textarea form-textarea--large"
-      bind:value={build.additionalNotes}
       name="additional-notes"
       aria-describedby="additional-notes"
+      bind:value={build.additionalNotes}
+      use:validateLength={{
+        min: 0,
+        max: 10000,
+        oninput: (isValid) => (validations.additionalNotes = isValid),
+      }}
     ></textarea>
   </div>
 
-  <button class="button button--large save" disabled={saving}>
+  <button class="button button--large save" disabled={saving || containsErrors}>
     {#if saving}
       Saving...
     {:else}
