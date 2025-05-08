@@ -102,6 +102,12 @@ export type FlatFullStadiumBuild = Omit<
 
 export type BuildData = FullStadiumBuild | FlatFullStadiumBuild;
 
+export type StatTotal = {
+  id: number;
+  isPercentage: boolean;
+  totalAmount: number;
+};
+
 export const HeroNameSchema = z.enum(HeroNames, { message: "Invalid hero name provided" });
 
 export const ItemSchema = z.object({
