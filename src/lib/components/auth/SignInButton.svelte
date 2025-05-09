@@ -17,19 +17,26 @@
     <!-- The wrapper already is a button, we can't have a button in a button -->
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div
-      class="button"
-      class:button--secondary={secondary}
-      class:disabled={loading}
-      onclick={() => (loading = true)}
-    >
-      {#if loading}
-        Signing in...
-      {:else if children}
-        {@render children()}
-      {:else}
-        Sign in with Battle.net
-      {/if}
+    <div class="wrapper" onclick={() => (loading = true)}>
+      <div class="button" class:button--secondary={secondary} class:disabled={loading}>
+        {#if loading}
+          Signing in...
+        {:else if children}
+          {@render children()}
+        {:else}
+          Sign in <span class="desktop">with Battle.net</span>
+        {/if}
+      </div>
     </div>
   {/snippet}
 </SignIn>
+
+<style lang="scss">
+  .desktop {
+    display: none;
+
+    @include breakpoint(tablet) {
+      display: inline;
+    }
+  }
+</style>
