@@ -38,10 +38,11 @@ export async function POST({ locals, request }) {
   try {
     newBuild = await prisma.stadiumBuild.create({
       data: {
-        buildTitle: validatedBuild.buildTitle,
+        ...validatedBuild,
         authorId: currentUser.id,
-        heroName: validatedBuild.heroName,
-        additionalNotes: validatedBuild.additionalNotes,
+        tags: {
+          connect: validatedBuild.tags.map((tagId) => ({ id: Number(tagId) })),
+        },
         roundInfos: {
           create: validatedBuild.roundInfos.map(
             (roundInfo, i): Prisma.RoundInfoCreateWithoutParentBuildInput => ({

@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { FullStadiumBuild } from "$src/lib/types/build";
+  import { filterUniqueBuilds } from "$src/lib/utils/build";
   import Build from "./Build.svelte";
   import RoundSelector from "./RoundSelector.svelte";
 
@@ -20,7 +21,7 @@
 </header>
 
 <div class="block list">
-  {#each builds as build (build.id)}
+  {#each filterUniqueBuilds(builds) as build (build.id)}
     <Build {build} />
   {:else}
     <center>

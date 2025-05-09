@@ -4,7 +4,7 @@
 
   const { data }: { data: PageData } = $props();
 
-  const { build, availableTalents } = $derived(data);
+  const { build, availableTalents, tags } = $derived(data);
 </script>
 
 <svelte:head>
@@ -13,4 +13,4 @@
 
 <h1 class="title">Edit "{build.buildTitle}"</h1>
 
-<BuildForm {availableTalents} {build} method="PATCH" heroEditable={false} />
+<BuildForm {availableTalents} {tags} {build} method="PATCH" heroEditable={false} />
