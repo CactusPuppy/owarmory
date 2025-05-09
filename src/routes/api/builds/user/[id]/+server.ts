@@ -1,6 +1,7 @@
 import { prisma } from "$src/database/prismaClient.server.js";
 import { BUILDS_PAGE_SIZE } from "$lib/constants/page";
 import { headers } from "$src/lib/constants/api";
+import { FullStadiumBuildInclude } from "$src/lib/types/build.js";
 
 export async function GET({ url, params }) {
   const { id } = params;
@@ -16,6 +17,7 @@ export async function GET({ url, params }) {
     orderBy: {
       createdAt: "desc",
     },
+    include: FullStadiumBuildInclude,
     skip: page * PAGE_SIZE,
     take: PAGE_SIZE,
   });

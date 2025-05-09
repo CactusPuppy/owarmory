@@ -35,7 +35,7 @@
       <div class="sold-overlay">Sell</div>
     {/if}
 
-    <SharedDetail {description} {cost} />
+    <SharedDetail {description} {cost} {statMods} />
   </Card>
 {:else}
   <Popover onclick={() => onclick(item)}>
