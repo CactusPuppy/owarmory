@@ -32,6 +32,7 @@
     width: 0;
     background: $primary;
     z-index: 10;
+    animation: none;
 
     &::after {
       content: "";
@@ -59,8 +60,22 @@
     }
   }
 
+  @keyframes fake-load {
+    0% {
+      width: 0%;
+    }
+
+    1% {
+      width: 20%;
+    }
+
+    100% {
+      width: 80%;
+    }
+  }
+
   .navigating {
-    width: 20%;
+    animation: fake-load 20000ms linear;
   }
 
   .done {
