@@ -13,14 +13,16 @@
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
-  import { slide } from "svelte/transition";
   import { getBuildItemsForRound, getBuildPowersForRound } from "$src/lib/utils/build";
   import type { AvailableTalents } from "$src/lib/types/talent";
   import type { SlashPrefixedString } from "$src/lib/types/path";
   import type { z } from "zod";
   import { goto } from "$app/navigation";
   import { buildPath } from "$lib/utils/routes";
-  import { validateLength } from "$src/lib/actions/validateLength";
+  import Textarea from "./Textarea.svelte";
+  import Issues from "./Issues.svelte";
+  import TextInput from "./TextInput.svelte";
+  import { slide } from "svelte/transition";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -251,13 +253,8 @@
 </script>
 
 {#if issues.length}
-  <div class="form-error" in:slide={{ duration: 300 }}>
-    <strong>Error(s) when saving</strong>
-    <ul>
-      {#each issues as issue, i (i)}
-        <li>{issue.toString()}</li>
-      {/each}
-    </ul>
+  <div class="issues">
+    <Issues {issues} />
   </div>
 {/if}
 
@@ -270,38 +267,27 @@
     <Hero hero={selectedHero} large />
   {/if}
 
-  <div class="form-group">
-    <label class="form-label" for="title">Build title</label>
-    <input
-      type="text"
-      class="form-input form-input--large"
-      class:form-input--error={validations.title}
-      name="title"
-      id="title"
-      bind:value={build.buildTitle}
-      use:validateLength={{ min: 10, max: 70, oninput: (isValid) => (validations.title = isValid) }}
-    />
-  </div>
+  <TextInput
+    label="Build title"
+    id="title"
+    large
+    bind:value={build.buildTitle}
+    lengthValidation={{ min: 10, max: 70, oninput: (isValid) => (validations.title = isValid) }}
+  />
 
-  <div class="form-group">
-    <label class="form-label" for="description">Short description</label>
-    <p class="form-help" id="description">
-      A short introduction to your builds, quickly summarizing the main playstyle and intention. You
-      can provide a more detailed description later.
-    </p>
-    <textarea
-      class="form-textarea"
-      class:form-textarea--error={validations.description}
-      name="description"
-      aria-describedby="description"
-      bind:value={build.description}
-      use:validateLength={{
-        min: 20,
-        max: 300,
-        oninput: (isValid) => (validations.description = isValid),
-      }}
-    ></textarea>
-  </div>
+  <Textarea
+    label="Short description"
+    id="description"
+    bind:value={build.description}
+    lengthValidation={{
+      min: 20,
+      max: 300,
+      oninput: (isValid) => (validations.description = isValid),
+    }}
+  >
+    A short introduction to your builds, quickly summarizing the main playstyle and intention. You
+    can provide a more detailed description later.
+  </Textarea>
 
   <h2>Powers & Items</h2>
 
@@ -381,23 +367,20 @@
       {/if}
     </div>
 
-    <div class="form-group inset">
-      <label class="form-label" for="round-notes">Round notes</label>
-      <p class="form-help" id="round-notes">
-        Provide an optional short description on the current round, explaining options,
-        expectations, and possible play styles.
-      </p>
-      <textarea
-        class="form-textarea"
-        name="round-notes"
-        aria-describedby="round-notes"
+    <div class="inset">
+      <Textarea
+        label="Round notes"
+        id="round-notes"
         bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
-        use:validateLength={{
+        lengthValidation={{
           min: 0,
           max: 500,
           oninput: (isValid) => (validations[`note-${currentRound}`] = isValid),
         }}
-      ></textarea>
+      >
+        Provide an optional short description on the current round, explaining options,
+        expectations, and possible play styles.
+      </Textarea>
     </div>
   </div>
 
@@ -417,23 +400,19 @@
 
   <h2>Description</h2>
 
-  <div class="form-group">
-    <p class="form-help" id="additional-notes">
-      Explain your build in detail, going over playstyles, item order, possible deviations, and
-      whatever else you might think of.
-    </p>
-    <textarea
-      class="form-textarea form-textarea--large"
-      name="additional-notes"
-      aria-describedby="additional-notes"
-      bind:value={build.additionalNotes}
-      use:validateLength={{
-        min: 0,
-        max: 10000,
-        oninput: (isValid) => (validations.additionalNotes = isValid),
-      }}
-    ></textarea>
-  </div>
+  <Textarea
+    label="Round notes"
+    id="additional-notes"
+    bind:value={build.additionalNotes}
+    lengthValidation={{
+      min: 0,
+      max: 10000,
+      oninput: (isValid) => (validations.additionalNotes = isValid),
+    }}
+  >
+    Explain your build in detail, going over playstyles, item order, possible deviations, and
+    whatever else you might think of.
+  </Textarea>
 
   <div class="form-group">
     <label class="form-label" for="tags">Tags</label>
@@ -526,7 +505,7 @@
     margin-top: 3rem;
   }
 
-  .form-error {
+  .issues {
     margin-bottom: 3rem;
   }
 </style>

@@ -1,15 +1,14 @@
 import type { Action } from "svelte/action";
 
-export const validateLength: Action<
-  Node,
-  {
-    min?: number;
-    max?: number;
-    onvalid?: () => void;
-    oninvalid?: () => void;
-    oninput?: (isValid: boolean) => void;
-  }
-> = (
+export type ValidateLengthProps = {
+  min?: number;
+  max?: number;
+  onvalid?: () => void;
+  oninvalid?: () => void;
+  oninput?: (isValid: boolean) => void;
+};
+
+export const validateLength: Action<Node, ValidateLengthProps> = (
   node,
   { min = 0, max = 10, onvalid = () => null, oninvalid = () => null, oninput = () => null } = {},
 ) => {

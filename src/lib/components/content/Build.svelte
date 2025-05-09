@@ -48,7 +48,9 @@
     <a {href} class="name">{build.buildTitle}</a>
 
     <div class="author">
-      By <a href="/user/username">{cleanName(build.author.name!)}</a>
+      By <a href={`/user/${encodeURIComponent(build.author.name!)}`}
+        >{cleanName(build.author.name!)}</a
+      >
     </div>
   </div>
 
