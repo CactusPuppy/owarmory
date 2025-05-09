@@ -18,6 +18,7 @@
   import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
   import { markdown } from "$src/lib/utils/markdown";
+  import TalentRichPreviews from "$src/lib/components/content/TalentRichPreviews.svelte";
   import Heroes from "$src/lib/components/content/Heroes.svelte";
   import BuildsList from "$src/lib/components/content/BuildsList.svelte";
   import { api } from "$src/lib/utils/api";
@@ -129,8 +130,7 @@
         <h1 aria-level="2">Description</h1>
 
         <div class="description markdown">
-          <!-- eslint-disable-next-line svelte/no-at-html-tags It's sanitized! -->
-          {@html markdown(additionalNotes)}
+          <TalentRichPreviews text={markdown(additionalNotes)} sanitized />
         </div>
       {/if}
     </section>
