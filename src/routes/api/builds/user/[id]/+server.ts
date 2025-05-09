@@ -1,5 +1,5 @@
 import { prisma } from "$src/database/prismaClient.server.js";
-import { BUILDS_PAGE_SIZE } from "$src/lib/types/page.js";
+import { BUILDS_PAGE_SIZE } from "$lib/constants/page";
 import { headers } from "$src/lib/constants/api";
 import { FullStadiumBuildInclude } from "$src/lib/types/build.js";
 

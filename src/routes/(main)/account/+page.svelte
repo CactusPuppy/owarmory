@@ -8,7 +8,7 @@
   import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$src/lib/utils/api";
   import { SignOut } from "@auth/sveltekit/components";
-  import { BUILDS_PAGE_SIZE } from "$src/lib/types/page";
+  import { BUILDS_PAGE_SIZE } from "$lib/constants/page";
   import type { PageableBuildsSnapshot } from "$src/lib/types/snapshot";
 
   const { data } = $props();
