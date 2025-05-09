@@ -27,6 +27,7 @@
   @use "sass:map";
 
   main {
+    width: 100%;
     max-width: calc(map.get($breakpoints, page-max-width) + ($gutter * 2));
     padding: $vertical-offset-large $gutter;
     margin: 0 auto;
