@@ -87,6 +87,7 @@ model StadiumBuild {
   roundInfos      RoundInfo[]
   additionalNotes String?
   hero            Hero        @relation(fields: [heroName], references: [name])
+  tags            Tag[]       @relation("BuildTags")
 
   authorId String
   heroName String
@@ -167,4 +168,11 @@ model StatMod {
 
   Item   Item[]
   statId Int
+}
+
+model Tag {
+  id     Int    @id @default(autoincrement())
+  label  String @unique
+
+  builds StadiumBuild[] @relation("BuildTags")
 }

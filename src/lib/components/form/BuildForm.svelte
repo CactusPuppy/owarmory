@@ -9,7 +9,7 @@
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
   import type { FullItem as Item } from "$lib/types/build";
-  import type { Power, StadiumBuild } from "$src/generated/prisma";
+  import type { Power, StadiumBuild, Tag } from "$src/generated/prisma";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
@@ -22,9 +22,11 @@
   import Textarea from "./Textarea.svelte";
   import Issues from "./Issues.svelte";
   import TextInput from "./TextInput.svelte";
+  import { slide } from "svelte/transition";
 
   interface Props {
     availableTalents: AvailableTalents;
+    tags: Tag[];
     build: FlatFullStadiumBuild;
     method: "POST" | "PATCH";
     path?: SlashPrefixedString;
@@ -33,6 +35,7 @@
 
   let {
     availableTalents,
+    tags,
     build = $bindable(),
     method,
     path = "/build/form",
@@ -50,6 +53,10 @@
   let heroName: HeroName | null = $state(build.heroName as HeroName);
   let issues: string[] = $state([]);
   let saving = $state(false);
+  let query = $state("");
+
+  const validations: Record<string, boolean> = $state({});
+  const containsErrors = $derived(!Object.values(validations).every(Boolean));
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
@@ -61,6 +68,9 @@
   const availablePowers = $derived(
     availableTalents.powers.filter((power) => power.heroName == heroName),
   );
+
+  const filteredItems = $derived(availableItems.filter(filterTalents));
+  const filteredPowers = $derived(availablePowers.filter(filterTalents));
 
   const futureRounds: FlatFullRoundInfo[] = $derived(
     build.roundInfos!.slice(currentRoundIndex + 1, ROUND_MAX),
@@ -78,6 +88,11 @@
 
   $effect(() => {
     if (selectedHero) untrack(removeHeroSpecificTalents);
+  });
+
+  $effect(() => {
+    validateItemsForCurrentRound();
+    validateFinalPowers();
   });
 
   function setRound(index: number): void {
@@ -183,6 +198,16 @@
     build = { ...build };
   }
 
+  function validateItemsForCurrentRound(): void {
+    const items = getBuildItemsForRound(build, currentRoundIndex + 1);
+    validations[`items-length-${currentRoundIndex}`] = items.length <= 6;
+  }
+
+  function validateFinalPowers(): void {
+    const powers = getBuildPowersForRound(build, ROUND_MAX);
+    validations[`powers-length`] = powers.length == 4;
+  }
+
   async function onsubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
 
@@ -219,6 +244,12 @@
       saving = false;
     }
   }
+
+  function filterTalents(talent: Item[] | Power[]): boolean {
+    // Filter on the full object by stringifying it. Bit ugly, but that makes it easy to filter by name,
+    // description, and stat names all at once.
+    return JSON.stringify(talent).toLowerCase().includes(query.toLowerCase());
+  }
 </script>
 
 {#if issues.length}
@@ -236,9 +267,24 @@
     <Hero hero={selectedHero} large />
   {/if}
 
-  <TextInput label="Build title" id="title" large bind:value={build.buildTitle} />
+  <TextInput
+    label="Build title"
+    id="title"
+    large
+    bind:value={build.buildTitle}
+    lengthValidation={{ min: 10, max: 70, oninput: (isValid) => (validations.title = isValid) }}
+  />
 
-  <Textarea label="Short description" id="description" bind:value={build.description}>
+  <Textarea
+    label="Short description"
+    id="description"
+    bind:value={build.description}
+    lengthValidation={{
+      min: 20,
+      max: 300,
+      oninput: (isValid) => (validations.description = isValid),
+    }}
+  >
     A short introduction to your builds, quickly summarizing the main playstyle and intention. You
     can provide a more detailed description later.
   </Textarea>
@@ -285,12 +331,22 @@
       {/if}
     </div>
 
+    <div class="inset">
+      <input
+        type="text"
+        class="form-input"
+        placeholder="Search powers and items..."
+        bind:value={query}
+      />
+    </div>
+
     <div class="tabs-content dark inset">
       {#if currentTalentTypeTab === powerTalentType}
         <PowersGrid
           {availablePowers}
           currentlySelected={currentRoundSection.power}
           previouslySelected={powersFromPreviousRounds}
+          filtered={filteredPowers}
           onclick={selectPower}
         />
       {:else}
@@ -300,7 +356,14 @@
           currentlyPurchasing={currentRoundSection.purchasedItems}
           currentlySelling={currentRoundSection.soldItems}
           previouslySelected={itemsFromPreviousRounds}
+          filtered={filteredItems}
         />
+      {/if}
+
+      {#if validations[`items-length-${currentRoundIndex}`] === false}
+        <div class="form-text-error" transition:slide={{ duration: 100 }}>
+          You would end up with more than 6 items this round.
+        </div>
       {/if}
     </div>
 
@@ -309,6 +372,11 @@
         label="Round notes"
         id="round-notes"
         bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
+        lengthValidation={{
+          min: 0,
+          max: 500,
+          oninput: (isValid) => (validations[`note-${currentRound}`] = isValid),
+        }}
       >
         Provide an optional short description on the current round, explaining options,
         expectations, and possible play styles.
@@ -318,6 +386,12 @@
 
   <div class="order">
     <BuildPowersOrder {build} />
+
+    {#if validations[`powers-length`] === false}
+      <div class="form-text-error" transition:slide={{ duration: 100 }}>
+        Please select 4 powers.
+      </div>
+    {/if}
   </div>
 
   <div class="order">
@@ -326,12 +400,40 @@
 
   <h2>Description</h2>
 
-  <Textarea label="Round notes" id="additional-notes" bind:value={build.additionalNotes}>
+  <Textarea
+    label="Round notes"
+    id="additional-notes"
+    bind:value={build.additionalNotes}
+    lengthValidation={{
+      min: 0,
+      max: 10000,
+      oninput: (isValid) => (validations.additionalNotes = isValid),
+    }}
+  >
     Explain your build in detail, going over playstyles, item order, possible deviations, and
     whatever else you might think of.
   </Textarea>
 
-  <button class="button button--large save" disabled={saving}>
+  <div class="form-group">
+    <label class="form-label" for="tags">Tags</label>
+    <p class="form-help" id="tags">
+      Select predefined tags that help others find your build. Select up to 3.
+    </p>
+    <select
+      multiple
+      size="3"
+      class="form-select"
+      name="tags"
+      aria-describedby="tags"
+      bind:value={build.tags}
+    >
+      {#each tags as { id, label } (id)}
+        <option value={id}>{label}</option>
+      {/each}
+    </select>
+  </div>
+
+  <button class="button button--large save" disabled={saving || containsErrors}>
     {#if saving}
       Saving...
     {:else}
@@ -389,6 +491,10 @@
 
   .inset {
     padding: 1.5rem;
+
+    + .inset {
+      padding-top: 0;
+    }
   }
 
   .order {
