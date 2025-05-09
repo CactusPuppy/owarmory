@@ -20,6 +20,7 @@
   import type { z } from "zod";
   import { goto } from "$app/navigation";
   import { buildPath } from "$lib/utils/routes";
+  import { validateLength } from "$src/lib/actions/validateLength";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -50,6 +51,10 @@
   let heroName: HeroName | null = $state(build.heroName as HeroName);
   let issues: string[] = $state([]);
   let saving = $state(false);
+  let query = $state("");
+
+  const validations: Record<string, boolean> = $state({});
+  const containsErrors = $derived(!Object.values(validations).every(Boolean));
 
   const selectedHero = $derived(heroFromHeroName(heroName as HeroName));
 
@@ -61,6 +66,9 @@
   const availablePowers = $derived(
     availableTalents.powers.filter((power) => power.heroName == heroName),
   );
+
+  const filteredItems = $derived(availableItems.filter(filterTalents));
+  const filteredPowers = $derived(availablePowers.filter(filterTalents));
 
   const futureRounds: FlatFullRoundInfo[] = $derived(
     build.roundInfos!.slice(currentRoundIndex + 1, ROUND_MAX),
@@ -79,6 +87,8 @@
   $effect(() => {
     if (selectedHero) untrack(removeHeroSpecificTalents);
   });
+
+  $effect(validateItemsForCurrentRound);
 
   function setRound(index: number): void {
     currentRoundIndex = index;
@@ -183,6 +193,11 @@
     build = { ...build };
   }
 
+  function validateItemsForCurrentRound(): void {
+    const items = getBuildItemsForRound(build, currentRoundIndex + 1);
+    validations[`items-length-${currentRoundIndex}`] = items.length <= 6;
+  }
+
   async function onsubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
 
@@ -219,6 +234,12 @@
       saving = false;
     }
   }
+
+  function filterTalents(talent: Item[] | Power[]): boolean {
+    // Filter on the full object by stringifying it. Bit ugly, but that makes it easy to filter by name,
+    // description, and stat names all at once.
+    return JSON.stringify(talent).toLowerCase().includes(query.toLowerCase());
+  }
 </script>
 
 {#if issues.length}
@@ -246,9 +267,11 @@
     <input
       type="text"
       class="form-input form-input--large"
-      bind:value={build.buildTitle}
+      class:form-input--error={validations.title}
       name="title"
       id="title"
+      bind:value={build.buildTitle}
+      use:validateLength={{ min: 10, max: 70, oninput: (isValid) => (validations.title = isValid) }}
     />
   </div>
 
@@ -260,9 +283,15 @@
     </p>
     <textarea
       class="form-textarea"
-      bind:value={build.description}
+      class:form-textarea--error={validations.description}
       name="description"
       aria-describedby="description"
+      bind:value={build.description}
+      use:validateLength={{
+        min: 20,
+        max: 300,
+        oninput: (isValid) => (validations.description = isValid),
+      }}
     ></textarea>
   </div>
 
@@ -308,12 +337,22 @@
       {/if}
     </div>
 
+    <div class="inset">
+      <input
+        type="text"
+        class="form-input"
+        placeholder="Search powers and items..."
+        bind:value={query}
+      />
+    </div>
+
     <div class="tabs-content dark inset">
       {#if currentTalentTypeTab === powerTalentType}
         <PowersGrid
           {availablePowers}
           currentlySelected={currentRoundSection.power}
           previouslySelected={powersFromPreviousRounds}
+          filtered={filteredPowers}
           onclick={selectPower}
         />
       {:else}
@@ -323,7 +362,14 @@
           currentlyPurchasing={currentRoundSection.purchasedItems}
           currentlySelling={currentRoundSection.soldItems}
           previouslySelected={itemsFromPreviousRounds}
+          filtered={filteredItems}
         />
+      {/if}
+
+      {#if validations[`items-length-${currentRoundIndex}`] === false}
+        <div class="form-text-error" transition:slide={{ duration: 100 }}>
+          You would end up with more than 6 items this round.
+        </div>
       {/if}
     </div>
 
@@ -335,9 +381,14 @@
       </p>
       <textarea
         class="form-textarea"
-        bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
         name="round-notes"
         aria-describedby="round-notes"
+        bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
+        use:validateLength={{
+          min: 0,
+          max: 500,
+          oninput: (isValid) => (validations[`note-${currentRound}`] = isValid),
+        }}
       ></textarea>
     </div>
   </div>
@@ -359,9 +410,14 @@
     </p>
     <textarea
       class="form-textarea form-textarea--large"
-      bind:value={build.additionalNotes}
       name="additional-notes"
       aria-describedby="additional-notes"
+      bind:value={build.additionalNotes}
+      use:validateLength={{
+        min: 0,
+        max: 10000,
+        oninput: (isValid) => (validations.additionalNotes = isValid),
+      }}
     ></textarea>
   </div>
 
@@ -384,7 +440,7 @@
     </select>
   </div>
 
-  <button class="button button--large save" disabled={saving}>
+  <button class="button button--large save" disabled={saving || containsErrors}>
     {#if saving}
       Saving...
     {:else}
@@ -442,6 +498,10 @@
 
   .inset {
     padding: 1.5rem;
+
+    + .inset {
+      padding-top: 0;
+    }
   }
 
   .order {

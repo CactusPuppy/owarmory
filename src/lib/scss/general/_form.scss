@@ -82,3 +82,19 @@
     margin: 0;
   }
 }
+
+.form-outline-error {
+  outline: 2px solid $red;
+
+  &:focus {
+    outline-color: $red;
+  }
+}
+
+.form-text-error {
+  position: absolute;
+  color: $red;
+  padding-top: 0.25rem;
+  font-family: $font-stack-brand;
+  font-size: $font-size-small;
+}

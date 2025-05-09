@@ -104,6 +104,12 @@ export type FlatFullStadiumBuild = Omit<
 
 export type BuildData = FullStadiumBuild | FlatFullStadiumBuild;
 
+export type StatTotal = {
+  id: number;
+  isPercentage: boolean;
+  totalAmount: number;
+};
+
 export const HeroNameSchema = z.enum(HeroNames, { message: "Invalid hero name provided" });
 
 export const ItemSchema = z.object({
@@ -156,7 +162,7 @@ export const BuildDataSchema = z.object({
     .length(ROUND_MAX, { message: `Must provide ${ROUND_MAX} rounds of information` }),
   additionalNotes: z
     .string()
-    .max(5000, { message: "Description is too long! Maximum 5000" })
+    .max(10000, { message: "Description is too long! Maximum 10000" })
     .nullable(),
   tags: z.array(z.number()).max(3, { message: "You can select up to 3 tags" }),
 });
