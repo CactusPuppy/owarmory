@@ -19,6 +19,7 @@
   import type { z } from "zod";
   import { goto } from "$app/navigation";
   import { buildPath } from "$lib/utils/routes";
+  import MarkdownPreviewDescription from "./MarkdownPreviewDescription.svelte";
   import Textarea from "./Textarea.svelte";
   import Issues from "./Issues.svelte";
   import TextInput from "./TextInput.svelte";
@@ -400,19 +401,23 @@
 
   <h2>Description</h2>
 
-  <Textarea
-    label="Round notes"
-    id="additional-notes"
-    bind:value={build.additionalNotes}
-    lengthValidation={{
-      min: 0,
-      max: 10000,
-      oninput: (isValid) => (validations.additionalNotes = isValid),
-    }}
-  >
-    Explain your build in detail, going over playstyles, item order, possible deviations, and
-    whatever else you might think of.
-  </Textarea>
+  <div class="form-group">
+    <p class="form-help" id="additional-notes">
+      Explain your build in detail, going over playstyles, item order, possible deviations, and
+      whatever else you might think of.<br />
+      Markdown enabled. <strong>**bold**</strong>, <em>_italic_</em>, and more.<br />
+      Insert powers and items using &#123;&#123;Item Name&#125;&#125;.
+    </p>
+
+    <MarkdownPreviewDescription value={build.additionalNotes}>
+      <textarea
+        class="form-textarea form-textarea--large"
+        bind:value={build.additionalNotes}
+        name="additional-notes"
+        aria-describedby="additional-notes"
+      ></textarea>
+    </MarkdownPreviewDescription>
+  </div>
 
   <div class="form-group">
     <label class="form-label" for="tags">Tags</label>
