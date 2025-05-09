@@ -62,7 +62,9 @@
 
   .list {
     display: grid;
+    align-items: flex-start;
     gap: 2rem;
+    min-height: 15rem;
   }
 
   .no-content {

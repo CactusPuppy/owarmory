@@ -10,9 +10,8 @@
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildCostForRound, getBuildItemsForRound } from "$lib/utils/build";
-  import { getContext, setContext } from "svelte";
+  import { getContext, onMount, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
-  import { getBuildContext } from "$src/lib/contexts/buildContext";
   import type { FullStadiumBuild } from "$src/lib/types/build";
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
@@ -20,6 +19,11 @@
   import { toSimpleDate } from "$src/lib/utils/datetime";
   import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import Heroes from "$src/lib/components/content/Heroes.svelte";
+  import BuildsList from "$src/lib/components/content/BuildsList.svelte";
+  import { api } from "$src/lib/utils/api";
+
+  const { data } = $props();
   import Tags from "$src/lib/components/content/Tags.svelte";
   import type { User } from "$src/generated/prisma";
 
@@ -27,10 +31,12 @@
 
   setContext("currentRound", currentRound);
 
-  const build = getBuildContext();
   const currentUser: User = getContext("currentUser");
 
+  const { build } = $derived(data);
+
   const {
+    id,
     buildTitle: title,
     heroName,
     description,
@@ -42,6 +48,21 @@
   } = $derived(build as FullStadiumBuild);
 
   const hero = $derived(heroFromHeroName(heroName as HeroName));
+
+  let similarBuilds: FullStadiumBuild[] = $state([]);
+
+  onMount(getSimilarBuilds);
+
+  async function getSimilarBuilds() {
+    const builds = await api<FullStadiumBuild[]>(
+      `/builds/hero/${heroName}`,
+      { page_size: "4" },
+      fetch,
+    );
+    const buildsExcludingCurrentBuild = builds.filter((b) => b.id !== id);
+
+    similarBuilds = buildsExcludingCurrentBuild.slice(0, 3);
+  }
 </script>
 
 <svelte:head>
@@ -116,6 +137,16 @@
     </section>
   </div>
 </article>
+
+{#if similarBuilds.length}
+  <section class="heroes">
+    <BuildsList header="Similar builds" builds={similarBuilds} />
+  </section>
+{/if}
+
+<section class="heroes">
+  <Heroes />
+</section>
 
 <style lang="scss">
   a:not(.button) {
@@ -202,5 +233,9 @@
     @include breakpoint(tablet) {
       margin: 3rem 0;
     }
+  }
+
+  .heroes {
+    margin-top: $vertical-offset-large;
   }
 </style>
