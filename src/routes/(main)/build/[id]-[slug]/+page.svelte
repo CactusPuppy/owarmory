@@ -9,7 +9,7 @@
   import { heroFromHeroName } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
-  import { getBuildCostForRound } from "$lib/utils/build";
+  import { getBuildCostForRound, getBuildItemsForRound } from "$lib/utils/build";
   import { getContext, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
   import { getBuildContext } from "$src/lib/contexts/buildContext";
@@ -17,8 +17,11 @@
   import snarkdown from "snarkdown";
   import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
-  import type { User } from "@auth/sveltekit";
+  import { toSimpleDate } from "$src/lib/utils/datetime";
+  import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import Tags from "$src/lib/components/content/Tags.svelte";
+  import type { User } from "$src/generated/prisma";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -34,6 +37,8 @@
     author,
     roundInfos,
     additionalNotes,
+    tags,
+    updatedAt,
   } = $derived(build as FullStadiumBuild);
 
   const hero = $derived(heroFromHeroName(heroName as HeroName));
@@ -54,7 +59,17 @@
       <h1 class="title">{title}</h1>
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
-      <a class="author" href="/user/{author.name}" itemprop="author">{author.name}</a>
+      <a class="author" href="/user/{encodeURIComponent(author.name!)}" itemprop="author"
+        >{cleanName(author.name!)}</a
+      >
+
+      <Tags {tags} />
+
+      <span class="divider">•</span>
+
+      <time class="datetime" itemprop="dateModified" datetime={updatedAt.toString()}>
+        Last updated on {toSimpleDate(updatedAt.toString())}
+      </time>
     </div>
   </header>
 
@@ -73,13 +88,14 @@
       <CompoundedBuild {build} />
 
       <h2 class="build-cost">
-        Build cost:<br />
-        <CurrencyIcon scale={1.5} />
+        Build Cost: <br />
+
+        <CurrencyIcon scale={1.35} />
         {getBuildCostForRound(build, currentRound.value).toLocaleString()}
       </h2>
 
       <DashedHeader text="Stats" />
-      <ItemStatistics items={[]} {hero} />
+      <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {hero} />
     </aside>
 
     <section class="article block">
@@ -112,14 +128,6 @@
     }
   }
 
-  h2 {
-    margin: $vertical-offset-large 0 1rem;
-
-    @include breakpoint(tablet) {
-      margin-bottom: 2rem;
-    }
-  }
-
   .header {
     display: flex;
     flex-direction: column;
@@ -137,6 +145,17 @@
     @include breakpoint(tablet) {
       margin: -0.5rem 0;
     }
+  }
+
+  .divider {
+    opacity: 0.5;
+    color: $color-text-alt;
+  }
+
+  .datetime {
+    color: $color-text-alt;
+    font-size: $font-size-small;
+    font-style: italic;
   }
 
   .introduction {
@@ -163,7 +182,7 @@
     @include breakpoint(tablet) {
       display: grid;
       grid-template-columns: 23rem auto;
-      gap: 4rem;
+      gap: clamp(1rem, 4vw, 4rem);
     }
   }
 
@@ -181,7 +200,7 @@
     text-align: center;
 
     @include breakpoint(tablet) {
-      margin: 4rem 0;
+      margin: 3rem 0;
     }
   }
 </style>

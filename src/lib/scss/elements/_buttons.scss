@@ -12,13 +12,17 @@ button {
 .button {
   color: $primary;
   border: 2px solid currentColor;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: $border-radius-small;
   transition: transform 50ms;
   text-decoration: none;
   font-family: $font-stack-brand;
   font-size: $font-size-base;
   white-space: nowrap;
+
+  @include breakpoint(mobile) {
+    padding: 0.5rem 1rem;
+  }
 
   &:not([disabled]):not(.disabled):hover,
   &:not([disabled]):not(.disabled):active,
