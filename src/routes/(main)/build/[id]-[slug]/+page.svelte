@@ -59,7 +59,9 @@
       <h1 class="title">{title}</h1>
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
-      <a class="author" href="/user/{author.name}" itemprop="author">{cleanName(author.name!)}</a>
+      <a class="author" href="/user/{encodeURIComponent(author.name!)}" itemprop="author"
+        >{cleanName(author.name!)}</a
+      >
 
       <Tags {tags} />
 
