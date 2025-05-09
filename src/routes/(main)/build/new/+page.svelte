@@ -7,6 +7,7 @@
   const build: FlatFullStadiumBuild = {
     buildTitle: "",
     heroName: heroes[0].name,
+    tags: [],
     roundInfos: [],
     additionalNotes: null,
   };
