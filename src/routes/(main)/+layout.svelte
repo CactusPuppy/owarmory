@@ -4,11 +4,14 @@
   import PageBackground from "$lib/components/layout/PageBackground.svelte";
   import Footer from "$lib/components/layout/Footer.svelte";
   import type { PageData } from "./$types";
+  import NavigatingIndicator from "$src/lib/components/layout/NavigatingIndicator.svelte";
 
   const { data, children }: { data: PageData; children: Snippet } = $props();
 
   setContext("currentUser", data.currentUser);
 </script>
+
+<NavigatingIndicator />
 
 <Navigation />
 

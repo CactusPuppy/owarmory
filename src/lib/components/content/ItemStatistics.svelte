@@ -1,6 +1,9 @@
 <script lang="ts">
   import { slide } from "svelte/transition";
   import ItemStastisticsBar from "./ItemStastisticsBar.svelte";
+  import type { ComponentProps } from "svelte";
+  import { getAllItemStatModifiers } from "$src/lib/utils/build";
+  import type { StatTotal } from "$src/lib/types/build";
 
   // Hero will be used at some point for the health value
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -8,60 +11,43 @@
 
   let expanded = $state(false);
 
-  const statistics = $derived([
+  const statTotals: Record<string, StatTotal> = $derived(getAllItemStatModifiers(items) || []);
+
+  const statistics: ComponentProps<typeof ItemStastisticsBar>[] = $derived([
     {
-      label: "Health",
+      label: "Life",
       suffix: "",
       value: 300,
       max: 300,
-      icon: "https://picsum.photos/seed/a/40",
+      icon: "/images/stats/Life.webp",
       background: "linear-gradient(to right, #f5f5f5 80%, #f1790e 80%, #f1790e 95%, #19b7df 95%)",
     },
-    {
-      label: "Weapon Power",
-      suffix: "%",
-      value: items.reduce(() => 0, 20),
-      max: 100,
-      icon: "https://picsum.photos/seed/b/40",
-    },
-    {
-      label: "Ability Power",
-      suffix: "%",
-      value: items.reduce(() => 0, 15),
-      max: 100,
-      icon: "https://picsum.photos/seed/c/40",
-    },
-    {
-      label: "Weapon Speed",
-      suffix: "%",
-      value: items.reduce(() => 0, 40),
-      max: 100,
-      icon: "https://picsum.photos/seed/d/40",
-    },
-    {
-      label: "Ability Cooldown",
-      suffix: "%",
-      value: items.reduce(() => 0, 10),
-      max: 100,
-      icon: "https://picsum.photos/seed/e/40",
-    },
-    {
-      label: "Some other stat",
-      suffix: "%",
-      value: items.reduce(() => 0, 20),
-      max: 100,
-      icon: "https://picsum.photos/seed/f/40",
-    },
-    {
-      label: "Some final stat",
-      suffix: "%",
-      value: items.reduce(() => 0, 80),
-      max: 100,
-      icon: "https://picsum.photos/seed/g/40",
-    },
+    getSimplePercentageStatistic("Weapon Power"),
+    getSimplePercentageStatistic("Ability Power"),
+    getSimplePercentageStatistic("Attack Speed"),
+    getSimplePercentageStatistic("Cooldown Reduction"),
+    getSimplePercentageStatistic("Max Ammo"),
+    getSimplePercentageStatistic("Weapon Lifesteal"),
+    getSimplePercentageStatistic("Ability Lifesteal"),
+    getSimplePercentageStatistic("Move Speed"),
+    getSimplePercentageStatistic("Reload Speed"),
+    getSimplePercentageStatistic("Melee Damage"),
+    getSimplePercentageStatistic("Critical Damage"),
   ]);
 
   const shownStatistics = $derived(statistics.slice(0, expanded ? statistics.length : 5));
+
+  function getSimplePercentageStatistic(name: string): ComponentProps<typeof ItemStastisticsBar> {
+    const value = statTotals[name]?.totalAmount || 0;
+
+    return {
+      label: name,
+      suffix: "%",
+      value,
+      max: 100,
+      icon: `/images/stats/${name}.webp`,
+    };
+  }
 </script>
 
 <div class="statistics">

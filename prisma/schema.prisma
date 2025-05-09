@@ -25,17 +25,17 @@ model Hero {
 }
 
 model User {
-  id            String          @id @default(nanoid(10))
+  id            String         @id @default(nanoid(10))
   name          String?
-  email         String?         @unique
+  email         String?        @unique
   emailVerified DateTime?
   image         String?
   builds        StadiumBuild[]
   accounts      Account[]
   sessions      Session[]
 
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Account {
@@ -87,6 +87,7 @@ model StadiumBuild {
   roundInfos      RoundInfo[]
   additionalNotes String?
   hero            Hero        @relation(fields: [heroName], references: [name])
+  tags            Tag[]       @relation("BuildTags")
 
   authorId String
   heroName String
@@ -106,13 +107,13 @@ model RoundInfo {
 }
 
 model RoundInfoSection {
-  id                String    @id @default(cuid(2))
-  title             String? // When title is missing, that is the standard section for the round
-  parentRoundInfo   RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
-  orderIndex        Int       @default(0)
-  power             Power?    @relation(fields: [powerId], references: [id])
-  purchasedItems    Item[]    @relation("ItemPurchases")
-  soldItems         Item[]    @relation("ItemSales")
+  id              String    @id @default(cuid(2))
+  title           String? // When title is missing, that is the standard section for the round
+  parentRoundInfo RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
+  orderIndex      Int       @default(0)
+  power           Power?    @relation(fields: [powerId], references: [id])
+  purchasedItems  Item[]    @relation("ItemPurchases")
+  soldItems       Item[]    @relation("ItemSales")
 
   parentRoundInfoId String
   powerId           String?
@@ -122,17 +123,17 @@ model Item {
   id          String    @id @default(cuid(2))
   name        String
   category    String
-  rarity      String    @default("common")
+  rarity      String    @default("Common")
   description String?
   cost        Int
   statMods    StatMod[]
   hero        Hero?     @relation(fields: [heroName], references: [name])
   iconURL     String?
-  removed     Boolean?  @default(false)
+  removed     Boolean  @default(false)
 
   purchaseSections RoundInfoSection[] @relation("ItemPurchases")
   soldSections     RoundInfoSection[] @relation("ItemSales")
-  heroName String?
+  heroName         String?
 }
 
 model Power {
@@ -148,19 +149,30 @@ model Power {
 }
 
 model Stat {
-  id       Int       @id @default(autoincrement())
-  name     String
-  iconURL  String?
-  statMods StatMod[]
+  id          Int       @id @default(autoincrement())
+  statType    String    @default("Preset")
+  name        String    @unique
+  description String?
+  iconURL     String?
+  statMods    StatMod[]
 }
 
 model StatMod {
-  id           String  @id @default(cuid(2))
-  orderIndex   Int     @default(0)
-  stat         Stat    @relation(fields: [statId], references: [id])
-  amount       Int
-  isPercentage Boolean @default(false)
+  id                     String  @id @default(cuid(2))
+  orderIndex             Int     @default(0)
+  stat                   Stat    @relation(fields: [statId], references: [id])
+  amount                 Int
+  isPercentage           Boolean @default(false)
+  isShownPostDescription Boolean @default(false)
+  hidden      Boolean   @default(false)
 
   Item   Item[]
   statId Int
+}
+
+model Tag {
+  id     Int    @id @default(autoincrement())
+  label  String @unique
+
+  builds StadiumBuild[] @relation("BuildTags")
 }

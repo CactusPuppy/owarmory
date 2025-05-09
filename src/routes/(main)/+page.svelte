@@ -9,6 +9,7 @@
   import { api } from "$lib/utils/api";
   import type { PageableBuildsSnapshot } from "$src/lib/types/snapshot";
   import TalentsNavigation from "$lib/components/content/TalentsNavigation.svelte";
+  import { BUILDS_PAGE_SIZE } from "$src/lib/types/page";
 
   const { data } = $props();
 
@@ -52,6 +53,7 @@
 
 <svelte:head>
   <title>OW Armory - Overwatch Stadium Builds</title>
+  <meta property="og:title" content="OW Armory - Overwatch Stadium Builds" />
 </svelte:head>
 
 <Heroes />
@@ -60,7 +62,7 @@
 
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
-{#if latestBuilds}
+{#if latestBuilds?.length % BUILDS_PAGE_SIZE === 0}
   <center>
     <a
       href="/latest?page={currentPage + 1}"

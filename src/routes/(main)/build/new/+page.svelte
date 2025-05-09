@@ -1,19 +1,15 @@
 <script lang="ts">
   import BuildForm from "$lib/components/form/BuildForm.svelte";
-  import type { Item } from "$src/generated/prisma/client.js";
   import { heroes } from "$src/lib/constants/heroData";
   import { ROUND_MAX } from "$src/lib/constants/round.js";
-  import type { FlatFullStadiumBuild } from "$src/lib/types/build";
-  import { redirect } from "@sveltejs/kit";
-  import { getContext } from "svelte";
-
-  const currentUser = getContext("currentUser");
-  if (!currentUser) redirect(307, "/");
+  import type { FlatFullStadiumBuild, FullItem } from "$src/lib/types/build";
 
   const build: FlatFullStadiumBuild = {
     buildTitle: "",
     heroName: heroes[0].name,
+    tags: [],
     roundInfos: [],
+    additionalNotes: null,
   };
 
   // Add empty roundInfos for each round
@@ -25,8 +21,8 @@
         {
           title: "",
           power: null,
-          purchasedItems: [] as Item[],
-          soldItems: [] as Item[],
+          purchasedItems: [] as FullItem[],
+          soldItems: [] as FullItem[],
         },
       ],
       note: "",
@@ -34,7 +30,7 @@
   }
 
   const { data } = $props();
-  const { availableTalents } = data;
+  const { availableTalents, tags } = data;
 </script>
 
 <svelte:head>
@@ -43,4 +39,4 @@
 
 <h1 class="title">Create new build</h1>
 
-<BuildForm {availableTalents} {build} method="POST" />
+<BuildForm {availableTalents} {tags} {build} method="POST" />

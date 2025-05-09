@@ -12,12 +12,8 @@
   h2 {
     display: flex;
     align-items: center;
-    margin: 4rem 0 2rem;
+    margin: 2rem 0 1rem;
     font-size: $font-size-h3;
-
-    @include breakpoint(tablet) {
-      margin: 2rem 0 1rem;
-    }
 
     &:first-child {
       margin-top: 0;
