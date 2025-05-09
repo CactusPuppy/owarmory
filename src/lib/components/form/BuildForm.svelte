@@ -86,6 +86,8 @@
     if (selectedHero) untrack(removeHeroSpecificTalents);
   });
 
+  $effect(validateItemsForCurrentRound);
+
   function setRound(index: number): void {
     currentRoundIndex = index;
 
@@ -187,6 +189,11 @@
 
     // Update state
     build = { ...build };
+  }
+
+  function validateItemsForCurrentRound(): void {
+    const items = getBuildItemsForRound(build, currentRoundIndex + 1);
+    validations[`items-length-${currentRoundIndex}`] = items.length <= 6;
   }
 
   async function onsubmit(event: SubmitEvent): Promise<void> {
@@ -355,6 +362,12 @@
           previouslySelected={itemsFromPreviousRounds}
           filtered={filteredItems}
         />
+      {/if}
+
+      {#if validations[`items-length-${currentRoundIndex}`] === false}
+        <div class="form-text-error" transition:slide={{ duration: 100 }}>
+          You would end up with more than 6 items this round.
+        </div>
       {/if}
     </div>
 
