@@ -4,11 +4,11 @@
 
 <nav class="navigation">
   <a href="/items" class="button button--secondary" class:active={page.url.pathname === "/items"}>
-    All items
+    All Items
   </a>
 
   <a href="/powers" class="button button--secondary" class:active={page.url.pathname === "/powers"}>
-    All powers
+    All Powers
   </a>
 </nav>
 
