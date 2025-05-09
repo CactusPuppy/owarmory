@@ -366,7 +366,7 @@
 
       {#if validations[`items-length-${currentRoundIndex}`] === false}
         <div class="form-text-error" transition:slide={{ duration: 100 }}>
-          You have selected more than 6 items for this round.
+          You would end up with more than 6 items this round.
         </div>
       {/if}
     </div>
