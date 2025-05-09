@@ -33,6 +33,23 @@
   }
 }
 
+.form-select {
+  @extend .form-input;
+  min-height: 10rem;
+  max-width: 20rem;
+
+  option {
+    color: $white;
+    border-bottom: 1px solid $color-bg-dark;
+
+    &:checked,
+    &:focus {
+      background: rgba($color-bg-light, 1);
+      color: $white;
+    }
+  }
+}
+
 .form-label {
   display: block;
   margin: 0 0 0.25rem 0;

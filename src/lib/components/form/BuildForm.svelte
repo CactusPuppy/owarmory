@@ -9,7 +9,7 @@
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
   import type { FullItem as Item } from "$lib/types/build";
-  import type { Power, StadiumBuild } from "$src/generated/prisma";
+  import type { Power, StadiumBuild, Tag } from "$src/generated/prisma";
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
@@ -24,6 +24,7 @@
 
   interface Props {
     availableTalents: AvailableTalents;
+    tags: Tag[];
     build: FlatFullStadiumBuild;
     method: "POST" | "PATCH";
     path?: SlashPrefixedString;
@@ -32,6 +33,7 @@
 
   let {
     availableTalents,
+    tags,
     build = $bindable(),
     method,
     path = "/build/form",
@@ -431,6 +433,25 @@
         oninput: (isValid) => (validations.additionalNotes = isValid),
       }}
     ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="tags">Tags</label>
+    <p class="form-help" id="tags">
+      Select predefined tags that help others find your build. Select up to 3.
+    </p>
+    <select
+      multiple
+      size="3"
+      class="form-select"
+      name="tags"
+      aria-describedby="tags"
+      bind:value={build.tags}
+    >
+      {#each tags as { id, label } (id)}
+        <option value={id}>{label}</option>
+      {/each}
+    </select>
   </div>
 
   <button class="button button--large save" disabled={saving || containsErrors}>

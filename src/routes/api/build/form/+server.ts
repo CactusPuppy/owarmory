@@ -40,6 +40,9 @@ export async function POST({ locals, request }) {
       data: {
         ...validatedBuild,
         authorId: currentUser.id,
+        tags: {
+          connect: validatedBuild.tags.map((tagId) => ({ id: Number(tagId) })),
+        },
         roundInfos: {
           create: validatedBuild.roundInfos.map(
             (roundInfo, i): Prisma.RoundInfoCreateWithoutParentBuildInput => ({

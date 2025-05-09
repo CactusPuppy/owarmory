@@ -20,6 +20,7 @@
   import { toSimpleDate } from "$src/lib/utils/datetime";
   import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import Tags from "$src/lib/components/content/Tags.svelte";
   import type { User } from "$src/generated/prisma";
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
@@ -36,6 +37,7 @@
     author,
     roundInfos,
     additionalNotes,
+    tags,
     updatedAt,
   } = $derived(build as FullStadiumBuild);
 
@@ -58,6 +60,8 @@
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
       <a class="author" href="/user/{author.name}" itemprop="author">{cleanName(author.name!)}</a>
+
+      <Tags {tags} />
 
       <span class="divider">•</span>
 
