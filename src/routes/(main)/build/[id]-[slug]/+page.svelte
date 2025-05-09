@@ -13,12 +13,11 @@
   import { getContext, onMount, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
   import type { FullStadiumBuild } from "$src/lib/types/build";
-  import snarkdown from "snarkdown";
-  import DOMPurify from "isomorphic-dompurify";
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
   import { toSimpleDate } from "$src/lib/utils/datetime";
   import { cleanName } from "$src/lib/utils/user";
   import { buildEditPath } from "$src/lib/utils/routes";
+  import { markdown } from "$src/lib/utils/markdown";
   import Heroes from "$src/lib/components/content/Heroes.svelte";
   import BuildsList from "$src/lib/components/content/BuildsList.svelte";
   import { api } from "$src/lib/utils/api";
@@ -127,11 +126,11 @@
       {/each}
 
       {#if additionalNotes}
-        <h2>Description</h2>
+        <h1 aria-level="2">Description</h1>
 
-        <div class="description">
+        <div class="description markdown">
           <!-- eslint-disable-next-line svelte/no-at-html-tags It's sanitized! -->
-          {@html DOMPurify.sanitize(snarkdown(additionalNotes))}
+          {@html markdown(additionalNotes)}
         </div>
       {/if}
     </section>
@@ -156,6 +155,18 @@
     &:hover {
       color: $white;
       text-decoration: underline;
+    }
+  }
+
+  h1 {
+    margin: $vertical-offset-large 0 calc($vertical-offset-large * 0.5);
+  }
+
+  h2 {
+    margin: $vertical-offset-large 0 1rem;
+
+    @include breakpoint(tablet) {
+      margin-bottom: 2rem;
     }
   }
 
