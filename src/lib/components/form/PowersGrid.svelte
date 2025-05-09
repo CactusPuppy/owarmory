@@ -6,6 +6,7 @@
     availablePowers: PowerType[];
     currentlySelected: PowerType | null;
     previouslySelected: PowerType[];
+    filtered: PowerType[];
     onclick: (item: PowerType) => void;
   }
 
@@ -13,6 +14,7 @@
     availablePowers = [],
     currentlySelected = null,
     previouslySelected = [],
+    filtered = [],
     onclick = () => null,
   }: Props = $props();
 </script>
@@ -24,8 +26,9 @@
     {#each availablePowers as power (power.id)}
       {@const owned = previouslySelected.some((i) => i.id === power.id)}
       {@const highlighted = currentlySelected?.id === power.id}
+      {@const faded = !filtered.some((i) => i.id == power.id)}
 
-      <div class="power" class:owned class:highlighted>
+      <div class="power" class:owned class:highlighted class:faded>
         <Power {power} {onclick} full />
       </div>
     {/each}
@@ -73,6 +76,10 @@
 
     &.highlighted {
       outline: 2px solid $primary;
+    }
+
+    &.faded {
+      opacity: 0.25;
     }
   }
 </style>
