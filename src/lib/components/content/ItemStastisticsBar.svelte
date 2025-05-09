@@ -66,7 +66,7 @@
       color.adjust($white, $lightness: -10%),
       color.adjust($white, $lightness: -15%)
     );
-    border: 2px solid color.adjust($white, $lightness: -10%);
+    box-shadow: inset 0 0 0 2px color.adjust($white, $lightness: -10%);
     border-radius: $border-radius-small;
     transition: width 500ms;
   }

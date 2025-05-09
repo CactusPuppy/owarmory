@@ -8,7 +8,8 @@
   import type { FullStadiumBuild as Build } from "$lib/types/build";
   import { api } from "$lib/utils/api";
   import type { PageableBuildsSnapshot } from "$src/lib/types/snapshot";
-  import { BUILDS_PAGE_SIZE } from "$src/lib/types/page";
+  import TalentsNavigation from "$lib/components/content/TalentsNavigation.svelte";
+  import { BUILDS_PAGE_SIZE } from "$lib/constants/page";
 
   const { data } = $props();
 
@@ -56,6 +57,8 @@
 </svelte:head>
 
 <Heroes />
+
+<TalentsNavigation />
 
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 

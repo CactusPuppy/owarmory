@@ -1,5 +1,6 @@
 <script lang="ts">
   import imageLogo from "$lib/images/logo.webp";
+  import imageLogoSmall from "$lib/images/logo-small.webp";
   import UserMenu from "$lib/components/user/UserMenu.svelte";
   import { getContext } from "svelte";
   import SignInButton from "$lib/components/auth/SignInButton.svelte";
@@ -12,7 +13,8 @@
 <nav>
   <div class="content">
     <a href="/" class="logo">
-      <img src={imageLogo} height="64" width="175" alt="OW Armory" />
+      <img class="logo__desktop" src={imageLogo} height="64" width="175" alt="OW Armory" />
+      <img class="logo__mobile" src={imageLogoSmall} height="50" width="47" alt="" />
     </a>
 
     <Search />
@@ -60,10 +62,14 @@
     gap: 1rem;
     height: 100%;
     max-width: calc(map.get($breakpoints, page-max-width) + ($gutter * 2));
-    padding: 0 $gutter;
+    padding: 0 1rem;
     margin: 0 auto;
 
-    @include breakpoint(tablet) {
+    @include breakpoint(mobile) {
+      padding: 0 $gutter;
+    }
+
+    @include breakpoint(desktop) {
       gap: 3rem;
     }
   }
@@ -72,7 +78,20 @@
     &:hover {
       filter: brightness(1.2);
     }
-    img {
+  }
+
+  .logo__mobile {
+    display: block;
+
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  .logo__desktop {
+    display: none;
+
+    @include breakpoint(tablet) {
       display: block;
     }
   }
