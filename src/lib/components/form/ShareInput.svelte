@@ -46,6 +46,7 @@
   .form-input {
     padding: 0.5rem 0 0.5rem 0.5rem;
     font-size: $font-size-small;
+    color: $color-text-alt;
   }
 
   .button {
