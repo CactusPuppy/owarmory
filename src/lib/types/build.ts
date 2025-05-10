@@ -134,7 +134,10 @@ export const PowerSchema = z.object({
 });
 
 export const RoundInfoSectionSchema = z.object({
-  title: z.string().max(50, { message: "Section title is too long! Maximum 50 characters" }),
+  title: z
+    .string()
+    .max(50, { message: "Section title is too long! Maximum 50 characters" })
+    .nullable(),
   power: PowerSchema.nullable(),
   purchasedItems: z.array(ItemSchema),
   soldItems: z.array(ItemSchema),
@@ -164,7 +167,17 @@ export const BuildDataSchema = z.object({
     .string()
     .max(10000, { message: "Description is too long! Maximum 10000" })
     .nullable(),
-  tags: z.array(z.number()).max(3, { message: "You can select up to 3 tags" }),
+  tags: z
+    .array(z.object({ id: z.number(), label: z.string() }))
+    .max(3, { message: "You can select up to 3 tags" }),
 });
 
+export const ExistingBuildDataSchema = z.intersection(
+  z.object({
+    id: z.string(),
+  }),
+  BuildDataSchema,
+);
+
 export type ValidatedBuildData = z.infer<typeof BuildDataSchema>;
+export type ValidatedExistingBuildData = z.infer<typeof ExistingBuildDataSchema>;

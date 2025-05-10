@@ -1,7 +1,14 @@
 import { z, ZodError } from "zod";
 
 import { BuildErrorMap } from "$src/lib/utils/build.js";
-import { BuildDataSchema, type BuildData, type ValidatedBuildData } from "$src/lib/types/build.js";
+import {
+  BuildDataSchema,
+  ExistingBuildDataSchema,
+  FullStadiumBuildInclude,
+  type BuildData,
+  type ValidatedBuildData,
+  type ValidatedExistingBuildData,
+} from "$src/lib/types/build.js";
 import { prisma } from "$src/database/prismaClient.server.js";
 import type { Prisma, StadiumBuild, User } from "$src/generated/prisma/client.js";
 
@@ -15,13 +22,14 @@ export async function POST({ locals, request }) {
   if (!currentUser)
     return new Response(JSON.stringify({ message: "Must be logged in to create a build!" }), {
       headers,
+      status: 401,
     });
 
   const build: BuildData = await request.json();
   let validatedBuild: ValidatedBuildData;
 
   try {
-    validatedBuild = validate(build);
+    validatedBuild = validateNewBuild(build);
   } catch (error: unknown) {
     if (error instanceof ZodError) {
       return new Response(JSON.stringify({ message: JSON.stringify(error) }), {
@@ -33,7 +41,6 @@ export async function POST({ locals, request }) {
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
   }
 
-  // Pretend to post `data` to the DB
   let newBuild: StadiumBuild;
   try {
     newBuild = await prisma.stadiumBuild.create({
@@ -41,7 +48,7 @@ export async function POST({ locals, request }) {
         ...validatedBuild,
         authorId: currentUser.id,
         tags: {
-          connect: validatedBuild.tags.map((tagId) => ({ id: Number(tagId) })),
+          connect: validatedBuild.tags.map((tag) => ({ id: tag.id })),
         },
         roundInfos: {
           create: validatedBuild.roundInfos.map(
@@ -85,29 +92,171 @@ export async function POST({ locals, request }) {
   return new Response(JSON.stringify(response), { headers });
 }
 
-export async function PATCH({ request }) {
-  const build: BuildData = await request.json();
+export async function PATCH({ locals, request }) {
+  const session = await locals.auth();
 
-  // Pretend to fetch the build to PATCH
-  await new Promise((res) => setTimeout(res, 500));
+  const currentUser: User | null = (session?.user as User) || null;
+
+  if (!currentUser)
+    return new Response(JSON.stringify({ message: "Must be logged in to edit this build!" }), {
+      headers,
+      status: 401,
+    });
+
+  const build: BuildData = await request.json();
+  let validatedBuild: ValidatedExistingBuildData;
 
   try {
-    validate(build);
+    validatedBuild = validateExistingBuild(build);
   } catch (error: unknown) {
+    if (error instanceof ZodError) {
+      return new Response(JSON.stringify({ message: JSON.stringify(error) }), {
+        headers: { ...headers, "X-Error-Type": "validation" },
+        status: 400,
+      });
+    }
     // @ts-expect-error unknown type does not have message
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
   }
 
-  // Pretend to post `data` to the DB
-  await new Promise((res) => setTimeout(res, 500));
+  // Check that the currentUser is the owner of this build
+  const serverFetchedBuild = await prisma.stadiumBuild.findFirstOrThrow({
+    where: { id: validatedBuild.id },
+  });
+  if (currentUser.id !== serverFetchedBuild.authorId)
+    return new Response(JSON.stringify({ message: "You are not authorized to edit this build" }), {
+      headers,
+      status: 403,
+    });
 
-  const response = {};
+  const tags = await prisma.tag.findMany();
+
+  const {
+    roundInfos: _roundInfos,
+    id: _id,
+    tags: _tags,
+    ...topLevelValidatedData
+  } = validatedBuild;
+  let updatedBuild: StadiumBuild;
+  try {
+    await prisma.$transaction(async (tx) => {
+      // Update top-level details
+      await tx.stadiumBuild.update({
+        where: {
+          id: validatedBuild.id,
+        },
+        data: {
+          ...topLevelValidatedData,
+          tags: {
+            connect: validatedBuild.tags.map((tag) => ({ id: tag.id })),
+            disconnect: tags.filter(
+              (tag) => !validatedBuild.tags.map((tag) => tag.id).some((tagId) => tagId == tag.id),
+            ),
+          },
+        },
+      });
+      // Update rounds
+      for (const [roundIndex, roundInfo] of validatedBuild.roundInfos.entries()) {
+        // Update top-level data
+        const { sections: _sections, ...topLevelRoundInfo } = roundInfo;
+        const { id: roundInfoId } = await tx.roundInfo.findFirstOrThrow({
+          where: {
+            AND: [
+              {
+                parentBuild: { id: validatedBuild.id },
+              },
+              {
+                orderIndex: roundIndex,
+              },
+            ],
+          },
+          select: {
+            id: true,
+          },
+        });
+        await tx.stadiumBuild.update({
+          where: {
+            id: validatedBuild.id,
+          },
+          data: {
+            roundInfos: {
+              update: {
+                where: {
+                  id: roundInfoId,
+                },
+                data: {
+                  ...topLevelRoundInfo,
+                },
+              },
+            },
+          },
+        });
+
+        // Update sections of this round info
+        for (const [sectionIndex, section] of roundInfo.sections.entries()) {
+          // Update top-level section info
+          const { power, purchasedItems, soldItems, ...sectionTopLevel } = section;
+          const { id: sectionId } = await tx.roundInfoSection.findFirstOrThrow({
+            where: {
+              AND: [{ parentRoundInfoId: roundInfoId }, { orderIndex: sectionIndex }],
+            },
+            select: {
+              id: true,
+            },
+          });
+          await tx.roundInfoSection.update({
+            where: {
+              id: sectionId,
+            },
+            data: {
+              ...sectionTopLevel,
+              power: power
+                ? {
+                    connect: { id: power?.id },
+                  }
+                : undefined,
+              purchasedItems: {
+                connect: purchasedItems.map((item) => ({ id: item.id })),
+              },
+              soldItems: {
+                connect: soldItems.map((item) => ({ id: item.id })),
+              },
+            },
+          });
+        }
+      }
+
+      updatedBuild = await tx.stadiumBuild.findFirstOrThrow({
+        where: { id: validatedBuild.id },
+        include: FullStadiumBuildInclude,
+      });
+    });
+  } catch (error: unknown) {
+    console.error(error);
+    return new Response(JSON.stringify({ message: String(error) }), { headers, status: 500 });
+  }
+
+  const response = {
+    newBuild: updatedBuild!,
+  };
 
   return new Response(JSON.stringify(response), { headers });
 }
 
-function validate(build: BuildData): z.infer<typeof BuildDataSchema> {
+function validateNewBuild(build: BuildData): z.infer<typeof BuildDataSchema> {
   const { success, data, error } = BuildDataSchema.safeParse(build, { errorMap: BuildErrorMap });
+
+  if (!success) {
+    throw error;
+  }
+
+  return data;
+}
+
+function validateExistingBuild(build: BuildData): z.infer<typeof ExistingBuildDataSchema> {
+  const { success, data, error } = ExistingBuildDataSchema.safeParse(build, {
+    errorMap: BuildErrorMap,
+  });
 
   if (!success) {
     throw error;

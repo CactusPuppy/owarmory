@@ -225,7 +225,7 @@
 
       const { newBuild } = response;
 
-      await goto(buildPath(newBuild));
+      await goto(buildPath(newBuild), { invalidateAll: true });
     } catch (error: unknown) {
       console.error(error);
 
@@ -430,7 +430,10 @@
       class="form-select"
       name="tags"
       aria-describedby="tags"
-      bind:value={build.tags}
+      bind:value={
+        () => build.tags.map((tag) => tag.id),
+        (v) => (build.tags = tags.filter((tag) => v.some((id) => id === tag.id)))
+      }
     >
       {#each tags as { id, label } (id)}
         <option value={id}>{label}</option>
