@@ -81,9 +81,11 @@
       <h1 class="title">{title}</h1>
 
       <a class="hero" href="/hero/{hero.name}">{hero.name}</a>
-      <a class="author" href="/user/{encodeURIComponent(author.name!)}" itemprop="author"
-        >{cleanName(author.name!)}</a
-      >
+      <a class="author" href="/user/{encodeURIComponent(author.name!)}" itemprop="author">
+        {cleanName(author.name!)}
+      </a>
+
+      <span class="divider">•</span>
 
       <Tags {tags} />
 
@@ -195,8 +197,16 @@
   }
 
   .divider {
+    display: block;
+    min-height: 0.25rem;
     opacity: 0.5;
     color: $color-text-alt;
+    font-size: 0;
+
+    @include breakpoint(tablet) {
+      display: inline;
+      font-size: inherit;
+    }
   }
 
   .datetime {
