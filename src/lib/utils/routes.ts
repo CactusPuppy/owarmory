@@ -5,6 +5,10 @@ export function buildPath(build: Pick<FullStadiumBuild, "id" | "buildTitle">): s
   return `/build/${build.id}-${toSlug(build.buildTitle)}`;
 }
 
+export function buildShortPath(build: Pick<FullStadiumBuild, "id">): string {
+  return `/${build.id}`;
+}
+
 export function buildEditPath(build: FullStadiumBuild): string {
   return buildPath(build) + "/edit";
 }

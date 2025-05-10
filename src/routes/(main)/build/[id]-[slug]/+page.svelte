@@ -16,16 +16,17 @@
   import CurrencyIcon from "$src/lib/components/icon/CurrencyIcon.svelte";
   import { toSimpleDate } from "$src/lib/utils/datetime";
   import { cleanName } from "$src/lib/utils/user";
-  import { buildEditPath } from "$src/lib/utils/routes";
+  import { buildEditPath, buildShortPath } from "$src/lib/utils/routes";
   import { markdown } from "$src/lib/utils/markdown";
   import TalentRichPreviews from "$src/lib/components/content/TalentRichPreviews.svelte";
   import Heroes from "$src/lib/components/content/Heroes.svelte";
   import BuildsList from "$src/lib/components/content/BuildsList.svelte";
   import { api } from "$src/lib/utils/api";
-
-  const { data } = $props();
   import Tags from "$src/lib/components/content/Tags.svelte";
   import type { User } from "$src/generated/prisma";
+  import ShareInput from "$src/lib/components/form/ShareInput.svelte";
+
+  const { data } = $props();
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
@@ -117,6 +118,10 @@
 
       <DashedHeader text="Stats" />
       <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {hero} />
+
+      <div class="share">
+        <ShareInput path={buildShortPath(build)} />
+      </div>
     </aside>
 
     <section class="article block">
@@ -248,5 +253,13 @@
 
   .heroes {
     margin-top: $vertical-offset-large;
+  }
+
+  .share {
+    margin-top: 2rem;
+
+    @include breakpoint(tablet) {
+      margin-top: 3rem;
+    }
   }
 </style>

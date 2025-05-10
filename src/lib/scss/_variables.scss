@@ -6,6 +6,7 @@ $secondary: #1592bc;
 $white: #fff;
 $black: #000;
 $red: #9c1006;
+$green: #13a530;
 
 $color-bg-base: #0e2038;
 $color-bg-dark: #091628;
@@ -17,7 +18,7 @@ $color-text-titles: $white;
 $color-border: rgba(#7ab1c3, 0.2);
 
 $color-rarities: (
-  common: #13a530,
+  common: $green,
   rare: #207cbd,
   epic: #8426d2,
 );
