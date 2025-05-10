@@ -225,7 +225,7 @@
 
       const { newBuild } = response;
 
-      await goto(buildPath(newBuild));
+      await goto(buildPath(newBuild), { invalidateAll: true });
     } catch (error: unknown) {
       console.error(error);
 
