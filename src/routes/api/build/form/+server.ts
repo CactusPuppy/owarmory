@@ -41,7 +41,7 @@ export async function POST({ locals, request }) {
         ...validatedBuild,
         authorId: currentUser.id,
         tags: {
-          connect: validatedBuild.tags.map((tagId) => ({ id: Number(tagId) })),
+          connect: validatedBuild.tags.map((tag) => ({ id: tag.id })),
         },
         roundInfos: {
           create: validatedBuild.roundInfos.map(

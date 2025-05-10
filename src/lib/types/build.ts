@@ -164,7 +164,9 @@ export const BuildDataSchema = z.object({
     .string()
     .max(10000, { message: "Description is too long! Maximum 10000" })
     .nullable(),
-  tags: z.array(z.number()).max(3, { message: "You can select up to 3 tags" }),
+  tags: z
+    .array(z.object({ id: z.number(), label: z.string() }))
+    .max(3, { message: "You can select up to 3 tags" }),
 });
 
 export type ValidatedBuildData = z.infer<typeof BuildDataSchema>;
