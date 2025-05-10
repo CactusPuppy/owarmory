@@ -197,8 +197,16 @@
   }
 
   .divider {
+    display: block;
+    min-height: 0.25rem;
     opacity: 0.5;
     color: $color-text-alt;
+    font-size: 0;
+
+    @include breakpoint(tablet) {
+      display: inline;
+      font-size: inherit;
+    }
   }
 
   .datetime {
