@@ -67,7 +67,9 @@ describe("filterUniqueBuilds", () => {
             tx.stadiumBuild.create({
               data: createRandomBuild(
                 faker.helpers.arrayElement(users),
-                faker.helpers.arrayElement(heroes),
+                faker.helpers.arrayElement(
+                  heroes.map((hero) => ({ baseArmor: 0, baseShields: 0, ...hero })),
+                ),
                 {
                   items,
                   powers,
