@@ -26,6 +26,8 @@
         <img src={iconChevronRight} width="18" height="18" alt="" />
       {/if}
     </div>
+  {:else}
+    <p class="placeholder"><i>No items purchased yet...</i></p>
   {/each}
 </div>
 
@@ -47,6 +49,12 @@
     padding: 0.75rem;
     border-radius: $border-radius-small;
     background: $color-bg-dark;
+  }
+
+  .placeholder {
+    margin: 0;
+    opacity: 0.75;
+    font-size: 0.8em;
   }
 
   .cell {
