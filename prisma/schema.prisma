@@ -16,8 +16,11 @@ datasource db {
 }
 
 model Hero {
-  name String @id
-  role String
+  name        String @id
+  role        String
+  baseHealth  Int    @default(250)
+  baseArmor   Int    @default(0)
+  baseShields Int    @default(0)
 
   builds StadiumBuild[]
   items  Item[]
