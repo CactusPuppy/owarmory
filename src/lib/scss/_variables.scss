@@ -16,6 +16,16 @@ $color-text-base: $secondary;
 $color-text-alt: #6f8aad;
 $color-text-titles: $white;
 $color-border: rgba(#7ab1c3, 0.2);
+$color-health: #ffffff;
+$color-armor: #ee7c25;
+$color-shields: #0be1ff;
+
+// Variables are needed to allow the generated CSS to access the right colors
+:root {
+  --health-color: #{$color-health};
+  --armor-color: #{$color-armor};
+  --shields-color: #{$color-shields};
+}
 
 $color-rarities: (
   common: $green,
@@ -47,6 +57,8 @@ $item-size-large: #{px-to-rem(80)};
 $power-size-large: 4rem;
 
 $border-radius: 1rem;
+$border-radius-xxs: $border-radius * 0.125;
+$border-radius-xs: $border-radius * 0.25;
 $border-radius-small: $border-radius * 0.5;
 $border-radius-large: $border-radius * 2;
 

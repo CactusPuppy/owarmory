@@ -3,13 +3,6 @@ export type HealthType = "health" | "armor" | "shields";
 // Config
 export const CHUNK_SIZE = 25;
 
-// Colors
-export const COLORS: Record<HealthType, string> = {
-  health: "#ffffff",
-  armor: "#ee7c25",
-  shields: "#0be1ff",
-};
-
 export type SegmentData = { types: HealthType[]; values: number[] };
 
 export function buildSegments(health: number, armor: number, shields: number): SegmentData[] {
@@ -37,17 +30,18 @@ export function buildSegments(health: number, armor: number, shields: number): S
 export function segmentToBackground(segment: SegmentData): string {
   if (segment.types.length <= 0) return "";
   if (segment.types.length == 1) {
-    return COLORS[segment.types[0]];
+    return `var(--${segment.types[0]}-color)`;
   }
   const backgroundBlocks: string[] = [];
   let percentageFilled = 0;
   for (const [i, type] of segment.types.entries()) {
     const typePercentOfSegment = (segment.values[i] / CHUNK_SIZE) * 100;
+    if (typePercentOfSegment <= 0) continue;
     if (percentageFilled > 0) {
-      backgroundBlocks.push(`${COLORS[type]} ${percentageFilled}%`);
+      backgroundBlocks.push(`var(--${type}-color) ${percentageFilled}%`);
     }
     percentageFilled += typePercentOfSegment;
-    backgroundBlocks.push(`${COLORS[type]} ${percentageFilled}%`);
+    backgroundBlocks.push(`var(--${type}-color) ${percentageFilled}%`);
   }
   return `linear-gradient(to right, ${backgroundBlocks.join(", ")})`;
 }

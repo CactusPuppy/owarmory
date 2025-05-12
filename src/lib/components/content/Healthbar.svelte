@@ -112,14 +112,14 @@
   }
 
   .bar-container {
-    border-radius: 6px;
     display: flex;
     gap: 2px;
     overflow: hidden;
     padding: 0.25rem;
   }
+
   .segment {
-    border-radius: calc(6px - 0.25rem);
+    border-radius: $border-radius-xxs;
   }
 
   .statistic {
