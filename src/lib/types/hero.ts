@@ -8,6 +8,9 @@ export type HeroRole = (typeof HeroRole)[keyof typeof HeroRole];
 export type HeroData = {
   name: HeroName;
   role: HeroRole;
+  baseHealth: number;
+  baseArmor?: number;
+  baseShields?: number;
 };
 
 export const HeroNames = [

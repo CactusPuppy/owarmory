@@ -16,8 +16,11 @@ datasource db {
 }
 
 model Hero {
-  name String @id
-  role String
+  name        String @id
+  role        String
+  baseHealth  Int    @default(250)
+  baseArmor   Int    @default(0)
+  baseShields Int    @default(0)
 
   builds StadiumBuild[]
   items  Item[]
@@ -97,7 +100,7 @@ model StadiumBuild {
 
 model RoundInfo {
   id          String             @id @default(cuid(2))
-  parentBuild StadiumBuild       @relation(fields: [buildId], references: [id])
+  parentBuild StadiumBuild       @relation(fields: [buildId], references: [id], onDelete: Cascade)
   buildId     String
   createdAt   DateTime           @default(now())
   updatedAt   DateTime           @updatedAt
@@ -109,9 +112,9 @@ model RoundInfo {
 model RoundInfoSection {
   id              String    @id @default(cuid(2))
   title           String? // When title is missing, that is the standard section for the round
-  parentRoundInfo RoundInfo @relation(fields: [parentRoundInfoId], references: [id])
+  parentRoundInfo RoundInfo @relation(fields: [parentRoundInfoId], references: [id], onDelete: Cascade)
   orderIndex      Int       @default(0)
-  power           Power?    @relation(fields: [powerId], references: [id])
+  power           Power?    @relation(fields: [powerId], references: [id], onDelete: SetNull)
   purchasedItems  Item[]    @relation("ItemPurchases")
   soldItems       Item[]    @relation("ItemSales")
 
@@ -127,9 +130,9 @@ model Item {
   description String?
   cost        Int
   statMods    StatMod[]
-  hero        Hero?     @relation(fields: [heroName], references: [name])
+  hero        Hero?     @relation(fields: [heroName], references: [name], onDelete: Cascade)
   iconURL     String?
-  removed     Boolean  @default(false)
+  removed     Boolean   @default(false)
 
   purchaseSections RoundInfoSection[] @relation("ItemPurchases")
   soldSections     RoundInfoSection[] @relation("ItemSales")
@@ -141,7 +144,7 @@ model Power {
   name        String
   description String
   iconURL     String?
-  hero        Hero    @relation(fields: [heroName], references: [name])
+  hero        Hero    @relation(fields: [heroName], references: [name], onDelete: Cascade)
   heroName    String
   removed     Boolean @default(false)
 
@@ -160,19 +163,19 @@ model Stat {
 model StatMod {
   id                     String  @id @default(cuid(2))
   orderIndex             Int     @default(0)
-  stat                   Stat    @relation(fields: [statId], references: [id])
+  stat                   Stat    @relation(fields: [statId], references: [id], onDelete: Cascade)
   amount                 Int
   isPercentage           Boolean @default(false)
   isShownPostDescription Boolean @default(false)
-  hidden      Boolean   @default(false)
+  hidden                 Boolean @default(false)
 
   Item   Item[]
   statId Int
 }
 
 model Tag {
-  id     Int    @id @default(autoincrement())
-  label  String @unique
+  id    Int    @id @default(autoincrement())
+  label String @unique
 
   builds StadiumBuild[] @relation("BuildTags")
 }

@@ -36683,7 +36683,7 @@
       },
       {
         "StatType": "Custom",
-        "Name": "Health",
+        "Name": "Life",
         "Amount": -100,
         "Hidden": true
       },
@@ -36733,7 +36733,7 @@
       },
       {
         "StatType": "Custom",
-        "Name": "Health",
+        "Name": "Life",
         "Amount": -100,
         "Hidden": true
       },

@@ -129,8 +129,6 @@ export async function PATCH({ locals, request }) {
       status: 403,
     });
 
-  const tags = await prisma.tag.findMany();
-
   const {
     roundInfos: _roundInfos,
     id: _id,
@@ -148,10 +146,7 @@ export async function PATCH({ locals, request }) {
         data: {
           ...topLevelValidatedData,
           tags: {
-            connect: validatedBuild.tags.map((tag) => ({ id: tag.id })),
-            disconnect: tags.filter(
-              (tag) => !validatedBuild.tags.map((tag) => tag.id).some((tagId) => tagId == tag.id),
-            ),
+            set: validatedBuild.tags.map((tag) => ({ id: tag.id })),
           },
         },
       });
@@ -216,10 +211,10 @@ export async function PATCH({ locals, request }) {
                   }
                 : undefined,
               purchasedItems: {
-                connect: purchasedItems.map((item) => ({ id: item.id })),
+                set: purchasedItems.map((item) => ({ id: item.id })),
               },
               soldItems: {
-                connect: soldItems.map((item) => ({ id: item.id })),
+                set: soldItems.map((item) => ({ id: item.id })),
               },
             },
           });

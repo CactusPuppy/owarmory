@@ -34,7 +34,7 @@
 
   const currentUser: User = getContext("currentUser");
 
-  const { build } = $derived(data);
+  const { build, stats } = $derived(data);
 
   const {
     id,
@@ -48,7 +48,11 @@
     updatedAt,
   } = $derived(build as FullStadiumBuild);
 
-  const hero = $derived(heroFromHeroName(heroName as HeroName));
+  const hero = $derived({
+    baseArmor: 0,
+    baseShields: 0,
+    ...heroFromHeroName(heroName as HeroName),
+  });
 
   let similarBuilds: FullStadiumBuild[] = $state([]);
 
@@ -101,7 +105,7 @@
 
   <div class="layout">
     <aside class="sidebar block">
-      {#if currentUser.id === (build as FullStadiumBuild).authorId}
+      {#if currentUser?.id === (build as FullStadiumBuild).authorId}
         <a class="button button--full-width edit" href={buildEditPath(build as FullStadiumBuild)}>
           Edit this build
         </a>
@@ -119,7 +123,7 @@
       </h2>
 
       <DashedHeader text="Stats" />
-      <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {hero} />
+      <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {stats} {hero} />
 
       <div class="share">
         <ShareInput path={buildShortPath(build)} />

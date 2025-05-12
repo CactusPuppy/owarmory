@@ -1,16 +1,29 @@
 <script lang="ts">
+  import {
+    buildSegments,
+    CHUNK_SIZE,
+    segementTotalHealth,
+    segmentToBackground,
+    type SegmentData,
+  } from "$src/lib/utils/healthbar";
   import Popover from "../common/Popover.svelte";
 
   interface Props {
     label: string;
-    suffix: string;
     description?: string;
-    value: number;
-    max: number;
     icon: string;
+    health: number;
+    armor: number;
+    shields: number;
   }
 
-  const { label, description, suffix, value, max, icon }: Props = $props();
+  const { label, description, icon, health, armor, shields }: Props = $props();
+
+  // Calculate total points and number of chunks
+  const totalPoints = $derived(health + armor + shields);
+
+  // Build the bar segments
+  const segments: SegmentData[] = $derived(buildSegments(health, armor, shields));
 
   function parseDescription(text: string): string {
     let output = wrapBracketsWithMark(text);
@@ -31,7 +44,7 @@
 </script>
 
 <div class="statistic">
-  <div class="bar" aria-label="{label}: {value}{suffix}">
+  <div class="bar" aria-label="{label}: {totalPoints}">
     <div class="icon">
       <Popover>
         <img src={icon} alt={label} height="24" width="24" />
@@ -49,11 +62,21 @@
       </Popover>
     </div>
 
-    <div class="progress" style:width="{(100 / max) * value}%"></div>
+    <div class="bar-container">
+      {#each segments as seg, i (i)}
+        <div
+          class="segment"
+          style="
+            background: {segmentToBackground(seg)};
+            flex-grow: {segementTotalHealth(seg) / CHUNK_SIZE};
+          "
+        ></div>
+      {/each}
+    </div>
   </div>
 
   <div class="value">
-    {value}{suffix}
+    {totalPoints}
   </div>
 </div>
 
@@ -62,12 +85,6 @@
 
   $icon-width: 2.5rem;
   $gap: 3px;
-
-  .statistic {
-    display: grid;
-    grid-template-columns: auto $icon-width;
-    align-items: center;
-  }
 
   .stat-name {
     padding-bottom: 1rem;
@@ -94,6 +111,27 @@
     }
   }
 
+  .bar-container {
+    display: flex;
+    gap: 2px;
+    overflow: hidden;
+    padding: 0.25rem;
+
+    @each $type, $color in $color-health {
+      --#{$type}-color: #{$color};
+    }
+  }
+
+  .segment {
+    border-radius: $border-radius-xxs;
+  }
+
+  .statistic {
+    display: grid;
+    grid-template-columns: auto $icon-width;
+    align-items: center;
+  }
+
   .bar {
     display: grid;
     grid-template-columns: $icon-width auto;
@@ -115,17 +153,6 @@
     img {
       font-size: 0;
     }
-  }
-
-  .progress {
-    background: linear-gradient(
-      to bottom,
-      color.adjust($white, $lightness: -10%),
-      color.adjust($white, $lightness: -15%)
-    );
-    box-shadow: inset 0 0 0 2px color.adjust($white, $lightness: -10%);
-    border-radius: $border-radius-small;
-    transition: width 500ms;
   }
 
   .value {

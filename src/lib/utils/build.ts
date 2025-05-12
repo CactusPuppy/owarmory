@@ -6,7 +6,7 @@ import type {
   FullStadiumBuild,
 } from "$lib/types/build";
 import type { FullRoundSectionInfo } from "../types/round";
-import type { Power } from "$src/generated/prisma";
+import type { Hero, Power } from "$src/generated/prisma";
 import type { z } from "zod";
 import { camelCaseToTitleCase } from "./string";
 
@@ -66,14 +66,28 @@ export function isItemPreviouslyOwned(items: FullItem[], item: FullItem) {
   return numberOfTimesInteractedWithItem % 2 !== 0;
 }
 
-export function getAllItemStatModifiers(items: FullItem[]): Record<string, StatTotal> {
+export function getAllItemStatModifiers(items: FullItem[], hero: Hero): Record<string, StatTotal> {
+  let { baseHealth: health } = hero;
   const statTotals: Record<string, StatTotal> = {};
 
+  const LifeRelatedStats = ["Life", "Armor", "Shields"];
+
   for (const item of items) {
+    let overcharge = 0;
     for (const statMod of item.statMods) {
       const { isPercentage } = statMod;
       const { id, name } = statMod.stat;
-      const amount = statMod.amount;
+      let amount = statMod.amount;
+      // Assumes that the only negative modifiers are for Life
+      if (statMod.stat.name == "Life" && amount < 0 && Math.abs(amount) > health - 1) {
+        overcharge = Math.abs(statMod.amount) - (health - 1);
+        amount += overcharge; // Not a mistake, amount is negative
+        health += amount;
+      } else if (LifeRelatedStats.includes(statMod.stat.name) && overcharge > 0) {
+        const madeBack = Math.min(overcharge, statMod.amount);
+        overcharge -= madeBack;
+        amount -= madeBack;
+      }
 
       if (!(name in statTotals)) {
         statTotals[name] = { id, isPercentage, totalAmount: 0 };

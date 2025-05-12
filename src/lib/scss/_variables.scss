@@ -17,6 +17,12 @@ $color-text-alt: #6f8aad;
 $color-text-titles: $white;
 $color-border: rgba(#7ab1c3, 0.2);
 
+$color-health: (
+  health: $white,
+  armor: #ee7c25,
+  shields: #0be1ff,
+);
+
 $color-rarities: (
   common: $green,
   rare: #207cbd,
@@ -47,6 +53,8 @@ $item-size-large: #{px-to-rem(80)};
 $power-size-large: 4rem;
 
 $border-radius: 1rem;
+$border-radius-xxs: $border-radius * 0.125;
+$border-radius-xs: $border-radius * 0.25;
 $border-radius-small: $border-radius * 0.5;
 $border-radius-large: $border-radius * 2;
 
