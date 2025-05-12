@@ -34,7 +34,7 @@
 
   const currentUser: User = getContext("currentUser");
 
-  const { build } = $derived(data);
+  const { build, stats } = $derived(data);
 
   const {
     id,
@@ -123,7 +123,7 @@
       </h2>
 
       <DashedHeader text="Stats" />
-      <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {hero} />
+      <ItemStatistics items={getBuildItemsForRound(build, currentRound.value)} {stats} {hero} />
 
       <div class="share">
         <ShareInput path={buildShortPath(build)} />

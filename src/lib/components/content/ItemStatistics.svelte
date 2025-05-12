@@ -47,15 +47,16 @@
 
   const shownStatistics = $derived(statistics.slice(0, expanded ? statistics.length : 4));
 
-  function getSimplePercentageStatistic(name: string): ComponentProps<typeof ItemStastisticsBar> {
-    const value = statTotals[name]?.totalAmount || 0;
+  function getSimplePercentageStatistic(stat: Stat): ComponentProps<typeof ItemStastisticsBar> {
+    const value = statTotals[stat.name]?.totalAmount || 0;
 
     return {
-      label: name,
+      label: stat.name,
+      description: stat.description ?? undefined,
       suffix: "%",
       value,
       max: 100,
-      icon: `/images/stats/${name}.webp`,
+      icon: `/images/stats/${stat.name}.webp`,
     };
   }
 </script>
