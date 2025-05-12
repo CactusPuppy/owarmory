@@ -116,6 +116,10 @@
     gap: 2px;
     overflow: hidden;
     padding: 0.25rem;
+
+    @each $type, $color in $color-health {
+      --#{$type}-color: #{$color};
+    }
   }
 
   .segment {
