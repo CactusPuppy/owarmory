@@ -3,39 +3,49 @@
   import ItemStastisticsBar from "./ItemStastisticsBar.svelte";
   import type { ComponentProps } from "svelte";
   import { getAllItemStatModifiers } from "$src/lib/utils/build";
-  import type { StatTotal } from "$src/lib/types/build";
+  import type { FullItem, StatTotal } from "$src/lib/types/build";
+  import type { Hero, Stat } from "$src/generated/prisma";
+  import Healthbar from "./Healthbar.svelte";
 
-  // Hero will be used at some point for the health value
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { items, hero } = $props();
+  const { items, hero, stats }: { items: FullItem[]; hero: Hero; stats: Stat[] } = $props();
+
+  function findStatByName(statName: string) {
+    return stats.find((stat) => stat.name == statName);
+  }
+
+  const lifeStat = $derived(findStatByName("Life"));
 
   let expanded = $state(false);
 
-  const statTotals: Record<string, StatTotal> = $derived(getAllItemStatModifiers(items) || []);
+  const statTotals: Record<string, StatTotal> = $derived(
+    getAllItemStatModifiers(items, hero) || [],
+  );
 
-  const statistics: ComponentProps<typeof ItemStastisticsBar>[] = $derived([
-    {
-      label: "Life",
-      suffix: "",
-      value: 300,
-      max: 300,
-      icon: "/images/stats/Life.webp",
-      background: "linear-gradient(to right, #f5f5f5 80%, #f1790e 80%, #f1790e 95%, #19b7df 95%)",
-    },
-    getSimplePercentageStatistic("Weapon Power"),
-    getSimplePercentageStatistic("Ability Power"),
-    getSimplePercentageStatistic("Attack Speed"),
-    getSimplePercentageStatistic("Cooldown Reduction"),
-    getSimplePercentageStatistic("Max Ammo"),
-    getSimplePercentageStatistic("Weapon Lifesteal"),
-    getSimplePercentageStatistic("Ability Lifesteal"),
-    getSimplePercentageStatistic("Move Speed"),
-    getSimplePercentageStatistic("Reload Speed"),
-    getSimplePercentageStatistic("Melee Damage"),
-    getSimplePercentageStatistic("Critical Damage"),
-  ]);
+  const { health, armor, shields } = $derived({
+    health: hero.baseHealth + (statTotals["Health"]?.totalAmount ?? 0),
+    armor: hero.baseArmor + (statTotals["Armor"]?.totalAmount ?? 0),
+    shields: hero.baseShields + (statTotals["Shields"]?.totalAmount ?? 0),
+  });
 
-  const shownStatistics = $derived(statistics.slice(0, expanded ? statistics.length : 5));
+  const statsOrder = [
+    "Weapon Power",
+    "Ability Power",
+    "Attack Speed",
+    "Cooldown Reduction",
+    "Max Ammo",
+    "Weapon Lifesteal",
+    "Ability Lifesteal",
+    "Move Speed",
+    "Reload Speed",
+    "Melee Damage",
+    "Critical Damage",
+  ];
+
+  const statistics: ComponentProps<typeof ItemStastisticsBar>[] = $derived(
+    statsOrder.map((stat) => getSimplePercentageStatistic(findStatByName(stat)!)),
+  );
+
+  const shownStatistics = $derived(statistics.slice(0, expanded ? statistics.length : 4));
 
   function getSimplePercentageStatistic(name: string): ComponentProps<typeof ItemStastisticsBar> {
     const value = statTotals[name]?.totalAmount || 0;
@@ -51,6 +61,17 @@
 </script>
 
 <div class="statistics">
+  <div transition:slide={{ duration: 50 }}>
+    <Healthbar
+      label="Life"
+      description={lifeStat?.description ?? ""}
+      icon={lifeStat?.iconURL ?? ""}
+      {health}
+      {armor}
+      {shields}
+    />
+  </div>
+
   {#each shownStatistics as statistic (statistic.label)}
     <div transition:slide={{ duration: 50 }}>
       <ItemStastisticsBar {...statistic} />

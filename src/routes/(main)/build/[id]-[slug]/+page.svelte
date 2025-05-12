@@ -48,7 +48,11 @@
     updatedAt,
   } = $derived(build as FullStadiumBuild);
 
-  const hero = $derived(heroFromHeroName(heroName as HeroName));
+  const hero = $derived({
+    baseArmor: 0,
+    baseShields: 0,
+    ...heroFromHeroName(heroName as HeroName),
+  });
 
   let similarBuilds: FullStadiumBuild[] = $state([]);
 
