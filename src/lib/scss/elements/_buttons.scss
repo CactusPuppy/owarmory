@@ -39,6 +39,10 @@ button {
     color: $secondary;
   }
 
+  &--danger {
+    color: $red;
+  }
+
   &--large {
     font-size: 125%;
     padding: 1rem 2rem;
