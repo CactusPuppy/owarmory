@@ -22,7 +22,7 @@
   );
 
   const { health, armor, shields } = $derived({
-    health: hero.baseHealth + (statTotals["Health"]?.totalAmount ?? 0),
+    health: hero.baseHealth + (statTotals["Life"]?.totalAmount ?? 0),
     armor: hero.baseArmor + (statTotals["Armor"]?.totalAmount ?? 0),
     shields: hero.baseShields + (statTotals["Shields"]?.totalAmount ?? 0),
   });

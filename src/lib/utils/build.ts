@@ -70,7 +70,7 @@ export function getAllItemStatModifiers(items: FullItem[], hero: Hero): Record<s
   let { baseHealth: health } = hero;
   const statTotals: Record<string, StatTotal> = {};
 
-  const LifeRelatedStats = ["Health", "Armor", "Shields"];
+  const LifeRelatedStats = ["Life", "Armor", "Shields"];
 
   for (const item of items) {
     let overcharge = 0;
@@ -79,7 +79,7 @@ export function getAllItemStatModifiers(items: FullItem[], hero: Hero): Record<s
       const { id, name } = statMod.stat;
       let amount = statMod.amount;
       // Assumes that the only negative modifiers are for Life
-      if (statMod.stat.name == "Health" && amount < 0 && Math.abs(amount) > health - 1) {
+      if (statMod.stat.name == "Life" && amount < 0 && Math.abs(amount) > health - 1) {
         overcharge = Math.abs(statMod.amount) - (health - 1);
         amount += overcharge; // Not a mistake, amount is negative
         health += amount;
