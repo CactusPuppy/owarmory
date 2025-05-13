@@ -1,0 +1,99 @@
+.form-input {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: $border-radius-small;
+  width: 100%;
+  background: $color-bg-dark;
+  font-family: $font-stack;
+  font-size: inherit;
+  color: $white;
+
+  &:focus {
+    outline: 2px solid $white;
+  }
+
+  &::placeholder {
+    font-style: italic;
+    color: $color-text-alt;
+  }
+
+  &--large {
+    font-size: 150%;
+  }
+}
+
+.form-textarea {
+  @extend .form-input;
+  padding: 1rem;
+  min-height: 10rem;
+
+  &--large {
+    min-height: 20rem;
+  }
+}
+
+.form-select {
+  @extend .form-input;
+  min-height: 10rem;
+  max-width: 20rem;
+
+  option {
+    color: $white;
+    border-bottom: 1px solid $color-bg-dark;
+
+    &:checked,
+    &:focus {
+      background: rgba($color-bg-light, 1);
+      color: $white;
+    }
+  }
+}
+
+.form-label {
+  display: block;
+  margin: 0 0 0.25rem 0;
+  font-weight: bold;
+  color: $white;
+  font-family: $font-stack-brand;
+}
+
+.form-help {
+  margin: 0 0 0.5rem;
+  font-size: 85%;
+}
+
+.form-group {
+  margin-top: 2rem;
+
+  &:last-child {
+    margin-top: 0;
+  }
+}
+
+.form-error {
+  padding: 1rem;
+  border-radius: $border-radius-small;
+  background: $red;
+  color: $white;
+
+  p {
+    margin: 0;
+  }
+}
+
+.form-outline-error {
+  outline: 2px solid $red;
+
+  &:focus {
+    outline-color: $red;
+  }
+}
+
+.form-text-error {
+  position: absolute;
+  color: $red;
+  padding-top: 0.25rem;
+  font-family: $font-stack-brand;
+  font-size: $font-size-small;
+}

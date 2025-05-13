@@ -1,10 +1,17 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import Navigation from "$lib/components/layout/Navigation.svelte";
-	import PageBackground from "$lib/components/layout/PageBackground.svelte";
+  import { setContext, type Snippet } from "svelte";
+  import Navigation from "$lib/components/layout/Navigation.svelte";
+  import PageBackground from "$lib/components/layout/PageBackground.svelte";
+  import Footer from "$lib/components/layout/Footer.svelte";
+  import type { PageData } from "./$types";
+  import NavigatingIndicator from "$src/lib/components/layout/NavigatingIndicator.svelte";
 
-  const { children }: { children: Snippet } = $props()
+  const { data, children }: { data: PageData; children: Snippet } = $props();
+
+  setContext("currentUser", data.currentUser);
 </script>
+
+<NavigatingIndicator />
 
 <Navigation />
 
@@ -12,14 +19,17 @@
   {@render children()}
 </main>
 
+<Footer />
+
 <PageBackground />
 
 <style lang="scss">
   @use "sass:map";
 
   main {
+    width: 100%;
     max-width: calc(map.get($breakpoints, page-max-width) + ($gutter * 2));
-    padding: clamp($gutter, 10vw, 7.5rem) $gutter;
+    padding: $vertical-offset-large $gutter;
     margin: 0 auto;
   }
 </style>

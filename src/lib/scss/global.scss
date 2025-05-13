@@ -1,25 +1,35 @@
 @import url("$lib/scss/_fonts.scss");
+@import url("$lib/scss/general/_form.scss");
 @import url("$lib/scss/general/_titles.scss");
+@import url("$lib/scss/elements/_block.scss");
+@import url("$lib/scss/elements/_buttons.scss");
+@import url("$lib/scss/elements/_markdown.scss");
 
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
 body {
-  background: $color-bg-base;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
   overflow-x: hidden;
+  background: $color-bg-base;
   color: $color-text-base;
   font-family: $font-stack;
-  font-size: 16px;
+  font-size: $font-size-small;
   line-height: 1.5;
 
   @include breakpoint(tablet) {
-    font-size: 18px;
+    line-height: 1.35;
+    font-size: $font-size-base;
   }
 
   &::before {
@@ -44,4 +54,8 @@ a {
 
 p {
   margin: 1rem 0;
+}
+
+.vertical-offset-large {
+  margin-top: $vertical-offset-large;
 }

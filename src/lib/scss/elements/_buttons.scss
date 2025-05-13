@@ -1,0 +1,63 @@
+@use "$lib/scss/_variables.scss" as *;
+
+button {
+  appearance: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.button {
+  color: $primary;
+  border: 2px solid currentColor;
+  padding: 0.5rem 0.75rem;
+  border-radius: $border-radius-small;
+  transition: transform 50ms;
+  text-decoration: none;
+  font-family: $font-stack-brand;
+  font-size: $font-size-base;
+  white-space: nowrap;
+
+  @include breakpoint(mobile) {
+    padding: 0.5rem 1rem;
+  }
+
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled):focus-visible {
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:not([disabled]):active {
+    transform: scale(0.95);
+  }
+
+  &--secondary {
+    color: $secondary;
+  }
+
+  &--danger {
+    color: $red;
+  }
+
+  &--large {
+    font-size: 125%;
+    padding: 1rem 2rem;
+  }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  &[disabled],
+  &.disabled {
+    color: $color-text-alt;
+    border-color: $color-border;
+    cursor: default;
+  }
+}

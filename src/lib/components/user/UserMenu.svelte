@@ -1,34 +1,51 @@
-<script lang="scss">
+<script lang="ts">
+  import type { User } from "$src/generated/prisma";
+  import { cleanName } from "$src/lib/utils/user";
+  import { getContext } from "svelte";
+  import iconUser from "$lib/images/icons/user.svg";
 
+  const currentUser: User = getContext("currentUser");
 </script>
 
-<a href="/profile" class="avatar">
-  <img src="//:0" alt="Username" height="64" width="64" />
-</a>
+<div class="user">
+  <span class="user__desktop">
+    Signed in as <a href="/account">{cleanName(currentUser.name!)}</a>
+  </span>
+
+  <a href="/account" class="user__mobile">
+    <img src={iconUser} alt={currentUser.name} height="40" width="40" />
+  </a>
+</div>
 
 <style lang="scss">
-  .avatar {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 50%;
-    border: 2px solid $white;
-    background: $color-bg-dark;
-    color: $color-text-base;
-    text-decoration: none;
-    overflow: hidden;
+  a {
+    font-family: $font-stack-brand;
+  }
 
-    &:hover {
-      filter: brightness(1.2);
+  .user {
+    white-space: nowrap;
+    font-size: $font-size-small;
+  }
+
+  .user__mobile {
+    display: flex;
+    align-items: center;
+
+    &:hover,
+    &:active {
+      filter: brightness(100);
     }
 
-    img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 50%;
-      width: 100%;
-      height: auto;
-      background: $color-bg-dark;
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  .user__desktop {
+    display: none;
+
+    @include breakpoint(tablet) {
+      display: block;
     }
   }
 </style>

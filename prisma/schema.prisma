@@ -5,8 +5,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["fullTextSearchPostgres"]
 }
 
 datasource db {
@@ -14,50 +15,167 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Hero {
+  name        String @id
+  role        String
+  baseHealth  Int    @default(250)
+  baseArmor   Int    @default(0)
+  baseShields Int    @default(0)
+
+  builds StadiumBuild[]
+  items  Item[]
+  powers Power[]
+}
+
+model User {
+  id            String         @id @default(nanoid(10))
+  name          String?
+  email         String?        @unique
+  emailVerified DateTime?
+  image         String?
+  builds        StadiumBuild[]
+  accounts      Account[]
+  sessions      Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
 model StadiumBuild {
-  id                String      @id @default(cuid(2))
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
-  buildTitle        String      @db.VarChar(63)
-  description       String?
-  roundInfos        RoundInfo[]
+  id              String      @id @default(nanoid(12))
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  author          User        @relation(fields: [authorId], references: [id])
+  buildTitle      String
+  description     String?
+  roundInfos      RoundInfo[]
+  additionalNotes String?
+  hero            Hero        @relation(fields: [heroName], references: [name])
+  tags            Tag[]       @relation("BuildTags")
+
+  authorId String
+  heroName String
+
+  @@index([authorId])
 }
 
 model RoundInfo {
-  id                String        @id @default(cuid(2))
-  parentBuild       StadiumBuild  @relation(fields: [buildId], references: [id])
-  buildId           String
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
-  note              String?
-  // TODO...
+  id          String             @id @default(cuid(2))
+  parentBuild StadiumBuild       @relation(fields: [buildId], references: [id], onDelete: Cascade)
+  buildId     String
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  orderIndex  Int                @default(0)
+  sections    RoundInfoSection[]
+  note        String?
+}
+
+model RoundInfoSection {
+  id              String    @id @default(cuid(2))
+  title           String? // When title is missing, that is the standard section for the round
+  parentRoundInfo RoundInfo @relation(fields: [parentRoundInfoId], references: [id], onDelete: Cascade)
+  orderIndex      Int       @default(0)
+  power           Power?    @relation(fields: [powerId], references: [id], onDelete: SetNull)
+  purchasedItems  Item[]    @relation("ItemPurchases")
+  soldItems       Item[]    @relation("ItemSales")
+
+  parentRoundInfoId String
+  powerId           String?
 }
 
 model Item {
-  id                String        @id @default(cuid(2))
-  name              String
-  description       String?
-  cost              Int
-  statMods          StatMod[]
-  // TODO...
+  id          String    @id @default(cuid(2))
+  name        String
+  category    String
+  rarity      String    @default("Common")
+  description String?
+  cost        Int
+  statMods    StatMod[]
+  hero        Hero?     @relation(fields: [heroName], references: [name], onDelete: Cascade)
+  iconURL     String?
+  removed     Boolean   @default(false)
+
+  purchaseSections RoundInfoSection[] @relation("ItemPurchases")
+  soldSections     RoundInfoSection[] @relation("ItemSales")
+  heroName         String?
 }
 
 model Power {
-  id                String        @id @default(cuid(2))
-  name              String
-  description       String
-  // TODO...
+  id          String  @id @default(cuid(2))
+  name        String
+  description String
+  iconURL     String?
+  hero        Hero    @relation(fields: [heroName], references: [name], onDelete: Cascade)
+  heroName    String
+  removed     Boolean @default(false)
+
+  roundInfos RoundInfoSection[]
 }
 
 model Stat {
-  id                Int           @id @default(autoincrement())
-  name              String
-  // TODO...
+  id          Int       @id @default(autoincrement())
+  statType    String    @default("Preset")
+  name        String    @unique
+  description String?
+  iconURL     String?
+  statMods    StatMod[]
 }
 
 model StatMod {
-  id                String        @id @default(cuid(2))
-  amount            Int
+  id                     String  @id @default(cuid(2))
+  orderIndex             Int     @default(0)
+  stat                   Stat    @relation(fields: [statId], references: [id], onDelete: Cascade)
+  amount                 Int
+  isPercentage           Boolean @default(false)
+  isShownPostDescription Boolean @default(false)
+  hidden                 Boolean @default(false)
 
-  Item Item[]
+  Item   Item[]
+  statId Int
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  label String @unique
+
+  builds StadiumBuild[] @relation("BuildTags")
 }

@@ -1,15 +1,33 @@
 <script lang="ts">
-  import imageLogo from "$lib/images/logo.webp"
-	import UserMenu from "$lib/components/user/UserMenu.svelte";
+  import imageLogo from "$lib/images/logo.webp";
+  import imageLogoSmall from "$lib/images/logo-small.webp";
+  import UserMenu from "$lib/components/user/UserMenu.svelte";
+  import { getContext } from "svelte";
+  import SignInButton from "$lib/components/auth/SignInButton.svelte";
+  import Search from "$src/lib/components/layout/Search.svelte";
+  import CreateBuildButton from "../content/CreateBuildButton.svelte";
+
+  const currentUser = getContext("currentUser");
 </script>
 
 <nav>
   <div class="content">
     <a href="/" class="logo">
-      <img src={imageLogo} height="64" width="175" alt="OW Armory" />
+      <img class="logo__desktop" src={imageLogo} height="64" width="175" alt="OW Armory" />
+      <img class="logo__mobile" src={imageLogoSmall} height="50" width="47" alt="" />
     </a>
 
-    <UserMenu />
+    <Search />
+
+    <div class="actions">
+      {#if currentUser}
+        <UserMenu />
+      {:else}
+        <SignInButton secondary />
+      {/if}
+
+      <CreateBuildButton />
+    </div>
   </div>
 </nav>
 
@@ -27,7 +45,7 @@
 
   nav {
     height: $navigation-height;
-    background: rgba($color-bg-dark, 0.5);
+    background: rgba($color-bg-dark, 0.75);
     mask-image: linear-gradient(
       to right,
       transparent,
@@ -41,19 +59,46 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     height: 100%;
     max-width: calc(map.get($breakpoints, page-max-width) + ($gutter * 2));
-    padding: 0 $gutter;
+    padding: 0 1rem;
     margin: 0 auto;
+
+    @include breakpoint(mobile) {
+      padding: 0 $gutter;
+    }
+
+    @include breakpoint(desktop) {
+      gap: 3rem;
+    }
   }
 
   .logo {
     &:hover {
       filter: brightness(1.2);
-
     }
-    img {
+  }
+
+  .logo__mobile {
+    display: block;
+
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  .logo__desktop {
+    display: none;
+
+    @include breakpoint(tablet) {
       display: block;
     }
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
   }
 </style>

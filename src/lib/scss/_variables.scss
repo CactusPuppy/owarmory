@@ -1,16 +1,42 @@
+@use "$lib/scss/_functions.scss" as *;
+
 $primary: #ee6a1d;
-$secondary: #127da1;
+$secondary: #1592bc;
 
 $white: #fff;
 $black: #000;
+$red: #9c1006;
+$green: #13a530;
+
 $color-bg-base: #0e2038;
 $color-bg-dark: #091628;
+$color-bg-light: #163853;
+$color-bg-hero: #c8ddf8;
 $color-text-base: $secondary;
 $color-text-alt: #6f8aad;
 $color-text-titles: $white;
+$color-border: rgba(#7ab1c3, 0.2);
 
-$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$color-health: (
+  health: $white,
+  armor: #ee7c25,
+  shields: #0be1ff,
+);
+
+$color-rarities: (
+  common: $green,
+  rare: #207cbd,
+  epic: #8426d2,
+);
+
+$font-stack:
+  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-stack-brand: "Gilroy", "Impact", sans-serif;
+
+$font-size-h1: clamp(2.5rem, 8vw, 3rem);
+$font-size-h2: clamp(2rem, 6vw, 2.25rem);
+$font-size-h3: clamp(1.5rem, 5vw, 1.875rem);
 
 $breakpoints: (
   mobile: 420px,
@@ -20,4 +46,17 @@ $breakpoints: (
 );
 
 $gutter: 1.5rem;
+$vertical-offset-large: clamp($gutter, 10vw, 7.5rem);
 $navigation-height: 5rem;
+$item-size: #{px-to-rem(40)};
+$item-size-large: #{px-to-rem(80)};
+$power-size-large: 4rem;
+
+$border-radius: 1rem;
+$border-radius-xxs: $border-radius * 0.125;
+$border-radius-xs: $border-radius * 0.25;
+$border-radius-small: $border-radius * 0.5;
+$border-radius-large: $border-radius * 2;
+
+$font-size-small: 16px;
+$font-size-base: 18px;

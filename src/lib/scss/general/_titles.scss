@@ -1,19 +1,24 @@
 @use "$lib/scss/_variables.scss" as *;
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $color-text-titles;
   font-family: $font-stack-brand;
   line-height: 1.25;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 3rem);
+  font-size: $font-size-h1;
 }
 
 h2 {
-  font-size: clamp(2rem, 6vw, 2.25rem);
+  font-size: $font-size-h2;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 5vw, 1.875rem);
+  font-size: $font-size-h3;
 }
