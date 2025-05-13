@@ -25,6 +25,7 @@
   let active = $state(false);
   let element: HTMLElement | null = $state(null);
   let offset = $state(0);
+  let flip = $state(false);
 
   $effect(() => {
     if (active) {
@@ -37,14 +38,17 @@
     if (!element) return;
 
     offset = 0;
+    flip = false;
 
     await tick();
 
-    const { left, right } = element.getBoundingClientRect();
+    const { left, right, top } = element.getBoundingClientRect();
     const gap = parseInt(getComputedStyle(document.documentElement).fontSize);
 
     if (left - gap < 0) offset = left - gap;
     else if (right - window.innerWidth + gap > 0) offset = right - window.innerWidth + gap;
+
+    flip = top + element.clientHeight > window.innerHeight;
   }
 
   function click() {
@@ -69,7 +73,8 @@
   {#if active}
     <div
       class="content"
-      transition:fly={{ y: 10, duration: transition ? 50 : 0 }}
+      class:flip
+      transition:fly={{ y: flip ? -10 : 10, duration: transition ? 50 : 0 }}
       bind:this={element}
       style:--offset="{offset}px"
     >
@@ -87,6 +92,14 @@
     display: block;
   }
 
+  // This exists to hide the popover while the it calculates if it should
+  // open to the bottom or to the top.
+  @keyframes show {
+    to {
+      opacity: 1;
+    }
+  }
+
   .content {
     z-index: 10;
     position: absolute;
@@ -99,6 +112,14 @@
     border-bottom: 2px solid $color-text-alt;
     padding: 1.5rem;
     width: min(calc(100vw - 2rem), 23rem);
+    opacity: 0;
+    animation: show 0ms 10ms forwards;
+
+    &.flip {
+      top: -1rem;
+      bottom: auto;
+      transform: translateX(-50%) translateY(-100%);
+    }
   }
 
   .inline {
