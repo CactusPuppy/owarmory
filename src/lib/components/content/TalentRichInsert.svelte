@@ -18,7 +18,7 @@
 
 <Popover inline {onshow} transition={false}>
   <span class="talent">
-    <img src="/images/talents/{talentName}.png" alt="" height="16" width="16" />
+    <img src="/images/talents/{talentName}.png" alt="" height="16" width="16" loading="lazy" />
     {talentName}
   </span>
 

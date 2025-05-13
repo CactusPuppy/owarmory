@@ -29,7 +29,7 @@
   <Card {outline} onclick={() => onclick(power)}>
     {#snippet header()}
       <div class="power">
-        <img src={iconURL} alt={name} />
+        <img src={iconURL} alt={name} loading="lazy" />
       </div>
 
       {name}
@@ -40,7 +40,7 @@
 {:else}
   <Popover onclick={() => onclick(power)}>
     <div class="power" class:large>
-      <img src={iconURL} alt={name} width={imageSize} height={imageSize} />
+      <img src={iconURL} alt={name} width={imageSize} height={imageSize} loading="lazy" />
     </div>
 
     {#snippet content()}
