@@ -119,11 +119,7 @@ export async function PATCH({ locals, request }) {
     return new Response(JSON.stringify({ message: error.message }), { headers, status: 500 });
   }
 
-  // Check that the currentUser is the owner of this build
-  const serverFetchedBuild = await prisma.stadiumBuild.findFirstOrThrow({
-    where: { id: validatedBuild.id },
-  });
-  if (currentUser.id !== serverFetchedBuild.authorId)
+  if (!isUserAuthorOfBuild(currentUser.id, validatedBuild.id))
     return new Response(JSON.stringify({ message: "You are not authorized to edit this build" }), {
       headers,
       status: 403,
@@ -238,6 +234,62 @@ export async function PATCH({ locals, request }) {
   return new Response(JSON.stringify(response), { headers });
 }
 
+export async function DELETE({ locals, request }) {
+  const session = await locals.auth();
+
+  const currentUser: User | null = (session?.user as User) || null;
+
+  if (!currentUser)
+    return new Response(JSON.stringify({ message: "Must be logged in to edit this build!" }), {
+      headers,
+      status: 401,
+    });
+
+  const response = await request.json();
+  const buildId = response.id;
+
+  if (!isUserAuthorOfBuild(currentUser.id, buildId))
+    return new Response(JSON.stringify({ message: "You are not authorized to edit this build" }), {
+      headers,
+      status: 403,
+    });
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      const roundInfos = await tx.roundInfo.findMany({
+        where: { buildId },
+        select: { id: true },
+      });
+
+      const roundInfoIds = roundInfos.map((r) => r.id);
+
+      const sections = await tx.roundInfoSection.findMany({
+        where: {
+          parentRoundInfoId: { in: roundInfoIds },
+        },
+        select: { id: true },
+      });
+
+      const sectionIds = sections.map((s) => s.id);
+
+      await tx.roundInfoSection.deleteMany({
+        where: { id: { in: sectionIds } },
+      });
+
+      await tx.roundInfo.deleteMany({
+        where: { id: { in: roundInfoIds } },
+      });
+
+      await tx.stadiumBuild.delete({ where: { id: buildId } });
+    });
+  } catch (error: unknown) {
+    console.error(error);
+    return new Response(JSON.stringify({ message: String(error) }), { headers, status: 500 });
+  }
+
+  return new Response(JSON.stringify({ success: true }), { headers });
+}
+
 function validateNewBuild(build: BuildData): z.infer<typeof BuildDataSchema> {
   const { success, data, error } = BuildDataSchema.safeParse(build, { errorMap: BuildErrorMap });
 
@@ -258,4 +310,12 @@ function validateExistingBuild(build: BuildData): z.infer<typeof ExistingBuildDa
   }
 
   return data;
+}
+
+async function isUserAuthorOfBuild(userId: string, buildId: string): Promise<boolean> {
+  const serverFetchedBuild = await prisma.stadiumBuild.findFirstOrThrow({
+    where: { id: buildId },
+  });
+
+  return userId == serverFetchedBuild.id;
 }
