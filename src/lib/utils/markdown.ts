@@ -2,7 +2,7 @@ import snarkdown from "snarkdown";
 import DOMPurify from "isomorphic-dompurify";
 
 export function markdown(text: string): string {
-  let parsed = useDoubleBreaks(text);
+  let parsed = snarkdownWithDoubleLinebreaks(text);
   parsed = updateLinkTargets(parsed);
   parsed = updateHeadingAriaLevels(parsed);
 
@@ -28,7 +28,7 @@ function updateHeadingAriaLevels(text: string): string {
 // Ideally we'd use paragraphs, but the way we parse talent previews get in the way of that. The next best
 // thing is double breaks, which is close enough.
 // https://github.com/developit/snarkdown/issues/11
-function useDoubleBreaks(text: string): string {
+function snarkdownWithDoubleLinebreaks(text: string): string {
   const lines = text.split(/(?:\r?\n){2,}/);
   const markdownCharacters = [" ", "\t", "#", "- ", "* ", "> "];
 
