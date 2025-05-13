@@ -89,9 +89,10 @@
         {cleanName(author.name!)}
       </a>
 
-      <span class="divider">•</span>
-
-      <Tags {tags} />
+      {#if tags.length}
+        <span class="divider">•</span>
+        <Tags {tags} />
+      {/if}
 
       <span class="divider">•</span>
 
