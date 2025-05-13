@@ -2,7 +2,7 @@ import snarkdown from "snarkdown";
 import DOMPurify from "isomorphic-dompurify";
 
 export function markdown(text: string): string {
-  let parsed = snarkdown(text);
+  let parsed = useParagraphs(text);
   parsed = updateLinkTargets(parsed);
   parsed = updateHeadingAriaLevels(parsed);
 
@@ -22,4 +22,17 @@ function updateLinkTargets(text: string): string {
 // Insert aria-level tags for h1 and h2 titles, retaining their styling, but making sure we control their importance.
 function updateHeadingAriaLevels(text: string): string {
   return text.replace(/<h1>/g, '<h1 aria-level="3">').replace(/<h2>/g, '<h2 aria-level="3">');
+}
+
+// Replace double new lines with paragraphs. Snarkdown normally parses any amount of newlines with breaks, never creating a paragraph.
+// https://github.com/developit/snarkdown/issues/11
+function useParagraphs(text: string): string {
+  return text
+    .split(/(?:\r?\n){2,}/)
+    .map((line: string) =>
+      [" ", "\t", "#", "- ", "* ", "> "].some((char) => line.startsWith(char))
+        ? snarkdown(line)
+        : `<p>${snarkdown(line)}</p>`,
+    )
+    .join("\n");
 }
