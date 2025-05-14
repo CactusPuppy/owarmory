@@ -2,7 +2,7 @@ import snarkdown from "snarkdown";
 import DOMPurify from "isomorphic-dompurify";
 
 export function markdown(text: string): string {
-  let parsed = snarkdown(text);
+  let parsed = snarkdownWithDoubleLinebreaks(text);
   parsed = updateLinkTargets(parsed);
   parsed = updateHeadingAriaLevels(parsed);
 
@@ -22,4 +22,27 @@ function updateLinkTargets(text: string): string {
 // Insert aria-level tags for h1 and h2 titles, retaining their styling, but making sure we control their importance.
 function updateHeadingAriaLevels(text: string): string {
   return text.replace(/<h1>/g, '<h1 aria-level="3">').replace(/<h2>/g, '<h2 aria-level="3">');
+}
+
+// Replace double new lines with double breaks. Snarkdown normally parses any amount of newlines with breaks.
+// Ideally we'd use paragraphs, but the way we parse talent previews get in the way of that. The next best
+// thing is double breaks, which is close enough.
+// https://github.com/developit/snarkdown/issues/11
+function snarkdownWithDoubleLinebreaks(text: string): string {
+  const lines = text.split(/(?:\r?\n){2,}/);
+  const markdownCharacters = [" ", "\t", "#", "- ", "* ", "> "];
+
+  return lines
+    .map(
+      (line: string, index: number) =>
+        snarkdown(line) +
+        // Line is a markdown element
+        (markdownCharacters.some((char) => line.startsWith(char)) ||
+        // Next line is a markdown element, or no lext line exists.
+        !lines[index + 1] ||
+        markdownCharacters.some((char) => lines[index + 1]?.startsWith(char))
+          ? ""
+          : "<br><br>"),
+    )
+    .join("\n");
 }
