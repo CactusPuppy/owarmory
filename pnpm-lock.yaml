@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      isomorphic-dompurify:
+        specifier: ^2.24.0
+        version: 2.24.0
     devDependencies:
       '@auth/core':
         specifier: ^0.39.0
@@ -74,9 +78,6 @@ importers:
       husky:
         specifier: ^9.1.7
         version: 9.1.7
-      isomorphic-dompurify:
-        specifier: ^2.24.0
-        version: 2.24.0
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
