@@ -1,15 +1,15 @@
 import snarkdown from "snarkdown";
-import { browser } from "$app/environment";
-import DOMPurify, { type WindowLike } from "dompurify";
+import type { DOMPurify } from "isomorphic-dompurify";
 
-let _window: WindowLike;
-if (!browser) {
-  const { JSDOM } = await import("jsdom");
-  _window = new JSDOM("").window;
+let purify: DOMPurify;
+// Claude special
+if (import.meta.env.SSR) {
+  const { default: _purify } = await import("./dompurify.server");
+  purify = _purify;
 } else {
-  _window = window;
+  // @ts-expect-error DOMPurify isn't defined here, it's defined via a script tag in the browser.
+  purify = DOMPurify();
 }
-const purify = DOMPurify(_window);
 
 export function markdown(text: string): string {
   let parsed = snarkdown(text);

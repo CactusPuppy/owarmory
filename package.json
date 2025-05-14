@@ -38,7 +38,6 @@
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.15.3",
     "@types/seedrandom": "^3.0.8",
-    "dompurify": "^3.2.5",
     "dotenv": "^16.5.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
@@ -76,5 +75,8 @@
   "lint-staged": {
     "*.svelte*": "eslint --fix",
     "*.{ts,js,svelte,svelte.ts,svelte.js,scss}": "prettier --write"
+  },
+  "dependencies": {
+    "isomorphic-dompurify": "^2.24.0"
   }
 }
