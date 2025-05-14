@@ -66,5 +66,6 @@
 
   .note {
     margin: var(--gap) 0 0;
+    white-space: pre-wrap;
   }
 </style>
