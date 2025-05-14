@@ -1,12 +1,13 @@
 import snarkdown from "snarkdown";
-import DOMPurify from "isomorphic-dompurify";
+// import DOMPurify from "isomorphic-dompurify";
 
 export function markdown(text: string): string {
   let parsed = snarkdownWithDoubleLinebreaks(text);
   parsed = updateLinkTargets(parsed);
   parsed = updateHeadingAriaLevels(parsed);
 
-  return DOMPurify.sanitize(parsed);
+  // return DOMPurify.sanitize(parsed);
+  return parsed;
 }
 
 // Links generated with Snarkdown are flat links. We'd prefer them to open in a new tab and with nofollow.
