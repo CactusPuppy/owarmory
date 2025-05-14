@@ -1,9 +1,14 @@
 import snarkdown from "snarkdown";
 import { browser } from "$app/environment";
-import { JSDOM } from "jsdom";
-import DOMPurify from "dompurify";
+import DOMPurify, { type WindowLike } from "dompurify";
 
-const _window = browser ? window : new JSDOM("").window;
+let _window: WindowLike;
+if (!browser) {
+  const { JSDOM } = await import("jsdom");
+  _window = new JSDOM("").window;
+} else {
+  _window = window;
+}
 const purify = DOMPurify(_window);
 
 export function markdown(text: string): string {
