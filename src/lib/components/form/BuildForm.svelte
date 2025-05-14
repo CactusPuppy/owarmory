@@ -375,7 +375,7 @@
         bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
         lengthValidation={{
           min: 0,
-          max: 500,
+          max: 1500,
           oninput: (isValid) => (validations[`note-${currentRound}`] = isValid),
         }}
       >
