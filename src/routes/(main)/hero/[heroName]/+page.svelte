@@ -8,13 +8,14 @@
   import { api } from "$lib/utils/api";
   import type { PageableBuildsSnapshot } from "$src/lib/types/snapshot";
   import { BUILDS_PAGE_SIZE } from "$lib/constants/page";
+  import Heroes from "$src/lib/components/content/Heroes.svelte";
 
   const { data } = $props();
 
   const { heroName } = $derived(data);
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
 
-  let builds: Build[] = $state(data?.builds ?? []);
+  let builds: Build[] = $derived(data?.builds ?? []);
   let loading = $state(false);
   let currentPage = $state(1);
 
@@ -54,6 +55,8 @@
 <svelte:head>
   <title>{heroName} | OW Armory</title>
 </svelte:head>
+
+<Heroes />
 
 <BuildsList header="Builds for {heroName}" {builds} />
 
