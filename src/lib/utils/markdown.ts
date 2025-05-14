@@ -1,12 +1,17 @@
 import snarkdown from "snarkdown";
-import DOMPurify from "isomorphic-dompurify";
+import { browser } from "$app/environment";
+import { JSDOM } from "jsdom";
+import DOMPurify from "dompurify";
+
+const _window = browser ? window : new JSDOM("").window;
+const purify = DOMPurify(_window);
 
 export function markdown(text: string): string {
   let parsed = snarkdown(text);
   parsed = updateLinkTargets(parsed);
   parsed = updateHeadingAriaLevels(parsed);
 
-  return DOMPurify.sanitize(parsed);
+  return purify.sanitize(parsed);
 }
 
 // Links generated with Snarkdown are flat links. We'd prefer them to open in a new tab and with nofollow.
