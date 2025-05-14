@@ -77,6 +77,6 @@
     "*.{ts,js,svelte,svelte.ts,svelte.js,scss}": "prettier --write"
   },
   "dependencies": {
-    "isomorphic-dompurify": "^2.24.0"
+    "dompurify": "^3.2.5"
   }
 }

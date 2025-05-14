@@ -23,7 +23,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ["isomorphic-dompurify"],
+      external: ["dompurify"],
     },
   },
 });

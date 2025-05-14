@@ -1,5 +1,5 @@
 import snarkdown from "snarkdown";
-import type { DOMPurify } from "isomorphic-dompurify";
+import type { DOMPurify } from "dompurify";
 
 let purify: DOMPurify;
 // Claude special

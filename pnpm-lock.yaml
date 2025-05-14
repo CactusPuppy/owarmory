@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      isomorphic-dompurify:
-        specifier: ^2.24.0
-        version: 2.24.0
+      dompurify:
+        specifier: ^3.2.5
+        version: 3.2.5
     devDependencies:
       '@auth/core':
         specifier: ^0.39.0
@@ -1340,10 +1340,6 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
-
-  isomorphic-dompurify@2.24.0:
-    resolution: {integrity: sha512-SgKoDBCQveodymGMBPpzs9MOTCk4Luq0bTfwoPrUKa7q0FnCLZMtqR25Rnq228zJfMTsX1ZItiJbDtjb2lyv4A==}
-    engines: {node: '>=18'}
 
   jose@6.0.10:
     resolution: {integrity: sha512-skIAxZqcMkOrSwjJvplIPYrlXGpxTPnro2/QWTDCxAdWQrSTV5/KqspMWmi5WAx5+ULswASJiZ0a+1B/Lxt9cw==}
@@ -3331,16 +3327,6 @@ snapshots:
   is-stream@3.0.0: {}
 
   isexe@2.0.0: {}
-
-  isomorphic-dompurify@2.24.0:
-    dependencies:
-      dompurify: 3.2.5
-      jsdom: 26.1.0
-    transitivePeerDependencies:
-      - bufferutil
-      - canvas
-      - supports-color
-      - utf-8-validate
 
   jose@6.0.10: {}
 

@@ -1,4 +1,4 @@
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 
 const window = new JSDOM("").window;
