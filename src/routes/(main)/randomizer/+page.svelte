@@ -54,11 +54,11 @@
 <input type="number" class="form-input" bind:value={availableCash} />
 
 <h2>Your random power is:</h2>
+<button onclick={selectNewPower} class="button">Roll New Power</button>
 <Power power={selectedPower} full />
 
-<button onclick={selectNewPower} class="button">Roll New Power</button>
-
 <h2>Your random item is:</h2>
+<button onclick={selectNewItem} class="button">Roll New Item</button>
 {#if selectedItem}
   <Item item={selectedItem} full />
   <p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
@@ -66,11 +66,9 @@
   <p>Could not find a valid item fitting your constraints.</p>
 {/if}
 
-<button onclick={selectNewItem} class="button">Roll New Item</button>
-
 <style lang="scss">
   .button {
-    margin-top: 0.5em;
+    margin-bottom: 0.5em;
   }
 
   hr {
