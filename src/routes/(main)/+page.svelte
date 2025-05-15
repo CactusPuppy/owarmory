@@ -14,6 +14,8 @@
   const { data } = $props();
 
   const currentRound: CurrentRound = $state({ value: ROUND_MAX });
+  const metaDescription =
+    "Find and create Overwatch 2 Stadium builds for your favorite hero. Discover new stategies, share your knowledge, and stay on top of the latest meta builds.";
 
   let latestBuilds: Build[] = $state(data?.latestBuilds ?? []);
   let loading = $state(false);
@@ -54,6 +56,8 @@
 <svelte:head>
   <title>OW Armory - Overwatch Stadium Builds</title>
   <meta property="og:title" content="OW Armory - Overwatch Stadium Builds" />
+  <meta property="og:description" content={metaDescription} />
+  <meta name="description" content={metaDescription} />
 </svelte:head>
 
 <Heroes />
