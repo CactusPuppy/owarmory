@@ -48,11 +48,18 @@
 
 <h2>Your random item is:</h2>
 <Item item={selectedItem} full />
+<p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
 
 <button onclick={selectNewItem} class="button">Roll New Item</button>
 
 <style lang="scss">
   .button {
     margin-top: 0.5em;
+  }
+
+  em {
+    color: $color-text-titles;
+    font-weight: bold;
+    font-style: normal;
   }
 </style>
