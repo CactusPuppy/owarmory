@@ -11,6 +11,10 @@
   const { allItems, allPowers } = data;
   let selectedHero = $state(faker.helpers.arrayElement(heroes));
 
+  function selectNewHero() {
+    selectedHero = faker.helpers.arrayElement(heroes);
+  }
+
   const validItems = $derived(
     allItems.filter((item) => item.heroName == null || item.heroName == selectedHero.name),
   );
@@ -40,6 +44,8 @@
 </script>
 
 <Heroes onclick={selectHero} highlightedHero={selectedHero} />
+<hr />
+<button onclick={selectNewHero} class="button">Roll New Hero</button>
 
 <h2>Your random power is:</h2>
 <Power power={selectedPower} full />
@@ -55,6 +61,10 @@
 <style lang="scss">
   .button {
     margin-top: 0.5em;
+  }
+
+  hr {
+    margin-top: 1em;
   }
 
   em {
