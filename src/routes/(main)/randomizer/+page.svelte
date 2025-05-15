@@ -10,13 +10,16 @@
 
   const { allItems, allPowers } = data;
   let selectedHero = $state(faker.helpers.arrayElement(heroes));
+  let availableCash = $state(3500); // starting cash
 
   function selectNewHero() {
     selectedHero = faker.helpers.arrayElement(heroes);
   }
 
   const validItems = $derived(
-    allItems.filter((item) => item.heroName == null || item.heroName == selectedHero.name),
+    allItems
+      .filter((item) => item.heroName == null || item.heroName == selectedHero.name)
+      .filter((item) => item.cost <= availableCash),
   );
   const validPowers = $derived(allPowers.filter((power) => power.heroName == selectedHero.name));
 
@@ -47,14 +50,21 @@
 <hr />
 <button onclick={selectNewHero} class="button">Roll New Hero</button>
 
+<h2>What is your budget?</h2>
+<input type="number" class="form-input" bind:value={availableCash} />
+
 <h2>Your random power is:</h2>
 <Power power={selectedPower} full />
 
 <button onclick={selectNewPower} class="button">Roll New Power</button>
 
 <h2>Your random item is:</h2>
-<Item item={selectedItem} full />
-<p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
+{#if selectedItem}
+  <Item item={selectedItem} full />
+  <p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
+{:else}
+  <p>Could not find a valid item fitting your constraints.</p>
+{/if}
 
 <button onclick={selectNewItem} class="button">Roll New Item</button>
 
