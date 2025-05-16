@@ -86,6 +86,8 @@
     cursor: pointer;
 
     @include breakpoint(tablet) {
+      display: grid;
+      grid-template-columns: 50px 1fr 1fr;
       flex-wrap: nowrap;
     }
 
@@ -108,16 +110,14 @@
   .name {
     display: block;
     margin-bottom: 0.25rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-family: $font-stack-brand;
     font-weight: bold;
     color: $white;
     text-decoration: none;
-    white-space: nowrap;
 
     &:hover {
-      box-shadow: 0 2px 0 $white;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
     }
   }
 
