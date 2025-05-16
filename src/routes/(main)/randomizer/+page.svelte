@@ -6,6 +6,8 @@
   import type { HeroData } from "$src/lib/types/hero.js";
   import { faker } from "@faker-js/faker";
 
+  const itemTalentTypes = ["Weapon", "Ability", "Survival"];
+  let categoryRestriction = $state("");
   const { data } = $props();
 
   const { allItems, allPowers } = data;
@@ -19,11 +21,14 @@
   const validItems = $derived(
     allItems
       .filter((item) => item.heroName == null || item.heroName == selectedHero.name)
+      .filter((item) => !categoryRestriction || item.category == categoryRestriction)
       .filter((item) => item.cost <= availableCash),
   );
   const validPowers = $derived(allPowers.filter((power) => power.heroName == selectedHero.name));
 
+  // svelte-ignore state_referenced_locally
   let selectedItemIndex: number = $state(Math.floor(Math.random() * validItems.length));
+  // svelte-ignore state_referenced_locally
   let selectedPowerIndex: number = $state(Math.floor(Math.random() * validPowers.length));
 
   const selectedItem = $derived(validItems[selectedItemIndex]);
@@ -41,38 +46,68 @@
     selectedItemIndex = Math.floor(Math.random() * validItems.length);
   }
 
+  $effect(() => {
+    if (selectedItemIndex >= validItems.length) selectNewItem();
+    if (selectedPowerIndex >= validPowers.length) selectNewPower();
+  });
+
   function selectNewPower() {
     selectedPowerIndex = Math.floor(Math.random() * validPowers.length);
   }
 </script>
 
 <Heroes onclick={selectHero} highlightedHero={selectedHero} />
-<hr />
 <button onclick={selectNewHero} class="button">Roll New Hero</button>
 
-<h2>What is your budget?</h2>
-<input type="number" class="form-input" bind:value={availableCash} />
+<div class="readable-width">
+  <h2>What is your budget?</h2>
+  <input type="number" class="form-input" bind:value={availableCash} />
 
-<h2>Your random power is:</h2>
-<button onclick={selectNewPower} class="button">Roll New Power</button>
-<Power power={selectedPower} full />
+  <hr />
 
-<h2>Your random item is:</h2>
-<button onclick={selectNewItem} class="button">Roll New Item</button>
-{#if selectedItem}
-  <Item item={selectedItem} full />
-  <p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
-{:else}
-  <p>Could not find a valid item fitting your constraints.</p>
-{/if}
+  <h2>Your random power is:</h2>
+  <button onclick={selectNewPower} class="button">Roll New Power</button>
+  <Power power={selectedPower} full />
+
+  <hr />
+
+  <h3>Item Category Restriction</h3>
+  <select class="form-input" bind:value={categoryRestriction}>
+    <option value="">(None)</option>
+    {#each itemTalentTypes as type (type)}
+      <option value={type}>{type}</option>
+    {/each}
+  </select>
+  <h2>Your random item is:</h2>
+  <button onclick={selectNewItem} class="button">Roll New Item</button>
+  {#if selectedItem}
+    <Item item={selectedItem} full />
+    <p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
+  {:else}
+    <p>Could not find a valid item fitting your constraints.</p>
+  {/if}
+</div>
 
 <style lang="scss">
+  @use "sass:map";
+
+  .readable-width {
+    max-width: calc(map.get($breakpoints, page-max-width) / 2);
+  }
   .button {
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+
+  h2,
+  h3 {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
   }
 
   hr {
-    margin-top: 1em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
   }
 
   em {
