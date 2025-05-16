@@ -65,13 +65,12 @@
 
   <hr />
 
-  <button onclick={selectNewPower} class="button">Roll New Power</button>
   <h2>Your random power is:</h2>
+  <button onclick={selectNewPower} class="button">Roll New Power</button>
   <Power power={selectedPower} full />
 
   <hr />
 
-  <button onclick={selectNewItem} class="button">Roll New Item</button>
   <h3>Item Category Restriction</h3>
   <select class="form-input" bind:value={categoryRestriction}>
     <option value="">(None)</option>
@@ -80,6 +79,7 @@
     {/each}
   </select>
   <h2>Your random item is:</h2>
+  <button onclick={selectNewItem} class="button">Roll New Item</button>
   {#if selectedItem}
     <Item item={selectedItem} full />
     <p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
@@ -102,10 +102,12 @@
   h2,
   h3 {
     margin-top: 0.25em;
+    margin-bottom: 0.25em;
   }
 
   hr {
-    margin-top: 1em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
   }
 
   em {
