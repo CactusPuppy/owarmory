@@ -47,7 +47,7 @@
   <div class="bar" aria-label="{label}: {totalPoints}">
     <div class="icon">
       <Popover>
-        <img src={icon} alt={label} height="24" width="24" />
+        <img src={icon} alt={label} height="24" width="24" loading="lazy" />
 
         {#snippet content()}
           <div class="detail">

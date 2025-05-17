@@ -9,6 +9,6 @@ export function buildShortPath(build: Pick<FullStadiumBuild, "id">): string {
   return `/${build.id}`;
 }
 
-export function buildEditPath(build: FullStadiumBuild): string {
+export function buildEditPath(build: Pick<FullStadiumBuild, "id" | "buildTitle">): string {
   return buildPath(build) + "/edit";
 }

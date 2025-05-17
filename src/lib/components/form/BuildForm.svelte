@@ -51,7 +51,7 @@
 
   let currentRoundIndex = $state(0);
   let currentTalentTypeTab = $state(itemTalentTypes[0]);
-  let heroName: HeroName | null = $state(build.heroName as HeroName);
+  const heroName: HeroName | null = $derived(build.heroName as HeroName);
   let issues: string[] = $state([]);
   let saving = $state(false);
   let query = $state("");
@@ -109,7 +109,7 @@
     event.preventDefault();
 
     build.heroName = hero.name;
-    heroName = hero.name;
+    build = { ...build };
   }
 
   function selectItem(item: Item): void {
@@ -189,9 +189,13 @@
   function removeHeroSpecificTalents(): void {
     build.roundInfos.forEach((roundInfo) => {
       roundInfo.sections.forEach((section) => {
-        if (section.power?.heroName !== heroName) section.power = null;
-        section.purchasedItems = section.purchasedItems.filter((item) => heroName != item.heroName);
-        section.soldItems = section.soldItems.filter((item) => heroName != item.heroName);
+        if (section.power?.heroName != heroName) section.power = null;
+        section.purchasedItems = section.purchasedItems.filter(
+          (item) => item.heroName == null || heroName == item.heroName,
+        );
+        section.soldItems = section.soldItems.filter(
+          (item) => item.heroName == null || heroName == item.heroName,
+        );
       });
     });
 
@@ -375,7 +379,7 @@
         bind:value={() => currentRound?.note || "", (v) => (currentRound.note = v)}
         lengthValidation={{
           min: 0,
-          max: 500,
+          max: 1500,
           oninput: (isValid) => (validations[`note-${currentRound}`] = isValid),
         }}
       >

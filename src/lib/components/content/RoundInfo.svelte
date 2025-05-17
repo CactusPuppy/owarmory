@@ -2,6 +2,7 @@
   import type { FullRoundInfo } from "$lib/types/round";
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
+  import TalentRichPreviews from "./TalentRichPreviews.svelte";
 
   interface Props {
     roundInfo: FullRoundInfo;
@@ -37,7 +38,7 @@
 
   {#if note}
     <p class="note">
-      {note}
+      <TalentRichPreviews text={note} />
     </p>
   {/if}
 </div>
@@ -65,5 +66,6 @@
 
   .note {
     margin: var(--gap) 0 0;
+    white-space: pre-wrap;
   }
 </style>
