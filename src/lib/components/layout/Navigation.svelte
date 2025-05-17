@@ -14,7 +14,7 @@
   <div class="content">
     <a href="/" class="logo">
       <img class="logo__desktop" src={imageLogo} height="64" width="175" alt="OW Armory" />
-      <img class="logo__mobile" src={imageLogoSmall} height="50" width="47" alt="" />
+      <img class="logo__mobile" src={imageLogoSmall} height="50" width="47" alt="OW Armory" />
     </a>
 
     <Search />
