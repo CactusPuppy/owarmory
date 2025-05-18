@@ -423,27 +423,29 @@
     </MarkdownPreviewDescription>
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="tags">Tags</label>
-    <p class="form-help" id="tags">
-      Select predefined tags that help others find your build. Select up to 3.
-    </p>
-    <select
-      multiple
-      size="3"
-      class="form-select"
-      name="tags"
-      aria-describedby="tags"
-      bind:value={
-        () => build.tags.map((tag) => tag.id),
-        (v) => (build.tags = tags.filter((tag) => v.some((id) => id === tag.id)))
-      }
-    >
-      {#each tags as { id, label } (id)}
-        <option value={id}>{label}</option>
-      {/each}
-    </select>
-  </div>
+  {#if tags.length}
+    <div class="form-group">
+      <label class="form-label" for="tags">Tags</label>
+      <p class="form-help" id="tags">
+        Select predefined tags that help others find your build. Select up to 3.
+      </p>
+      <select
+        multiple
+        size="3"
+        class="form-select"
+        name="tags"
+        aria-describedby="tags"
+        bind:value={
+          () => build.tags.map((tag) => tag.id),
+          (v) => (build.tags = tags.filter((tag) => v.some((id) => id === tag.id)))
+        }
+      >
+        {#each tags as { id, label } (id)}
+          <option value={id}>{label}</option>
+        {/each}
+      </select>
+    </div>
+  {/if}
 
   <button class="button button--large save" disabled={saving || containsErrors}>
     {#if saving}
