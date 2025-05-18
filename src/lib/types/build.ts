@@ -17,19 +17,25 @@ export const ItemCategory = {
 } as const;
 export type ItemCategory = (typeof ItemCategory)[keyof typeof ItemCategory];
 
-export const FullStatModInclude = { stat: true };
+export const CleanStatInclude = {
+  id: true,
+  name: true,
+  description: true,
+  iconURL: true,
+  statType: true,
+} as const;
+
+export const FullStatModInclude = {
+  stat: {
+    select: CleanStatInclude,
+  },
+} as const satisfies Prisma.StatModInclude;
+
 export const FullItemInclude = {
   statMods: {
     include: {
       stat: {
-        include: {
-          statMods: {
-            include: FullStatModInclude,
-            orderBy: {
-              orderIndex: "asc",
-            },
-          },
-        },
+        select: CleanStatInclude,
       },
     },
     orderBy: {
