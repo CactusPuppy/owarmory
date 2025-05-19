@@ -1,4 +1,5 @@
 import type { FullStadiumBuild } from "../types/build";
+import type { HeroName } from "../types/hero";
 import { toSlug } from "./slug";
 
 export function buildPath(build: Pick<FullStadiumBuild, "id" | "buildTitle">): string {
@@ -11,4 +12,8 @@ export function buildShortPath(build: Pick<FullStadiumBuild, "id">): string {
 
 export function buildEditPath(build: Pick<FullStadiumBuild, "id" | "buildTitle">): string {
   return buildPath(build) + "/edit";
+}
+
+export function heroPath(hero: HeroName) {
+  return `/hero/${hero}`;
 }
