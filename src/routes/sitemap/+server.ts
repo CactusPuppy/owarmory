@@ -46,7 +46,7 @@ export async function GET({ url }) {
           (build) => `
         <url>
           <loc>${host}${buildPath(build)}</loc>
-          <lastmod>${build.updatedAt}</lastmod>
+          <lastmod>${new Date(build.updatedAt).toISOString()}</lastmod>
         </url>
       `,
         )
