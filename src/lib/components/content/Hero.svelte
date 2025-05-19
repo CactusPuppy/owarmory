@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { HeroData } from "$lib/types/hero";
   import { heroImage } from "$lib/constants/heroes";
+  import { heroPath } from "$src/lib/utils/routes";
 
   interface Props {
     hero: HeroData;
@@ -13,7 +14,7 @@
 </script>
 
 <a
-  href="/hero/{hero.name}"
+  href={heroPath(hero.name)}
   class="hero"
   class:large
   class:active

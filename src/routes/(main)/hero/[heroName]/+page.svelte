@@ -58,7 +58,7 @@
 
 <Heroes />
 
-<BuildsList header="Builds for {heroName}" {builds} />
+<BuildsList header="Stadium builds for {heroName}" {builds} />
 
 {#if builds.length % BUILDS_PAGE_SIZE === 0}
   <center>
