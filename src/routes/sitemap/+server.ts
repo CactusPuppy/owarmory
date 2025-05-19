@@ -30,26 +30,26 @@ export async function GET({ url }) {
       </url>
 
       ${heroes
-        .map(
-          (hero) => `
+    .map(
+      (hero) => `
         <url>
           <loc>${host}${heroPath(hero.name)}</loc>
           <changefreq>daily</changefreq>
         </url>
       `,
-        )
-        .join("")}
+    )
+    .join("")}
 
       ${builds
-        .map(
-          (build) => `
+    .map(
+      (build) => `
         <url>
           <loc>${host}${buildPath(build)}</loc>
           <lastmod>${build.updatedAt}</lastmod>
         </url>
       `,
-        )
-        .join("")}
+    )
+    .join("")}
     </urlset>
   `;
 
