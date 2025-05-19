@@ -3,7 +3,7 @@ import { buildPath, heroPath } from "$lib/utils/routes.js";
 import { heroes } from "$src/lib/constants/heroData.js";
 
 export async function GET({ url }) {
-  const host = url.origin;
+  const host = url.origin.slice(0, url.origin.length); // Removing trailing slash
 
   const builds = await prisma.stadiumBuild.findMany({
     orderBy: {
@@ -20,12 +20,12 @@ export async function GET({ url }) {
                 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
       <url>
-        <loc>https://${host}</loc>
+        <loc>${host}</loc>
         <changefreq>daily</changefreq>
       </url>
 
       <url>
-        <loc>https://${host}/latest</loc>
+        <loc>${host}/latest</loc>
         <changefreq>daily</changefreq>
       </url>
 
@@ -33,7 +33,7 @@ export async function GET({ url }) {
         .map(
           (hero) => `
         <url>
-          <loc>https://${host}/${heroPath(hero.name)}</loc>
+          <loc>${host}${heroPath(hero.name)}</loc>
           <changefreq>daily</changefreq>
         </url>
       `,
@@ -44,7 +44,7 @@ export async function GET({ url }) {
         .map(
           (build) => `
         <url>
-          <loc>https://${host}/${buildPath(build)}</loc>
+          <loc>${host}${buildPath(build)}</loc>
           <lastmod>${build.updatedAt}</lastmod>
         </url>
       `,
