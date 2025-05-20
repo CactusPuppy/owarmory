@@ -17,7 +17,7 @@ const GuidValue = z.object({
 
 const Buff = z.object({
   GameValueGUID: z.string(),
-  IconGUID: z.string(),
+  IconGUID: z.string().optional(),
   Name: z.string(),
   Description: z.string(),
   DescriptionFormatted: z.string(),
@@ -25,6 +25,7 @@ const Buff = z.object({
   Hidden: z.boolean().optional(),
   FormattedText: z.string(),
   Value: z.number(),
+  IsPercentage: z.boolean().optional(),
 });
 
 const CustomBuff = z.object({
@@ -53,11 +54,12 @@ const StadiumDataSchema = z.record(
 );
 
 async function createHeroes(tx: PrismaTransaction) {
-  return await tx.hero.createManyAndReturn({
+  return await tx.hero.createMany({
     data: heroes.map((heroData) => ({
       name: heroData.name as string,
       role: heroData.role as string,
     })),
+    skipDuplicates: true,
   });
 }
 
@@ -65,7 +67,8 @@ async function main() {
   console.log("Beginning seed transaction...");
   prisma.$transaction(async (tx) => {
     console.log("Creating heroes...");
-    const heroes = await createHeroes(tx);
+    await createHeroes(tx);
+    const heroes = await tx.hero.findMany();
 
     console.log("Reading stadium data...");
     const stadiumData = StadiumDataSchema.parse(
@@ -89,6 +92,7 @@ async function main() {
 
       const baseData = {
         name: talent.Name,
+        gameGuid: talent.GUID,
         description: talent.DescriptionFormatted ?? talent.Description,
         iconURL: `/images/talents/${talent.Name.trim()}.png`,
         heroName: talent.Hero
@@ -97,25 +101,147 @@ async function main() {
       };
 
       if (talent.Category.Value == "Power") {
-        await tx.power.create({
-          // @ts-expect-error Some items do not belong to heroes, but all powers do
-          data: baseData,
+        await tx.power.upsert({
+          where: {
+            gameGuid: talent.GUID,
+          },
+          update: baseData,
+          create: baseData,
         });
         continue;
       }
 
-      await tx.item.create({
-        data: {
-          ...baseData,
-          cost: talent.Cost,
-          category: itemCategoryValueToEnum[talent.Category.Value],
-          rarity: itemRarityValueToEnum[talent.Rarity.Value],
+      // Replace the simple create with a upsert pattern that handles statMods
+      const existingItem = await tx.item.findUnique({
+        where: {
+          gameGuid: talent.GUID,
+        },
+        include: {
           statMods: {
-            create: talent.Buffs.map((buff, i) => {
-              if ("StatType" in buff) {
-                // Custom stat
-                const customStat = CustomStats.find((stat) => stat.Name == buff.Name);
-                const isPercentage = buff.IsPercentage || Math.abs(buff.Amount) < 1;
+            include: {
+              stat: true,
+            },
+          },
+        },
+      });
+
+      if (existingItem) {
+        // Update the existing item
+        await tx.item.update({
+          where: {
+            id: existingItem.id,
+          },
+          data: {
+            ...baseData,
+            cost: talent.Cost,
+            category: itemCategoryValueToEnum[talent.Category.Value],
+            rarity: itemRarityValueToEnum[talent.Rarity.Value],
+            removed: existingItem.removed,
+            iconURL: existingItem.iconURL,
+          },
+        });
+
+        if (existingItem.statMods.length > 0) {
+          await tx.statMod.deleteMany({
+            where: {
+              Item: {
+                every: {
+                  id: existingItem.id,
+                },
+              },
+            },
+          });
+        }
+
+        for (let i = 0; i < talent.Buffs.length; i++) {
+          const buff = talent.Buffs[i];
+
+          let customStat;
+          if ("StatType" in buff) {
+            customStat = CustomStats.find((stat) => stat.Name == buff.Name);
+          }
+
+          const stat = await tx.stat.upsert({
+            where: {
+              name: buff.Name,
+            },
+            update: {
+              // custom stats don't really need descriptions
+              //description: buff.DescriptionFormatted
+            },
+            create: {
+              statType: "Custom",
+              name: buff.Name,
+              iconURL: customStat?.OverrideIconName
+                ? `/images/stats/${encodeURIComponent(customStat.OverrideIconName)}.webp`
+                : null,
+            },
+          });
+
+          const existingStatMod = existingItem.statMods.find((sm) => sm.stat.name === buff.Name);
+
+          let buffValue;
+          if ("StatType" in buff) {
+            buffValue = buff.Amount;
+          } else {
+            buffValue = buff.Value;
+          }
+
+          await tx.statMod.create({
+            data: {
+              orderIndex: i,
+              isShownPostDescription: existingStatMod?.isShownPostDescription ?? false,
+              hidden: existingStatMod?.hidden ?? false,
+              amount: buff.IsPercentage ? buffValue * 100 : buffValue,
+              isPercentage: buff.IsPercentage,
+              Item: {
+                connect: {
+                  id: existingItem.id,
+                },
+              },
+              stat: {
+                connect: {
+                  id: stat.id,
+                },
+              },
+            },
+          });
+        }
+      } else {
+        await tx.item.create({
+          data: {
+            ...baseData,
+            cost: talent.Cost,
+            category: itemCategoryValueToEnum[talent.Category.Value],
+            rarity: itemRarityValueToEnum[talent.Rarity.Value],
+            statMods: {
+              create: talent.Buffs.map((buff, i) => {
+                if ("StatType" in buff) {
+                  // Custom stat, not really needed anymore?
+                  const customStat = CustomStats.find((stat) => stat.Name == buff.Name);
+                  return {
+                    orderIndex: i,
+                    stat: {
+                      connectOrCreate: {
+                        where: {
+                          name: buff.Name,
+                        },
+                        create: {
+                          statType: "Custom",
+                          name: buff.Name,
+                          iconURL: customStat?.OverrideIconName
+                            ? `/images/stats/${encodeURIComponent(customStat.OverrideIconName)}.webp`
+                            : null,
+                        },
+                      },
+                    },
+                    isShownPostDescription: buff.ShowPostDescription,
+                    hidden: buff.Hidden,
+                    amount: buff.IsPercentage ? buff.Amount * 100 : buff.Amount,
+                    isPercentage: buff.IsPercentage,
+                  };
+                }
+
                 return {
                   orderIndex: i,
                   stat: {
@@ -126,43 +252,23 @@ async function main() {
                       create: {
                         statType: "Custom",
                         name: buff.Name,
-                        iconURL: customStat?.OverrideIconName
-                          ? `/images/stats/${encodeURIComponent(customStat.OverrideIconName)}.webp`
-                          : null,
+
+                        // Only the 'main' stats have these which likely already exist so any new stats are likely 'custom' and don't need this
+                        //description: buff.DescriptionFormatted,
+                        //iconURL: `/images/stats/${encodeURIComponent(buff.Name)}.webp`,
                       },
                     },
                   },
-                  isShownPostDescription: buff.ShowPostDescription,
-                  hidden: buff.Hidden,
-                  amount: isPercentage ? buff.Amount * 100 : buff.Amount,
-                  isPercentage,
+                  isShownPostDescription: buff.ShowPostDescription ?? false,
+                  hidden: buff.Hidden ?? false,
+                  amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
+                  isPercentage: buff.IsPercentage ?? false,
                 };
-              }
-
-              return {
-                orderIndex: i,
-                stat: {
-                  connectOrCreate: {
-                    where: {
-                      name: buff.Name,
-                    },
-                    create: {
-                      statType: "Preset",
-                      name: buff.Name,
-                      description: buff.DescriptionFormatted,
-                      iconURL: `/images/stats/${encodeURIComponent(buff.Name)}.webp`,
-                    },
-                  },
-                },
-                isShownPostDescription: buff.ShowPostDescription,
-                hidden: buff.Hidden,
-                amount: buff.Value < 1 ? buff.Value * 100 : buff.Value,
-                isPercentage: buff.Value < 1,
-              };
-            }),
+              }),
+            },
           },
-        },
-      });
+        });
+      }
     }
   });
 }
