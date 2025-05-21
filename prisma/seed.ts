@@ -205,8 +205,9 @@ async function main() {
 
           const statMod = {
             orderIndex: i,
-            isShownPostDescription: existingStatMod?.isShownPostDescription ?? false,
-            hidden: existingStatMod?.hidden ?? false,
+            isShownPostDescription:
+              existingStatMod?.isShownPostDescription ?? buff.ShowPostDescription ?? false,
+            hidden: existingStatMod?.hidden ?? buff.Hidden ?? false,
             amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
             isPercentage: buff.IsPercentage,
             gameGuid: buff.GameValueGUID,
