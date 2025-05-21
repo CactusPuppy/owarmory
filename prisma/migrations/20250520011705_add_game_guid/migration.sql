@@ -11,6 +11,9 @@ ALTER TABLE "Item" ADD COLUMN     "gameGuid" TEXT;
 -- AlterTable
 ALTER TABLE "Power" ADD COLUMN     "gameGuid" TEXT;
 
+-- AlterTable
+ALTER TABLE "StatMod" ADD COLUMN     "gameGuid" TEXT;
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Item_gameGuid_key" ON "Item"("gameGuid");
 

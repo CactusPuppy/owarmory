@@ -3,7 +3,7 @@ import { z } from "zod";
 import { PrismaClient } from "../src/generated/prisma";
 import { ItemRarity, ItemCategory } from "../src/lib/types/build";
 import { heroes } from "../src/lib/constants/heroData";
-import { CustomStats } from "../src/lib/constants/stats";
+import { StatOverrides } from "../src/lib/constants/stats";
 const { readFile } = promises;
 
 type PrismaTransaction = Parameters<Parameters<typeof prisma.$transaction>[0]>[0];
@@ -16,42 +16,49 @@ const GuidValue = z.object({
 });
 
 const Buff = z.object({
-  GameValueGUID: z.string(),
+  StatType: z.string().optional(),
+  GameValueGUID: z.string().optional(),
   IconGUID: z.string().optional(),
   Name: z.string(),
-  Description: z.string(),
-  DescriptionFormatted: z.string(),
+  Description: z.string().optional(),
+  DescriptionFormatted: z.string().optional(),
   ShowPostDescription: z.boolean().optional(),
   Hidden: z.boolean().optional(),
-  FormattedText: z.string(),
   Value: z.number(),
   IsPercentage: z.boolean().optional(),
+  OverrideIconName: z.string().optional(),
 });
 
-const CustomBuff = z.object({
-  StatType: z.literal("Custom"),
+const StadiumTalent = z.object({
+  GUID: z.string(),
   Name: z.string(),
-  Amount: z.number(),
-  IsPercentage: z.boolean().optional(),
-  ShowPostDescription: z.boolean().optional(),
-  Hidden: z.boolean().optional(),
+  Description: z.string(),
+  DescriptionFormatted: z.string().nullable(),
+  Cost: z.number().nonnegative(),
+  Hero: GuidValue.nullable(),
+  Rarity: GuidValue,
+  Category: GuidValue,
+  Buffs: z.array(Buff),
+  GameValues: z.array(z.any()),
 });
 
-const StadiumDataSchema = z.record(
-  z.string(),
-  z.object({
-    GUID: z.string(),
-    Name: z.string(),
-    Description: z.string(),
-    DescriptionFormatted: z.string().nullable(),
-    Cost: z.number().nonnegative(),
-    Hero: GuidValue.nullable(),
-    Rarity: GuidValue,
-    Category: GuidValue,
-    Buffs: z.array(z.union([Buff, CustomBuff])),
-    GameValues: z.array(z.any()),
-  }),
-);
+const CustomStadiumTalent = z.object({
+  GUID: z.string(),
+  Name: z.string(),
+  NameOverride: z.string().optional(),
+  Description: z.string().optional(),
+  DescriptionFormatted: z.string().nullable().optional(),
+  Cost: z.number().nonnegative().optional(),
+  Hero: GuidValue.nullable().optional(),
+  Rarity: GuidValue.optional(),
+  Category: GuidValue.optional(),
+  Buffs: z.array(Buff).optional(),
+});
+
+const StadiumDataSchema = z.record(z.string(), StadiumTalent);
+const CustomStadiumDataSchema = z.record(z.string(), CustomStadiumTalent);
+type Talent = z.infer<typeof StadiumTalent>;
+type CustomTalent = z.infer<typeof CustomStadiumTalent>;
 
 async function createHeroes(tx: PrismaTransaction) {
   return await tx.hero.createMany({
@@ -74,6 +81,12 @@ async function main() {
     const stadiumData = StadiumDataSchema.parse(
       JSON.parse((await readFile("./prisma/seed-data/stadium-data.json")).toString()),
     );
+
+    console.log("Reading custom stadium data...");
+    const customStadiumData = CustomStadiumDataSchema.parse(
+      JSON.parse((await readFile("./prisma/seed-data/custom-stadium-data.json")).toString()),
+    );
+
     const itemCategoryValueToEnum: Record<string, ItemCategory> = {
       Ability: ItemCategory.Ability,
       Survival: ItemCategory.Survival,
@@ -85,10 +98,33 @@ async function main() {
       Epic: ItemRarity.Epic,
     };
 
+    const existingStatMods = await tx.statMod.findMany();
+    const processedStatMods = new Set<string>();
+
     for (const [index, [guid, talent]] of Object.entries(stadiumData).entries()) {
       console.log(
         `Processing talent ${guid} (${index + 1} / ${Object.values(stadiumData).length})`,
       );
+
+      const customOverrideData = customStadiumData[guid];
+      applyCustomTalentOverrideData(talent, customOverrideData);
+
+      for (const buff of talent.Buffs) {
+        const statOverrides = StatOverrides.find((stat) => stat.Name == buff.Name);
+        // only stats with overrides should have descriptions
+        buff.Description = undefined;
+
+        if (statOverrides) {
+          buff.StatType = statOverrides.StatType;
+          buff.Description = statOverrides.Description;
+
+          if (statOverrides.OverrideIconName) {
+            buff.OverrideIconName = `/images/stats/${encodeURIComponent(statOverrides.OverrideIconName)}.webp`;
+          } else if (buff.StatType == "Preset") {
+            buff.OverrideIconName = `/images/stats/${encodeURIComponent(buff.Name)}.webp`;
+          }
+        }
+      }
 
       const baseData = {
         name: talent.Name,
@@ -111,7 +147,6 @@ async function main() {
         continue;
       }
 
-      // Replace the simple create with a upsert pattern that handles statMods
       const existingItem = await tx.item.findUnique({
         where: {
           gameGuid: talent.GUID,
@@ -141,71 +176,65 @@ async function main() {
           },
         });
 
-        if (existingItem.statMods.length > 0) {
-          await tx.statMod.deleteMany({
-            where: {
-              Item: {
-                every: {
-                  id: existingItem.id,
-                },
-              },
-            },
-          });
-        }
-
         for (let i = 0; i < talent.Buffs.length; i++) {
           const buff = talent.Buffs[i];
 
-          let customStat;
-          if ("StatType" in buff) {
-            customStat = CustomStats.find((stat) => stat.Name == buff.Name);
-          }
-
+          // Create the stat if it doesn't exist
           const stat = await tx.stat.upsert({
             where: {
               name: buff.Name,
             },
             update: {
-              // custom stats don't really need descriptions
-              //description: buff.DescriptionFormatted
+              // Only preset stats defined in the overrides have descriptions
+              description: buff.Description,
             },
             create: {
-              statType: "Custom",
+              statType: buff.StatType ?? "Custom",
               name: buff.Name,
-              iconURL: customStat?.OverrideIconName
-                ? `/images/stats/${encodeURIComponent(customStat.OverrideIconName)}.webp`
-                : null,
+              description: buff.Description, // Only preset stats defined in the overrides have descriptions
+              iconURL: buff.OverrideIconName,
             },
           });
 
-          const existingStatMod = existingItem.statMods.find((sm) => sm.stat.name === buff.Name);
-
-          let buffValue;
-          if ("StatType" in buff) {
-            buffValue = buff.Amount;
-          } else {
-            buffValue = buff.Value;
+          const existingStatMod = existingItem.statMods.find(
+            (sm) => sm.gameGuid != null && sm.gameGuid == buff.GameValueGUID,
+          );
+          if (buff.GameValueGUID) {
+            processedStatMods.add(buff.GameValueGUID);
           }
 
-          await tx.statMod.create({
-            data: {
-              orderIndex: i,
-              isShownPostDescription: existingStatMod?.isShownPostDescription ?? false,
-              hidden: existingStatMod?.hidden ?? false,
-              amount: buff.IsPercentage ? buffValue * 100 : buffValue,
-              isPercentage: buff.IsPercentage,
-              Item: {
-                connect: {
-                  id: existingItem.id,
-                },
-              },
-              stat: {
-                connect: {
-                  id: stat.id,
-                },
+          const statMod = {
+            orderIndex: i,
+            isShownPostDescription: existingStatMod?.isShownPostDescription ?? false,
+            hidden: existingStatMod?.hidden ?? false,
+            amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
+            isPercentage: buff.IsPercentage,
+            gameGuid: buff.GameValueGUID,
+            Item: {
+              connect: {
+                id: existingItem.id,
               },
             },
-          });
+            stat: {
+              connect: {
+                id: stat.id,
+              },
+            },
+          };
+
+          if (existingStatMod) {
+            await tx.statMod.update({
+              where: {
+                id: existingStatMod.id,
+              },
+              data: statMod,
+            });
+            continue;
+          } else {
+            await tx.statMod.create({
+              data: statMod,
+            });
+          }
         }
       } else {
         await tx.item.create({
@@ -216,32 +245,6 @@ async function main() {
             rarity: itemRarityValueToEnum[talent.Rarity.Value],
             statMods: {
               create: talent.Buffs.map((buff, i) => {
-                if ("StatType" in buff) {
-                  // Custom stat, not really needed anymore?
-                  const customStat = CustomStats.find((stat) => stat.Name == buff.Name);
-                  return {
-                    orderIndex: i,
-                    stat: {
-                      connectOrCreate: {
-                        where: {
-                          name: buff.Name,
-                        },
-                        create: {
-                          statType: "Custom",
-                          name: buff.Name,
-                          iconURL: customStat?.OverrideIconName
-                            ? `/images/stats/${encodeURIComponent(customStat.OverrideIconName)}.webp`
-                            : null,
-                        },
-                      },
-                    },
-                    isShownPostDescription: buff.ShowPostDescription,
-                    hidden: buff.Hidden,
-                    amount: buff.IsPercentage ? buff.Amount * 100 : buff.Amount,
-                    isPercentage: buff.IsPercentage,
-                  };
-                }
-
                 return {
                   orderIndex: i,
                   stat: {
@@ -250,12 +253,11 @@ async function main() {
                         name: buff.Name,
                       },
                       create: {
-                        statType: "Custom",
+                        statType: buff.StatType ?? "Custom",
                         name: buff.Name,
-
-                        // Only the 'main' stats have these which likely already exist so any new stats are likely 'custom' and don't need this
-                        //description: buff.DescriptionFormatted,
-                        //iconURL: `/images/stats/${encodeURIComponent(buff.Name)}.webp`,
+                        // Only preset stats defined in the overrides have descriptions
+                        description: buff.Description,
+                        iconURL: buff.OverrideIconName,
                       },
                     },
                   },
@@ -263,6 +265,7 @@ async function main() {
                   hidden: buff.Hidden ?? false,
                   amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
                   isPercentage: buff.IsPercentage ?? false,
+                  gameGuid: buff.GameValueGUID,
                 };
               }),
             },
@@ -270,7 +273,58 @@ async function main() {
         });
       }
     }
+
+    // Remove stat mods that are not in the processed list and don't have a gameGuid
+    // on first run on existing db, this will remove all stat mods as they will have been recreated with guids
+    // but on subsequent runs, this should only remove custom stat mods that don't have a gameGuid
+    var statModsToRemove = existingStatMods
+      .filter((statMod) => {
+        return !statMod.gameGuid || !processedStatMods.has(statMod.gameGuid);
+      })
+      .map((statMod) => statMod.id)
+      .filter(Boolean) as string[];
+
+    if (statModsToRemove.length > 0) {
+      console.log("Removing", statModsToRemove.length, "stat mods");
+      console.log("Stat mods to remove", statModsToRemove);
+      await tx.statMod.deleteMany({
+        where: {
+          id: {
+            in: statModsToRemove,
+          },
+        },
+      });
+    }
   });
+}
+
+function applyCustomTalentOverrideData(talent: Talent, overrideData?: CustomTalent) {
+  if (!overrideData) {
+    return;
+  }
+
+  if (overrideData.NameOverride) {
+    talent.Name = overrideData.NameOverride;
+  }
+  if (overrideData.Description) {
+    talent.Description = overrideData.Description;
+  }
+  if (overrideData.DescriptionFormatted) {
+    talent.DescriptionFormatted = overrideData.DescriptionFormatted;
+  }
+  if (overrideData.Cost) {
+    talent.Cost = overrideData.Cost;
+  }
+  if (overrideData.Rarity) {
+    talent.Rarity = overrideData.Rarity;
+  }
+  if (overrideData.Category) {
+    talent.Category = overrideData.Category;
+  }
+
+  if (overrideData.Buffs) {
+    talent.Buffs = [...talent.Buffs, ...overrideData.Buffs];
+  }
 }
 
 main()

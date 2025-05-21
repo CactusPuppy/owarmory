@@ -137,7 +137,7 @@ model Item {
   purchaseSections RoundInfoSection[] @relation("ItemPurchases")
   soldSections     RoundInfoSection[] @relation("ItemSales")
   heroName         String?
-  gameGuid         String? @unique
+  gameGuid         String?            @unique
 }
 
 model Power {
@@ -148,7 +148,7 @@ model Power {
   hero        Hero    @relation(fields: [heroName], references: [name], onDelete: Cascade)
   heroName    String
   removed     Boolean @default(false)
-  gameGuid   String? @unique
+  gameGuid    String? @unique
 
   roundInfos RoundInfoSection[]
 }
@@ -171,8 +171,9 @@ model StatMod {
   isShownPostDescription Boolean @default(false)
   hidden                 Boolean @default(false)
 
-  Item   Item[]
-  statId Int
+  Item     Item[]
+  statId   Int
+  gameGuid String?
 }
 
 model Tag {

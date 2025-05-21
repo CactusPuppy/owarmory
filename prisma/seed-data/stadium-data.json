@@ -174,8 +174,8 @@
   "000000000F60.134": {
     "GUID": "000000000F60.134",
     "Name": "Snowball Flight",
-    "Description": "Jumping while mid-air creates a large <fg#ffffffff>[Ice Wall]</fg> pillar under you.\r\n(12s Cooldown)",
-    "DescriptionFormatted": "Jumping while mid-air creates a large [Ice Wall] pillar under you.\r\n(12s Cooldown)",
+    "Description": "Jumping while mid-air creates a large <fg#ffffffff>[Ice Wall]</fg> pillar under you.\r\n(12s Cooldown).",
+    "DescriptionFormatted": "Jumping while mid-air creates a large [Ice Wall] pillar under you.\r\n(12s Cooldown).",
     "Cost": 0,
     "Hero": {
       "GUID": "0000000000DD.075",
@@ -611,8 +611,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -816,8 +832,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -1047,6 +1079,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -1431,6 +1467,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -1574,8 +1614,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -2295,8 +2351,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -2404,6 +2476,10 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -2563,8 +2639,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -2784,8 +2876,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -3031,6 +3139,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -3236,6 +3348,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -3246,6 +3362,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -3284,18 +3412,7 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "0000000015E4.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%2$s</fg> Armor",
-        "DescriptionFormatted": "50 Armor",
-        "FormattedText": "50 Armor",
-        "Value": 50.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "0000000015E3.130",
@@ -3307,13 +3424,7 @@
       },
       {
         "GUID": "0000000015E4.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%2$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -3459,8 +3570,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -3786,6 +3913,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -3973,6 +4104,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -4126,6 +4261,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -4136,6 +4275,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -4715,8 +4866,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -4872,8 +5039,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -4899,8 +5082,8 @@
       "Value": "Rare"
     },
     "Category": {
-      "GUID": "000000005FDC.01C",
-      "Value": "Ability"
+      "GUID": "00000000ECD2.01C",
+      "Value": "Survival"
     },
     "Buffs": [
       {
@@ -5103,6 +5286,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -5272,6 +5459,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -5433,8 +5624,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -5487,16 +5694,6 @@
         "FormattedText": "25% [Glide Boost] Duration",
         "Value": 0.25,
         "IsPercentage": true
-      },
-      {
-        "GameValueGUID": "0000000013BA.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%2$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -5516,13 +5713,7 @@
       },
       {
         "GUID": "0000000013BA.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%2$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -5549,18 +5740,7 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "0000000013C0.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%2$s</fg> Shields",
-        "DescriptionFormatted": "75 Shields",
-        "FormattedText": "75 Shields",
-        "Value": 75.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "0000000013BF.130",
@@ -5572,13 +5752,7 @@
       },
       {
         "GUID": "0000000013C0.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%2$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 75.0,
         "Name": null,
         "FormatString": null,
@@ -5724,8 +5898,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -5979,6 +6169,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -6204,6 +6398,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -6228,18 +6426,7 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "0000000013C8.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%2$s</fg> Shields",
-        "DescriptionFormatted": "75 Shields",
-        "FormattedText": "75 Shields",
-        "Value": 75.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "0000000013C7.130",
@@ -6251,13 +6438,7 @@
       },
       {
         "GUID": "0000000013C8.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%2$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 75.0,
         "Name": null,
         "FormatString": null,
@@ -6286,16 +6467,6 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "0000000013C9.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "50 Shields",
-        "FormattedText": "50 Shields",
-        "Value": 50.0,
-        "IsPercentage": false
-      },
-      {
         "GameValueGUID": "0000000013CA.130",
         "IconGUID": "000000000ADB.129",
         "Name": "Ability Power",
@@ -6309,13 +6480,7 @@
     "GameValues": [
       {
         "GUID": "0000000013C9.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -6501,6 +6666,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -7103,8 +7272,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -7230,6 +7415,18 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -7485,6 +7682,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -7495,6 +7696,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -7730,6 +7943,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -7883,6 +8100,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -7893,6 +8114,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -8182,6 +8415,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -8841,8 +9078,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -9000,8 +9253,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -9348,6 +9617,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -9645,6 +9918,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -9878,6 +10155,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -9902,18 +10183,7 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "00000000120E.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%2$s</fg> Shields",
-        "DescriptionFormatted": "50 Shields",
-        "FormattedText": "50 Shields",
-        "Value": 50.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "00000000116D.130",
@@ -9925,13 +10195,7 @@
       },
       {
         "GUID": "00000000120E.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%2$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -9968,16 +10232,6 @@
         "FormattedText": "15% [Nano Boost] Duration",
         "Value": 0.15,
         "IsPercentage": true
-      },
-      {
-        "GameValueGUID": "00000000120F.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%2$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -9997,13 +10251,7 @@
       },
       {
         "GUID": "00000000120F.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%2$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -10691,6 +10939,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -10954,8 +11206,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -11064,18 +11332,7 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "000000001798.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%2$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001799.130",
@@ -11087,13 +11344,7 @@
       },
       {
         "GUID": "000000001798.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%2$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -11248,18 +11499,7 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "0000000017B0.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%4$s</fg> Shields",
-        "DescriptionFormatted": "50 Shields",
-        "FormattedText": "50 Shields",
-        "Value": 50.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "0000000001D5.130",
@@ -11287,13 +11527,7 @@
       },
       {
         "GUID": "0000000017B0.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%4$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -11568,6 +11802,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -11792,6 +12030,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -12017,6 +12259,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -12567,6 +12813,10 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
             "GUID": "0000000003E2.09E",
             "Value": "Mediblaster"
           },
@@ -12706,6 +12956,10 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
             "GUID": "0000000003E2.09E",
             "Value": "Mediblaster"
           },
@@ -12813,8 +13067,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -12978,8 +13248,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -13041,6 +13327,10 @@
           {
             "GUID": "0000000000D8.09E",
             "Value": "Dragonblade"
+          },
+          {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
           }
         ]
       },
@@ -13277,6 +13567,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -13287,6 +13581,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -13538,6 +13844,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -13665,6 +13975,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -13896,6 +14210,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -14026,16 +14344,6 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "00000000159F.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
-      },
-      {
         "GameValueGUID": "0000000017AA.130",
         "IconGUID": "000000000ADD.129",
         "Name": "Attack Speed",
@@ -14049,13 +14357,7 @@
     "GameValues": [
       {
         "GUID": "00000000159F.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -14159,8 +14461,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -14173,8 +14491,8 @@
   "00000000029B.134": {
     "GUID": "00000000029B.134",
     "Name": "Transference Delta",
-    "Description": "Convert <fg#ffffffff>%2$s</fg> Health into Armor.\nUsing <fg#ffffffff>[Dragonblade]</fg> heals your Armor fully.",
-    "DescriptionFormatted": "Convert 100 Health into Armor.\nUsing [Dragonblade] heals your Armor fully.",
+    "Description": "Convert <fg#ffffffff>%2$s</fg> Health into Armor.\nWhen you spend your Ultimate Charge, restore your Armor fully.",
+    "DescriptionFormatted": "Convert 100 Health into Armor.\nWhen you spend your Ultimate Charge, restore your Armor fully.",
     "Cost": 10000,
     "Hero": {
       "GUID": "000000000029.075",
@@ -14247,16 +14565,6 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "000000001563.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "50 Armor",
-        "FormattedText": "50 Armor",
-        "Value": 50.0,
-        "IsPercentage": false
-      },
-      {
         "GameValueGUID": "000000001564.130",
         "IconGUID": "000000000AE0.129",
         "Name": "Cooldown Reduction",
@@ -14280,13 +14588,7 @@
     "GameValues": [
       {
         "GUID": "000000001563.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -14442,6 +14744,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -14452,6 +14758,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -15148,8 +15466,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -15267,6 +15601,18 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -15430,8 +15776,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -15587,8 +15949,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -15760,8 +16138,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -15991,6 +16385,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -16304,6 +16702,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -16537,6 +16939,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -16778,6 +17184,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -17027,6 +17437,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -17889,6 +18303,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -18048,8 +18466,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -18265,6 +18699,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -18275,6 +18713,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -18419,16 +18869,6 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "000000001639.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "50 Armor",
-        "FormattedText": "50 Armor",
-        "Value": 50.0,
-        "IsPercentage": false
-      },
-      {
         "GameValueGUID": "00000000163A.130",
         "IconGUID": "000000000A73.129",
         "Name": "[Caduceus Staff] Damage Boost",
@@ -18452,13 +18892,7 @@
     "GameValues": [
       {
         "GUID": "000000001639.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -18634,8 +19068,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -18711,6 +19161,10 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -19403,8 +19857,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -19568,8 +20038,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -19807,6 +20293,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -20080,6 +20570,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -20315,6 +20809,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -20488,8 +20986,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -20735,6 +21249,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -20970,6 +21488,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -21071,8 +21593,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -21726,8 +22264,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -21875,8 +22429,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -22122,6 +22692,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -22146,18 +22720,7 @@
       "GUID": "000000005FDC.01C",
       "Value": "Ability"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "00000000179B.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%2$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "00000000179A.130",
@@ -22169,13 +22732,7 @@
       },
       {
         "GUID": "00000000179B.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%2$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -22403,6 +22960,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -22433,6 +22994,14 @@
         "GUID": "000000000CFE.130",
         "Buff": null,
         "Value": 0.1,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "0000000018F5.130",
+        "Buff": null,
+        "Value": 3.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -22698,6 +23267,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -22786,28 +23359,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "0000000011E8.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "50 Armor",
-        "FormattedText": "50 Armor",
-        "Value": 50.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "0000000011E8.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -23019,6 +23575,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -23674,8 +24234,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -23993,8 +24569,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -24151,6 +24743,10 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -24416,6 +25012,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -24681,6 +25281,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -24906,6 +25510,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -25143,6 +25751,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -25180,7 +25792,7 @@
     "GUID": "000000000A32.134",
     "Name": "Wilhelmwagen",
     "Description": "While <fg#ffffffff>[Barrier Field]</fg> is deployed, you heal for <fg#ffffffff>%2$s</fg> of the damage it mitigates and gain <fg#ffffffff>%1$s</fg> Move Speed.",
-    "DescriptionFormatted": "While [Barrier Field] is deployed, you heal for 15% of the damage it mitigates and gain 30% Move Speed.",
+    "DescriptionFormatted": "While [Barrier Field] is deployed, you heal for 5% of the damage it mitigates and gain 30% Move Speed.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000007.075",
@@ -25208,7 +25820,7 @@
       {
         "GUID": "0000000011F7.130",
         "Buff": null,
-        "Value": 0.15,
+        "Value": 0.05,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -25219,7 +25831,7 @@
     "GUID": "000000000C73.134",
     "Name": "To Me, My Friends!",
     "Description": "While <fg#ffffffff>[Barrier Field]</fg> is active,\r\nallies within <fg#ffffffff>%2$sm</fg> are healed equal to <fg#ffffffff>%1$s</fg> of your max Life every 1s.",
-    "DescriptionFormatted": "While [Barrier Field] is active,\r\nallies within 5m are healed equal to 3% of your max Life every 1s.",
+    "DescriptionFormatted": "While [Barrier Field] is active,\r\nallies within 5m are healed equal to 4% of your max Life every 1s.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000007.075",
@@ -25239,7 +25851,7 @@
       {
         "GUID": "000000000F4E.130",
         "Buff": null,
-        "Value": 0.03,
+        "Value": 0.04,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -25553,8 +26165,8 @@
   "000000000D8B.134": {
     "GUID": "000000000D8B.134",
     "Name": "Smashing!",
-    "Description": "When you deal damage with <fg#ffffffff>[Rocket Hammer]</fg>, gain <fg#ffffffff>5%%</fg> Move Speed and <fg#ffffffff>4%%</fg> Weapon Lifesteal for <fg#ffffffff>3s</fg>, stacking up to <fg#ffffffff>5 times</fg>.",
-    "DescriptionFormatted": "When you deal damage with [Rocket Hammer], gain 5%% Move Speed and 4%% Weapon Lifesteal for 3s, stacking up to 5 times.",
+    "Description": "When you deal damage with <fg#ffffffff>[Rocket Hammer]</fg>, gain <fg#ffffffff>%1$s</fg> Move Speed and <fg#ffffffff>%2$s</fg> Weapon Lifesteal for <fg#ffffffff>%3$ss</fg>, stacking up to <fg#ffffffff>%4$s times</fg>.",
+    "DescriptionFormatted": "When you deal damage with [Rocket Hammer], gain 1% Move Speed and 3% Weapon Lifesteal for 2s, stacking up to 10 times.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000007.075",
@@ -25574,7 +26186,7 @@
       {
         "GUID": "000000001220.130",
         "Buff": null,
-        "Value": 0.02,
+        "Value": 0.01,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -25582,7 +26194,7 @@
       {
         "GUID": "000000001221.130",
         "Buff": null,
-        "Value": 0.05,
+        "Value": 0.03,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -25590,7 +26202,7 @@
       {
         "GUID": "000000001222.130",
         "Buff": null,
-        "Value": 3.0,
+        "Value": 2.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -25598,7 +26210,7 @@
       {
         "GUID": "00000000121F.130",
         "Buff": null,
-        "Value": 5.0,
+        "Value": 10.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -25784,8 +26396,8 @@
         "Name": "Ability Power",
         "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
-        "FormattedText": "10% Ability Power",
-        "Value": 0.1,
+        "FormattedText": "5% Ability Power",
+        "Value": 0.05,
         "IsPercentage": true
       }
     ],
@@ -25813,7 +26425,7 @@
           "Name": "Ability Power",
           "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities."
         },
-        "Value": 0.1,
+        "Value": 0.05,
         "Name": null,
         "FormatString": null,
         "Loadouts": [
@@ -25984,6 +26596,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -26130,16 +26746,6 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "0000000016AD.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
-      },
-      {
         "GameValueGUID": "0000000016AE.130",
         "IconGUID": "000000000ADE.129",
         "Name": "Weapon Power",
@@ -26163,13 +26769,7 @@
     "GameValues": [
       {
         "GUID": "0000000016AD.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -26273,8 +26873,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -26622,6 +27238,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -26839,6 +27459,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -26877,9 +27501,9 @@
         "IconGUID": "000000000A73.129",
         "Name": "Fire Strike Projectile Speed",
         "Description": "<fg#ffffffff>%1$s</fg> Fire Strike Projectile Speed",
-        "DescriptionFormatted": "50% Fire Strike Projectile Speed",
-        "FormattedText": "50% Fire Strike Projectile Speed",
-        "Value": 0.5,
+        "DescriptionFormatted": "25% Fire Strike Projectile Speed",
+        "FormattedText": "25% Fire Strike Projectile Speed",
+        "Value": 0.25,
         "IsPercentage": true
       },
       {
@@ -26888,8 +27512,8 @@
         "Name": "Ability Power",
         "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
-        "FormattedText": "20% Ability Power",
-        "Value": 0.2,
+        "FormattedText": "10% Ability Power",
+        "Value": 0.1,
         "IsPercentage": true
       }
     ],
@@ -26903,7 +27527,7 @@
           "Name": "Fire Strike Projectile Speed",
           "Description": "<fg#ffffffff>%1$s</fg> Fire Strike Projectile Speed"
         },
-        "Value": 0.5,
+        "Value": 0.25,
         "Name": "Fire Strike Projectile Speed",
         "FormatString": "|Rfn %1$s:P0;",
         "Loadouts": []
@@ -26917,7 +27541,7 @@
           "Name": "Ability Power",
           "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities."
         },
-        "Value": 0.2,
+        "Value": 0.1,
         "Name": null,
         "FormatString": null,
         "Loadouts": [
@@ -27088,6 +27712,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -27233,8 +27861,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -27430,6 +28074,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -27565,8 +28213,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -27626,8 +28290,8 @@
   "000000000093.134": {
     "GUID": "000000000093.134",
     "Name": "Peripheral Pulse",
-    "Description": "During <fg#ffffffff>[Tactical Visor]</fg>, <fg#ffffffff>[Pulse Rifle]</fg> shoots at <fg#ffffffff>1</fg> additional enemy, dealing <fg#ffffffff>%3$s</fg> damage.",
-    "DescriptionFormatted": "During [Tactical Visor], [Pulse Rifle] shoots at 1 additional enemy, dealing 50% damage.",
+    "Description": "During <fg#ffffffff>[Tactical Visor]</fg>, <fg#ffffffff>[Pulse Rifle]</fg> shoots at <fg#ffffffff>1</fg> additional enemy, dealing <fg#ffffffff>%3$s reduced</fg> damage.",
+    "DescriptionFormatted": "During [Tactical Visor], [Pulse Rifle] shoots at 1 additional enemy, dealing 50% reduced damage.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000006E.075",
@@ -27767,8 +28431,8 @@
   "000000000053.134": {
     "GUID": "000000000053.134",
     "Name": "Double Helix",
-    "Description": "<fg#ffffffff>[Helix Rocket]</fg> fires a second homing <fg#ffffffff>[Helix Rocket]</fg> that deals <fg#ffffffff>70%% reduced</fg> damage.",
-    "DescriptionFormatted": "[Helix Rocket] fires a second homing [Helix Rocket] that deals 70%% reduced damage.",
+    "Description": "<fg#ffffffff>[Helix Rocket]</fg> fires a second homing <fg#ffffffff>[Helix Rocket]</fg> that deals <fg#ffffffff>%1$s reduced</fg> damage.",
+    "DescriptionFormatted": "[Helix Rocket] fires a second homing [Helix Rocket] that deals 70% reduced damage.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000006E.075",
@@ -27807,7 +28471,7 @@
     "GUID": "000000000A1D.134",
     "Name": "Cratered",
     "Description": "Increase <fg#ffffffff>[Helix Rocket]</fg> explosion radius by <fg#ffffffff>%1$s</fg> and explosion damage by <fg#ffffffff>%2$s</fg>.",
-    "DescriptionFormatted": "Increase [Helix Rocket] explosion radius by 40% and explosion damage by 25%.",
+    "DescriptionFormatted": "Increase [Helix Rocket] explosion radius by 40% and explosion damage by 15%.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000006E.075",
@@ -27835,7 +28499,7 @@
       {
         "GUID": "000000001602.130",
         "Buff": null,
-        "Value": 0.25,
+        "Value": 0.15,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -28286,8 +28950,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -28533,6 +29213,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -28686,8 +29370,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -28845,6 +29545,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -28855,6 +29559,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -29062,8 +29778,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -29389,6 +30121,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -29624,6 +30360,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -30273,8 +31013,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -30504,6 +31260,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -30621,6 +31381,10 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
             "GUID": "0000000003E2.09E",
             "Value": "Mediblaster"
           },
@@ -30698,6 +31462,18 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -30861,8 +31637,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -31018,8 +31810,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -31175,8 +31983,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -31416,6 +32240,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -31671,6 +32499,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -31994,6 +32826,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -32004,6 +32840,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -32229,6 +33077,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -32263,16 +33115,6 @@
         "FormattedText": "50 Life",
         "Value": 50.0,
         "IsPercentage": false
-      },
-      {
-        "GameValueGUID": "0000000017B2.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%3$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -32300,13 +33142,7 @@
       },
       {
         "GUID": "0000000017B2.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%3$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -32976,8 +33812,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -33217,6 +34069,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -33408,6 +34264,10 @@
           {
             "GUID": "0000000000D8.09E",
             "Value": "Dragonblade"
+          },
+          {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
           }
         ]
       }
@@ -33434,16 +34294,6 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "000000001512.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
-      },
-      {
         "GameValueGUID": "00000000178B.130",
         "IconGUID": "000000000ADB.129",
         "Name": "Ability Power",
@@ -33457,13 +34307,7 @@
     "GameValues": [
       {
         "GUID": "000000001512.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -33649,6 +34493,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -33784,8 +34632,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -33949,8 +34813,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -34060,6 +34940,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -34297,6 +35181,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -35100,6 +35988,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -35201,8 +36093,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -35432,6 +36340,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -35627,6 +36539,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -35637,6 +36553,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -35828,8 +36756,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -35917,6 +36861,10 @@
           {
             "GUID": "0000000000D8.09E",
             "Value": "Dragonblade"
+          },
+          {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
           }
         ]
       },
@@ -36158,6 +37106,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -36413,6 +37365,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -36561,8 +37517,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -36669,6 +37641,10 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -36809,8 +37785,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -36939,8 +37931,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -37159,6 +38167,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -37317,6 +38329,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -37391,28 +38407,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "00000000107E.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "00000000107E.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -37489,28 +38488,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "000000001095.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001095.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -37531,7 +38513,7 @@
     "Name": "Adrenaline Shot",
     "Description": "Health Packs grant <fg#ffffffff>%3$s</fg> Move Speed for <fg#ffffffff>%4$ss</fg> and <fg#ffffffff>%2$s Overhealth</fg>.",
     "DescriptionFormatted": "Health Packs grant 20% Move Speed for 5s and 50 Overhealth.",
-    "Cost": 1000,
+    "Cost": 1500,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -37549,8 +38531,8 @@
         "Name": "Life",
         "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
         "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "FormattedText": "10 Life",
-        "Value": 10.0,
+        "FormattedText": "25 Life",
+        "Value": 25.0,
         "IsPercentage": false
       }
     ],
@@ -37564,7 +38546,7 @@
           "Name": "Life",
           "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
         },
-        "Value": 10.0,
+        "Value": 25.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -37645,7 +38627,7 @@
     "Name": "Talon Modification Module",
     "Description": "",
     "DescriptionFormatted": null,
-    "Cost": 5500,
+    "Cost": 6000,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -38401,8 +39383,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -38565,6 +39563,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -38575,7 +39577,7 @@
     "Name": "Multi-tool",
     "Description": "",
     "DescriptionFormatted": null,
-    "Cost": 5000,
+    "Cost": 4500,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -38593,8 +39595,8 @@
         "Name": "Ability Power",
         "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
-        "FormattedText": "5% Ability Power",
-        "Value": 0.05,
+        "FormattedText": "10% Ability Power",
+        "Value": 0.1,
         "IsPercentage": true
       },
       {
@@ -38603,8 +39605,8 @@
         "Name": "Cooldown Reduction",
         "Description": "Reduces the time you must wait after using an ability before it is usable again.",
         "DescriptionFormatted": "Reduces the time you must wait after using an ability before it is usable again.",
-        "FormattedText": "10% Cooldown Reduction",
-        "Value": 0.1,
+        "FormattedText": "5% Cooldown Reduction",
+        "Value": 0.05,
         "IsPercentage": true
       }
     ],
@@ -38618,7 +39620,7 @@
           "Name": "Ability Power",
           "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities."
         },
-        "Value": 0.05,
+        "Value": 0.1,
         "Name": null,
         "FormatString": null,
         "Loadouts": [
@@ -38789,6 +39791,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -38801,27 +39807,10 @@
           "Name": "Cooldown Reduction",
           "Description": "Reduces the time you must wait after using an ability before it is usable again."
         },
-        "Value": 0.1,
+        "Value": 0.05,
         "Name": null,
         "FormatString": null,
-        "Loadouts": [
-          {
-            "GUID": "000000000028.09E",
-            "Value": "Charge"
-          },
-          {
-            "GUID": "00000000008E.09E",
-            "Value": "Helix Rockets"
-          },
-          {
-            "GUID": "00000000016D.09E",
-            "Value": "Biotic Orb"
-          },
-          {
-            "GUID": "000000000335.09E",
-            "Value": "Magnetic Grenade"
-          }
-        ]
+        "Loadouts": []
       }
     ]
   },
@@ -38830,7 +39819,7 @@
     "Name": "Nano Cola",
     "Description": "",
     "DescriptionFormatted": null,
-    "Cost": 5500,
+    "Cost": 6000,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -39034,6 +40023,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -39106,6 +40099,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -39137,6 +40134,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -39225,6 +40226,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -39264,10 +40269,10 @@
       {
         "GameValueGUID": "000000001091.130",
         "IconGUID": "000000000ADC.129",
-        "Name": "Life",
-        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "FormattedText": "8% Life",
+        "Name": "Health, Armor, Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Health, Armor, Shields",
+        "DescriptionFormatted": "8% Health, Armor, Shields",
+        "FormattedText": "8% Health, Armor, Shields",
         "Value": 0.08,
         "IsPercentage": true
       }
@@ -39276,11 +40281,11 @@
       {
         "GUID": "000000001091.130",
         "Buff": {
-          "GUID": "0000000000C7.01C",
-          "TargetTagGUID": "0000000010D7.06C",
+          "GUID": null,
+          "TargetTagGUID": null,
           "IconGUID": "000000000ADC.129",
-          "Name": "Life",
-          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+          "Name": "Health, Armor, Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Health, Armor, Shields"
         },
         "Value": 0.08,
         "Name": null,
@@ -39315,16 +40320,6 @@
         "FormattedText": "-40% Incoming Negative Effect Duration",
         "Value": -0.4,
         "IsPercentage": true
-      },
-      {
-        "GameValueGUID": "000000001545.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%2$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -39344,13 +40339,7 @@
       },
       {
         "GUID": "000000001545.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%2$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -39569,6 +40558,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -39579,6 +40572,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -39600,18 +40605,7 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "0000000017EA.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%2$s</fg> Armor",
-        "DescriptionFormatted": "10 Armor",
-        "FormattedText": "10 Armor",
-        "Value": 10.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001523.130",
@@ -39623,13 +40617,7 @@
       },
       {
         "GUID": "0000000017EA.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%2$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 10.0,
         "Name": null,
         "FormatString": null,
@@ -39653,28 +40641,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "000000001524.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001524.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -39706,28 +40677,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "000000001526.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001526.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -39759,28 +40713,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "000000001255.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001255.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -39801,7 +40738,7 @@
     "Name": "Eye of the Spider",
     "Description": "Deal <fg#ffffffff>%1$s</fg> increased damage to enemies below <fg#ffffffff>30%%</fg> Life.",
     "DescriptionFormatted": "Deal 10% increased damage to enemies below 30%% Life.",
-    "Cost": 13500,
+    "Cost": 14000,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -39931,8 +40868,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -39947,7 +40900,7 @@
     "Name": "The Closer",
     "Description": "Critical Hits reveal the target for <fg#ffffffff>%2$ss</fg>.",
     "DescriptionFormatted": "Critical Hits reveal the target for 3s.",
-    "Cost": 13000,
+    "Cost": 14500,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -40171,8 +41124,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -40335,8 +41304,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -40412,6 +41397,10 @@
           {
             "GUID": "0000000002D2.09E",
             "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -40584,8 +41573,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -40816,8 +41821,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -40962,8 +41983,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -41023,16 +42060,6 @@
         "FormattedText": "10% Weapon Power",
         "Value": 0.1,
         "IsPercentage": true
-      },
-      {
-        "GameValueGUID": "00000000173C.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%4$s</fg> Armor",
-        "DescriptionFormatted": "25 Armor",
-        "FormattedText": "25 Armor",
-        "Value": 25.0,
-        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -41175,8 +42202,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -41186,13 +42229,7 @@
       },
       {
         "GUID": "00000000173C.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%4$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -41205,7 +42242,7 @@
     "Name": "Champion's Kit",
     "Description": "",
     "DescriptionFormatted": null,
-    "Cost": 13500,
+    "Cost": 14000,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -41257,6 +42294,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -41513,6 +42554,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -41666,6 +42711,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -41676,6 +42725,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -41916,6 +42977,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -42017,8 +43082,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -42263,6 +43344,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -42525,6 +43610,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -42678,6 +43767,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -42688,6 +43781,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -42766,6 +43871,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -42797,16 +43906,6 @@
     },
     "Buffs": [
       {
-        "GameValueGUID": "000000001531.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "50 Armor",
-        "FormattedText": "50 Armor",
-        "Value": 50.0,
-        "IsPercentage": false
-      },
-      {
         "GameValueGUID": "000000001532.130",
         "IconGUID": "000000000ADB.129",
         "Name": "Ability Power",
@@ -42820,13 +43919,7 @@
     "GameValues": [
       {
         "GUID": "000000001531.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -43012,6 +44105,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -43272,6 +44369,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -43373,8 +44474,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -43472,8 +44589,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -43613,6 +44746,10 @@
           {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -43638,10 +44775,10 @@
       {
         "GameValueGUID": "0000000010A9.130",
         "IconGUID": "000000000ADC.129",
-        "Name": "Life",
-        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
-        "FormattedText": "15% Life",
+        "Name": "Health, Armor, Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Health, Armor, Shields",
+        "DescriptionFormatted": "15% Health, Armor, Shields",
+        "FormattedText": "15% Health, Armor, Shields",
         "Value": 0.15,
         "IsPercentage": true
       }
@@ -43650,11 +44787,11 @@
       {
         "GUID": "0000000010A9.130",
         "Buff": {
-          "GUID": "0000000000C7.01C",
-          "TargetTagGUID": "0000000010D7.06C",
+          "GUID": null,
+          "TargetTagGUID": null,
           "IconGUID": "000000000ADC.129",
-          "Name": "Life",
-          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+          "Name": "Health, Armor, Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Health, Armor, Shields"
         },
         "Value": 0.15,
         "Name": null,
@@ -43696,16 +44833,6 @@
       "Value": "Survival"
     },
     "Buffs": [
-      {
-        "GameValueGUID": "0000000010C0.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "50 Shields",
-        "FormattedText": "50 Shields",
-        "Value": 50.0,
-        "IsPercentage": false
-      },
       {
         "GameValueGUID": "00000000171F.130",
         "IconGUID": "000000000ADC.129",
@@ -43770,13 +44897,7 @@
     "GameValues": [
       {
         "GUID": "0000000010C0.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -43863,6 +44984,10 @@
           {
             "GUID": "000000000335.09E",
             "Value": "Magnetic Grenade"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -44055,6 +45180,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -44065,6 +45194,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -44088,7 +45229,7 @@
     "GUID": "000000000D48.134",
     "Name": "Geneticist's Vial",
     "Description": "The first time you would die each round, revive instead with <fg#ffffffff>%2$s</fg> Life after <fg#ffffffff>3s</fg>.",
-    "DescriptionFormatted": "The first time you would die each round, revive instead with 200 Life after 3s.",
+    "DescriptionFormatted": "The first time you would die each round, revive instead with 250 Life after 3s.",
     "Cost": 9000,
     "Hero": null,
     "Role": null,
@@ -44130,7 +45271,7 @@
       {
         "GUID": "000000001147.130",
         "Buff": null,
-        "Value": 200.0,
+        "Value": 250.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -44238,28 +45379,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "0000000012FB.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "25 Shields",
-        "FormattedText": "25 Shields",
-        "Value": 25.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "0000000012FB.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -44291,28 +45415,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "000000001535.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Shields",
-        "Description": "<fg#ffffffff>%1$s</fg> Shields",
-        "DescriptionFormatted": "50 Shields",
-        "FormattedText": "50 Shields",
-        "Value": 50.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001535.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010E1.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Shields",
-          "Description": "<fg#ffffffff>%1$s</fg> Shields"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -44368,28 +45475,11 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [
-      {
-        "GameValueGUID": "000000001539.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "50 Armor",
-        "FormattedText": "50 Armor",
-        "Value": 50.0,
-        "IsPercentage": false
-      }
-    ],
+    "Buffs": [],
     "GameValues": [
       {
         "GUID": "000000001539.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -44434,7 +45524,7 @@
     "Name": "Gloomgauntlet",
     "Description": "<fg#ffffffff>[Melee]</fg> Damage grants <fg#ffffffff>%2$s</fg> Move Speed and restores <fg#ffffffff>%4$s</fg> of Max Life over <fg#ffffffff>%5$ss</fg>.",
     "DescriptionFormatted": "[Melee] Damage grants 10% Move Speed and restores 5% of Max Life over 2s.",
-    "Cost": 9500,
+    "Cost": 10000,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -44446,16 +45536,6 @@
       "Value": "Survival"
     },
     "Buffs": [
-      {
-        "GameValueGUID": "0000000010AA.130",
-        "IconGUID": "000000000ADC.129",
-        "Name": "Armor",
-        "Description": "<fg#ffffffff>%1$s</fg> Armor",
-        "DescriptionFormatted": "50 Armor",
-        "FormattedText": "50 Armor",
-        "Value": 50.0,
-        "IsPercentage": false
-      },
       {
         "GameValueGUID": "000000001146.130",
         "IconGUID": "000000000AE4.129",
@@ -44470,13 +45550,7 @@
     "GameValues": [
       {
         "GUID": "0000000010AA.130",
-        "Buff": {
-          "GUID": null,
-          "TargetTagGUID": "0000000010D5.06C",
-          "IconGUID": "000000000ADC.129",
-          "Name": "Armor",
-          "Description": "<fg#ffffffff>%1$s</fg> Armor"
-        },
+        "Buff": null,
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -44534,6 +45608,10 @@
           {
             "GUID": "0000000000D8.09E",
             "Value": "Dragonblade"
+          },
+          {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
           }
         ]
       }
@@ -44586,9 +45664,9 @@
   "000000000F71.134": {
     "GUID": "000000000F71.134",
     "Name": "Electrolytes",
-    "Description": "At the start of the round, gain <fg#ffffffff>%1$s</fg> unrecoverable <fg#ffffffff>Overhealth</fg>.",
-    "DescriptionFormatted": "At the start of the round, gain 100 unrecoverable Overhealth.",
-    "Cost": 1000,
+    "Description": "At the start of the round and everytime you respawn, gain <fg#ffffffff>%1$s</fg> unrecoverable <fg#ffffffff>Overhealth</fg>.",
+    "DescriptionFormatted": "At the start of the round and everytime you respawn, gain 100 unrecoverable Overhealth.",
+    "Cost": 1500,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -44794,7 +45872,7 @@
     "Name": "Icy Coolant",
     "Description": "",
     "DescriptionFormatted": null,
-    "Cost": 5000,
+    "Cost": 5500,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -44926,8 +46004,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -45085,6 +46179,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -45095,6 +46193,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       }
@@ -45237,8 +46347,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -45426,6 +46552,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       }
@@ -45568,8 +46698,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -45727,6 +46873,10 @@
             "Value": "Energy Javelin"
           },
           {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
             "GUID": "000000000408.09E",
             "Value": "Pulsar Torpedoes"
           },
@@ -45737,6 +46887,18 @@
           {
             "GUID": "00000000041E.09E",
             "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
           }
         ]
       },
@@ -45985,6 +47147,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -46221,6 +47387,10 @@
           {
             "GUID": "00000000042F.09E",
             "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
           }
         ]
       },
@@ -46239,7 +47409,7 @@
     "Name": "Bloodbound",
     "Description": "The last enemy to deal a final blow to you is <fg#ffffffff>Revealed</fg> when nearby.\r\nDeal <fg#ffffffff>%3$s</fg> more damage to them and take <fg#ffffffff>%2$s</fg> reduced damage from them.",
     "DescriptionFormatted": "The last enemy to deal a final blow to you is Revealed when nearby.\r\nDeal 10% more damage to them and take 10% reduced damage from them.",
-    "Cost": 9500,
+    "Cost": 9000,
     "Hero": null,
     "Role": null,
     "Rarity": {
@@ -46446,8 +47616,24 @@
             "Value": "Scattergun"
           },
           {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
             "GUID": "00000000031F.09E",
             "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
           },
           {
             "GUID": "0000000003E2.09E",
@@ -46467,6 +47653,1698 @@
         "GUID": "000000001771.130",
         "Buff": null,
         "Value": 3.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002607.134": {
+    "GUID": "000000002607.134",
+    "Name": "Seismic Shot",
+    "Description": "<fg#ffffffff>[Take Aim]</fg> explosion radius is increased by <fg#ffffffff>%2$s</fg>. Double this if the bolt is stuck to a target.",
+    "DescriptionFormatted": "[Take Aim] explosion radius is increased by 33%. Double this if the bolt is stuck to a target.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "000000001834.130",
+        "Buff": null,
+        "Value": 0.33,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001835.130",
+        "Buff": null,
+        "Value": 0.33,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002608.134": {
+    "GUID": "000000002608.134",
+    "Name": "Seekerpoint",
+    "Description": "When <fg#ffffffff>[Take Aim]</fg> bolt sticks an enemy, automatically fire <fg#ffffffff>%1$s</fg> additional crossbow shots at them that deal <fg#ffffffff>%2$s reduced</fg> damage.",
+    "DescriptionFormatted": "When [Take Aim] bolt sticks an enemy, automatically fire 3 additional crossbow shots at them that deal 66% reduced damage.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "000000001836.130",
+        "Buff": null,
+        "Value": 3.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001837.130",
+        "Buff": null,
+        "Value": 0.66,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002609.134": {
+    "GUID": "000000002609.134",
+    "Name": "Redux",
+    "Description": "<fg#ffffffff>[Revdraw Crossbow]</fg> hits against targets stuck by a <fg#ffffffff>[Take Aim]</fg> bolt or <fg#ffffffff>[Bola Shot]</fg> reduce the cooldown of your abilities by <fg#ffffffff>%1$s</fg> and refunds <fg#ffffffff>%2$s</fg> ammo.",
+    "DescriptionFormatted": "[Revdraw Crossbow] hits against targets stuck by a [Take Aim] bolt or [Bola Shot] reduce the cooldown of your abilities by 5% and refunds 1 ammo.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "000000001838.130",
+        "Buff": null,
+        "Value": 0.05,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "0000000018DC.130",
+        "Buff": null,
+        "Value": 1.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "00000000260A.134": {
+    "GUID": "00000000260A.134",
+    "Name": "Cyclone",
+    "Description": "When you use <fg#ffffffff>[Updraft]</fg>, fire a <fg#ffffffff>[Take Aim]</fg> bolt at your crosshair.",
+    "DescriptionFormatted": "When you use [Updraft], fire a [Take Aim] bolt at your crosshair.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": []
+  },
+  "000000000F8E.134": {
+    "GUID": "000000000F8E.134",
+    "Name": "Peak Performance",
+    "Description": "While firing <fg#ffffffff>[Revdraw Crossbow]</fg>, your fall speed is decreased by <fg#ffffffff>80%%</fg>.",
+    "DescriptionFormatted": "While firing [Revdraw Crossbow], your fall speed is decreased by 80%%.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "0000000017AD.130",
+        "Buff": null,
+        "Value": 0.8,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000000F8F.134": {
+    "GUID": "000000000F8F.134",
+    "Name": "Deep Pockets",
+    "Description": "When you use an ability, restore <fg#ffffffff>%1$s</fg> of your Max Ammo.",
+    "DescriptionFormatted": "When you use an ability, restore 50% of your Max Ammo.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "0000000017B1.130",
+        "Buff": null,
+        "Value": 0.5,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "00000000260B.134": {
+    "GUID": "00000000260B.134",
+    "Name": "Volley à Deux",
+    "Description": "Every <fg#ffffffff>fifth [Revdraw Crossbow]</fg> shot fires an additional <fg#ffffffff>%2$s</fg> bolts in a spread that deal <fg#ffffffff>%3$s reduced</fg> damage.",
+    "DescriptionFormatted": "Every fifth [Revdraw Crossbow] shot fires an additional 2 bolts in a spread that deal 50% reduced damage.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "000000001839.130",
+        "Buff": null,
+        "Value": 5.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "00000000183A.130",
+        "Buff": null,
+        "Value": 2.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "00000000183B.130",
+        "Buff": null,
+        "Value": 0.5,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "00000000260C.134": {
+    "GUID": "00000000260C.134",
+    "Name": "Forager",
+    "Description": "For <fg#ffffffff>%2$ss</fg> after using <fg#ffffffff>[Quick Dash]</fg>, <fg#ffffffff>[Revdraw Crossbow]</fg> hits heal you for <fg#ffffffff>%1$s</fg> of your Max Life. ",
+    "DescriptionFormatted": "For 2s after using [Quick Dash], [Revdraw Crossbow] hits heal you for 3% of your Max Life. ",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "00000000183C.130",
+        "Buff": null,
+        "Value": 0.03,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "00000000183D.130",
+        "Buff": null,
+        "Value": 2.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "00000000260D.134": {
+    "GUID": "00000000260D.134",
+    "Name": "Lille Fælde",
+    "Description": "After using <fg#ffffffff>[Updraft]</fg>, your next \r\n<fg#ffffffff>[Take Aim]</fg> while airborne fires a \r\n<fg#ffffffff>[Bola Shot]</fg> that deals <fg#ffffffff>%1$s reduced</fg> damage instead of an explosive bolt.",
+    "DescriptionFormatted": "After using [Updraft], your next \r\n[Take Aim] while airborne fires a \r\n[Bola Shot] that deals 60% reduced damage instead of an explosive bolt.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "00000000183E.130",
+        "Buff": null,
+        "Value": 0.6,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "00000000260E.134": {
+    "GUID": "00000000260E.134",
+    "Name": "Mighty Gust",
+    "Description": "<fg#ffffffff>[Updraft]</fg> launches a wind blast towards your crosshair, knocking back enemies and dealing <tx0x0C00000000061B04><fg#ff9274ff>%1$s</fg> damage.",
+    "DescriptionFormatted": "[Updraft] launches a wind blast towards your crosshair, knocking back enemies and dealing 40 damage.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "00000000183F.130",
+        "Buff": null,
+        "Value": 40.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001874.130",
+        "Buff": null,
+        "Value": 10.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "00000000260F.134": {
+    "GUID": "00000000260F.134",
+    "Name": "So Cooked",
+    "Description": "<fg#ffffffff>[Bola Shot]</fg>'s damaging zone deals <fg#ffffffff>%2$s</fg> more damage and lingers for <fg#ffffffff>%1$ss</fg>.\r\n<fg#ffffffff>[Bola Shot]</fg> eliminations count towards <fg#ffffffff>[Bounty Hunting]</fg>.",
+    "DescriptionFormatted": "[Bola Shot]'s damaging zone deals 50% more damage and lingers for 3s.\r\n[Bola Shot] eliminations count towards [Bounty Hunting].",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "000000001840.130",
+        "Buff": null,
+        "Value": 3.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001841.130",
+        "Buff": null,
+        "Value": 0.5,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000000F90.134": {
+    "GUID": "000000000F90.134",
+    "Name": "Thread The Needle",
+    "Description": "<fg#ffffffff>[Take Aim]</fg> bolts pierce enemies. Additional explosions deal <fg#ffffffff>%1$s</fg> reduced damage.",
+    "DescriptionFormatted": "[Take Aim] bolts pierce enemies. Additional explosions deal 66% reduced damage.",
+    "Cost": 0,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "00000000644A.01C",
+      "Value": "Legendary"
+    },
+    "Category": {
+      "GUID": "00000000ECC7.01C",
+      "Value": "Power"
+    },
+    "Buffs": [],
+    "GameValues": [
+      {
+        "GUID": "0000000017B3.130",
+        "Buff": null,
+        "Value": 0.66,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002612.134": {
+    "GUID": "000000002612.134",
+    "Name": "Tracker Tag",
+    "Description": "When <fg#ffffffff>[Take Aim]</fg> bolt sticks an enemy, increase your Attack Speed by <fg#ffffffff>%2$s</fg> for <fg#ffffffff>%3$ss</fg>.",
+    "DescriptionFormatted": "When [Take Aim] bolt sticks an enemy, increase your Attack Speed by 20% for 3s.",
+    "Cost": 4000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "000000003DA0.01C",
+      "Value": "Rare"
+    },
+    "Category": {
+      "GUID": "0000000068D3.01C",
+      "Value": "Weapon Variants"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001846.130",
+        "IconGUID": "000000000AD9.129",
+        "Name": "Max Ammo",
+        "Description": "Increases the maximum ammo capacity of your Weapon.",
+        "DescriptionFormatted": "Increases the maximum ammo capacity of your Weapon.",
+        "FormattedText": "30% Max Ammo",
+        "Value": 0.3,
+        "IsPercentage": true
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "000000001846.130",
+        "Buff": {
+          "GUID": "00000000649A.01C",
+          "TargetTagGUID": "0000000010D1.06C",
+          "IconGUID": "000000000AD9.129",
+          "Name": "Max Ammo",
+          "Description": "Increases the maximum ammo capacity of your Weapon."
+        },
+        "Value": 0.3,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": [
+          {
+            "GUID": "000000000013.09E",
+            "Value": "Hellfire Shotguns"
+          },
+          {
+            "GUID": "00000000003E.09E",
+            "Value": "Caduceus Blaster"
+          },
+          {
+            "GUID": "000000000057.09E",
+            "Value": "Particle Cannon"
+          },
+          {
+            "GUID": "00000000005D.09E",
+            "Value": "Peacekeeper"
+          },
+          {
+            "GUID": "00000000005E.09E",
+            "Value": "Peacekeeper"
+          },
+          {
+            "GUID": "00000000008D.09E",
+            "Value": "Heavy Pulse Rifle"
+          },
+          {
+            "GUID": "0000000000A1.09E",
+            "Value": "Sonic Amplifier"
+          },
+          {
+            "GUID": "0000000000D3.09E",
+            "Value": "Endothermic Blaster"
+          },
+          {
+            "GUID": "0000000000DB.09E",
+            "Value": "Shuriken"
+          },
+          {
+            "GUID": "0000000000E0.09E",
+            "Value": "Light Gun"
+          },
+          {
+            "GUID": "0000000000E3.09E",
+            "Value": "Biotic Rifle"
+          },
+          {
+            "GUID": "00000000020A.09E",
+            "Value": "The Viper"
+          },
+          {
+            "GUID": "0000000002C8.09E",
+            "Value": "Kunai"
+          },
+          {
+            "GUID": "0000000002D2.09E",
+            "Value": "Scattergun"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "0000000003E2.09E",
+            "Value": "Mediblaster"
+          },
+          {
+            "GUID": "000000000C49.09E",
+            "Value": "Kunai"
+          }
+        ]
+      },
+      {
+        "GUID": "000000001847.130",
+        "Buff": null,
+        "Value": 0.2,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001848.130",
+        "Buff": null,
+        "Value": 3.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002613.134": {
+    "GUID": "000000002613.134",
+    "Name": "Slipstream Scarf",
+    "Description": "",
+    "DescriptionFormatted": null,
+    "Cost": 4000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "000000003DA0.01C",
+      "Value": "Rare"
+    },
+    "Category": {
+      "GUID": "0000000068D3.01C",
+      "Value": "Weapon Variants"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001849.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Life",
+        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "FormattedText": "25 Life",
+        "Value": 25.0,
+        "IsPercentage": false
+      },
+      {
+        "GameValueGUID": "00000000184A.130",
+        "IconGUID": "000000000ADE.129",
+        "Name": "Weapon Power",
+        "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon.",
+        "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
+        "FormattedText": "5% Weapon Power",
+        "Value": 0.05,
+        "IsPercentage": true
+      },
+      {
+        "GameValueGUID": "00000000184B.130",
+        "IconGUID": "000000000A73.129",
+        "Name": "[Quick Dash] Distance",
+        "Description": "<fg#ffffffff>%3$s</fg> <fg#ffffffff>[Quick Dash]</fg> Distance",
+        "DescriptionFormatted": "25% [Quick Dash] Distance",
+        "FormattedText": "25% [Quick Dash] Distance",
+        "Value": 0.25,
+        "IsPercentage": true
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "000000001849.130",
+        "Buff": {
+          "GUID": "0000000000C7.01C",
+          "TargetTagGUID": "0000000010D7.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Life",
+          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+        },
+        "Value": 25.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "00000000184A.130",
+        "Buff": {
+          "GUID": "00000000F09E.01C",
+          "TargetTagGUID": "0000000010D0.06C",
+          "IconGUID": "000000000ADE.129",
+          "Name": "Weapon Power",
+          "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon."
+        },
+        "Value": 0.05,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": [
+          {
+            "GUID": "000000000013.09E",
+            "Value": "Hellfire Shotguns"
+          },
+          {
+            "GUID": "00000000002B.09E",
+            "Value": "Rocket Hammer"
+          },
+          {
+            "GUID": "00000000003C.09E",
+            "Value": "Caduceus Staff"
+          },
+          {
+            "GUID": "00000000003E.09E",
+            "Value": "Caduceus Blaster"
+          },
+          {
+            "GUID": "000000000057.09E",
+            "Value": "Particle Cannon"
+          },
+          {
+            "GUID": "00000000005D.09E",
+            "Value": "Peacekeeper"
+          },
+          {
+            "GUID": "00000000005E.09E",
+            "Value": "Peacekeeper"
+          },
+          {
+            "GUID": "00000000008D.09E",
+            "Value": "Heavy Pulse Rifle"
+          },
+          {
+            "GUID": "0000000000A1.09E",
+            "Value": "Sonic Amplifier"
+          },
+          {
+            "GUID": "0000000000CF.09E",
+            "Value": "Fusion Cannons"
+          },
+          {
+            "GUID": "0000000000D3.09E",
+            "Value": "Endothermic Blaster"
+          },
+          {
+            "GUID": "0000000000D8.09E",
+            "Value": "Dragonblade"
+          },
+          {
+            "GUID": "0000000000DB.09E",
+            "Value": "Shuriken"
+          },
+          {
+            "GUID": "0000000000E0.09E",
+            "Value": "Light Gun"
+          },
+          {
+            "GUID": "0000000000E3.09E",
+            "Value": "Biotic Rifle"
+          },
+          {
+            "GUID": "000000000149.09E",
+            "Value": "Biotic Grasp - Alt Fire"
+          },
+          {
+            "GUID": "00000000014A.09E",
+            "Value": "Biotic Grasp"
+          },
+          {
+            "GUID": "00000000020A.09E",
+            "Value": "The Viper"
+          },
+          {
+            "GUID": "00000000022C.09E",
+            "Value": "Healing Ofuda"
+          },
+          {
+            "GUID": "0000000002C8.09E",
+            "Value": "Kunai"
+          },
+          {
+            "GUID": "0000000002D2.09E",
+            "Value": "Scattergun"
+          },
+          {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
+            "GUID": "00000000031F.09E",
+            "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "0000000003E2.09E",
+            "Value": "Mediblaster"
+          }
+        ]
+      },
+      {
+        "GUID": "00000000184B.130",
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": null,
+          "IconGUID": "000000000A73.129",
+          "Name": "<fg#ffffffff>[Quick Dash]</fg> Distance",
+          "Description": "<fg#ffffffff>%3$s</fg> <fg#ffffffff>[Quick Dash]</fg> Distance"
+        },
+        "Value": 0.25,
+        "Name": "<fg#ffffffff>[Quick Dash]</fg> Distance",
+        "FormatString": "|Rfn %1$s:P0;",
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002614.134": {
+    "GUID": "000000002614.134",
+    "Name": "Portable Zipline",
+    "Description": "Eliminations reset both charges of <fg#ffffffff>[Quick Dash]</fg> Cooldown.",
+    "DescriptionFormatted": "Eliminations reset both charges of [Quick Dash] Cooldown.",
+    "Cost": 10000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "0000000061ED.01C",
+      "Value": "Epic"
+    },
+    "Category": {
+      "GUID": "0000000068D3.01C",
+      "Value": "Weapon Variants"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "00000000184C.130",
+        "IconGUID": "000000000ADE.129",
+        "Name": "Weapon Power",
+        "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon.",
+        "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
+        "FormattedText": "15% Weapon Power",
+        "Value": 0.15,
+        "IsPercentage": true
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "00000000184C.130",
+        "Buff": {
+          "GUID": "00000000F09E.01C",
+          "TargetTagGUID": "0000000010D0.06C",
+          "IconGUID": "000000000ADE.129",
+          "Name": "Weapon Power",
+          "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon."
+        },
+        "Value": 0.15,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": [
+          {
+            "GUID": "000000000013.09E",
+            "Value": "Hellfire Shotguns"
+          },
+          {
+            "GUID": "00000000002B.09E",
+            "Value": "Rocket Hammer"
+          },
+          {
+            "GUID": "00000000003C.09E",
+            "Value": "Caduceus Staff"
+          },
+          {
+            "GUID": "00000000003E.09E",
+            "Value": "Caduceus Blaster"
+          },
+          {
+            "GUID": "000000000057.09E",
+            "Value": "Particle Cannon"
+          },
+          {
+            "GUID": "00000000005D.09E",
+            "Value": "Peacekeeper"
+          },
+          {
+            "GUID": "00000000005E.09E",
+            "Value": "Peacekeeper"
+          },
+          {
+            "GUID": "00000000008D.09E",
+            "Value": "Heavy Pulse Rifle"
+          },
+          {
+            "GUID": "0000000000A1.09E",
+            "Value": "Sonic Amplifier"
+          },
+          {
+            "GUID": "0000000000CF.09E",
+            "Value": "Fusion Cannons"
+          },
+          {
+            "GUID": "0000000000D3.09E",
+            "Value": "Endothermic Blaster"
+          },
+          {
+            "GUID": "0000000000D8.09E",
+            "Value": "Dragonblade"
+          },
+          {
+            "GUID": "0000000000DB.09E",
+            "Value": "Shuriken"
+          },
+          {
+            "GUID": "0000000000E0.09E",
+            "Value": "Light Gun"
+          },
+          {
+            "GUID": "0000000000E3.09E",
+            "Value": "Biotic Rifle"
+          },
+          {
+            "GUID": "000000000149.09E",
+            "Value": "Biotic Grasp - Alt Fire"
+          },
+          {
+            "GUID": "00000000014A.09E",
+            "Value": "Biotic Grasp"
+          },
+          {
+            "GUID": "00000000020A.09E",
+            "Value": "The Viper"
+          },
+          {
+            "GUID": "00000000022C.09E",
+            "Value": "Healing Ofuda"
+          },
+          {
+            "GUID": "0000000002C8.09E",
+            "Value": "Kunai"
+          },
+          {
+            "GUID": "0000000002D2.09E",
+            "Value": "Scattergun"
+          },
+          {
+            "GUID": "0000000002F5.09E",
+            "Value": "Quick Melee"
+          },
+          {
+            "GUID": "00000000031F.09E",
+            "Value": "Augmented Fusion Driver"
+          },
+          {
+            "GUID": "00000000036B.09E",
+            "Value": "Revdraw Crossbow"
+          },
+          {
+            "GUID": "00000000036D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "00000000037D.09E",
+            "Value": "Take Aim"
+          },
+          {
+            "GUID": "0000000003E2.09E",
+            "Value": "Mediblaster"
+          }
+        ]
+      }
+    ]
+  },
+  "000000002616.134": {
+    "GUID": "000000002616.134",
+    "Name": "Windwalker Boots",
+    "Description": "",
+    "DescriptionFormatted": null,
+    "Cost": 4000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "000000003DA0.01C",
+      "Value": "Rare"
+    },
+    "Category": {
+      "GUID": "000000005FDC.01C",
+      "Value": "Ability"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001850.130",
+        "IconGUID": "000000000AE0.129",
+        "Name": "Cooldown Reduction",
+        "Description": "Reduces the time you must wait after using an ability before it is usable again.",
+        "DescriptionFormatted": "Reduces the time you must wait after using an ability before it is usable again.",
+        "FormattedText": "5% Cooldown Reduction",
+        "Value": 0.05,
+        "IsPercentage": true
+      },
+      {
+        "GameValueGUID": "000000001851.130",
+        "IconGUID": "000000000A73.129",
+        "Name": "[Updraft] Height",
+        "Description": "<fg#ffffffff>%2$s</fg> <fg#ffffffff>[Updraft]</fg> Height",
+        "DescriptionFormatted": "20% [Updraft] Height",
+        "FormattedText": "20% [Updraft] Height",
+        "Value": 0.2,
+        "IsPercentage": true
+      },
+      {
+        "GameValueGUID": "0000000018DD.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Life",
+        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "FormattedText": "25 Life",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "000000001850.130",
+        "Buff": {
+          "GUID": "00000000E0F6.01C",
+          "TargetTagGUID": "0000000010E0.06C",
+          "IconGUID": "000000000AE0.129",
+          "Name": "Cooldown Reduction",
+          "Description": "Reduces the time you must wait after using an ability before it is usable again."
+        },
+        "Value": 0.05,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": [
+          {
+            "GUID": "000000000012.09E",
+            "Value": "Wraith Form"
+          },
+          {
+            "GUID": "000000000014.09E",
+            "Value": "Shadow Step"
+          },
+          {
+            "GUID": "000000000028.09E",
+            "Value": "Charge"
+          },
+          {
+            "GUID": "000000000029.09E",
+            "Value": "Fire Strike"
+          },
+          {
+            "GUID": "00000000003A.09E",
+            "Value": "Resurrect"
+          },
+          {
+            "GUID": "00000000003B.09E",
+            "Value": "Guardian Angel"
+          },
+          {
+            "GUID": "000000000059.09E",
+            "Value": "Particle Barrier"
+          },
+          {
+            "GUID": "00000000005A.09E",
+            "Value": "Projected Barrier"
+          },
+          {
+            "GUID": "00000000005F.09E",
+            "Value": "Combat Roll"
+          },
+          {
+            "GUID": "000000000060.09E",
+            "Value": "Flashbang"
+          },
+          {
+            "GUID": "00000000008E.09E",
+            "Value": "Helix Rockets"
+          },
+          {
+            "GUID": "000000000090.09E",
+            "Value": "Biotic Field"
+          },
+          {
+            "GUID": "0000000000A3.09E",
+            "Value": "Soundwave"
+          },
+          {
+            "GUID": "0000000000A5.09E",
+            "Value": "Amp It Up"
+          },
+          {
+            "GUID": "0000000000D0.09E",
+            "Value": "Boosters"
+          },
+          {
+            "GUID": "0000000000D6.09E",
+            "Value": "Cryo-Freeze"
+          },
+          {
+            "GUID": "0000000000D7.09E",
+            "Value": "Ice Wall"
+          },
+          {
+            "GUID": "0000000000D9.09E",
+            "Value": "Deflect"
+          },
+          {
+            "GUID": "0000000000DA.09E",
+            "Value": "Swift Strike"
+          },
+          {
+            "GUID": "0000000000E1.09E",
+            "Value": "Sleep Dart"
+          },
+          {
+            "GUID": "0000000000E2.09E",
+            "Value": "Biotic Grenade"
+          },
+          {
+            "GUID": "0000000000EB.09E",
+            "Value": "Fortify"
+          },
+          {
+            "GUID": "000000000148.09E",
+            "Value": "Fade"
+          },
+          {
+            "GUID": "00000000016C.09E",
+            "Value": "Micro Missiles"
+          },
+          {
+            "GUID": "00000000016D.09E",
+            "Value": "Biotic Orb"
+          },
+          {
+            "GUID": "00000000020B.09E",
+            "Value": "Dynamite"
+          },
+          {
+            "GUID": "00000000020D.09E",
+            "Value": "Coach Gun"
+          },
+          {
+            "GUID": "00000000022E.09E",
+            "Value": "Swift Step"
+          },
+          {
+            "GUID": "0000000002C6.09E",
+            "Value": "Jagged Blade"
+          },
+          {
+            "GUID": "0000000002C9.09E",
+            "Value": "Protection Suzu"
+          },
+          {
+            "GUID": "0000000002CE.09E",
+            "Value": "Commanding Shout"
+          },
+          {
+            "GUID": "0000000002D5.09E",
+            "Value": "Carnage"
+          },
+          {
+            "GUID": "00000000031C.09E",
+            "Value": "Javelin Spin"
+          },
+          {
+            "GUID": "00000000031D.09E",
+            "Value": "Energy Javelin"
+          },
+          {
+            "GUID": "00000000036C.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000408.09E",
+            "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "000000000417.09E",
+            "Value": "Glide Boost"
+          },
+          {
+            "GUID": "00000000041E.09E",
+            "Value": "Hyper Ring"
+          },
+          {
+            "GUID": "000000000460.09E",
+            "Value": "Updraft"
+          },
+          {
+            "GUID": "000000000846.09E",
+            "Value": "Quick Dash"
+          },
+          {
+            "GUID": "000000000847.09E",
+            "Value": "Updraft"
+          }
+        ]
+      },
+      {
+        "GUID": "000000001851.130",
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": null,
+          "IconGUID": "000000000A73.129",
+          "Name": "<fg#ffffffff>[Updraft]</fg> Height",
+          "Description": "<fg#ffffffff>%2$s</fg> <fg#ffffffff>[Updraft]</fg> Height"
+        },
+        "Value": 0.2,
+        "Name": "<fg#ffffffff>[Updraft]</fg> Height",
+        "FormatString": "|Rfn %1$s:P0;",
+        "Loadouts": []
+      },
+      {
+        "GUID": "0000000018DD.130",
+        "Buff": {
+          "GUID": "0000000000C7.01C",
+          "TargetTagGUID": "0000000010D7.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Life",
+          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+        },
+        "Value": 25.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002617.134": {
+    "GUID": "000000002617.134",
+    "Name": "Magnetic Maelstrom",
+    "Description": "<fg#ffffffff>[Bola Shot]</fg> pulls in nearby enemies even when it misses with <fg#ffffffff>%2$s reduced</fg> pull strength.",
+    "DescriptionFormatted": "[Bola Shot] pulls in nearby enemies even when it misses with 50% reduced pull strength.",
+    "Cost": 10000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "0000000061ED.01C",
+      "Value": "Epic"
+    },
+    "Category": {
+      "GUID": "000000005FDC.01C",
+      "Value": "Ability"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001852.130",
+        "IconGUID": "000000000ADB.129",
+        "Name": "Ability Power",
+        "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
+        "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
+        "FormattedText": "15% Ability Power",
+        "Value": 0.15,
+        "IsPercentage": true
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "000000001852.130",
+        "Buff": {
+          "GUID": "00000000F09D.01C",
+          "TargetTagGUID": "0000000010CF.06C",
+          "IconGUID": "000000000ADB.129",
+          "Name": "Ability Power",
+          "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities."
+        },
+        "Value": 0.15,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": [
+          {
+            "GUID": "000000000010.09E",
+            "Value": "Death Blossom"
+          },
+          {
+            "GUID": "000000000027.09E",
+            "Value": "Earthshatter"
+          },
+          {
+            "GUID": "000000000028.09E",
+            "Value": "Charge"
+          },
+          {
+            "GUID": "000000000029.09E",
+            "Value": "Fire Strike"
+          },
+          {
+            "GUID": "000000000059.09E",
+            "Value": "Particle Barrier"
+          },
+          {
+            "GUID": "00000000005A.09E",
+            "Value": "Projected Barrier"
+          },
+          {
+            "GUID": "00000000005B.09E",
+            "Value": "Graviton Surge"
+          },
+          {
+            "GUID": "000000000060.09E",
+            "Value": "Flashbang"
+          },
+          {
+            "GUID": "000000000061.09E",
+            "Value": "Deadeye"
+          },
+          {
+            "GUID": "00000000008E.09E",
+            "Value": "Helix Rockets"
+          },
+          {
+            "GUID": "000000000090.09E",
+            "Value": "Biotic Field"
+          },
+          {
+            "GUID": "0000000000A3.09E",
+            "Value": "Soundwave"
+          },
+          {
+            "GUID": "0000000000A5.09E",
+            "Value": "Amp It Up"
+          },
+          {
+            "GUID": "0000000000A6.09E",
+            "Value": "Sound Barrier"
+          },
+          {
+            "GUID": "0000000000B5.09E",
+            "Value": "Crossfade"
+          },
+          {
+            "GUID": "0000000000D0.09E",
+            "Value": "Boosters"
+          },
+          {
+            "GUID": "0000000000D2.09E",
+            "Value": "Self-Destruct"
+          },
+          {
+            "GUID": "0000000000D5.09E",
+            "Value": "Blizzard"
+          },
+          {
+            "GUID": "0000000000D6.09E",
+            "Value": "Cryo-Freeze"
+          },
+          {
+            "GUID": "0000000000D7.09E",
+            "Value": "Ice Wall"
+          },
+          {
+            "GUID": "0000000000DA.09E",
+            "Value": "Swift Strike"
+          },
+          {
+            "GUID": "0000000000DF.09E",
+            "Value": "Call Mech"
+          },
+          {
+            "GUID": "0000000000E1.09E",
+            "Value": "Sleep Dart"
+          },
+          {
+            "GUID": "0000000000E2.09E",
+            "Value": "Biotic Grenade"
+          },
+          {
+            "GUID": "0000000000E4.09E",
+            "Value": "Nano Boost"
+          },
+          {
+            "GUID": "0000000000EB.09E",
+            "Value": "Fortify"
+          },
+          {
+            "GUID": "00000000014C.09E",
+            "Value": "Coalescence"
+          },
+          {
+            "GUID": "00000000016C.09E",
+            "Value": "Micro Missiles"
+          },
+          {
+            "GUID": "00000000016D.09E",
+            "Value": "Biotic Orb"
+          },
+          {
+            "GUID": "00000000020B.09E",
+            "Value": "Dynamite"
+          },
+          {
+            "GUID": "00000000020C.09E",
+            "Value": "B.O.B."
+          },
+          {
+            "GUID": "00000000020D.09E",
+            "Value": "Coach Gun"
+          },
+          {
+            "GUID": "0000000002C6.09E",
+            "Value": "Jagged Blade"
+          },
+          {
+            "GUID": "0000000002C9.09E",
+            "Value": "Protection Suzu"
+          },
+          {
+            "GUID": "0000000002CE.09E",
+            "Value": "Commanding Shout"
+          },
+          {
+            "GUID": "0000000002D5.09E",
+            "Value": "Carnage"
+          },
+          {
+            "GUID": "0000000002D9.09E",
+            "Value": "Rampage"
+          },
+          {
+            "GUID": "00000000031C.09E",
+            "Value": "Javelin Spin"
+          },
+          {
+            "GUID": "00000000031D.09E",
+            "Value": "Energy Javelin"
+          },
+          {
+            "GUID": "00000000031E.09E",
+            "Value": "Terra Surge"
+          },
+          {
+            "GUID": "000000000408.09E",
+            "Value": "Pulsar Torpedoes"
+          },
+          {
+            "GUID": "00000000042F.09E",
+            "Value": "Orbital Ray"
+          },
+          {
+            "GUID": "00000000048D.09E",
+            "Value": "Bola Shot"
+          }
+        ]
+      },
+      {
+        "GUID": "0000000018DF.130",
+        "Buff": null,
+        "Value": 0.5,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002610.134": {
+    "GUID": "000000002610.134",
+    "Name": "Aeroweave Cloak",
+    "Description": " While momentum is slowed by \r\n<fg#ffffffff>[Take Aim]</fg>, restore <fg#ffffffff>%3$s</fg> Max Life every 1s.",
+    "DescriptionFormatted": " While momentum is slowed by \r\n[Take Aim], restore 5% Max Life every 1s.",
+    "Cost": 4000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "000000003DA0.01C",
+      "Value": "Rare"
+    },
+    "Category": {
+      "GUID": "00000000ECD2.01C",
+      "Value": "Survival"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001842.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Life",
+        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "FormattedText": "25 Life",
+        "Value": 25.0,
+        "IsPercentage": false
+      },
+      {
+        "GameValueGUID": "000000001843.130",
+        "IconGUID": "000000000A73.129",
+        "Name": "[Take Aim] Slowed Momentum Duration",
+        "Description": "<fg#ffffffff>%2$s</fg> <fg#ffffffff>[Take Aim]</fg> Slowed Momentum Duration",
+        "DescriptionFormatted": "100% [Take Aim] Slowed Momentum Duration",
+        "FormattedText": "100% [Take Aim] Slowed Momentum Duration",
+        "Value": 1.0,
+        "IsPercentage": true
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "000000001842.130",
+        "Buff": {
+          "GUID": "0000000000C7.01C",
+          "TargetTagGUID": "0000000010D7.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Life",
+          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+        },
+        "Value": 25.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001843.130",
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": null,
+          "IconGUID": "000000000A73.129",
+          "Name": "<fg#ffffffff>[Take Aim]</fg> Slowed Momentum Duration",
+          "Description": "<fg#ffffffff>%2$s</fg> <fg#ffffffff>[Take Aim]</fg> Slowed Momentum Duration"
+        },
+        "Value": 1.0,
+        "Name": "<fg#ffffffff>[Take Aim]</fg> Slowed Momentum Duration",
+        "FormatString": "|Rfn %1$s:P0;",
+        "Loadouts": []
+      },
+      {
+        "GUID": "0000000018DE.130",
+        "Buff": null,
+        "Value": 0.05,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002651.134": {
+    "GUID": "000000002651.134",
+    "Name": "Hunter's Mark",
+    "Description": "Enemies with a Bounty of <fg#ffffffff>750</fg> or more are revealed to you within <fg#ffffffff>%3$sm</fg>. Eliminating them grants <fg#ffffffff>%2$s</fg> additional <fg#ffffffff>Stadium Cash</fg>.",
+    "DescriptionFormatted": "Enemies with a Bounty of 750 or more are revealed to you within 40m. Eliminating them grants 250 additional Stadium Cash.",
+    "Cost": 4000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "000000003DA0.01C",
+      "Value": "Rare"
+    },
+    "Category": {
+      "GUID": "00000000ECD2.01C",
+      "Value": "Survival"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000018E7.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Life",
+        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "FormattedText": "25 Life",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "0000000018E7.130",
+        "Buff": {
+          "GUID": "0000000000C7.01C",
+          "TargetTagGUID": "0000000010D7.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Life",
+          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+        },
+        "Value": 25.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "0000000018E8.130",
+        "Buff": null,
+        "Value": 250.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "0000000018E9.130",
+        "Buff": null,
+        "Value": 40.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002618.134": {
+    "GUID": "000000002618.134",
+    "Name": "Tourniquet",
+    "Description": "After using <fg#ffffffff>[Updraft]</fg>, reset <fg#ffffffff>[Quick Dash]</fg> and gain <fg#ffffffff>%2$s Overhealth</fg> for <fg#ffffffff>%3$ss</fg>.",
+    "DescriptionFormatted": "After using [Updraft], reset [Quick Dash] and gain 50 Overhealth for 5s.",
+    "Cost": 4500,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "000000003DA0.01C",
+      "Value": "Rare"
+    },
+    "Category": {
+      "GUID": "00000000ECD2.01C",
+      "Value": "Survival"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001853.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Life",
+        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "FormattedText": "25 Life",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "000000001853.130",
+        "Buff": {
+          "GUID": "0000000000C7.01C",
+          "TargetTagGUID": "0000000010D7.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Life",
+          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+        },
+        "Value": 25.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001854.130",
+        "Buff": null,
+        "Value": 50.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001855.130",
+        "Buff": null,
+        "Value": 5.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      }
+    ]
+  },
+  "000000002615.134": {
+    "GUID": "000000002615.134",
+    "Name": "Toxin Tips",
+    "Description": "<fg#ffffffff>[Take Aim]</fg> bolt sticks and explosions slow enemies by <fg#ffffffff>%2$s</fg>, but takes <fg#ffffffff>%1$ss</fg> longer to explode.",
+    "DescriptionFormatted": "[Take Aim] bolt sticks and explosions slow enemies by 30%, but takes 1s longer to explode.",
+    "Cost": 9000,
+    "Hero": {
+      "GUID": "00000000032A.075",
+      "Value": "Freja"
+    },
+    "Role": null,
+    "Rarity": {
+      "GUID": "0000000061ED.01C",
+      "Value": "Epic"
+    },
+    "Category": {
+      "GUID": "00000000ECD2.01C",
+      "Value": "Survival"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000018E0.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Life",
+        "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "DescriptionFormatted": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction.",
+        "FormattedText": "50 Life",
+        "Value": 50.0,
+        "IsPercentage": false
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "00000000184D.130",
+        "Buff": null,
+        "Value": 1.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "00000000184E.130",
+        "Buff": null,
+        "Value": 0.3,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "0000000018E0.130",
+        "Buff": {
+          "GUID": "0000000000C7.01C",
+          "TargetTagGUID": "0000000010D7.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Life",
+          "Description": "The combined total of your Health, Armor, and Shields.\r\n\nShields begin regenerating earlier.\r\n\nArmor has flat damage reduction."
+        },
+        "Value": 50.0,
+        "Name": null,
+        "FormatString": null,
+        "Loadouts": []
+      },
+      {
+        "GUID": "000000001906.130",
+        "Buff": null,
+        "Value": 1.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
