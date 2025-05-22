@@ -1,0 +1,38 @@
+{
+  "000000000EDB.134": {
+    "GUID": "000000000EDB.134",
+    "Name": "Vital-E-Tee",
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Life",
+        "Value": -100,
+        "Hidden": true
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Armor",
+        "Value": 100,
+        "Hidden": true
+      }
+    ]
+  },
+  "000000000EDC.134": {
+    "GUID": "000000000EDC.134",
+    "Name": "Vishkar Condensor",
+    "Buffs": [
+      {
+        "StatType": "Custom",
+        "Name": "Life",
+        "Value": -100,
+        "Hidden": true
+      },
+      {
+        "StatType": "Custom",
+        "Name": "Shields",
+        "Value": 100,
+        "Hidden": true
+      }
+    ]
+  }
+}

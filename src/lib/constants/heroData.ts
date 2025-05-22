@@ -41,6 +41,11 @@ export const heroes: HeroData[] = [
     baseHealth: 275,
   },
   {
+    name: "Freja",
+    role: "Damage",
+    baseHealth: 225,
+  },
+  {
     name: "Genji",
     role: "Damage",
     baseHealth: 250,
