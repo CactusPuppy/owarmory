@@ -3412,7 +3412,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000015E4.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%2$s</fg> Armor",
+        "DescriptionFormatted": "50 Armor",
+        "FormattedText": "50 Armor",
+        "Value": 50.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000015E3.130",
@@ -3424,7 +3435,13 @@
       },
       {
         "GUID": "0000000015E4.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%2$s</fg> Armor"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -5694,6 +5711,16 @@
         "FormattedText": "25% [Glide Boost] Duration",
         "Value": 0.25,
         "IsPercentage": true
+      },
+      {
+        "GameValueGUID": "0000000013BA.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%2$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -5713,7 +5740,13 @@
       },
       {
         "GUID": "0000000013BA.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%2$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -5740,7 +5773,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000013C0.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%2$s</fg> Shields",
+        "DescriptionFormatted": "75 Shields",
+        "FormattedText": "75 Shields",
+        "Value": 75.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000013BF.130",
@@ -5752,7 +5796,13 @@
       },
       {
         "GUID": "0000000013C0.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%2$s</fg> Shields"
+        },
         "Value": 75.0,
         "Name": null,
         "FormatString": null,
@@ -6426,7 +6476,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000013C8.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%2$s</fg> Shields",
+        "DescriptionFormatted": "75 Shields",
+        "FormattedText": "75 Shields",
+        "Value": 75.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000013C7.130",
@@ -6438,7 +6499,13 @@
       },
       {
         "GUID": "0000000013C8.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%2$s</fg> Shields"
+        },
         "Value": 75.0,
         "Name": null,
         "FormatString": null,
@@ -6467,6 +6534,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "0000000013C9.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "50 Shields",
+        "FormattedText": "50 Shields",
+        "Value": 50.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "0000000013CA.130",
         "IconGUID": "000000000ADB.129",
         "Name": "Ability Power",
@@ -6480,7 +6557,13 @@
     "GameValues": [
       {
         "GUID": "0000000013C9.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -10183,7 +10266,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "00000000120E.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%2$s</fg> Shields",
+        "DescriptionFormatted": "50 Shields",
+        "FormattedText": "50 Shields",
+        "Value": 50.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "00000000116D.130",
@@ -10195,7 +10289,13 @@
       },
       {
         "GUID": "00000000120E.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%2$s</fg> Shields"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -10232,6 +10332,16 @@
         "FormattedText": "15% [Nano Boost] Duration",
         "Value": 0.15,
         "IsPercentage": true
+      },
+      {
+        "GameValueGUID": "00000000120F.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%2$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -10251,7 +10361,13 @@
       },
       {
         "GUID": "00000000120F.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%2$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -11332,7 +11448,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001798.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%2$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001799.130",
@@ -11344,7 +11471,13 @@
       },
       {
         "GUID": "000000001798.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%2$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -11499,7 +11632,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000017B0.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%4$s</fg> Shields",
+        "DescriptionFormatted": "50 Shields",
+        "FormattedText": "50 Shields",
+        "Value": 50.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000001D5.130",
@@ -11527,7 +11671,13 @@
       },
       {
         "GUID": "0000000017B0.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%4$s</fg> Shields"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -14344,6 +14494,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "00000000159F.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "0000000017AA.130",
         "IconGUID": "000000000ADD.129",
         "Name": "Attack Speed",
@@ -14357,7 +14517,13 @@
     "GameValues": [
       {
         "GUID": "00000000159F.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -14565,6 +14731,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "000000001563.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "50 Armor",
+        "FormattedText": "50 Armor",
+        "Value": 50.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "000000001564.130",
         "IconGUID": "000000000AE0.129",
         "Name": "Cooldown Reduction",
@@ -14588,7 +14764,13 @@
     "GameValues": [
       {
         "GUID": "000000001563.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -18869,6 +19051,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "000000001639.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "50 Armor",
+        "FormattedText": "50 Armor",
+        "Value": 50.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "00000000163A.130",
         "IconGUID": "000000000A73.129",
         "Name": "[Caduceus Staff] Damage Boost",
@@ -18892,7 +19084,13 @@
     "GameValues": [
       {
         "GUID": "000000001639.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -22720,7 +22918,18 @@
       "GUID": "000000005FDC.01C",
       "Value": "Ability"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "00000000179B.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%2$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "00000000179A.130",
@@ -22732,7 +22941,13 @@
       },
       {
         "GUID": "00000000179B.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%2$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -23359,11 +23574,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000011E8.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "50 Armor",
+        "FormattedText": "50 Armor",
+        "Value": 50.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000011E8.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -26746,6 +26978,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "0000000016AD.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "0000000016AE.130",
         "IconGUID": "000000000ADE.129",
         "Name": "Weapon Power",
@@ -26769,7 +27011,13 @@
     "GameValues": [
       {
         "GUID": "0000000016AD.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -33115,6 +33363,16 @@
         "FormattedText": "50 Life",
         "Value": 50.0,
         "IsPercentage": false
+      },
+      {
+        "GameValueGUID": "0000000017B2.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%3$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -33142,7 +33400,13 @@
       },
       {
         "GUID": "0000000017B2.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%3$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -34294,6 +34558,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "000000001512.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "00000000178B.130",
         "IconGUID": "000000000ADB.129",
         "Name": "Ability Power",
@@ -34307,7 +34581,13 @@
     "GameValues": [
       {
         "GUID": "000000001512.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -38407,11 +38687,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "00000000107E.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "00000000107E.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -38488,11 +38785,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001095.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001095.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -40320,6 +40634,16 @@
         "FormattedText": "-40% Incoming Negative Effect Duration",
         "Value": -0.4,
         "IsPercentage": true
+      },
+      {
+        "GameValueGUID": "000000001545.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%2$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -40339,7 +40663,13 @@
       },
       {
         "GUID": "000000001545.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%2$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -40605,7 +40935,18 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000017EA.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%2$s</fg> Armor",
+        "DescriptionFormatted": "10 Armor",
+        "FormattedText": "10 Armor",
+        "Value": 10.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001523.130",
@@ -40617,7 +40958,13 @@
       },
       {
         "GUID": "0000000017EA.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%2$s</fg> Armor"
+        },
         "Value": 10.0,
         "Name": null,
         "FormatString": null,
@@ -40641,11 +40988,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001524.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001524.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -40677,11 +41041,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001526.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001526.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -40713,11 +41094,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001255.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001255.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -42060,6 +42458,16 @@
         "FormattedText": "10% Weapon Power",
         "Value": 0.1,
         "IsPercentage": true
+      },
+      {
+        "GameValueGUID": "00000000173C.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%4$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25.0,
+        "IsPercentage": false
       }
     ],
     "GameValues": [
@@ -42229,7 +42637,13 @@
       },
       {
         "GUID": "00000000173C.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%4$s</fg> Armor"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -42260,8 +42674,8 @@
         "Name": "Ability Power",
         "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
-        "FormattedText": "40% Ability Power",
-        "Value": 0.4,
+        "FormattedText": "35% Ability Power",
+        "Value": 0.35,
         "IsPercentage": true
       }
     ],
@@ -42275,7 +42689,7 @@
           "Name": "Ability Power",
           "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities."
         },
-        "Value": 0.4,
+        "Value": 0.35,
         "Name": null,
         "FormatString": "|Rfn%1$s:P0;",
         "Loadouts": [
@@ -43906,6 +44320,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "000000001531.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "50 Armor",
+        "FormattedText": "50 Armor",
+        "Value": 50.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "000000001532.130",
         "IconGUID": "000000000ADB.129",
         "Name": "Ability Power",
@@ -43919,7 +44343,13 @@
     "GameValues": [
       {
         "GUID": "000000001531.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -44834,6 +45264,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "0000000010C0.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "50 Shields",
+        "FormattedText": "50 Shields",
+        "Value": 50.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "00000000171F.130",
         "IconGUID": "000000000ADC.129",
         "Name": "Life",
@@ -44897,7 +45337,13 @@
     "GameValues": [
       {
         "GUID": "0000000010C0.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -45379,11 +45825,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "0000000012FB.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "25 Shields",
+        "FormattedText": "25 Shields",
+        "Value": 25.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "0000000012FB.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 25.0,
         "Name": null,
         "FormatString": null,
@@ -45415,11 +45878,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001535.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Shields",
+        "Description": "<fg#ffffffff>%1$s</fg> Shields",
+        "DescriptionFormatted": "50 Shields",
+        "FormattedText": "50 Shields",
+        "Value": 50.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001535.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010E1.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Shields",
+          "Description": "<fg#ffffffff>%1$s</fg> Shields"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -45475,11 +45955,28 @@
       "GUID": "00000000ECD2.01C",
       "Value": "Survival"
     },
-    "Buffs": [],
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001539.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "50 Armor",
+        "FormattedText": "50 Armor",
+        "Value": 50.0,
+        "IsPercentage": false
+      }
+    ],
     "GameValues": [
       {
         "GUID": "000000001539.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
@@ -45537,6 +46034,16 @@
     },
     "Buffs": [
       {
+        "GameValueGUID": "0000000010AA.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%1$s</fg> Armor",
+        "DescriptionFormatted": "50 Armor",
+        "FormattedText": "50 Armor",
+        "Value": 50.0,
+        "IsPercentage": false
+      },
+      {
         "GameValueGUID": "000000001146.130",
         "IconGUID": "000000000AE4.129",
         "Name": "Melee Damage",
@@ -45550,7 +46057,13 @@
     "GameValues": [
       {
         "GUID": "0000000010AA.130",
-        "Buff": null,
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%1$s</fg> Armor"
+        },
         "Value": 50.0,
         "Name": null,
         "FormatString": null,
