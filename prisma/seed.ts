@@ -184,9 +184,7 @@ async function main() {
           },
         });
 
-        for (let i = 0; i < talent.Buffs.length; i++) {
-          const buff = talent.Buffs[i];
-
+        for (const [i, buff] of talent.Buffs.entries()) {
           // Create the stat if it doesn't exist
           const stat = await tx.stat.upsert({
             where: {
