@@ -137,11 +137,17 @@ async function main() {
       };
 
       if (talent.Category.Value == "Power") {
+        if (baseData.heroName === undefined) {
+          throw new Error(
+            `Talent with GUID ${guid} was of type power, but has no associated hero name?`,
+          );
+        }
         await tx.power.upsert({
           where: {
             gameGuid: talent.GUID,
           },
           update: baseData,
+          // @ts-expect-error Already checked for if heroName is undefined above
           create: baseData,
         });
         continue;
