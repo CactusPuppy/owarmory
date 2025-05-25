@@ -1,7 +1,7 @@
 import { promises } from "node:fs";
 import { z } from "zod";
 import { PrismaClient } from "../src/generated/prisma";
-import { ItemRarity, ItemCategory } from "../src/lib/types/build";
+import { ItemRarity, ItemCategory, CleanStatInclude } from "../src/lib/types/build";
 import { heroes } from "../src/lib/constants/heroData";
 import { StatOverrides } from "../src/lib/constants/stats";
 const { readFile } = promises;
@@ -154,7 +154,9 @@ async function main() {
         include: {
           statMods: {
             include: {
-              stat: true,
+              stat: {
+                select: CleanStatInclude,
+              },
             },
           },
         },
