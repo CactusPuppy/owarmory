@@ -5,7 +5,7 @@
   import ItemsGrid from "./ItemsGrid.svelte";
   import Hero from "../content/Hero.svelte";
   import { ROUND_MAX } from "$lib/constants/round";
-  import { untrack } from "svelte";
+  import { setContext, untrack } from "svelte";
   import PowersGrid from "./PowersGrid.svelte";
   import { heroFromHeroName } from "$src/lib/constants/heroData";
   import type { FullItem as Item } from "$lib/types/build";
@@ -24,6 +24,7 @@
   import Issues from "./Issues.svelte";
   import TextInput from "./TextInput.svelte";
   import { slide } from "svelte/transition";
+  import CompoundedBuild from "../content/CompoundedBuild.svelte";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -86,6 +87,13 @@
   const currentRound = $derived(roundInfos![currentRoundIndex] || {});
   // Currently only using a single section
   const currentRoundSection = $derived(currentRound.sections?.[0] || {});
+
+  // svelte-ignore state_referenced_locally
+  const currentRoundContext = $state({ value: currentRoundIndex + 1 });
+  $effect(() => {
+    currentRoundContext.value = currentRoundIndex + 1;
+  });
+  setContext("currentRound", currentRoundContext);
 
   $effect(() => {
     if (selectedHero) untrack(removeHeroSpecificTalents);
@@ -346,30 +354,36 @@
     </div>
 
     <div class="tabs-content dark inset">
-      {#if currentTalentTypeTab === powerTalentType}
-        <PowersGrid
-          {availablePowers}
-          currentlySelected={currentRoundSection.power}
-          previouslySelected={powersFromPreviousRounds}
-          filtered={filteredPowers}
-          onclick={selectPower}
-        />
-      {:else}
-        <ItemsGrid
-          {availableItems}
-          onclick={selectItem}
-          currentlyPurchasing={currentRoundSection.purchasedItems}
-          currentlySelling={currentRoundSection.soldItems}
-          previouslySelected={itemsFromPreviousRounds}
-          filtered={filteredItems}
-        />
-      {/if}
+      <div class="build-talents-layout">
+        <div class="compounded-build">
+          <CompoundedBuild {build} large={false} />
 
-      {#if validations[`items-length-${currentRoundIndex}`] === false}
-        <div class="form-text-error" transition:slide={{ duration: 100 }}>
-          You would end up with more than 6 items this round.
+          {#if validations[`items-length-${currentRoundIndex}`] === false}
+            <div class="form-text-error inline" transition:slide={{ duration: 100 }}>
+              You would end up with more than 6 items this round.
+            </div>
+          {/if}
         </div>
-      {/if}
+
+        {#if currentTalentTypeTab === powerTalentType}
+          <PowersGrid
+            {availablePowers}
+            currentlySelected={currentRoundSection.power}
+            previouslySelected={powersFromPreviousRounds}
+            filtered={filteredPowers}
+            onclick={selectPower}
+          />
+        {:else}
+          <ItemsGrid
+            {availableItems}
+            onclick={selectItem}
+            currentlyPurchasing={currentRoundSection.purchasedItems}
+            currentlySelling={currentRoundSection.soldItems}
+            previouslySelected={itemsFromPreviousRounds}
+            filtered={filteredItems}
+          />
+        {/if}
+      </div>
     </div>
 
     <div class="inset">
@@ -501,6 +515,18 @@
       border-radius: 0;
       margin: 0;
     }
+  }
+
+  .build-talents-layout {
+    @include breakpoint(tablet) {
+      display: grid;
+      grid-template-columns: 12rem auto;
+      gap: 1rem;
+    }
+  }
+
+  .compounded-build {
+    margin-bottom: 3rem;
   }
 
   .inset {

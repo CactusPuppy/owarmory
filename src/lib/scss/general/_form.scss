@@ -96,4 +96,10 @@
   padding-top: 0.25rem;
   font-family: $font-stack-brand;
   font-size: $font-size-small;
+  line-height: 1.25em;
+
+  &.inline {
+    position: initial;
+    margin-top: 1rem;
+  }
 }
