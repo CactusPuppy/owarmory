@@ -356,7 +356,7 @@
     <div class="tabs-content dark inset">
       <div class="build-talents-layout">
         <div class="compounded-build">
-          <CompoundedBuild {build} large={false} />
+          <CompoundedBuild {build} large={false} onclick={selectItem} />
 
           {#if validations[`items-length-${currentRoundIndex}`] === false}
             <div class="form-text-error inline" transition:slide={{ duration: 100 }}>

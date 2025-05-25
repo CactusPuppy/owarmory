@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BuildData } from "$src/lib/types/build";
+  import type { BuildData, FullItem } from "$src/lib/types/build";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildPowersForRound, getBuildItemsForRound } from "$lib/utils/build";
   import { getContext } from "svelte";
@@ -11,9 +11,10 @@
   interface Props {
     build: BuildData;
     large?: boolean;
+    onclick?: (item: FullItem) => void;
   }
 
-  const { build, large = true }: Props = $props();
+  const { build, large = true, onclick = () => null }: Props = $props();
 
   const currentRound: CurrentRound = getContext("currentRound");
 
@@ -42,7 +43,7 @@
 <div class="grid items" class:large>
   {#each items as item, index (item.id)}
     <div class="cell" in:scale={{ duration: 50, start: 0.75 }} class:warn={index >= 6}>
-      <Item {item} {large} />
+      <Item {item} {large} {onclick} />
     </div>
   {/each}
 
