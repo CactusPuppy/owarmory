@@ -286,7 +286,7 @@ async function main() {
     // Remove stat mods that are not in the processed list and don't have a gameGuid
     // on first run on existing db, this will remove all stat mods as they will have been recreated with guids
     // but on subsequent runs, this should only remove custom stat mods that don't have a gameGuid
-    var statModsToRemove = existingStatMods
+    const statModsToRemove = existingStatMods
       .filter((statMod) => {
         return !statMod.gameGuid || !processedStatMods.has(statMod.gameGuid);
       })
