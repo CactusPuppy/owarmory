@@ -23,8 +23,5 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install
-      - name: Lint Action
-        uses: wearerequired/lint-action@v2.3.0
-        with:
-          eslint: true
-          prettier: true
+      - name: Prettier
+        run: pnpm lint
