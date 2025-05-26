@@ -25,6 +25,8 @@
   import Tags from "$src/lib/components/content/Tags.svelte";
   import type { User } from "$src/generated/prisma";
   import ShareInput from "$src/lib/components/form/ShareInput.svelte";
+  import { Tween } from "svelte/motion";
+  import { quintOut } from "svelte/easing";
 
   const { data } = $props();
 
@@ -52,6 +54,14 @@
     baseArmor: 0,
     baseShields: 0,
     ...heroFromHeroName(heroName as HeroName),
+  });
+
+  const buildCost = new Tween(0, {
+    duration: 150,
+    easing: quintOut,
+  });
+  $effect(() => {
+    buildCost.set(getBuildCostForRound(build, currentRound.value));
   });
 
   let similarBuilds: FullStadiumBuild[] = $state([]);
@@ -120,7 +130,7 @@
         Build Cost: <br />
 
         <CurrencyIcon scale={1.35} />
-        {getBuildCostForRound(build, currentRound.value).toLocaleString()}
+        {Math.round(buildCost.current).toLocaleString()}
       </h2>
 
       <DashedHeader text="Stats" />
