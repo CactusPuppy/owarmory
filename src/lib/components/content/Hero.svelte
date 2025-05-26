@@ -30,7 +30,7 @@
 
 <style lang="scss">
   .hero {
-    --size: #{px-to-rem(50)};
+    --size: #{px-to-rem(48)};
     display: block;
     flex: 0 0 var(--size);
     width: var(--size);
