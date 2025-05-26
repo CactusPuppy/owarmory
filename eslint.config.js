@@ -44,6 +44,7 @@ export default ts.config(
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
     },
+    ignores: ["static/scripts/**/*.js", "prisma/seed-data/**/*.json"],
   },
   {
     files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
