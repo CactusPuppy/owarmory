@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BuildData } from "$src/lib/types/build";
+  import type { BuildData, FullItem } from "$src/lib/types/build";
   import type { CurrentRound } from "$lib/types/round";
   import { getBuildPowersForRound, getBuildItemsForRound } from "$lib/utils/build";
   import { getContext } from "svelte";
@@ -10,9 +10,11 @@
 
   interface Props {
     build: BuildData;
+    large?: boolean;
+    onclick?: (item: FullItem) => void;
   }
 
-  const { build }: Props = $props();
+  const { build, large = true, onclick = () => null }: Props = $props();
 
   const currentRound: CurrentRound = getContext("currentRound");
 
@@ -25,7 +27,7 @@
 <div class="grid">
   {#each powers as power (power.id)}
     <div class="cell" in:scale={{ duration: 50, start: 0.75 }}>
-      <Power {power} large />
+      <Power {power} {large} />
     </div>
   {/each}
 
@@ -38,10 +40,10 @@
 
 <DashedHeader text="Items" />
 
-<div class="grid items">
-  {#each items as item (item.id)}
-    <div class="cell" in:scale={{ duration: 50, start: 0.75 }}>
-      <Item {item} large />
+<div class="grid items" class:large>
+  {#each items as item, index (item.id)}
+    <div class="cell" in:scale={{ duration: 50, start: 0.75 }} class:warn={index >= 6}>
+      <Item {item} {large} {onclick} />
     </div>
   {/each}
 
@@ -57,10 +59,14 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: space-between;
-    gap: 1rem 0;
+    gap: 0.5rem 0;
 
     @include breakpoint(tablet) {
-      gap: 1rem;
+      gap: 0.5rem;
+
+      &.large {
+        gap: 1rem;
+      }
     }
 
     &.items {
@@ -68,27 +74,47 @@
       grid-template-columns: repeat(3, 1fr);
 
       @include breakpoint(tablet) {
-        gap: 2rem;
+        gap: 1rem;
+
+        &.large {
+          gap: 2rem;
+        }
       }
+    }
+
+    &.large {
+      gap: 1rem 0;
     }
   }
 
   .cell {
     display: flex;
     justify-content: center;
+
+    &.warn :global(.item .icon) {
+      outline: 2px solid $red;
+      outline-offset: 2px;
+    }
   }
 
   .empty {
-    width: $power-size-large;
-    height: $power-size-large;
+    --power-size: #{$item-size};
+    --item-size: #{$item-size};
+    width: var(--power-size);
+    height: var(--power-size);
     background: $color-bg-dark;
     border-radius: $border-radius;
     border: 2px solid $color-border;
 
     &.item {
-      width: $item-size-large;
-      height: $item-size-large;
+      width: var(--item-size);
+      height: var(--item-size);
       border-radius: 50%;
+    }
+
+    .large & {
+      --power-size: #{$power-size-large};
+      --item-size: #{$item-size-large};
     }
   }
 </style>
