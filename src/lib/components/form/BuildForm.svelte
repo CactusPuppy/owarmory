@@ -13,7 +13,11 @@
   import BuildItemOrder from "../content/BuildItemOrder.svelte";
   import BuildPowersOrder from "../content/BuildPowersOrder.svelte";
   import { api } from "$src/lib/utils/api";
-  import { getBuildItemsForRound, getBuildPowersForRound } from "$src/lib/utils/build";
+  import {
+    getBuildCostForRound,
+    getBuildItemsForRound,
+    getBuildPowersForRound,
+  } from "$src/lib/utils/build";
   import type { AvailableTalents } from "$src/lib/types/talent";
   import type { SlashPrefixedString } from "$src/lib/types/path";
   import type { z } from "zod";
@@ -25,6 +29,9 @@
   import TextInput from "./TextInput.svelte";
   import { slide } from "svelte/transition";
   import CompoundedBuild from "../content/CompoundedBuild.svelte";
+  import CurrencyIcon from "../icon/CurrencyIcon.svelte";
+  import { Tween } from "svelte/motion";
+  import { quintOut } from "svelte/easing";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -87,6 +94,14 @@
   const currentRound = $derived(roundInfos![currentRoundIndex] || {});
   // Currently only using a single section
   const currentRoundSection = $derived(currentRound.sections?.[0] || {});
+
+  const currentRoundItemCost = new Tween(0, {
+    duration: 150,
+    easing: quintOut,
+  });
+  $effect(() => {
+    currentRoundItemCost.set(getBuildCostForRound(build, currentRoundIndex + 1));
+  });
 
   // svelte-ignore state_referenced_locally
   const currentRoundContext = $state({ value: currentRoundIndex + 1 });
@@ -363,6 +378,10 @@
               You would end up with more than 6 items this round.
             </div>
           {/if}
+          <h2 class="build-cost">
+            <CurrencyIcon scale={1.35} />
+            {Math.round(currentRoundItemCost.current).toLocaleString()}
+          </h2>
         </div>
 
         {#if currentTalentTypeTab === powerTalentType}
@@ -515,6 +534,11 @@
       border-radius: 0;
       margin: 0;
     }
+  }
+
+  .build-cost {
+    text-align: center;
+    margin-top: 2rem;
   }
 
   .build-talents-layout {
