@@ -500,6 +500,7 @@
     padding: 0.5rem 1rem;
     background: $color-border;
     border-radius: $border-radius $border-radius 0 0;
+    overflow: auto;
 
     &.dark {
       background: $color-bg-dark;
@@ -513,6 +514,7 @@
     color: $color-text-alt;
     font-family: $font-stack-brand;
     font-size: $font-size-base;
+    white-space: nowrap;
 
     &:hover {
       color: $white;
