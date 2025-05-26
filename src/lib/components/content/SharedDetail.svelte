@@ -7,10 +7,11 @@
     name?: string;
     description?: string | null;
     cost?: number;
+    category?: string;
     statMods?: FullStatMod[];
   }
 
-  const { name, description, cost = 0, statMods }: Props = $props();
+  const { name, description, cost = 0, category, statMods }: Props = $props();
 
   const normalStatMods = $derived(
     statMods
@@ -59,10 +60,16 @@
     <StatMods statMods={postDescriptionMods} />
   {/if}
 
-  <div class="cost">
-    {#if cost}
-      <CurrencyIcon />
-      {cost.toLocaleString()}
+  <div class="footer">
+    {#if category}
+      <span>
+        <CurrencyIcon />
+        {cost.toLocaleString()}
+      </span>
+      <div class="footer__separator"></div>
+      <span class="footer__category">
+        {category}
+      </span>
     {:else}
       <strong>Power</strong>
     {/if}
@@ -103,7 +110,7 @@
     }
   }
 
-  .cost {
+  .footer {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -117,5 +124,17 @@
     strong {
       color: $primary;
     }
+  }
+
+  .footer__separator {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-color: $color-border;
+    border-style: solid;
+    height: 1lh;
+  }
+
+  .footer__category {
+    color: $secondary;
   }
 </style>
