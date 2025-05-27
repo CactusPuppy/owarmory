@@ -7,7 +7,13 @@ import {
 } from "$env/static/private";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "$src/database/prismaClient.server";
+import { UserRole } from "$src/generated/prisma";
 
+declare module "@auth/sveltekit" {
+  interface User {
+    role: UserRole;
+  }
+}
 export const { handle, signIn, signOut } = SvelteKitAuth({
   adapter: PrismaAdapter(prisma),
   trustHost: !!AUTH_TRUST_HOST,
@@ -17,6 +23,9 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
       clientSecret: AUTH_BATTLENET_CLIENT_SECRET,
       issuer: "https://oauth.battle.net",
       checks: ["nonce"],
+      profile: (profile) => {
+        return { role: profile.role ?? UserRole.USER, ...profile };
+      },
       authorization: {
         params: {
           // Battle.net requires a `state` param to be present. No clue what it does, but auth.js doesn't provide it by default
@@ -29,7 +38,8 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
     strategy: "database",
   },
   callbacks: {
-    session({ session }) {
+    session({ session, user }) {
+      session.user.role = user.role;
       return session;
     },
   },
