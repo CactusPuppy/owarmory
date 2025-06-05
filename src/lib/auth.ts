@@ -23,9 +23,6 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
       clientSecret: AUTH_BATTLENET_CLIENT_SECRET,
       issuer: "https://oauth.battle.net",
       checks: ["nonce"],
-      profile: (profile) => {
-        return { role: profile.role ?? UserRole.USER, ...profile };
-      },
       authorization: {
         params: {
           // Battle.net requires a `state` param to be present. No clue what it does, but auth.js doesn't provide it by default
