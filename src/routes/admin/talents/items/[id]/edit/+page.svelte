@@ -15,6 +15,11 @@
   </label>
 
   <label class="form-label">
+    Is Removed
+    <input name="removed" type="checkbox" defaultValue={item.removed} />
+  </label>
+
+  <label class="form-label">
     Category
     <select name="category" value={item.category} class="form-input">
       {#each Object.values(ItemCategory) as category (category)}

@@ -7,10 +7,11 @@ export const actions = {
     const itemId = params.id;
     const formData = await request.formData();
 
-    await prisma.item.findFirstOrThrow({ where: { id: itemId } });
+    const item = await prisma.item.findFirstOrThrow({ where: { id: itemId } });
 
     const potentialData = {
       name: formData.get("name")?.toString(),
+      removed: formData.get("removed") ?? item.removed,
       category: formData.get("category")?.toString(),
       rarity: formData.get("rarity")?.toString(),
       cost: Number.parseInt(formData.get("cost")?.toString() ?? "", 10),
