@@ -11,12 +11,12 @@
 <form method="POST">
   <label class="form-label">
     Name
-    <input name="name" type="text" class="form-input" defaultValue={item.name} />
+    <input name="name" type="text" class="form-input" value={item.name} />
   </label>
 
   <label class="form-label">
     Is Removed
-    <input name="removed" type="checkbox" defaultValue={item.removed} />
+    <input name="removed" type="checkbox" checked={item.removed} />
   </label>
 
   <label class="form-label">
@@ -39,17 +39,17 @@
 
   <label class="form-label">
     Cost
-    <input name="cost" type="number" class="form-input" defaultValue={item.cost} />
+    <input name="cost" type="number" class="form-input" value={item.cost} />
   </label>
 
   <label class="form-label">
     Icon URL
-    <input name="iconURL" type="text" class="form-input" defaultValue={item.iconURL ?? ""} />
+    <input name="iconURL" type="text" class="form-input" value={item.iconURL ?? ""} />
   </label>
 
   <label class="form-label">
     Description
-    <textarea name="description" defaultValue={item.description} class="form-textarea"></textarea>
+    <textarea name="description" value={item.description} class="form-textarea"></textarea>
   </label>
 
   <div class="form-group stat-mods">
@@ -59,7 +59,7 @@
         <img src={mod.stat.iconURL ?? DefaultStatIconPath} alt="" width="18" height="18" />
         <!-- eslint-disable-next-line svelte/no-useless-mustaches -->
         {mod.stat.name}:{" "}
-        <input type="number" class="form-input" defaultValue={mod.amount} />
+        <input type="number" class="form-input" value={mod.amount} />
         {mod.isPercentage ? "%" : ""}
       </div>
     {/each}
