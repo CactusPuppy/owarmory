@@ -119,7 +119,7 @@ export type StatTotal = {
 export const HeroNameSchema = z.enum(HeroNames, { message: "Invalid hero name provided" });
 
 export const ItemSchema = z.object({
-  id: z.string().cuid2({ message: "Invalid power id" }),
+  id: z.string().cuid2({ message: "Invalid item id" }),
   name: z.string({ message: "Invalid item name" }),
   category: z.enum(["Weapon", "Ability", "Survival"], { message: "Invalid item category" }),
   rarity: z.enum(["Common", "Rare", "Epic"], { message: "Invalid rarity name" }),
