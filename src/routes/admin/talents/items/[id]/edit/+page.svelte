@@ -1,14 +1,21 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import { DefaultStatIconPath } from "$src/lib/constants/stats.js";
   import { ItemCategory, ItemRarity, type FullItem } from "$src/lib/types/build.js";
 
-  const { data } = $props();
+  const { data, form } = $props();
   const { item }: { item: FullItem } = data;
 </script>
 
 <h1>Editing {item.name}</h1>
 
-<form method="POST">
+<form method="POST" use:enhance>
+  {#if form?.success}
+    <p class="success">Item updated successfully</p>
+  {/if}
+  {#if form?.error}
+    <p class="error">{form.error}</p>
+  {/if}
   <label class="form-label">
     Name
     <input name="name" type="text" class="form-input" value={item.name} />
@@ -59,7 +66,12 @@
         <img src={mod.stat.iconURL ?? DefaultStatIconPath} alt="" width="18" height="18" />
         <!-- eslint-disable-next-line svelte/no-useless-mustaches -->
         {mod.stat.name}:{" "}
-        <input type="number" class="form-input" value={mod.amount} />
+        <input
+          name={`statModAmount-${mod.orderIndex}`}
+          type="number"
+          class="form-input"
+          value={mod.amount}
+        />
         {mod.isPercentage ? "%" : ""}
       </div>
     {/each}
@@ -79,6 +91,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-bottom: 1rem;
   }
   .stat-mod {
     display: flex;
@@ -90,5 +103,20 @@
     & input[type="number"] {
       width: min-content;
     }
+  }
+
+  .success {
+    background-color: $green;
+    color: $white;
+    font-weight: bold;
+    padding: 1em;
+    border-radius: $border-radius-small;
+  }
+  .error {
+    background-color: $red;
+    color: $white;
+    font-weight: bold;
+    padding: 1em;
+    border-radius: $border-radius-small;
   }
 </style>
