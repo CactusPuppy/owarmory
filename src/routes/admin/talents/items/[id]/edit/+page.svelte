@@ -64,8 +64,7 @@
     {#each item.statMods.sort((a, b) => a.orderIndex - b.orderIndex) as mod (mod.id)}
       <div class="stat-mod">
         <img src={mod.stat.iconURL ?? DefaultStatIconPath} alt="" width="18" height="18" />
-        <!-- eslint-disable-next-line svelte/no-useless-mustaches -->
-        {mod.stat.name}:{" "}
+        {mod.stat.name}:&nbsp;
         <input
           name={`statModAmount-${mod.orderIndex}`}
           type="number"
