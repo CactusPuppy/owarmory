@@ -12,6 +12,8 @@
   import Item from "./Item.svelte";
   import Power from "./Power.svelte";
   import { cleanName } from "$src/lib/utils/user";
+  import { formatDistanceToNowStrict } from "date-fns";
+  import { toSimpleDate } from "$src/lib/utils/datetime";
 
   const { build }: { build: FullStadiumBuild } = $props();
 
@@ -52,6 +54,15 @@
       <a href={`/user/${encodeURIComponent(build.author.name!)}`}>
         {cleanName(build.author.name!)}
       </a>
+      <span class="divider">•</span>
+      <time
+        class="datetime"
+        title={toSimpleDate(build.updatedAt.toString())}
+        itemprop="dateModified"
+        datetime={build.updatedAt.toString()}
+      >
+        Last updated {formatDistanceToNowStrict(build.updatedAt)} ago
+      </time>
     </div>
   </div>
 
@@ -149,5 +160,24 @@
     @include breakpoint(tablet) {
       justify-content: flex-end;
     }
+  }
+
+  .divider {
+    display: block;
+    min-height: 0.25rem;
+    opacity: 0.5;
+    color: $color-text-alt;
+    font-size: 0;
+
+    @include breakpoint(tablet) {
+      display: inline;
+      font-size: inherit;
+    }
+  }
+
+  .datetime {
+    color: $color-text-alt;
+    font-size: $font-size-small;
+    font-style: italic;
   }
 </style>
