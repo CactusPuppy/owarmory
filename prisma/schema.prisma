@@ -27,12 +27,19 @@ model Hero {
   powers Power[]
 }
 
+enum UserRole {
+  BANNED
+  USER
+  ADMIN
+}
+
 model User {
   id            String         @id @default(nanoid(10))
   name          String?
   email         String?        @unique
   emailVerified DateTime?
   image         String?
+  role          UserRole       @default(USER)
   builds        StadiumBuild[]
   accounts      Account[]
   sessions      Session[]

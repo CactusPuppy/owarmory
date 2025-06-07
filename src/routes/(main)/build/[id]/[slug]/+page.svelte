@@ -27,6 +27,7 @@
   import ShareInput from "$src/lib/components/form/ShareInput.svelte";
   import { Tween } from "svelte/motion";
   import { quintOut } from "svelte/easing";
+  import { formatDistanceToNowStrict } from "date-fns";
 
   const { data } = $props();
 
@@ -106,8 +107,13 @@
 
       <span class="divider">•</span>
 
-      <time class="datetime" itemprop="dateModified" datetime={updatedAt.toString()}>
-        Last updated on {toSimpleDate(updatedAt.toString())}
+      <time
+        class="datetime"
+        title={toSimpleDate(updatedAt.toString())}
+        itemprop="dateModified"
+        datetime={updatedAt.toString()}
+      >
+        Last updated {formatDistanceToNowStrict(updatedAt)} ago
       </time>
     </div>
   </header>
