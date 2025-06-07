@@ -399,7 +399,7 @@
     "GUID": "000000000F55.134",
     "Name": "Blizznado",
     "Description": "While within <fg#ffffffff>[Blizzard]</fg>, heal <fg#ffffffff>%1$s</fg> of your life every 1s.",
-    "DescriptionFormatted": "While within [Blizzard], heal 5% of your life every 1s.",
+    "DescriptionFormatted": "While within [Blizzard], heal 15% of your life every 1s.",
     "Cost": 0,
     "Hero": {
       "GUID": "0000000000DD.075",
@@ -1684,7 +1684,7 @@
     "GUID": "000000000F02.134",
     "Name": "Royal Bullets",
     "Description": "<fg#ffffffff>[Scattergun]</fg> critical hits against targets within <fg#ffffffff>%3$sm</fg> applies <fg#ffffffff>[Wound]</fg> for <tx0x0C00000000061B0B><fg#fffd3737>%1$s</fg> damage over <fg#ffffffff>%2$ss</fg>.",
-    "DescriptionFormatted": "[Scattergun] critical hits against targets within 12m applies [Wound] for 30 damage over 3s.",
+    "DescriptionFormatted": "[Scattergun] critical hits against targets within 15m applies [Wound] for 50 damage over 3s.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000236.075",
@@ -1704,7 +1704,7 @@
       {
         "GUID": "0000000015A5.130",
         "Buff": null,
-        "Value": 30.0,
+        "Value": 50.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -1720,7 +1720,7 @@
       {
         "GUID": "0000000015A7.130",
         "Buff": null,
-        "Value": 12.0,
+        "Value": 15.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -1731,7 +1731,7 @@
     "GUID": "000000000F18.134",
     "Name": "Twist The Knife",
     "Description": "<fg#ffffffff>[Scattergun]</fg> critical hits extend the duration of all <fg#ffffffff>[Wounds]</fg> on the target by <fg#ffffffff>%1$ss</fg>.",
-    "DescriptionFormatted": "[Scattergun] critical hits extend the duration of all [Wounds] on the target by 0.5s.",
+    "DescriptionFormatted": "[Scattergun] critical hits extend the duration of all [Wounds] on the target by 1s.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000236.075",
@@ -1751,7 +1751,7 @@
       {
         "GUID": "0000000015CE.130",
         "Buff": null,
-        "Value": 0.5,
+        "Value": 1,
         "Name": null,
         "FormatString": "|Rfn %1$s:F1",
         "Loadouts": []
@@ -1762,7 +1762,7 @@
     "GUID": "000000000718.134",
     "Name": "Blade Parade",
     "Description": "Holding <fg#ffffffff>[Jagged Blade]</fg> charges it, increasing its damage by up to <fg#ffffffff>%1$s</fg> and causing it to knockback.",
-    "DescriptionFormatted": "Holding [Jagged Blade] charges it, increasing its damage by up to 35% and causing it to knockback.",
+    "DescriptionFormatted": "Holding [Jagged Blade] charges it, increasing its damage by up to 100% and causing it to knockback.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000236.075",
@@ -1782,7 +1782,7 @@
       {
         "GUID": "0000000015CF.130",
         "Buff": null,
-        "Value": 0.35,
+        "Value": 1.00,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -1868,7 +1868,7 @@
       {
         "GUID": "0000000015D1.130",
         "Buff": null,
-        "Value": 12.0,
+        "Value": 15.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -3397,7 +3397,7 @@
     "GUID": "000000000711.134",
     "Name": "Thick Skull",
     "Description": "While casting <fg#ffffffff>[Rampage]</fg> or <fg#ffffffff>[Carnage]</fg>, gain <fg#ffffffff>%1$s Damage Reduction</fg>.",
-    "DescriptionFormatted": "While casting [Rampage] or [Carnage], gain 50% Damage Reduction.",
+    "DescriptionFormatted": "While casting [Rampage] or [Carnage], gain 75% Damage Reduction.",
     "Cost": 10000,
     "Hero": {
       "GUID": "000000000236.075",
@@ -3428,7 +3428,7 @@
       {
         "GUID": "0000000015E3.130",
         "Buff": null,
-        "Value": 0.5,
+        "Value": 0.75,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -4609,7 +4609,7 @@
     "GUID": "000000000DEC.134",
     "Name": "Black Hole",
     "Description": "<fg#ffffffff>[Hyper Ring]</fg> slows the Move Speed of enemies who pass through it by <fg#ffffffff>%1$s</fg> for <fg#ffffffff>%2$ss</fg>.",
-    "DescriptionFormatted": "[Hyper Ring] slows the Move Speed of enemies who pass through it by 35% for 1s.",
+    "DescriptionFormatted": "[Hyper Ring] slows the Move Speed of enemies who pass through it by 35% for 2s.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000365.075",
@@ -4648,7 +4648,7 @@
     "GUID": "000000000DF9.134",
     "Name": "Hyper Healer",
     "Description": "Allies affected by <fg#ffffffff>[Hyper Ring]</fg> gain <tx0x0C00000000061B04><fg#ff9274ff>%1$s</fg> <fg#ffffffff>Overhealth</fg>.",
-    "DescriptionFormatted": "Allies affected by [Hyper Ring] gain 50 Overhealth.",
+    "DescriptionFormatted": "Allies affected by [Hyper Ring] gain 100 Overhealth.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000365.075",
@@ -8993,8 +8993,8 @@
         "Name": "Move Speed",
         "Description": "Increases how fast you move.",
         "DescriptionFormatted": "Increases how fast you move.",
-        "FormattedText": "5% Move Speed",
-        "Value": 0.05,
+        "FormattedText": "10% Move Speed",
+        "Value": 0.1,
         "IsPercentage": true
       }
     ],
@@ -10078,7 +10078,7 @@
     "GUID": "000000000C9E.134",
     "Name": "Cluster Core",
     "Description": "<fg#ffffffff>[Biotic Grenade]</fg> cooldown is reduced by <fg#ffffffff>%1$ss</fg> for each target it hits.",
-    "DescriptionFormatted": "[Biotic Grenade] cooldown is reduced by 1s for each target it hits.",
+    "DescriptionFormatted": "[Biotic Grenade] cooldown is reduced by 2s for each target it hits.",
     "Cost": 10000,
     "Hero": {
       "GUID": "00000000013B.075",
@@ -10379,7 +10379,7 @@
     "GUID": "0000000002CA.134",
     "Name": "Focused Fusion",
     "Description": "<fg#ffffffff>[Fusion Cannon]</fg>'s spread is reduced by <fg#ffffffff>%3$s</fg> and damage falloff range is <fg#ffffffff>%1$sm</fg> farther.",
-    "DescriptionFormatted": "[Fusion Cannon]'s spread is reduced by 66% and damage falloff range is 20m farther.",
+    "DescriptionFormatted": "[Fusion Cannon]'s spread is reduced by 50% and damage falloff range is 20m farther.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000007A.075",
@@ -10415,7 +10415,7 @@
       {
         "GUID": "00000000170D.130",
         "Buff": null,
-        "Value": 0.66,
+        "Value": 0.5,
         "Name": null,
         "FormatString": "|Rfn %1$s:P0;",
         "Loadouts": []
@@ -10567,7 +10567,7 @@
     "GUID": "000000000C94.134",
     "Name": "Ignition Burst",
     "Description": "<fg#ffffffff>[Boosters]</fg> leave a trail of lava that deals <tx0x0C00000000061B04><fg#ff9274ff>%1$s</fg> damage every <fg#ffffffff>1s</fg>.",
-    "DescriptionFormatted": "[Boosters] leave a trail of lava that deals 30 damage every 1s.",
+    "DescriptionFormatted": "[Boosters] leave a trail of lava that deals 80 damage every 1s.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000007A.075",
@@ -10587,7 +10587,7 @@
       {
         "GUID": "000000000FC1.130",
         "Buff": null,
-        "Value": 30.0,
+        "Value": 80.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -12193,7 +12193,7 @@
     "GUID": "000000000C97.134",
     "Name": "Vesuvius Protocol",
     "Description": "Using <fg#ffffffff>[Self-Destruct]</fg> drops lava nearby that deals <tx0x0C00000000061B04><fg#ff9274ff>%1$s</fg> damage every 1s.",
-    "DescriptionFormatted": "Using [Self-Destruct] drops lava nearby that deals 30 damage every 1s.",
+    "DescriptionFormatted": "Using [Self-Destruct] drops lava nearby that deals 80 damage every 1s.",
     "Cost": 4000,
     "Hero": {
       "GUID": "00000000007A.075",
@@ -12224,7 +12224,7 @@
       {
         "GUID": "000000000FC7.130",
         "Buff": null,
-        "Value": 30.0,
+        "Value": 80.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -15163,7 +15163,7 @@
     "GUID": "000000000B3E.134",
     "Name": "Self-Care",
     "Description": "When you use <fg#ffffffff>[Healing Ofuda]</fg>, heal yourself for <fg#ffffffff>%1$s</fg> of your max Life.",
-    "DescriptionFormatted": "When you use [Healing Ofuda], heal yourself for 5% of your max Life.",
+    "DescriptionFormatted": "When you use [Healing Ofuda], heal yourself for 15% of your max Life.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000231.075",
@@ -21822,7 +21822,7 @@
     "GUID": "000000000CC2.134",
     "Name": "Scorched Earth",
     "Description": "When you <fg#ffffffff>[Overheat]</fg>, apply <fg#ffffffff>Burning</fg> to enemies within <fg#ffffffff>%3$sm</fg>, dealing damage equal to <fg#ffffffff>%1$s</fg> of your max Life over <fg#ffffffff>%2$ss</fg>.",
-    "DescriptionFormatted": "When you [Overheat], apply Burning to enemies within 6m, dealing damage equal to 10% of your max Life over 5s.",
+    "DescriptionFormatted": "When you [Overheat], apply Burning to enemies within 6m, dealing damage equal to 20% of your max Life over 5s.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000013E.075",
@@ -21842,7 +21842,7 @@
       {
         "GUID": "000000001009.130",
         "Buff": null,
-        "Value": 0.1,
+        "Value": 0.2,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -22493,7 +22493,7 @@
     "GUID": "000000000D71.134",
     "Name": "Electro Lights",
     "Description": "Recover from being <fg#ffffffff>[Overheated]</fg> <fg#ffffffff>%1$s</fg> faster.",
-    "DescriptionFormatted": "Recover from being [Overheated] 25% faster.",
+    "DescriptionFormatted": "Recover from being [Overheated] 50% faster.",
     "Cost": 4000,
     "Hero": {
       "GUID": "00000000013E.075",
@@ -22524,7 +22524,7 @@
       {
         "GUID": "000000001168.130",
         "Buff": null,
-        "Value": 0.25,
+        "Value": 0.50,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -26219,7 +26219,7 @@
     "GUID": "000000000D8E.134",
     "Name": "Barrier Reconstruction",
     "Description": "When you deal damage with <fg#ffffffff>[Rocket Hammer]</fg> or <fg#ffffffff>[Fire Strike]</fg>, restore health to <fg#ffffffff>[Barrier Field]</fg> equal to <fg#ffffffff>%1$s</fg> of its max Health.",
-    "DescriptionFormatted": "When you deal damage with [Rocket Hammer] or [Fire Strike], restore health to [Barrier Field] equal to 10% of its max Health.",
+    "DescriptionFormatted": "When you deal damage with [Rocket Hammer] or [Fire Strike], restore health to [Barrier Field] equal to 15% of its max Health.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000007.075",
@@ -26239,7 +26239,7 @@
       {
         "GUID": "00000000122A.130",
         "Buff": null,
-        "Value": 0.1,
+        "Value": 0.15,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -28005,8 +28005,8 @@
         "Name": "Ability Power",
         "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
-        "FormattedText": "10% Ability Power",
-        "Value": 0.1,
+        "FormattedText": "15% Ability Power",
+        "Value": 0.15,
         "IsPercentage": true
       }
     ],
@@ -28633,7 +28633,7 @@
     "GUID": "000000000D6C.134",
     "Name": "Chaingun",
     "Description": "While continuously shooting <fg#ffffffff>[Pulse Rifle]</fg>, each shot grants <fg#ffffffff>%1$s</fg> Weapon Power, stacking up to <fg#ffffffff>%2$s</fg> times.",
-    "DescriptionFormatted": "While continuously shooting [Pulse Rifle], each shot grants 0% Weapon Power, stacking up to 100 times.",
+    "DescriptionFormatted": "While continuously shooting [Pulse Rifle], each shot grants 0.4% Weapon Power, stacking up to 100 times.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000006E.075",
@@ -28758,7 +28758,7 @@
     "GUID": "000000000BDD.134",
     "Name": "Hunker Down",
     "Description": "When <fg#ffffffff>[Helix Rocket]</fg> deals damage, create a <fg#ffffffff>[Biotic Field]</fg> with a <fg#ffffffff>%2$s reduced</fg> duration at your position.",
-    "DescriptionFormatted": "When [Helix Rocket] deals damage, create a [Biotic Field] with a 70% reduced duration at your position.",
+    "DescriptionFormatted": "When [Helix Rocket] deals damage, create a [Biotic Field] with a 50% reduced duration at your position.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000006E.075",
@@ -29061,12 +29061,12 @@
         "IsPercentage": false
       },
       {
-        "GameValueGUID": "000000001860.130",
-        "IconGUID": "000000000ADD.129",
-        "Name": "Attack Speed",
-        "Description": "Increases the rate of fire of your Weapon.",
-        "DescriptionFormatted": "Increases the rate of fire of your Weapon.",
-        "FormattedText": "5% Attack Speed",
+        "GameValueGUID": "0000000017C7.130",
+        "IconGUID": "000000000ADB.129",
+        "Name": "Ability Power",
+        "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
+        "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
+        "FormattedText": "5% Ability Power",
         "Value": 0.05,
         "IsPercentage": true
       }
@@ -29250,9 +29250,9 @@
         "IconGUID": "000000000A73.129",
         "Name": "Biotic Field Duration",
         "Description": "<fg#ffffffff>%1$s</fg> Biotic Field Duration",
-        "DescriptionFormatted": "30% Biotic Field Duration",
-        "FormattedText": "30% Biotic Field Duration",
-        "Value": 0.3,
+        "DescriptionFormatted": "40% Biotic Field Duration",
+        "FormattedText": "40% Biotic Field Duration",
+        "Value": 0.4,
         "IsPercentage": true
       },
       {
@@ -30150,9 +30150,9 @@
         "IconGUID": "000000000A73.129",
         "Name": "Biotic Field Radius",
         "Description": "<fg#ffffffff>%2$s</fg> Biotic Field Radius",
-        "DescriptionFormatted": "30% Biotic Field Radius",
-        "FormattedText": "30% Biotic Field Radius",
-        "Value": 0.3,
+        "DescriptionFormatted": "40% Biotic Field Radius",
+        "FormattedText": "40% Biotic Field Radius",
+        "Value": 0.4,
         "IsPercentage": true
       },
       {
@@ -30635,7 +30635,7 @@
     "GUID": "0000000007D1.134",
     "Name": "Reload Therapy",
     "Description": "When you reload a shot, heal <fg#ffffffff>%1$s</fg> of your Life.",
-    "DescriptionFormatted": "When you reload a shot, heal 3% of your Life.",
+    "DescriptionFormatted": "When you reload a shot, heal 10% of your Life.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000200.075",
@@ -30655,7 +30655,7 @@
       {
         "GUID": "000000000712.130",
         "Buff": null,
-        "Value": 0.03,
+        "Value": 0.1,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -30955,7 +30955,7 @@
     "GUID": "000000000C37.134",
     "Name": "Molten Munitions",
     "Description": "When <fg#ffffffff>[Dynamite]</fg> explodes on the ground, it leaves lava that <fg#ffffffff>Burns</fg> enemies for <tx0x0C00000000061B04><fg#ff9274ff>50</fg> every 1s.",
-    "DescriptionFormatted": "When [Dynamite] explodes on the ground, it leaves lava that Burns enemies for 50 every 1s.",
+    "DescriptionFormatted": "When [Dynamite] explodes on the ground, it leaves lava that Burns enemies for 80 every 1s.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000200.075",
@@ -30975,7 +30975,7 @@
       {
         "GUID": "0000000017D2.130",
         "Buff": null,
-        "Value": 50.0,
+        "Value": 80.0,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -30986,7 +30986,7 @@
     "GUID": "000000000470.134",
     "Name": "Out with a Bang",
     "Description": "When <fg#ffffffff>[Dynamite]</fg> explodes, it spawns <fg#ffffffff>3</fg> sticky explosives that deal <fg#ffffffff>%3$s reduced</fg> damage.",
-    "DescriptionFormatted": "When [Dynamite] explodes, it spawns 3 sticky explosives that deal 66% reduced damage.",
+    "DescriptionFormatted": "When [Dynamite] explodes, it spawns 3 sticky explosives that deal 30% reduced damage.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000200.075",
@@ -31022,7 +31022,7 @@
       {
         "GUID": "00000000171E.130",
         "Buff": null,
-        "Value": 0.66,
+        "Value": 0.3,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -32089,7 +32089,7 @@
     "GUID": "000000000DC4.134",
     "Name": "Sidewinder",
     "Description": "When the target is within <fg#ffffffff>%2$sm</fg>, unscoped shot gains <fg#ffffffff>%1$s</fg> increased damage.",
-    "DescriptionFormatted": "When the target is within 10m, unscoped shot gains 15% increased damage.",
+    "DescriptionFormatted": "When the target is within 10m, unscoped shot gains 25% increased damage.",
     "Cost": 11000,
     "Hero": {
       "GUID": "000000000200.075",
@@ -32111,8 +32111,8 @@
         "Name": "Attack Speed",
         "Description": "Increases the rate of fire of your Weapon.",
         "DescriptionFormatted": "Increases the rate of fire of your Weapon.",
-        "FormattedText": "10% Attack Speed",
-        "Value": 0.1,
+        "FormattedText": "15% Attack Speed",
+        "Value": 0.15,
         "IsPercentage": true
       }
     ],
@@ -32120,7 +32120,7 @@
       {
         "GUID": "000000001349.130",
         "Buff": null,
-        "Value": 0.15,
+        "Value": 0.25,
         "Name": null,
         "FormatString": null,
         "Loadouts": []
@@ -32142,7 +32142,7 @@
           "Name": "Attack Speed",
           "Description": "Increases the rate of fire of your Weapon."
         },
-        "Value": 0.1,
+        "Value": 0.15,
         "Name": null,
         "FormatString": null,
         "Loadouts": [
@@ -48346,7 +48346,7 @@
     "GUID": "000000000F8F.134",
     "Name": "Deep Pockets",
     "Description": "When you use an ability, restore <fg#ffffffff>%1$s</fg> of your Max Ammo.",
-    "DescriptionFormatted": "When you use an ability, restore 50% of your Max Ammo.",
+    "DescriptionFormatted": "When you use an ability, restore 25% of your Max Ammo.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000032A.075",
@@ -48377,7 +48377,7 @@
     "GUID": "00000000260B.134",
     "Name": "Volley à Deux",
     "Description": "Every <fg#ffffffff>fifth [Revdraw Crossbow]</fg> shot fires an additional <fg#ffffffff>%2$s</fg> bolts in a spread that deal <fg#ffffffff>%3$s reduced</fg> damage.",
-    "DescriptionFormatted": "Every fifth [Revdraw Crossbow] shot fires an additional 2 bolts in a spread that deal 50% reduced damage.",
+    "DescriptionFormatted": "Every fifth [Revdraw Crossbow] shot fires an additional 2 bolts in a spread that deal 33% reduced damage.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000032A.075",
@@ -48424,7 +48424,7 @@
     "GUID": "00000000260C.134",
     "Name": "Forager",
     "Description": "For <fg#ffffffff>%2$ss</fg> after using <fg#ffffffff>[Quick Dash]</fg>, <fg#ffffffff>[Revdraw Crossbow]</fg> hits heal you for <fg#ffffffff>%1$s</fg> of your Max Life. ",
-    "DescriptionFormatted": "For 2s after using [Quick Dash], [Revdraw Crossbow] hits heal you for 3% of your Max Life. ",
+    "DescriptionFormatted": "For 2s after using [Quick Dash], [Revdraw Crossbow] hits heal you for 4% of your Max Life. ",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000032A.075",
@@ -48533,7 +48533,7 @@
     "GUID": "00000000260F.134",
     "Name": "So Cooked",
     "Description": "<fg#ffffffff>[Bola Shot]</fg>'s damaging zone deals <fg#ffffffff>%2$s</fg> more damage and lingers for <fg#ffffffff>%1$ss</fg>.\r\n<fg#ffffffff>[Bola Shot]</fg> eliminations count towards <fg#ffffffff>[Bounty Hunting]</fg>.",
-    "DescriptionFormatted": "[Bola Shot]'s damaging zone deals 50% more damage and lingers for 3s.\r\n[Bola Shot] eliminations count towards [Bounty Hunting].",
+    "DescriptionFormatted": "[Bola Shot]'s damaging zone deals 30% more damage and lingers for 2s.\r\n[Bola Shot] eliminations count towards [Bounty Hunting].",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000032A.075",
@@ -48963,8 +48963,8 @@
         "Name": "Weapon Power",
         "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon.",
         "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
-        "FormattedText": "15% Weapon Power",
-        "Value": 0.15,
+        "FormattedText": "5% Weapon Power",
+        "Value": 0.05,
         "IsPercentage": true
       }
     ],
