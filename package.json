@@ -75,5 +75,8 @@
   "lint-staged": {
     "*.svelte*": "eslint --fix",
     "*.{ts,js,svelte,svelte.ts,svelte.js,scss}": "prettier --write"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
   }
 }
