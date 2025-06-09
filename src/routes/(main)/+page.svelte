@@ -1,4 +1,5 @@
 <script lang="ts">
+  import RandomizerIcon from "$lib/images/randomizer.png";
   import Heroes from "$lib/components/content/Heroes.svelte";
   import BuildsList from "$lib/components/content/BuildsList.svelte";
   import type { CurrentRound } from "$lib/types/round";
@@ -64,6 +65,18 @@
 
 <TalentsNavigation />
 
+<div class="randomizer-notif">
+  <a href="/randomizer" target="_blank"><img src={RandomizerIcon} alt="OW Armory icon" /></a>
+  <div>
+    <h3>Looking to spice up your Stadium experience?</h3>
+    <p>
+      The <b>OW Armory Randomizer</b> is a place where a roll of the dice determines what powers and
+      items you purchase. Do you have the skills and courage to break from the meta builds and adapt
+      your playstyle?
+    </p>
+    <button class="button">Roll into the Randomizer</button>
+  </div>
+</div>
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
 {#if latestBuilds?.length % BUILDS_PAGE_SIZE === 0}
@@ -82,3 +95,33 @@
     </a>
   </center>
 {/if}
+
+<style lang="scss">
+  .randomizer-notif {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: $vertical-offset-md;
+    margin-bottom: calc($vertical-offset-md - $vertical-offset-large);
+    padding: $gutter;
+    border: 2px solid $color-text-alt;
+    border-radius: $border-radius;
+
+    img {
+      height: 125px;
+    }
+
+    h3 {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    b {
+      color: $color-bg-hero;
+    }
+
+    p {
+      color: $color-text-alt;
+    }
+  }
+</style>
