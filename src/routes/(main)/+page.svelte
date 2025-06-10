@@ -72,8 +72,8 @@
   <div>
     <h3>Looking to spice up your Stadium experience?</h3>
     <p>
-      The <b>OW Armory Randomizer</b> is a place where a roll of the dice determines what powers and
-      items you purchase. Do you have the skills and courage to break from the meta builds and adapt
+      The <strong>OW Armory Randomizer</strong> is a place where a roll of the dice determines what powers
+      and items you purchase. Do you have the skills and courage to break from the meta builds and adapt
       your playstyle?
     </p>
     <button class="button">Roll into the Randomizer</button>
