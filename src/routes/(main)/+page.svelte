@@ -66,7 +66,7 @@
 <TalentsNavigation />
 
 <div class="randomizer-notif">
-  <a href="/randomizer" target="_blank">
+  <a href="/randomizer" target="_blank" class="icon-container">
     <img src={RandomizerIcon} alt="OW Armory randomizer icon" height="125" />
   </a>
   <div>
@@ -76,7 +76,9 @@
       and items you purchase. Do you have the skills and courage to break from the meta builds and adapt
       your playstyle?
     </p>
-    <button class="button">Roll into the Randomizer</button>
+    <a href="/randomizer" target="_blank"
+      ><button class="button">Roll into the Randomizer</button></a
+    >
   </div>
 </div>
 <BuildsList header="Latest Builds" builds={latestBuilds} />
@@ -112,7 +114,7 @@
       display: flex;
     }
 
-    a {
+    .icon-container {
       display: flex;
       align-self: center;
       justify-content: center;
