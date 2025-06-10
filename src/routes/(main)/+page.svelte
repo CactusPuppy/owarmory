@@ -66,7 +66,9 @@
 <TalentsNavigation />
 
 <div class="randomizer-notif">
-  <a href="/randomizer" target="_blank"><img src={RandomizerIcon} alt="OW Armory icon" /></a>
+  <a href="/randomizer" target="_blank">
+    <img src={RandomizerIcon} alt="OW Armory randomizer icon" height="125" />
+  </a>
   <div>
     <h3>Looking to spice up your Stadium experience?</h3>
     <p>
@@ -98,7 +100,6 @@
 
 <style lang="scss">
   .randomizer-notif {
-    display: flex;
     gap: 1.5rem;
     align-items: center;
     margin-top: $vertical-offset-md;
@@ -107,8 +108,19 @@
     border: 2px solid $color-text-alt;
     border-radius: $border-radius;
 
-    img {
-      height: 125px;
+    @include breakpoint(mobile) {
+      display: flex;
+    }
+
+    a {
+      display: flex;
+      align-self: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      @include breakpoint(mobile) {
+        margin-bottom: 0;
+      }
     }
 
     h3 {
