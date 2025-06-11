@@ -67,7 +67,7 @@
 
 <div class="randomizer-notif">
   <a href="/randomizer" target="_blank" class="icon-container">
-    <img src={RandomizerIcon} alt="OW Armory randomizer icon" height="125" />
+    <img src={RandomizerIcon} alt="OW Armory randomizer" height="125" width="125" />
   </a>
   <div>
     <h3>Looking to spice up your Stadium experience?</h3>
