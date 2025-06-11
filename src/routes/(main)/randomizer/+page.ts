@@ -2,13 +2,14 @@ import type { Power } from "$src/generated/prisma/client.js";
 import type { FullItem } from "$src/lib/types/build";
 import { api } from "$src/lib/utils/api";
 
-export async function load({ fetch }) {
+export async function load({ fetch, data }) {
   const [allItems, allPowers] = await Promise.all([
     api<FullItem[]>("/talents/items", {}, fetch),
     api<Power[]>("/talents/powers", {}, fetch),
   ]);
 
   return {
+    ...data,
     allItems,
     allPowers,
   };
