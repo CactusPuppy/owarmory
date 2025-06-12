@@ -62,45 +62,63 @@
 <Heroes onclick={selectHero} highlightedHero={selectedHero} />
 <button onclick={selectNewHero} class="button">Roll New Hero</button>
 
-<div class="readable-width">
-  <h2>What is your budget?</h2>
-  <input type="number" class="form-input" bind:value={availableCash} />
-
-  <hr />
-
-  <h2>Your random power is:</h2>
-  <button onclick={selectNewPower} class="button">Roll New Power</button>
-  <Power power={selectedPower} full />
-
-  <hr />
-
-  <h3>Item Category Restriction</h3>
-  <select class="form-input" bind:value={categoryRestriction}>
-    <option value="">(None)</option>
-    {#each Object.values(ItemCategory) as type (type)}
-      <option value={type}>{type}</option>
-    {/each}
-  </select>
-  <h2>Your random item is:</h2>
-  <button onclick={selectNewItem} class="button">Roll New Item</button>
-  {#each selectedItems as item (item.id)}
-    <Item {item} full />
-  {:else}
-    <p>Could not find a valid item fitting your constraints.</p>
-  {/each}
+<div class="container">
+  <div>
+    <h2>Your random power is:</h2>
+    <div>
+      <Power power={selectedPower} full />
+    </div>
+    <button onclick={selectNewPower} class="button">Roll New Power</button>
+    <hr />
+  </div>
+  <div>
+    <h2>What is your budget?</h2>
+    <input type="number" class="form-input" bind:value={availableCash} />
+    <h3>Item Category Restriction</h3>
+    <select class="form-input" bind:value={categoryRestriction}>
+      <option value="">(None)</option>
+      {#each Object.values(ItemCategory) as type (type)}
+        <option value={type}>{type}</option>
+      {/each}
+    </select>
+    <hr />
+    <h2>Your random items are:</h2>
+    <button onclick={selectNewItem} class="button">Roll New Items</button>
+    <div class="items">
+      {#each selectedItems as item (item.id)}
+        <Item {item} full />
+      {:else}
+        <p>Could not find any valid items fitting your constraints.</p>
+      {/each}
+    </div>
+    <hr />
+  </div>
 </div>
 
 <style lang="scss">
   @use "sass:map";
 
-  .readable-width {
-    max-width: calc(map.get($breakpoints, page-max-width) / 2);
+  .container {
+    @include breakpoint(tablet) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    & > div {
+      max-width: calc(map.get($breakpoints, page-max-width) / 2);
+    }
   }
   .button {
     margin-bottom: 1em;
     margin-top: 1em;
   }
 
+  .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
   h2,
   h3 {
     margin-top: 0.25em;
