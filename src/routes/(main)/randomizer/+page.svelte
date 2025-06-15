@@ -2,20 +2,23 @@
   import Heroes from "$src/lib/components/content/Heroes.svelte";
   import Item from "$src/lib/components/content/Item.svelte";
   import Power from "$src/lib/components/content/Power.svelte";
+  import { ItemCategory } from "$src/lib/types/build.js";
   import { heroes } from "$src/lib/constants/heroData.js";
   import type { HeroData } from "$src/lib/types/hero.js";
-  import { faker } from "@faker-js/faker";
+  import { getRandomizerContext, setRandomizerContext } from "$src/contexts/randomizerContext.js";
+  import { selectItems } from "$src/lib/utils/randomizer.js";
 
-  const itemTalentTypes = ["Weapon", "Ability", "Survival"];
   let categoryRestriction = $state("");
   const { data } = $props();
 
-  const { allItems, allPowers } = data;
-  let selectedHero = $state(faker.helpers.arrayElement(heroes));
+  const { seed, allItems, allPowers } = data;
+  setRandomizerContext(seed);
+  const randomizer = getRandomizerContext();
+  let selectedHero = $state(randomizer.helpers.arrayElement(heroes));
   let availableCash = $state(3500); // starting cash
 
   function selectNewHero() {
-    selectedHero = faker.helpers.arrayElement(heroes);
+    selectedHero = randomizer.helpers.arrayElement(heroes);
   }
 
   const validItems = $derived(
@@ -27,11 +30,11 @@
   const validPowers = $derived(allPowers.filter((power) => power.heroName == selectedHero.name));
 
   // svelte-ignore state_referenced_locally
-  let selectedItemIndex: number = $state(Math.floor(Math.random() * validItems.length));
+  const selectedItemIndex: number = $state(Math.floor(Math.random() * validItems.length));
   // svelte-ignore state_referenced_locally
   let selectedPowerIndex: number = $state(Math.floor(Math.random() * validPowers.length));
 
-  const selectedItem = $derived(validItems[selectedItemIndex]);
+  let selectedItems = $derived(selectItems(availableCash, validItems, randomizer));
   const selectedPower = $derived(validPowers[selectedPowerIndex]);
 
   function selectHero(event: MouseEvent, hero: HeroData): void {
@@ -43,7 +46,7 @@
   }
 
   function selectNewItem() {
-    selectedItemIndex = Math.floor(Math.random() * validItems.length);
+    selectedItems = selectItems(availableCash, validItems, randomizer);
   }
 
   $effect(() => {
@@ -59,46 +62,63 @@
 <Heroes onclick={selectHero} highlightedHero={selectedHero} />
 <button onclick={selectNewHero} class="button">Roll New Hero</button>
 
-<div class="readable-width">
-  <h2>What is your budget?</h2>
-  <input type="number" class="form-input" bind:value={availableCash} />
-
-  <hr />
-
-  <h2>Your random power is:</h2>
-  <button onclick={selectNewPower} class="button">Roll New Power</button>
-  <Power power={selectedPower} full />
-
-  <hr />
-
-  <h3>Item Category Restriction</h3>
-  <select class="form-input" bind:value={categoryRestriction}>
-    <option value="">(None)</option>
-    {#each itemTalentTypes as type (type)}
-      <option value={type}>{type}</option>
-    {/each}
-  </select>
-  <h2>Your random item is:</h2>
-  <button onclick={selectNewItem} class="button">Roll New Item</button>
-  {#if selectedItem}
-    <Item item={selectedItem} full />
-    <p>If you can't find it, this item is in the <em>{selectedItem.category}</em> category</p>
-  {:else}
-    <p>Could not find a valid item fitting your constraints.</p>
-  {/if}
+<div class="container">
+  <div>
+    <h2>Your random power is:</h2>
+    <div>
+      <Power power={selectedPower} full />
+    </div>
+    <button onclick={selectNewPower} class="button">Roll New Power</button>
+    <hr />
+  </div>
+  <div>
+    <h2>What is your budget?</h2>
+    <input type="number" class="form-input" bind:value={availableCash} />
+    <h3>Item Category Restriction</h3>
+    <select class="form-input" bind:value={categoryRestriction}>
+      <option value="">(None)</option>
+      {#each Object.values(ItemCategory) as type (type)}
+        <option value={type}>{type}</option>
+      {/each}
+    </select>
+    <hr />
+    <h2>Your random items are:</h2>
+    <button onclick={selectNewItem} class="button">Roll New Items</button>
+    <div class="items">
+      {#each selectedItems as item (item.id)}
+        <Item {item} full />
+      {:else}
+        <p>Could not find any valid items fitting your constraints.</p>
+      {/each}
+    </div>
+    <hr />
+  </div>
 </div>
 
 <style lang="scss">
   @use "sass:map";
 
-  .readable-width {
-    max-width: calc(map.get($breakpoints, page-max-width) / 2);
+  .container {
+    @include breakpoint(tablet) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    & > div {
+      max-width: calc(map.get($breakpoints, page-max-width) / 2);
+    }
   }
   .button {
     margin-bottom: 1em;
     margin-top: 1em;
   }
 
+  .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
   h2,
   h3 {
     margin-top: 0.25em;
