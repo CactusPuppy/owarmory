@@ -1,6 +1,6 @@
 import { promises } from "node:fs";
 import { z } from "zod";
-import { PrismaClient } from "../src/generated/prisma";
+import { Prisma, PrismaClient } from "../src/generated/prisma";
 import { ItemRarity, ItemCategory, CleanStatInclude } from "../src/lib/types/build";
 import { heroes } from "../src/lib/constants/heroData";
 import { StatOverrides } from "../src/lib/constants/stats";
@@ -72,237 +72,247 @@ async function createHeroes(tx: PrismaTransaction) {
 
 async function main() {
   console.log("Beginning seed transaction...");
-  prisma.$transaction(async (tx) => {
-    console.log("Creating heroes...");
-    await createHeroes(tx);
-    const heroes = await tx.hero.findMany();
+  prisma.$transaction(
+    async (tx) => {
+      console.log("Creating heroes...");
+      await createHeroes(tx);
+      const heroes = await tx.hero.findMany();
 
-    console.log("Reading stadium data...");
-    const stadiumData = StadiumDataSchema.parse(
-      JSON.parse((await readFile("./prisma/seed-data/stadium-data.json")).toString()),
-    );
-
-    console.log("Reading custom stadium data...");
-    const customStadiumData = CustomStadiumDataSchema.parse(
-      JSON.parse((await readFile("./prisma/seed-data/custom-stadium-data.json")).toString()),
-    );
-
-    const itemCategoryValueToEnum: Record<string, ItemCategory> = {
-      Ability: ItemCategory.Ability,
-      Survival: ItemCategory.Survival,
-      "Weapon Variants": ItemCategory.Weapon,
-    };
-    const itemRarityValueToEnum: Record<string, ItemRarity> = {
-      Normal: ItemRarity.Common,
-      Rare: ItemRarity.Rare,
-      Epic: ItemRarity.Epic,
-    };
-
-    const existingStatMods = await tx.statMod.findMany();
-    const processedStatMods = new Set<string>();
-
-    for (const [index, [guid, talent]] of Object.entries(stadiumData).entries()) {
-      console.log(
-        `Processing talent ${guid} (${index + 1} / ${Object.values(stadiumData).length})`,
+      console.log("Reading stadium data...");
+      const stadiumData = StadiumDataSchema.parse(
+        JSON.parse((await readFile("./prisma/seed-data/stadium-data.json")).toString()),
       );
 
-      const customOverrideData = customStadiumData[guid];
-      applyCustomTalentOverrideData(talent, customOverrideData);
+      console.log("Reading custom stadium data...");
+      const customStadiumData = CustomStadiumDataSchema.parse(
+        JSON.parse((await readFile("./prisma/seed-data/custom-stadium-data.json")).toString()),
+      );
 
-      for (const buff of talent.Buffs) {
-        const statOverrides = StatOverrides.find((stat) => stat.Name == buff.Name);
-        // only stats with overrides should have descriptions
-        buff.Description = undefined;
-
-        if (statOverrides) {
-          buff.StatType = statOverrides.StatType;
-          buff.Description = statOverrides.Description;
-
-          if (statOverrides.OverrideIconName) {
-            buff.OverrideIconName = `/images/stats/${encodeURIComponent(statOverrides.OverrideIconName)}.webp`;
-          } else if (buff.StatType == "Preset") {
-            buff.OverrideIconName = `/images/stats/${encodeURIComponent(buff.Name)}.webp`;
-          }
-        }
-      }
-
-      const baseData = {
-        name: talent.Name,
-        gameGuid: talent.GUID,
-        description: talent.DescriptionFormatted ?? talent.Description,
-        iconURL: `/images/talents/${talent.Name.trim()}.png`,
-        heroName: talent.Hero
-          ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
-          : undefined,
+      const itemCategoryValueToEnum: Record<string, ItemCategory> = {
+        Ability: ItemCategory.Ability,
+        Survival: ItemCategory.Survival,
+        "Weapon Variants": ItemCategory.Weapon,
+      };
+      const itemRarityValueToEnum: Record<string, ItemRarity> = {
+        Normal: ItemRarity.Common,
+        Rare: ItemRarity.Rare,
+        Epic: ItemRarity.Epic,
       };
 
-      if (talent.Category.Value == "Power") {
-        if (baseData.heroName === undefined) {
-          throw new Error(
-            `Talent with GUID ${guid} was of type power, but has no associated hero name?`,
-          );
+      const existingStatMods = await tx.statMod.findMany();
+      const processedStatMods = new Set<string>();
+
+      for (const [index, [guid, talent]] of Object.entries(stadiumData).entries()) {
+        console.log(
+          `Processing talent ${guid} (${index + 1} / ${Object.values(stadiumData).length})`,
+        );
+
+        const customOverrideData = customStadiumData[guid];
+        applyCustomTalentOverrideData(talent, customOverrideData);
+
+        for (const buff of talent.Buffs) {
+          const statOverrides = StatOverrides.find((stat) => stat.Name == buff.Name);
+          // only stats with overrides should have descriptions
+          buff.Description = undefined;
+
+          if (statOverrides) {
+            buff.StatType = statOverrides.StatType;
+            buff.Description = statOverrides.Description;
+
+            if (statOverrides.OverrideIconName) {
+              buff.OverrideIconName = `/images/stats/${encodeURIComponent(statOverrides.OverrideIconName)}.webp`;
+            } else if (buff.StatType == "Preset") {
+              buff.OverrideIconName = `/images/stats/${encodeURIComponent(buff.Name)}.webp`;
+            }
+          }
         }
-        await tx.power.upsert({
+
+        const baseData = {
+          name: talent.Name,
+          gameGuid: talent.GUID,
+          description: talent.DescriptionFormatted ?? talent.Description,
+          iconURL: `/images/talents/${talent.Name.trim()}.png`,
+          heroName: talent.Hero
+            ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
+            : undefined,
+        };
+
+        if (talent.Category.Value == "Power") {
+          if (baseData.heroName === undefined) {
+            throw new Error(
+              `Talent with GUID ${guid} was of type power, but has no associated hero name?`,
+            );
+          }
+          await tx.power.upsert({
+            where: {
+              gameGuid: talent.GUID,
+            },
+            update: baseData,
+            // @ts-expect-error Already checked for if heroName is undefined above
+            create: baseData,
+          });
+          continue;
+        }
+
+        const existingItem = await tx.item.findUnique({
           where: {
             gameGuid: talent.GUID,
           },
-          update: baseData,
-          // @ts-expect-error Already checked for if heroName is undefined above
-          create: baseData,
-        });
-        continue;
-      }
-
-      const existingItem = await tx.item.findUnique({
-        where: {
-          gameGuid: talent.GUID,
-        },
-        include: {
-          statMods: {
-            include: {
-              stat: {
-                select: CleanStatInclude,
+          include: {
+            statMods: {
+              include: {
+                stat: {
+                  select: CleanStatInclude,
+                },
               },
             },
           },
-        },
-      });
-
-      if (existingItem) {
-        // Update the existing item
-        await tx.item.update({
-          where: {
-            id: existingItem.id,
-          },
-          data: {
-            ...baseData,
-            cost: talent.Cost,
-            category: itemCategoryValueToEnum[talent.Category.Value],
-            rarity: itemRarityValueToEnum[talent.Rarity.Value],
-            removed: existingItem.removed,
-            iconURL: existingItem.iconURL,
-          },
         });
 
-        for (const [i, buff] of talent.Buffs.entries()) {
-          // Create the stat if it doesn't exist
-          const stat = await tx.stat.upsert({
+        if (existingItem) {
+          // Update the existing item
+          await tx.item.update({
             where: {
-              name: buff.Name,
+              id: existingItem.id,
             },
-            update: {
-              // Only preset stats defined in the overrides have descriptions
-              description: buff.Description,
-            },
-            create: {
-              statType: buff.StatType ?? "Custom",
-              name: buff.Name,
-              description: buff.Description, // Only preset stats defined in the overrides have descriptions
-              iconURL: buff.OverrideIconName,
+            data: {
+              ...baseData,
+              cost: talent.Cost,
+              category: itemCategoryValueToEnum[talent.Category.Value],
+              rarity: itemRarityValueToEnum[talent.Rarity.Value],
+              removed: existingItem.removed,
+              iconURL: existingItem.iconURL,
             },
           });
 
-          const existingStatMod = existingItem.statMods.find(
-            (sm) => sm.gameGuid != null && sm.gameGuid == buff.GameValueGUID,
-          );
-          if (buff.GameValueGUID) {
-            processedStatMods.add(buff.GameValueGUID);
-          }
-
-          const statMod = {
-            orderIndex: i,
-            isShownPostDescription:
-              existingStatMod?.isShownPostDescription ?? buff.ShowPostDescription ?? false,
-            hidden: existingStatMod?.hidden ?? buff.Hidden ?? false,
-            amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
-            isPercentage: buff.IsPercentage,
-            gameGuid: buff.GameValueGUID,
-            Item: {
-              connect: {
-                id: existingItem.id,
-              },
-            },
-            stat: {
-              connect: {
-                id: stat.id,
-              },
-            },
-          };
-
-          if (existingStatMod) {
-            await tx.statMod.update({
+          for (const [i, buff] of talent.Buffs.entries()) {
+            // Create the stat if it doesn't exist
+            const stat = await tx.stat.upsert({
               where: {
-                id: existingStatMod.id,
+                name: buff.Name,
               },
-              data: statMod,
+              update: {
+                // Only preset stats defined in the overrides have descriptions
+                description: buff.Description,
+              },
+              create: {
+                statType: buff.StatType ?? "Custom",
+                name: buff.Name,
+                description: buff.Description, // Only preset stats defined in the overrides have descriptions
+                iconURL: buff.OverrideIconName,
+              },
             });
-            continue;
-          } else {
-            await tx.statMod.create({
-              data: statMod,
-            });
+
+            const existingStatMod = existingItem.statMods.find(
+              (sm) => sm.gameGuid != null && sm.gameGuid == buff.GameValueGUID,
+            );
+            if (buff.GameValueGUID) {
+              processedStatMods.add(buff.GameValueGUID);
+            }
+
+            const statMod = {
+              orderIndex: i,
+              isShownPostDescription:
+                existingStatMod?.isShownPostDescription ?? buff.ShowPostDescription ?? false,
+              hidden: existingStatMod?.hidden ?? buff.Hidden ?? false,
+              amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
+              isPercentage: buff.IsPercentage,
+              gameGuid: buff.GameValueGUID,
+              Item: {
+                connect: {
+                  id: existingItem.id,
+                },
+              },
+              stat: {
+                connect: {
+                  id: stat.id,
+                },
+              },
+            };
+
+            if (existingStatMod) {
+              await tx.statMod.update({
+                where: {
+                  id: existingStatMod.id,
+                },
+                data: statMod,
+              });
+              continue;
+            } else {
+              await tx.statMod.create({
+                data: statMod,
+              });
+            }
           }
-        }
-      } else {
-        await tx.item.create({
-          data: {
-            ...baseData,
-            cost: talent.Cost,
-            category: itemCategoryValueToEnum[talent.Category.Value],
-            rarity: itemRarityValueToEnum[talent.Rarity.Value],
-            statMods: {
-              create: talent.Buffs.map((buff, i) => {
-                return {
-                  orderIndex: i,
-                  stat: {
-                    connectOrCreate: {
-                      where: {
-                        name: buff.Name,
-                      },
-                      create: {
-                        statType: buff.StatType ?? "Custom",
-                        name: buff.Name,
-                        // Only preset stats defined in the overrides have descriptions
-                        description: buff.Description,
-                        iconURL: buff.OverrideIconName,
+        } else {
+          await tx.item.create({
+            data: {
+              ...baseData,
+              cost: talent.Cost,
+              category: itemCategoryValueToEnum[talent.Category.Value],
+              rarity: itemRarityValueToEnum[talent.Rarity.Value],
+              statMods: {
+                create: talent.Buffs.map((buff, i) => {
+                  return {
+                    orderIndex: i,
+                    stat: {
+                      connectOrCreate: {
+                        where: {
+                          name: buff.Name,
+                        },
+                        create: {
+                          statType: buff.StatType ?? "Custom",
+                          name: buff.Name,
+                          // Only preset stats defined in the overrides have descriptions
+                          description: buff.Description,
+                          iconURL: buff.OverrideIconName,
+                        },
                       },
                     },
-                  },
-                  isShownPostDescription: buff.ShowPostDescription ?? false,
-                  hidden: buff.Hidden ?? false,
-                  amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
-                  isPercentage: buff.IsPercentage ?? false,
-                  gameGuid: buff.GameValueGUID,
-                };
-              }),
+                    isShownPostDescription: buff.ShowPostDescription ?? false,
+                    hidden: buff.Hidden ?? false,
+                    amount: buff.IsPercentage ? buff.Value * 100 : buff.Value,
+                    isPercentage: buff.IsPercentage ?? false,
+                    gameGuid: buff.GameValueGUID,
+                  };
+                }),
+              },
+            },
+          });
+        }
+      }
+
+      // Remove stat mods that are not in the processed list and don't have a gameGuid
+      // on first run on existing db, this will remove all stat mods as they will have been recreated with guids
+      // but on subsequent runs, this should only remove custom stat mods that don't have a gameGuid
+      const statModsToRemove = existingStatMods
+        .filter((statMod) => {
+          return !statMod.gameGuid || !processedStatMods.has(statMod.gameGuid);
+        })
+        .map((statMod) => statMod.id)
+        .filter(Boolean) as string[];
+
+      if (statModsToRemove.length > 0) {
+        console.log("Removing", statModsToRemove.length, "stat mods");
+        console.log("Stat mods to remove", statModsToRemove);
+        await tx.statMod.deleteMany({
+          where: {
+            id: {
+              in: statModsToRemove,
             },
           },
         });
       }
-    }
-
-    // Remove stat mods that are not in the processed list and don't have a gameGuid
-    // on first run on existing db, this will remove all stat mods as they will have been recreated with guids
-    // but on subsequent runs, this should only remove custom stat mods that don't have a gameGuid
-    const statModsToRemove = existingStatMods
-      .filter((statMod) => {
-        return !statMod.gameGuid || !processedStatMods.has(statMod.gameGuid);
-      })
-      .map((statMod) => statMod.id)
-      .filter(Boolean) as string[];
-
-    if (statModsToRemove.length > 0) {
-      console.log("Removing", statModsToRemove.length, "stat mods");
-      console.log("Stat mods to remove", statModsToRemove);
-      await tx.statMod.deleteMany({
-        where: {
-          id: {
-            in: statModsToRemove,
-          },
-        },
-      });
-    }
-  });
+    },
+    {
+      // More information: https://www.postgresql.org/docs/9.3/transaction-iso.html
+      isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
+      maxWait: 5000,
+      // We're doing a lot of work here, and currently it may take more than the default 5 seconds
+      // for this transaction to complete.
+      timeout: 30000,
+    },
+  );
 }
 
 function applyCustomTalentOverrideData(talent: Talent, overrideData?: CustomTalent) {
