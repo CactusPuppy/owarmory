@@ -4,7 +4,7 @@ env:
   AUTH_TRUST_HOST: 1
   AUTH_BATTLENET_CLIENT_ID: "NOT_AVAILABLE"
   AUTH_BATTLENET_CLIENT_SECRET: "NOT_AVAILABLE"
-  DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
+  DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/postgres?schema=public"
 
 on:
   push:
