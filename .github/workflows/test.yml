@@ -1,0 +1,35 @@
+name: Run Tests
+
+env:
+  AUTH_TRUST_HOST: 1
+  AUTH_BATTLENET_CLIENT_ID: "NOT_AVAILABLE"
+  AUTH_BATTLENET_CLIENT_SECRET: "NOT_AVAILABLE"
+  DATABASE_URL: "NOT_AVAILABLE"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.1.0
+        with:
+          version: 10.9.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install
+      - name: Run Unit Tests
+        run: pnpm test:unit
+      - name: Run Playwright Tests
+        run: pnpm test:e2e
+
