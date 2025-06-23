@@ -29,9 +29,9 @@
       {#if !data}
         <em>Power or item not found.</em>
       {:else}
-        {@const { name, description, cost, category, statMods } = data as FullItem}
+        {@const { name, description, cost, category, statMods, removed } = data as FullItem}
 
-        <SharedDetail {name} {description} {cost} {statMods} {category} />
+        <SharedDetail {name} {description} {cost} {statMods} {category} {removed} />
       {/if}
     {/await}
   {/snippet}
