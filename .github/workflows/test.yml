@@ -40,7 +40,7 @@ jobs:
           cache: pnpm
       - run: pnpm install
       - name: Prepare database
-        run: pnpm db seed
+        run: pnpm prisma db seed
       - name: Run Unit Tests
         run: pnpm test:unit
       - name: Run Playwright Tests
