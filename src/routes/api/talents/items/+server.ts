@@ -1,4 +1,5 @@
 import { prisma } from "$src/database/prismaClient.server";
+import { FullItemInclude } from "$src/lib/types/build.js";
 import { isHeroName } from "$src/lib/types/hero";
 import { error } from "@sveltejs/kit";
 
@@ -13,13 +14,7 @@ export async function GET({ url }) {
     error(400, `Specified hero ${heroName} is not a valid hero name`);
 
   const powers = await prisma.item.findMany({
-    include: {
-      statMods: {
-        include: {
-          stat: true,
-        },
-      },
-    },
+    include: FullItemInclude,
     where: {
       OR: heroName
         ? [
