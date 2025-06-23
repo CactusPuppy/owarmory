@@ -5,6 +5,7 @@
 <script lang="ts">
   import { page } from "$app/state";
   import TalentsNavigation from "$lib/components/content/TalentsNavigation.svelte";
+  import { transliterate } from "$src/lib/utils/string";
   import { setContext } from "svelte";
 
   const { children } = $props();
@@ -37,7 +38,7 @@
   function matchQuery(talentString: string): boolean {
     const queryWords = query.toLowerCase().split(/\s+/).filter(Boolean);
 
-    return queryWords.every((word) => talentString.toLowerCase().includes(word));
+    return queryWords.every((word) => transliterate(talentString.toLowerCase()).includes(word));
   }
 
   setContext("talentFilter", setTalentFilter);

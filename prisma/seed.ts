@@ -131,7 +131,7 @@ async function main() {
           name: talent.Name,
           gameGuid: talent.GUID,
           description: talent.DescriptionFormatted ?? talent.Description,
-          iconURL: `/images/talents/${talent.Name.trim()}.png`,
+          iconURL: `/images/talents/${talent.Name.trim().replaceAll("#", "")}.png`,
           heroName: talent.Hero
             ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
             : undefined,
