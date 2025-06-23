@@ -32,4 +32,3 @@ jobs:
         run: pnpm test:unit
       - name: Run Playwright Tests
         run: pnpm test:e2e
-
