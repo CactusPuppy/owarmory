@@ -4,7 +4,7 @@ env:
   AUTH_TRUST_HOST: 1
   AUTH_BATTLENET_CLIENT_ID: "NOT_AVAILABLE"
   AUTH_BATTLENET_CLIENT_SECRET: "NOT_AVAILABLE"
-  DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/postgres?schema=public"
+  DATABASE_URL: "postgresql://postgres:Password123@localhost:5432/postgres?schema=public"
 
 on:
   push:
@@ -20,10 +20,13 @@ jobs:
     services:
       postgres:
         image: postgres
+        ports:
+          - 5432:5432
         env:
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: Password123
         options: >-
-          --health-cmd pg_isready
+          --health-cmd="pg_isready -U postgres"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
