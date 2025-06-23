@@ -42,8 +42,19 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(pnpm list @playwright/test | grep "@playwright/test" | cut -d ' ' -f 2)" >> $GITHUB_ENV
+      - name: Cache playwright binaries
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
       - name: Prepare Playwright
         run: pnpm exec playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run migrations
         run: pnpm prisma migrate deploy
       - name: Prepare database
