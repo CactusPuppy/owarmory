@@ -2,16 +2,18 @@
   import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
   import type { FullStatMod } from "$src/lib/types/build";
   import StatMods from "./StatMods.svelte";
+  import WarningIcon from "$lib/images/icons/warning.svelte";
 
   interface Props {
     name?: string;
     description?: string | null;
     cost?: number;
     category?: string;
+    removed: boolean;
     statMods?: FullStatMod[];
   }
 
-  const { name, description, cost = 0, category, statMods }: Props = $props();
+  const { name, description, cost = 0, category, removed, statMods }: Props = $props();
 
   const normalStatMods = $derived(
     statMods
@@ -45,6 +47,29 @@
 <div class="detail">
   {#if name}
     <strong class="name">{name}</strong>
+  {/if}
+
+  {#if removed}
+    <div class="removal-warning">
+      <div class="icon">
+        <WarningIcon />
+      </div>
+
+      <div class="warning">
+        <p><em>Possibly Unavailable</em></p>
+        <p>
+          This item or power has been marked as unavailable. This might be due to the item being
+          disabled temporarily, or it might be because the item has been permanently retired.
+        </p>
+        <p>
+          Think this warning should be removed? Let us know on our <a
+            href="https://discord.gg/JNCx6U3g9F"
+            target="_blank"
+            rel="noopener noreferrer">Discord</a
+          >.
+        </p>
+      </div>
+    </div>
   {/if}
 
   {#if normalStatMods.length}
@@ -95,6 +120,44 @@
     line-height: 1.1;
     font-weight: bold;
     font-family: $font-stack-brand;
+  }
+
+  .removal-warning {
+    color: $yellow;
+    border: 1px solid $yellow;
+    background-color: color.adjust(color.change($yellow, $alpha: 33%), $lightness: 20%);
+    border-radius: $border-radius;
+    padding: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    .icon {
+      width: calc($item-size);
+      height: calc($item-size);
+    }
+
+    .warning {
+      font-size: 0.8em;
+      color: color.adjust($yellow, $lightness: -5%, $saturation: 10%);
+      flex: 1;
+      em {
+        font-size: 1.25em;
+        font-style: normal;
+        font-weight: bold;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        font-weight: bold;
+        color: inherit;
+      }
+    }
   }
 
   .description {
