@@ -32,6 +32,7 @@
   import CurrencyIcon from "../icon/CurrencyIcon.svelte";
   import { Tween } from "svelte/motion";
   import { quintOut } from "svelte/easing";
+  import { transliterate } from "$src/lib/utils/string";
 
   interface Props {
     availableTalents: AvailableTalents;
@@ -276,7 +277,7 @@
   function filterTalents(talent: Item[] | Power[]): boolean {
     // Filter on the full object by stringifying it. Bit ugly, but that makes it easy to filter by name,
     // description, and stat names all at once.
-    return JSON.stringify(talent).toLowerCase().includes(query.toLowerCase());
+    return transliterate(JSON.stringify(talent).toLowerCase()).includes(query.toLowerCase());
   }
 </script>
 
