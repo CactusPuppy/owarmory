@@ -2,6 +2,7 @@ name: Run Tests
 
 env:
   AUTH_TRUST_HOST: 1
+  AUTH_SECRET: "pOx1PSOhxNeZE4xkUbh5DCoZZPvNVamiZ/dqxxGvOzo="
   AUTH_BATTLENET_CLIENT_ID: "NOT_AVAILABLE"
   AUTH_BATTLENET_CLIENT_SECRET: "NOT_AVAILABLE"
   DATABASE_URL: "postgresql://postgres:Password123@localhost:5432/postgres?schema=public"
