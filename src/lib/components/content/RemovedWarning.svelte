@@ -26,7 +26,7 @@
       </p>
     {/if}
     {#if !full}
-      <div class="chevron" data-is-open={showFullWarning}>
+      <div class={`chevron ${showFullWarning ? "open" : ""}`}>
         <IconChevronRight />
       </div>
     {/if}
@@ -85,7 +85,7 @@
     .chevron {
       rotate: 90deg;
 
-      &[data-is-open="true"] {
+      &.open {
         rotate: -90deg;
       }
     }

@@ -2,14 +2,7 @@
   const { size = 18 }: { size?: number } = $props();
 </script>
 
-<svg
-  height={`${(size * (26 + 5.5)) / 26}px`}
-  width={`${size}px`}
-  viewBox="-5.5 0 26 26"
-  version="1.1"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
->
+<svg height={`${(size * (26 + 5.5)) / 26}px`} width={`${size}px`} viewBox="-5.5 0 26 26">
   <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
     <g transform="translate(-474.000000, -1196.000000)" fill="currentColor">
       <path
