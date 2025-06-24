@@ -15,7 +15,7 @@
 
   const { item, sold = false, full = false, large = false, onclick = () => null }: Props = $props();
 
-  const { name, description, iconURL, rarity, cost, category, statMods } = $derived(item);
+  const { name, description, iconURL, rarity, cost, category, statMods, removed } = $derived(item);
   const imageSize = $derived(large ? 80 : 40);
 </script>
 
@@ -35,7 +35,7 @@
       <div class="sold-overlay">Sell</div>
     {/if}
 
-    <SharedDetail {description} {category} {cost} {statMods} />
+    <SharedDetail {description} {category} {cost} {statMods} {removed} />
   </Card>
 {:else}
   <Popover onclick={() => onclick(item)}>
@@ -50,7 +50,7 @@
     </div>
 
     {#snippet content()}
-      <SharedDetail {name} {description} {category} {cost} {statMods} />
+      <SharedDetail {name} {description} {category} {cost} {statMods} {removed} isPopover={true} />
     {/snippet}
   </Popover>
 {/if}

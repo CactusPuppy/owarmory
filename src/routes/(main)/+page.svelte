@@ -130,10 +130,6 @@
       margin-top: 0;
     }
 
-    b {
-      color: $color-bg-hero;
-    }
-
     p {
       color: $color-text-alt;
     }

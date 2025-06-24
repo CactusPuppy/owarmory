@@ -20,7 +20,7 @@
     onclick = () => null,
   }: Props = $props();
 
-  const { name, description, iconURL } = $derived(power);
+  const { name, removed, description, iconURL } = $derived(power);
 
   const imageSize = $derived(large ? 60 : 34);
 </script>
@@ -35,7 +35,7 @@
       {name}
     {/snippet}
 
-    <SharedDetail {description} />
+    <SharedDetail {description} {removed} />
   </Card>
 {:else}
   <Popover onclick={() => onclick(power)}>
@@ -44,7 +44,7 @@
     </div>
 
     {#snippet content()}
-      <SharedDetail {name} {description} />
+      <SharedDetail {name} {description} {removed} isPopover={true} />
     {/snippet}
   </Popover>
 {/if}

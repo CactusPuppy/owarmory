@@ -2,16 +2,19 @@
   import CurrencyIcon from "$lib/components/icon/CurrencyIcon.svelte";
   import type { FullStatMod } from "$src/lib/types/build";
   import StatMods from "./StatMods.svelte";
+  import RemovedWarning from "./RemovedWarning.svelte";
 
   interface Props {
     name?: string;
     description?: string | null;
     cost?: number;
     category?: string;
+    removed: boolean;
     statMods?: FullStatMod[];
+    isPopover?: boolean;
   }
 
-  const { name, description, cost = 0, category, statMods }: Props = $props();
+  const { name, description, cost = 0, category, removed, statMods, isPopover }: Props = $props();
 
   const normalStatMods = $derived(
     statMods
@@ -45,6 +48,10 @@
 <div class="detail">
   {#if name}
     <strong class="name">{name}</strong>
+  {/if}
+
+  {#if removed}
+    <RemovedWarning full={isPopover} />
   {/if}
 
   {#if normalStatMods.length}
