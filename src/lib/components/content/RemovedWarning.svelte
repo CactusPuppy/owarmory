@@ -1,6 +1,6 @@
 <script lang="ts">
   import WarningIcon from "$lib/images/icons/warning.svelte";
-  import iconChevronRight from "$lib/images/icons/chevron-right.svg";
+  import IconChevronRight from "$lib/images/icons/chevron-right.svelte";
   let showFullWarning = $state(false);
 </script>
 
@@ -22,9 +22,10 @@
           rel="noopener noreferrer">Discord</a
         >.
       </p>
-    {:else}
-      <img src={iconChevronRight} width="18" height="18" alt="" class="expand-arrow" />
     {/if}
+    <div class="chevron" data-is-open={showFullWarning}>
+      <IconChevronRight />
+    </div>
   </div>
 </button>
 
@@ -77,8 +78,12 @@
       }
     }
 
-    .expand-arrow {
+    .chevron {
       rotate: 90deg;
+
+      &[data-is-open="true"] {
+        rotate: -90deg;
+      }
     }
   }
 </style>

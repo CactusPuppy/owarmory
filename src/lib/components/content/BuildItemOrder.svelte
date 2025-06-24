@@ -2,7 +2,7 @@
   import type { BuildData } from "$lib/types/build";
   import { getAllBuildItems, isItemPreviouslyOwned } from "$lib/utils/build";
   import Item from "./Item.svelte";
-  import iconChevronRight from "$lib/images/icons/chevron-right.svg";
+  import IconChevronRight from "$lib/images/icons/chevron-right.svelte";
 
   interface Props {
     build: BuildData;
@@ -23,7 +23,9 @@
       <Item {item} {sold} />
 
       {#if i < items.length - 1}
-        <img src={iconChevronRight} width="18" height="18" alt="" />
+        <div class="chevron">
+          <IconChevronRight />
+        </div>
       {/if}
     </div>
   {:else}
@@ -37,7 +39,11 @@
     font-size: $font-size-h3;
   }
 
-  img {
+  .chevron {
+    display: flex;
+    align-items: center;
+  }
+  .chevron :global(svg) {
     opacity: 0.5;
   }
 

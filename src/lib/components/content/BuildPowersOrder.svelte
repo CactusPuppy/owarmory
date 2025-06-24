@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { BuildData } from "$lib/types/build";
-  import iconChevronRight from "$lib/images/icons/chevron-right.svg";
+  import IconChevronRight from "$lib/images/icons/chevron-right.svelte";
   import Power from "./Power.svelte";
   import { ROUND_MAX } from "$src/lib/constants/round";
 
@@ -24,7 +24,9 @@
       {/if}
 
       {#if i < Math.ceil(ROUND_MAX / 2) - 1}
-        <img src={iconChevronRight} width="18" height="18" alt="" />
+        <div class="chevron">
+          <IconChevronRight size={21} />
+        </div>
       {/if}
     </div>
   {/each}
@@ -36,7 +38,11 @@
     font-size: $font-size-h3;
   }
 
-  img {
+  .chevron {
+    display: flex;
+    align-items: center;
+  }
+  .chevron :global(svg) {
     opacity: 0.5;
   }
 
