@@ -11,9 +11,10 @@
     category?: string;
     removed: boolean;
     statMods?: FullStatMod[];
+    isPopover?: boolean;
   }
 
-  const { name, description, cost = 0, category, removed, statMods }: Props = $props();
+  const { name, description, cost = 0, category, removed, statMods, isPopover }: Props = $props();
 
   const normalStatMods = $derived(
     statMods
@@ -50,7 +51,7 @@
   {/if}
 
   {#if removed}
-    <RemovedWarning />
+    <RemovedWarning full={isPopover} />
   {/if}
 
   {#if normalStatMods.length}

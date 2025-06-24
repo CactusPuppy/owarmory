@@ -2,6 +2,8 @@
   import WarningIcon from "$lib/images/icons/warning.svelte";
   import IconChevronRight from "$lib/images/icons/chevron-right.svelte";
   let showFullWarning = $state(false);
+
+  const { full = false }: { full?: boolean } = $props();
 </script>
 
 <button class="removal-warning" onclick={() => (showFullWarning = !showFullWarning)}>
@@ -10,7 +12,7 @@
   </div>
   <div class="warning">
     <p class="text-center"><em>Possibly Unavailable</em></p>
-    {#if showFullWarning}
+    {#if showFullWarning || full}
       <p>
         This item or power has been marked as unavailable. This might be due to the item being
         disabled temporarily, or it might be because the item has been permanently retired.
@@ -23,9 +25,11 @@
         >.
       </p>
     {/if}
-    <div class="chevron" data-is-open={showFullWarning}>
-      <IconChevronRight />
-    </div>
+    {#if !full}
+      <div class="chevron" data-is-open={showFullWarning}>
+        <IconChevronRight />
+      </div>
+    {/if}
   </div>
 </button>
 

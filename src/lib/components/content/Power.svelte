@@ -44,7 +44,7 @@
     </div>
 
     {#snippet content()}
-      <SharedDetail {name} {description} {removed} />
+      <SharedDetail {name} {description} {removed} isPopover={true} />
     {/snippet}
   </Popover>
 {/if}

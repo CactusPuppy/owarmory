@@ -9,6 +9,7 @@ import type { FullRoundSectionInfo } from "../types/round";
 import type { Hero, Power } from "$src/generated/prisma";
 import type { z } from "zod";
 import { camelCaseToTitleCase } from "./string";
+import { ROUND_MAX } from "../constants/round";
 
 type BuildRoundSectionData = FullRoundSectionInfo | FlatFullRoundInfoSection;
 
@@ -56,6 +57,10 @@ export function getAllBuildItems(build: BuildData): FullItem[] {
       .filter((section) => !section.title)
       .flatMap((section) => [...section.soldItems, ...section.purchasedItems]);
   });
+}
+
+export function getAllBuildPowers(build: BuildData): Power[] {
+  return getBuildPowersForRound(build, ROUND_MAX);
 }
 
 export function isItemPreviouslyOwned(items: FullItem[], item: FullItem) {
