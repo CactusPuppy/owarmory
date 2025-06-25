@@ -16,6 +16,9 @@ import imageLucio from "$lib/images/content/heroes/lucio.png";
 import imageMercy from "$lib/images/content/heroes/mercy.png";
 import imageMoira from "$lib/images/content/heroes/moira.png";
 import imageFreja from "$lib/images/content/heroes/freja.png";
+import imageJunkrat from "$lib/images/content/heroes/junkrat.png";
+import imageSigma from "$lib/images/content/heroes/sigma.png";
+import imageZenyatta from "$lib/images/content/heroes/zenyatta.png";
 
 import type { HeroName } from "$lib/types/hero";
 
@@ -38,5 +41,8 @@ const heroImageMap: Record<HeroName, string> = {
   Mercy: imageMercy,
   Moira: imageMoira,
   Freja: imageFreja,
+  Junkrat: imageJunkrat,
+  Sigma: imageSigma,
+  Zenyatta: imageZenyatta,
 };
 export const heroImage = (hero: HeroName) => heroImageMap[hero];
