@@ -32,6 +32,9 @@ export const HeroNames = [
   "Mercy",
   "Moira",
   "Freja",
+  "Junkrat",
+  "Sigma",
+  "Zenyatta",
 ] as const;
 export type HeroName = (typeof HeroNames)[number];
 export function isHeroName(str: string): str is HeroName {
