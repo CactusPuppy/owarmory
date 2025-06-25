@@ -1,0 +1,66 @@
+name: Run Tests
+
+env:
+  AUTH_TRUST_HOST: 1
+  AUTH_SECRET: "pOx1PSOhxNeZE4xkUbh5DCoZZPvNVamiZ/dqxxGvOzo="
+  AUTH_BATTLENET_CLIENT_ID: "NOT_AVAILABLE"
+  AUTH_BATTLENET_CLIENT_SECRET: "NOT_AVAILABLE"
+  DATABASE_URL: "postgresql://postgres:Password123@localhost:5432/postgres?schema=public"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: Password123
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.1.0
+        with:
+          version: 10.9.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(pnpm list @playwright/test | grep "@playwright/test" | cut -d ' ' -f 2)" >> $GITHUB_ENV
+      - name: Cache playwright binaries
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+      - name: Prepare Playwright
+        run: pnpm exec playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - name: Run migrations
+        run: pnpm prisma migrate deploy
+      - name: Prepare database
+        run: pnpm prisma db seed
+      - name: Run Unit Tests
+        run: pnpm test:unit
+      - name: Run Playwright Tests
+        run: pnpm test:e2e

@@ -129,10 +129,4 @@
     margin-top: 1.5em;
     margin-bottom: 1.5em;
   }
-
-  em {
-    color: $color-text-titles;
-    font-weight: bold;
-    font-style: normal;
-  }
 </style>

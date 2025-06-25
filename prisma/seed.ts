@@ -100,7 +100,12 @@ async function main() {
       };
 
       const existingStatMods = await tx.statMod.findMany();
+      const existingItems = await tx.item.findMany();
+      const existingPowers = await tx.power.findMany();
+
       const processedStatMods = new Set<string>();
+      const processedTalents = new Set<string>();
+      const missingHeroes = new Set<string>();
 
       for (const [index, [guid, talent]] of Object.entries(stadiumData).entries()) {
         console.log(
@@ -131,11 +136,20 @@ async function main() {
           name: talent.Name,
           gameGuid: talent.GUID,
           description: talent.DescriptionFormatted ?? talent.Description,
-          iconURL: `/images/talents/${talent.Name.trim()}.png`,
-          heroName: talent.Hero
-            ? heroes.filter((hero) => hero.name === talent.Hero!.Value)![0].name
-            : undefined,
+          iconURL: `/images/talents/${talent.Name.trim().replaceAll("#", "")}.png`,
+          heroName: talent.Hero?.Value,
         };
+
+        if (talent.Hero) {
+          const hero = heroes.filter((hero) => hero.name === talent.Hero!.Value)[0];
+          if (!hero) {
+            missingHeroes.add(talent.Hero.Value);
+            console.warn(" - Hero not found for talent", talent.GUID, talent.Name, talent.Hero);
+            continue;
+          }
+
+          baseData.heroName = hero.name;
+        }
 
         if (talent.Category.Value == "Power") {
           if (baseData.heroName === undefined) {
@@ -143,6 +157,7 @@ async function main() {
               `Talent with GUID ${guid} was of type power, but has no associated hero name?`,
             );
           }
+
           await tx.power.upsert({
             where: {
               gameGuid: talent.GUID,
@@ -151,6 +166,8 @@ async function main() {
             // @ts-expect-error Already checked for if heroName is undefined above
             create: baseData,
           });
+
+          processedTalents.add(talent.GUID);
           continue;
         }
 
@@ -280,14 +297,16 @@ async function main() {
             },
           });
         }
+
+        processedTalents.add(talent.GUID);
       }
 
-      // Remove stat mods that are not in the processed list and don't have a gameGuid
-      // on first run on existing db, this will remove all stat mods as they will have been recreated with guids
-      // but on subsequent runs, this should only remove custom stat mods that don't have a gameGuid
+      // Remove stat mods that have no game guids as they get re-added with the next seed
+      // Any stat mods that weren't processed could also be removed but this doesn't factor in if a talent was removed
+      // the seed script doesn't remove old talents so unprocessed stat mods may still be valid
       const statModsToRemove = existingStatMods
         .filter((statMod) => {
-          return !statMod.gameGuid || !processedStatMods.has(statMod.gameGuid);
+          return !statMod.gameGuid;
         })
         .map((statMod) => statMod.id)
         .filter(Boolean) as string[];
@@ -302,6 +321,34 @@ async function main() {
             },
           },
         });
+      }
+
+      // warn about items and talents that were not processed
+      const itemsNotProcessed = existingItems.filter(
+        (item) => !processedTalents.has(item.gameGuid!),
+      );
+      if (itemsNotProcessed.length > 0) {
+        console.warn(
+          `[WARNING] Detected missing ${itemsNotProcessed.length} talents, they may have been removed from the game!`,
+        );
+        itemsNotProcessed.forEach((item) => console.warn(` - [${item.gameGuid}] ${item.name}`));
+      }
+
+      const powersNotProcessed = existingPowers.filter(
+        (power) => !processedTalents.has(power.gameGuid!),
+      );
+      if (powersNotProcessed.length > 0) {
+        console.warn(
+          `[WARNING] Detected missing ${powersNotProcessed.length} powers, they may have been removed from the game!`,
+        );
+        powersNotProcessed.forEach((power) => console.warn(` - [${power.gameGuid}] ${power.name}`));
+      }
+
+      if (missingHeroes.size > 0) {
+        console.warn(
+          `[WARNING] ${missingHeroes.size} missing heroes detected. Talents for these heroes have not been added!`,
+          Array.from(missingHeroes).join(", "),
+        );
       }
     },
     {

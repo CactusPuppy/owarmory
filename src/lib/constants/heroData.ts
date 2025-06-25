@@ -25,6 +25,12 @@ export const heroes: HeroData[] = [
     baseArmor: 300,
   },
   {
+    name: "Sigma",
+    role: "Tank",
+    baseHealth: 200,
+    baseShields: 275,
+  },
+  {
     name: "Zarya",
     role: "Tank",
     baseHealth: 175,
@@ -47,6 +53,11 @@ export const heroes: HeroData[] = [
   },
   {
     name: "Genji",
+    role: "Damage",
+    baseHealth: 250,
+  },
+  {
+    name: "Junkrat",
     role: "Damage",
     baseHealth: 250,
   },
@@ -95,6 +106,12 @@ export const heroes: HeroData[] = [
     name: "Moira",
     role: "Support",
     baseHealth: 225,
+  },
+  {
+    name: "Zenyatta",
+    role: "Support",
+    baseHealth: 75,
+    baseShields: 175,
   },
 ];
 

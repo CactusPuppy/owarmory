@@ -9,7 +9,12 @@
   import { heroFromHeroName } from "$lib/constants/heroData";
   import { ROUND_MAX } from "$lib/constants/round";
   import type { CurrentRound } from "$lib/types/round";
-  import { getBuildCostForRound, getBuildItemsForRound } from "$lib/utils/build";
+  import {
+    getAllBuildItems,
+    getAllBuildPowers,
+    getBuildCostForRound,
+    getBuildItemsForRound,
+  } from "$lib/utils/build";
   import { getContext, onMount, setContext } from "svelte";
   import type { HeroName } from "$src/lib/types/hero";
   import type { FullStadiumBuild } from "$src/lib/types/build";
@@ -28,6 +33,7 @@
   import { Tween } from "svelte/motion";
   import { quintOut } from "svelte/easing";
   import { formatDistanceToNowStrict } from "date-fns";
+  import WarningIcon from "$lib/images/icons/warning.svelte";
 
   const { data } = $props();
 
@@ -120,6 +126,31 @@
 
   <p class="introduction">{description}</p>
 
+  {#if getAllBuildItems(build).some((item) => item.removed) || getAllBuildPowers(build).some((power) => power.removed)}
+    <div class="removed-talents-warning">
+      <div class="icon">
+        <WarningIcon />
+      </div>
+
+      <div>
+        <h3>Potentially Outdated Build</h3>
+        <p>
+          This build contains some items or powers which are currently marked as being removed. This
+          might be due to the items in question being temporarily disabled, or the items may have
+          been permanently retired.
+        </p>
+        <p>
+          If you believe one of the items below is incorrectly marked as removed, or if you think an
+          item should be marked as removed when it isn't, please let us know via our <a
+            href="https://discord.gg/JNCx6U3g9F"
+            target="_blank"
+            rel="noopener noreferrer">Discord</a
+          >.
+        </p>
+      </div>
+    </div>
+  {/if}
+
   <div class="layout">
     <aside class="sidebar block">
       {#if currentUser?.id === (build as FullStadiumBuild).authorId}
@@ -176,6 +207,8 @@
 </section>
 
 <style lang="scss">
+  @use "sass:color";
+
   a:not(.button) {
     color: $secondary;
     text-decoration: none;
@@ -242,6 +275,46 @@
 
     @include breakpoint(tablet) {
       margin-top: 2rem;
+    }
+  }
+
+  .removed-talents-warning {
+    color: $yellow;
+    border: 1px solid $yellow;
+    background-color: color.adjust(color.change($yellow, $alpha: 50%), $lightness: -15%);
+    border-radius: $border-radius;
+    padding: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    border: 1px solid $yellow;
+
+    @include breakpoint(mobile) {
+      display: grid;
+      grid-template-columns: 1fr auto;
+    }
+    .icon {
+      width: calc($item-size * 1.5);
+      height: calc($item-size * 1.5);
+      flex-grow: 1;
+    }
+
+    h3 {
+      color: inherit;
+      margin-bottom: 0;
+      margin-top: 0.5rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
     }
   }
 
