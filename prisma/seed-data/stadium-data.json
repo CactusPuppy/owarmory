@@ -1696,7 +1696,7 @@
     "GUID": "000000000470.134",
     "Name": "Out with a Bang",
     "Description": "When <fg#ffffffff>[Dynamite]</fg> explodes, it spawns <fg#ffffffff>3</fg> sticky explosives that deal <fg#ffffffff>%1$s reduced</fg> damage.",
-    "DescriptionFormatted": "When [Dynamite] explodes, it spawns 3 sticky explosives that deal 70% reduced damage.",
+    "DescriptionFormatted": "When [Dynamite] explodes, it spawns 3 sticky explosives that deal 30% reduced damage.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000200.075",
@@ -1715,7 +1715,7 @@
       {
         "GUID": "0000000015A2.130",
         "Buff": null,
-        "Value": 0.7,
+        "Value": 0.3,
         "Name": null,
         "FormatString": null
       },
@@ -3470,7 +3470,7 @@
     "GUID": "000000000A07.134",
     "Name": "Your Full Potential",
     "Description": "<fg#ffffffff>[Nano Boost]</fg> also grants the target <fg#ffffffff>%1$s</fg> Ultimate Charge and <tx0x0C00000000061B04><fg#ff9274ff>%2$s</fg> <fg#ffffffff>Overhealth</fg>.",
-    "DescriptionFormatted": "[Nano Boost] also grants the target 20% Ultimate Charge and 200 Overhealth.",
+    "DescriptionFormatted": "[Nano Boost] also grants the target 35% Ultimate Charge and 200 Overhealth.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000013B.075",
@@ -3489,7 +3489,7 @@
       {
         "GUID": "000000000BB5.130",
         "Buff": null,
-        "Value": 0.2,
+        "Value": 0.35,
         "Name": null,
         "FormatString": null
       },
@@ -3506,7 +3506,7 @@
     "GUID": "000000000A09.134",
     "Name": "My Turn",
     "Description": "<fg#ffffffff>[Nano Boost]</fg> also applies to yourself for <fg#ffffffff>%1$s</fg> of its duration.",
-    "DescriptionFormatted": "[Nano Boost] also applies to yourself for 50% of its duration.",
+    "DescriptionFormatted": "[Nano Boost] also applies to yourself for 100% of its duration.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000013B.075",
@@ -3525,7 +3525,7 @@
       {
         "GUID": "000000000F72.130",
         "Buff": null,
-        "Value": 0.5,
+        "Value": 1,
         "Name": null,
         "FormatString": "|Rfn %1$s:P0;"
       }
@@ -4288,7 +4288,7 @@
     "GUID": "000000000A87.134",
     "Name": "Facetanking",
     "Description": "<fg#ffffffff>[Defense Matrix]</fg> heals you for\r\n<fg#ffffffff>%1$s</fg> of the damage it blocks.",
-    "DescriptionFormatted": "[Defense Matrix] heals you for\r\n30% of the damage it blocks.",
+    "DescriptionFormatted": "[Defense Matrix] heals you for\r\n50% of the damage it blocks.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000007A.075",
@@ -4307,7 +4307,7 @@
       {
         "GUID": "000000000C70.130",
         "Buff": null,
-        "Value": 0.3,
+        "Value": 0.5,
         "Name": null,
         "FormatString": null
       }
@@ -5972,8 +5972,8 @@
   "000000000BD2.134": {
     "GUID": "000000000BD2.134",
     "Name": "Clone Conjuration",
-    "Description": "After using <fg#ffffffff>[Swift Step]</fg>, create a clone of yourself that lasts for <fg#ffffffff>%1$ss</fg>.",
-    "DescriptionFormatted": "After using [Swift Step], create a clone of yourself that lasts for 5s.",
+    "Description": "After using <fg#ffffffff>[Swift Step]</fg>, create a clone of yourself that lasts for <fg#ffffffff>%1$ss</fg>. Clone has <fg#ffffffff>%2$s</fg> less damage and healing.",
+    "DescriptionFormatted": "After using [Swift Step], create a clone of yourself that lasts for 4s. Clone has 65% less damage and healing.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000231.075",
@@ -5992,9 +5992,16 @@
       {
         "GUID": "000000000E91.130",
         "Buff": null,
-        "Value": 5,
+        "Value": 4,
         "Name": null,
         "FormatString": null
+      },
+      {
+        "GUID": "000000001A00.130",
+        "Buff": null,
+        "Value": 0.65,
+        "Name": null,
+        "FormatString": "|Rfn %1$s:P0;"
       }
     ]
   },
@@ -7037,7 +7044,7 @@
     "GUID": "000000000C85.134",
     "Name": "Time Out",
     "Description": "<fg#ffffffff>[Biotic Grenade]</fg> now knocks back Ana and enemies, slowing enemies by <fg#ffffffff>%1$s</fg> for <fg#ffffffff>%2$ss</fg>.",
-    "DescriptionFormatted": "[Biotic Grenade] now knocks back Ana and enemies, slowing enemies by 50% for 1.5s.",
+    "DescriptionFormatted": "[Biotic Grenade] now knocks back Ana and enemies, slowing enemies by 50% for 2.5s.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000013B.075",
@@ -7063,7 +7070,7 @@
       {
         "GUID": "0000000010FB.130",
         "Buff": null,
-        "Value": 1.5,
+        "Value": 2.5,
         "Name": null,
         "FormatString": "|Rfn%1$s:N1;"
       }
@@ -7073,7 +7080,7 @@
     "GUID": "000000000C87.134",
     "Name": "Our Turn",
     "Description": "<fg#ffffffff>[Nano Boost]</fg> also affects other allies in your line of sight, but it has a <fg#ffffffff>%1$s reduced</fg> duration on them.",
-    "DescriptionFormatted": "[Nano Boost] also affects other allies in your line of sight, but it has a 50% reduced duration on them.",
+    "DescriptionFormatted": "[Nano Boost] also affects other allies in your line of sight, but it has a 25% reduced duration on them.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000013B.075",
@@ -7092,7 +7099,7 @@
       {
         "GUID": "000000000F73.130",
         "Buff": null,
-        "Value": 0.5,
+        "Value": 0.25,
         "Name": null,
         "FormatString": "|Rfn %1$s:P0;"
       }
@@ -7257,8 +7264,8 @@
   "000000000C92.134": {
     "GUID": "000000000C92.134",
     "Name": "Tokki Slam",
-    "Description": "During <fg#ffffffff>[Boosters]</fg>, use crouch to slam the ground, dealing damage equal to <fg#ffffffff>%1$s</fg> of your max Armor and knocking up enemies hit.",
-    "DescriptionFormatted": "During [Boosters], use crouch to slam the ground, dealing damage equal to 20% of your max Armor and knocking up enemies hit.",
+    "Description": "During <fg#ffffffff>[Boosters]</fg>, use crouch to slam the ground, dealing damage equal to <fg#ffffffff>%1$s</fg> of your max Armor plus Shield and knocking up enemies hit.",
+    "DescriptionFormatted": "During [Boosters], use crouch to slam the ground, dealing damage equal to 30% of your max Armor plus Shield and knocking up enemies hit.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000007A.075",
@@ -7277,7 +7284,7 @@
       {
         "GUID": "000000000FBC.130",
         "Buff": null,
-        "Value": 0.2,
+        "Value": 0.3,
         "Name": null,
         "FormatString": null
       }
@@ -7711,8 +7718,8 @@
   "000000000CB1.134": {
     "GUID": "000000000CB1.134",
     "Name": "Fleet Foot",
-    "Description": "<fg#ffffffff>[Swift Step]</fg> can be used directionally without a target.",
-    "DescriptionFormatted": "[Swift Step] can be used directionally without a target.",
+    "Description": "<fg#ffffffff>[Swift Step]</fg> can be used directionally without a target. Cooldown is increased by %1$s when used without a target.",
+    "DescriptionFormatted": "[Swift Step] can be used directionally without a target. Cooldown is increased by 35% when used without a target.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000231.075",
@@ -7731,7 +7738,7 @@
       {
         "GUID": "000000000FE7.130",
         "Buff": null,
-        "Value": 0.2,
+        "Value": 0.35,
         "Name": null,
         "FormatString": null
       }
@@ -10187,7 +10194,7 @@
     "Name": "Three-Tap Tommygun",
     "Description": "After using an ability, your next <fg#ffffffff>%1$s</fg> instances of Weapon Damage deal additional damage equal to <fg#ffffffff>%2$s</fg> of the target's Life.",
     "DescriptionFormatted": "After using an ability, your next 3 instances of Weapon Damage deal additional damage equal to 3% of the target's Life.",
-    "Cost": 9500,
+    "Cost": 10500,
     "Hero": null,
     "Rarity": {
       "GUID": "0000000061ED.01C",
@@ -11418,6 +11425,16 @@
         "FormattedText": "4 Max Ammo",
         "Value": 4,
         "IsPercentage": false
+      },
+      {
+        "GameValueGUID": "000000001A62.130",
+        "IconGUID": "000000000ADE.129",
+        "Name": "Weapon Power",
+        "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon.",
+        "DescriptionFormatted": "Increases the damage and healing of your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Weapon.",
+        "FormattedText": "15% Weapon Power",
+        "Value": 0.15,
+        "IsPercentage": true
       }
     ],
     "GameValues": [
@@ -11439,6 +11456,19 @@
         },
         "Value": 4,
         "Name": "Max Ammo",
+        "FormatString": null
+      },
+      {
+        "GUID": "000000001A62.130",
+        "Buff": {
+          "GUID": "00000000F09E.01C",
+          "TargetTagGUID": "0000000010D0.06C",
+          "IconGUID": "000000000ADE.129",
+          "Name": "Weapon Power",
+          "Description": "Increases the damage and healing of your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Weapon."
+        },
+        "Value": 0.15,
+        "Name": null,
         "FormatString": null
       }
     ]
@@ -11777,8 +11807,8 @@
   "000000000D7C.134": {
     "GUID": "000000000D7C.134",
     "Name": "Spirited To Slay",
-    "Description": "Eliminations reset your cooldowns.",
-    "DescriptionFormatted": "Eliminations reset your cooldowns.",
+    "Description": "Eliminations reduce the cooldown\r\nof <fg#ffffffff>[Wraith Form]</fg> by <fg#ffffffff>%1$s</fg> and <fg#ffffffff>[Shadow Step]</fg> by <fg#ffffffff>%2$s</fg>.",
+    "DescriptionFormatted": "Eliminations reduce the cooldown\r\nof [Wraith Form] by 100% and [Shadow Step] by 100%.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000002.075",
@@ -11793,7 +11823,22 @@
       "Value": "Power"
     },
     "Buffs": [],
-    "GameValues": []
+    "GameValues": [
+      {
+        "GUID": "000000001B46.130",
+        "Buff": null,
+        "Value": 1,
+        "Name": null,
+        "FormatString": "|Rfn %1$s:P0;"
+      },
+      {
+        "GUID": "000000001B47.130",
+        "Buff": null,
+        "Value": 1,
+        "Name": null,
+        "FormatString": "|Rfn %1$s:P0;"
+      }
+    ]
   },
   "000000000D7D.134": {
     "GUID": "000000000D7D.134",
@@ -14382,14 +14427,14 @@
         "Buff": null,
         "Value": 1,
         "Name": null,
-        "FormatString": null
+        "FormatString": "|Rfn %1$s:P0;"
       },
       {
         "GUID": "000000001350.130",
         "Buff": null,
         "Value": 0.5,
         "Name": null,
-        "FormatString": null
+        "FormatString": "|Rfn %1$s:P0;"
       },
       {
         "GUID": "000000001568.130",
@@ -14689,7 +14734,7 @@
     "GUID": "000000000DC7.134",
     "Name": "Venomous",
     "Description": "<fg#ffffffff>[Biotic Grenade]</fg> deals an additional <tx0x0C00000000061B04><fg#ff9274ff>%1$s</fg> damage over its duration to enemies affected.",
-    "DescriptionFormatted": "[Biotic Grenade] deals an additional 50 damage over its duration to enemies affected.",
+    "DescriptionFormatted": "[Biotic Grenade] deals an additional 75 damage over its duration to enemies affected.",
     "Cost": 0,
     "Hero": {
       "GUID": "00000000013B.075",
@@ -14708,7 +14753,7 @@
       {
         "GUID": "00000000136A.130",
         "Buff": null,
-        "Value": 50,
+        "Value": 75,
         "Name": null,
         "FormatString": null
       }
@@ -15410,7 +15455,7 @@
     "GUID": "000000000DEE.134",
     "Name": "Stellar Focus",
     "Description": "<fg#ffffffff>[Orbital Ray]</fg> now follows you and its duration is increased by <fg#ffffffff>%1$s</fg>.",
-    "DescriptionFormatted": "[Orbital Ray] now follows you and its duration is increased by 35%.",
+    "DescriptionFormatted": "[Orbital Ray] now follows you and its duration is increased by 50%.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000365.075",
@@ -15429,7 +15474,7 @@
       {
         "GUID": "0000000013AA.130",
         "Buff": null,
-        "Value": 0.35,
+        "Value": 0.5,
         "Name": null,
         "FormatString": null
       }
@@ -15739,7 +15784,7 @@
     "GUID": "000000000DF9.134",
     "Name": "Hyper Healer",
     "Description": "Allies affected by <fg#ffffffff>[Hyper Ring]</fg> gain <tx0x0C00000000061B04><fg#ff9274ff>%1$s</fg> <fg#ffffffff>Overhealth</fg>.",
-    "DescriptionFormatted": "Allies affected by [Hyper Ring] gain 100 Overhealth.",
+    "DescriptionFormatted": "Allies affected by [Hyper Ring] gain 75 Overhealth.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000365.075",
@@ -15758,7 +15803,7 @@
       {
         "GUID": "0000000013C4.130",
         "Buff": null,
-        "Value": 100,
+        "Value": 75,
         "Name": null,
         "FormatString": null
       }
@@ -19709,8 +19754,8 @@
   "000000000F1D.134": {
     "GUID": "000000000F1D.134",
     "Name": "Let's Go Win",
-    "Description": "Eliminations reduces the cooldown\r\nof <fg#ffffffff>[Commanding Shout]</fg> by <fg#ffffffff>%1$s</fg>.",
-    "DescriptionFormatted": "Eliminations reduces the cooldown\r\nof [Commanding Shout] by 50%.",
+    "Description": "Elimination reduces the cooldown\r\nof <fg#ffffffff>[Commanding Shout]</fg> by <fg#ffffffff>%1$s</fg>.",
+    "DescriptionFormatted": "Elimination reduces the cooldown\r\nof [Commanding Shout] by 50%.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000236.075",
@@ -20349,7 +20394,7 @@
     "GUID": "000000000F28.134",
     "Name": "Blink Boosts",
     "Description": "<fg#ffffffff>[Glide Boost]</fg> gains <fg#ffffffff>%1$s</fg> additional charges and has a <fg#ffffffff>%3$s</fg> reduced cooldown, but has <fg#ffffffff>%2$s reduced</fg> duration.",
-    "DescriptionFormatted": "[Glide Boost] gains 2 additional charges and has a 65% reduced cooldown, but has 75% reduced duration.",
+    "DescriptionFormatted": "[Glide Boost] gains 2 additional charges and has a 30% reduced cooldown, but has 75% reduced duration.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000365.075",
@@ -20382,7 +20427,7 @@
       {
         "GUID": "000000001624.130",
         "Buff": null,
-        "Value": 0.65,
+        "Value": 0.3,
         "Name": null,
         "FormatString": null
       }
@@ -21104,8 +21149,8 @@
   "000000000F4B.134": {
     "GUID": "000000000F4B.134",
     "Name": "Slowball",
-    "Description": "<fg#ffffffff>[Endothermic Blaster]</fg>'s secondary fire now shoots a snowball that applies <fg#ffffffff>%1$s</fg> slow for <fg#ffffffff>%2$ss</fg> on critical hit.",
-    "DescriptionFormatted": "[Endothermic Blaster]'s secondary fire now shoots a snowball that applies 30% slow for 1s on critical hit.",
+    "Description": "<fg#ffffffff>[Endothermic Blaster]</fg>'s secondary fire now shoots a snowball that applies <fg#ffffffff>%1$s</fg> slow for <fg#ffffffff>%2$ss</fg> on hit.",
+    "DescriptionFormatted": "[Endothermic Blaster]'s secondary fire now shoots a snowball that applies 30% slow for 1s on hit.",
     "Cost": 0,
     "Hero": {
       "GUID": "0000000000DD.075",
@@ -23619,7 +23664,7 @@
     "GUID": "000000001845.134",
     "Name": "Dual Harmony",
     "Description": "Gain a <fg#ffffffff>2nd</fg> <fg#ffffffff>[Harmony Orb]</fg> but they both heal <fg#ffffffff>%1$s less</fg>.",
-    "DescriptionFormatted": "Gain a 2nd [Harmony Orb] but they both heal 45% less.",
+    "DescriptionFormatted": "Gain a 2nd [Harmony Orb] but they both heal 40% less.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000020.075",
@@ -23638,7 +23683,7 @@
       {
         "GUID": "000000001872.130",
         "Buff": null,
-        "Value": 0.45,
+        "Value": 0.4,
         "Name": null,
         "FormatString": null
       },
@@ -23655,7 +23700,7 @@
     "GUID": "000000001846.134",
     "Name": "Gotta Have Faith",
     "Description": "<fg#ffffffff>[Harmony Orb]</fg> targets can be out of your line of sight for <fg#ffffffff>%1$ss</fg> longer before <fg#ffffffff>[Harmony Orb]</fg> returns to you.",
-    "DescriptionFormatted": "[Harmony Orb] targets can be out of your line of sight for 5s longer before [Harmony Orb] returns to you.",
+    "DescriptionFormatted": "[Harmony Orb] targets can be out of your line of sight for 10s longer before [Harmony Orb] returns to you.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000020.075",
@@ -23674,7 +23719,7 @@
       {
         "GUID": "0000000017D8.130",
         "Buff": null,
-        "Value": 5,
+        "Value": 10,
         "Name": null,
         "FormatString": null
       }
@@ -23785,7 +23830,7 @@
     "GUID": "000000001941.134",
     "Name": "Soul Control",
     "Description": "<fg#ffffffff>[Transcendence]</fg> can be canceled early, saving up to <fg#ffffffff>%1$s</fg> of your Ultimate Charge.",
-    "DescriptionFormatted": "[Transcendence] can be canceled early, saving up to 65% of your Ultimate Charge.",
+    "DescriptionFormatted": "[Transcendence] can be canceled early, saving up to 75% of your Ultimate Charge.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000020.075",
@@ -23804,7 +23849,7 @@
       {
         "GUID": "00000000191C.130",
         "Buff": null,
-        "Value": 0.65,
+        "Value": 0.75,
         "Name": null,
         "FormatString": "|Rfn %1$s:P0;"
       }
@@ -24043,8 +24088,8 @@
   "000000002206.134": {
     "GUID": "000000002206.134",
     "Name": "Flying Kick",
-    "Description": "While airborne, <fg#ffffffff>[Quick Melee]</fg> becomes a dash kick that stuns if it knocks an enemy back into a wall.\r\n<fg#ffffffff>(%1$ss Cooldown)</fg>",
-    "DescriptionFormatted": "While airborne, [Quick Melee] becomes a dash kick that stuns if it knocks an enemy back into a wall.\r\n(5s Cooldown)",
+    "Description": "While airborne, <fg#ffffffff>[Quick Melee]</fg> becomes a dash kick that stuns if it knocks an enemy back into a wall and deals <tx0x0C00000000061B0B><fg#fffd3737>%4$s</fg> damage.\r\n<fg#ffffffff>(%1$ss Cooldown)</fg>",
+    "DescriptionFormatted": "While airborne, [Quick Melee] becomes a dash kick that stuns if it knocks an enemy back into a wall and deals 40 damage.\r\n(5s Cooldown)",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000020.075",
@@ -24078,6 +24123,13 @@
         "GUID": "00000000191E.130",
         "Buff": null,
         "Value": 0.1,
+        "Name": null,
+        "FormatString": null
+      },
+      {
+        "GUID": "000000001A5C.130",
+        "Buff": null,
+        "Value": 40,
         "Name": null,
         "FormatString": null
       }
@@ -24617,10 +24669,10 @@
       {
         "GameValueGUID": "0000000018E3.130",
         "IconGUID": "000000000A73.129",
-        "Name": "Transcendence Duration",
-        "Description": "<fg#ffffffff>%1$s</fg> Transcendence Duration",
-        "DescriptionFormatted": "30% Transcendence Duration",
-        "FormattedText": "30% Transcendence Duration",
+        "Name": "[Transcendence] Duration",
+        "Description": "<fg#ffffffff>%1$s</fg> <fg#ffffffff>[Transcendence]</fg> Duration",
+        "DescriptionFormatted": "30% [Transcendence] Duration",
+        "FormattedText": "30% [Transcendence] Duration",
         "Value": 0.3,
         "IsPercentage": true
       }
@@ -24632,11 +24684,11 @@
           "GUID": null,
           "TargetTagGUID": null,
           "IconGUID": "000000000A73.129",
-          "Name": "Transcendence Duration",
-          "Description": "<fg#ffffffff>%1$s</fg> Transcendence Duration"
+          "Name": "<fg#ffffffff>[Transcendence]</fg> Duration",
+          "Description": "<fg#ffffffff>%1$s</fg> <fg#ffffffff>[Transcendence]</fg> Duration"
         },
         "Value": 0.3,
-        "Name": "Transcendence Duration",
+        "Name": "<fg#ffffffff>[Transcendence]</fg> Duration",
         "FormatString": "|Rfn %1$s:P0;"
       }
     ]
@@ -26458,7 +26510,7 @@
   },
   "000000002624.134": {
     "GUID": "000000002624.134",
-    "Name": "2 Frag 2 Frurious",
+    "Name": "Frags For Days",
     "Description": "<fg#ffffffff>[Frag Launcher]</fg> has a <fg#ffffffff>%1$s</fg> chance to shoot an additional projectile that deals <fg#ffffffff>%2$s reduced</fg> damage.",
     "DescriptionFormatted": "[Frag Launcher] has a 25% chance to shoot an additional projectile that deals 66% reduced damage.",
     "Cost": 0,
@@ -26573,7 +26625,7 @@
   },
   "000000002627.134": {
     "GUID": "000000002627.134",
-    "Name": "It's A(nother) Trap!",
+    "Name": "Double Trouble",
     "Description": "Gain <fg#ffffffff>%1$s</fg> additional charge of <fg#ffffffff>[Steel Trap]</fg>. ",
     "DescriptionFormatted": "Gain 1 additional charge of [Steel Trap]. ",
     "Cost": 0,
@@ -26675,7 +26727,7 @@
     "GUID": "00000000262B.134",
     "Name": "Hop Boom",
     "Description": "After launching yourself with <fg#ffffffff>[Concussion Mine]</fg>, detonate a <fg#ffffffff>[Concussion Mine]</fg> wherever you land with <fg#ffffffff>%1$s reduced </fg> effectiveness.",
-    "DescriptionFormatted": "After launching yourself with [Concussion Mine], detonate a [Concussion Mine] wherever you land with 50% reduced  effectiveness.",
+    "DescriptionFormatted": "After launching yourself with [Concussion Mine], detonate a [Concussion Mine] wherever you land with 30% reduced  effectiveness.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000065.075",
@@ -26694,7 +26746,7 @@
       {
         "GUID": "00000000188E.130",
         "Buff": null,
-        "Value": 0.5,
+        "Value": 0.3,
         "Name": null,
         "FormatString": null
       },
@@ -26768,7 +26820,7 @@
     "GUID": "00000000262D.134",
     "Name": "Rainin' Lead",
     "Description": "After launching yourself, drop <fg#ffffffff>1 [Total Mayhem]</fg> bomb with <fg#ffffffff>%1$s reduced</fg> damage every <fg#ffffffff>%2$ss</fg> while airborne.",
-    "DescriptionFormatted": "After launching yourself, drop 1 [Total Mayhem] bomb with 25% reduced damage every 0.4s while airborne.",
+    "DescriptionFormatted": "After launching yourself, drop 1 [Total Mayhem] bomb with 25% reduced damage every 0.3s while airborne.",
     "Cost": 0,
     "Hero": {
       "GUID": "000000000065.075",
@@ -26794,7 +26846,7 @@
       {
         "GUID": "0000000018F0.130",
         "Buff": null,
-        "Value": 0.4,
+        "Value": 0.3,
         "Name": null,
         "FormatString": "|Rfn %1$s:F1;"
       }
@@ -26925,7 +26977,7 @@
     "GUID": "000000002630.134",
     "Name": "Lithium Alloy",
     "Description": "Enemies that trigger <fg#ffffffff>[Steel Trap] Burn</fg> for <tx0x0C00000000061B04><fg#ff9274ff>%3$s</fg> damage over <fg#ffffffff>%4$ss</fg>.",
-    "DescriptionFormatted": "Enemies that trigger [Steel Trap] Burn for 50 damage over 3s.",
+    "DescriptionFormatted": "Enemies that trigger [Steel Trap] Burn for 75 damage over 3s.",
     "Cost": 10000,
     "Hero": {
       "GUID": "000000000065.075",
@@ -26991,7 +27043,7 @@
       {
         "GUID": "0000000019AC.130",
         "Buff": null,
-        "Value": 50,
+        "Value": 75,
         "Name": null,
         "FormatString": null
       },
@@ -27385,8 +27437,8 @@
         "Name": "Ability Power",
         "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities.",
         "DescriptionFormatted": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your Hero Information screen to learn more about your Abilities.",
-        "FormattedText": "10% Ability Power",
-        "Value": 0.1,
+        "FormattedText": "15% Ability Power",
+        "Value": 0.15,
         "IsPercentage": true
       },
       {
@@ -27405,8 +27457,8 @@
         "Name": "Ability Lifesteal",
         "Description": "Restores health based on how much damage you deal with your Abilities.",
         "DescriptionFormatted": "Restores health based on how much damage you deal with your Abilities.",
-        "FormattedText": "10% Ability Lifesteal",
-        "Value": 0.1,
+        "FormattedText": "15% Ability Lifesteal",
+        "Value": 0.15,
         "IsPercentage": true
       }
     ],
@@ -27420,7 +27472,7 @@
           "Name": "Ability Power",
           "Description": "Increases the damage and healing of your Abilities and Ultimates that don't rely on your Weapon.\n\r\nCheck your <fg#ffffffff>Hero Information</fg> screen to learn more about your Abilities."
         },
-        "Value": 0.1,
+        "Value": 0.15,
         "Name": null,
         "FormatString": null
       },
@@ -27467,7 +27519,7 @@
           "Name": "Ability Lifesteal",
           "Description": "Restores health based on how much damage you deal with your Abilities."
         },
-        "Value": 0.1,
+        "Value": 0.15,
         "Name": null,
         "FormatString": null
       }
@@ -28232,7 +28284,7 @@
     "Name": "Aerial Distresser",
     "Description": "Weapon damage to airborne enemies deal <fg#ffffffff>%2$s</fg> bonus damage over <fg#ffffffff>%1$ss</fg>.",
     "DescriptionFormatted": "Weapon damage to airborne enemies deal 25% bonus damage over 3s.",
-    "Cost": 10000,
+    "Cost": 9000,
     "Hero": null,
     "Rarity": {
       "GUID": "0000000061ED.01C",
@@ -28403,6 +28455,59 @@
         "GUID": "000000001984.130",
         "Buff": null,
         "Value": 2,
+        "Name": null,
+        "FormatString": null
+      }
+    ]
+  },
+  "0000000026FE.134": {
+    "GUID": "0000000026FE.134",
+    "Name": "Refraction Armor",
+    "Description": "While you have Armor, gain <fg#ffffffff>%1$s</fg> damage reduction against beams.",
+    "DescriptionFormatted": "While you have Armor, gain 15% damage reduction against beams.",
+    "Cost": 2000,
+    "Hero": {
+      "GUID": "00000000007A.075",
+      "Value": "D.Va"
+    },
+    "Rarity": {
+      "GUID": "000000000297.01C",
+      "Value": "Normal"
+    },
+    "Category": {
+      "GUID": "00000000ECD2.01C",
+      "Value": "Survival"
+    },
+    "Buffs": [
+      {
+        "GameValueGUID": "000000001A5A.130",
+        "IconGUID": "000000000ADC.129",
+        "Name": "Armor",
+        "Description": "<fg#ffffffff>%2$s</fg> Armor",
+        "DescriptionFormatted": "25 Armor",
+        "FormattedText": "25 Armor",
+        "Value": 25,
+        "IsPercentage": false
+      }
+    ],
+    "GameValues": [
+      {
+        "GUID": "000000001A59.130",
+        "Buff": null,
+        "Value": 0.15,
+        "Name": null,
+        "FormatString": null
+      },
+      {
+        "GUID": "000000001A5A.130",
+        "Buff": {
+          "GUID": null,
+          "TargetTagGUID": "0000000010D5.06C",
+          "IconGUID": "000000000ADC.129",
+          "Name": "Armor",
+          "Description": "<fg#ffffffff>%2$s</fg> Armor"
+        },
+        "Value": 25,
         "Name": null,
         "FormatString": null
       }
