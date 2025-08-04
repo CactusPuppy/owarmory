@@ -17,9 +17,9 @@
   So what's next? <em
     >Effective immediately, new builds cannot be made, and existing builds cannot be edited.</em
   >
-  This will ensure that we capture all the builds in our data export to Stadium Builds, and will
-  also ensure that everyone knows that Stadium Builds is the place to go to share builds. After the
-  build transfer is complete, <em>OW Armory will shut down</em> for good.
+  This will ensure that we capture all the builds in our data export to Stadium Builds, and will also
+  ensure that everyone knows that Stadium Builds is the place to go to share builds. After the build
+  transfer is complete, <em>OW Armory will shut down</em> for good.
 </p>
 <p>
   Thanks for the kind words and patronage over the past few months, but it's time to close the
