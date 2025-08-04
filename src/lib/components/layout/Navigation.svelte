@@ -5,7 +5,6 @@
   import { getContext } from "svelte";
   import SignInButton from "$lib/components/auth/SignInButton.svelte";
   import Search from "$src/lib/components/layout/Search.svelte";
-  import CreateBuildButton from "../content/CreateBuildButton.svelte";
 
   const currentUser = getContext("currentUser");
 </script>
@@ -25,8 +24,6 @@
       {:else}
         <SignInButton secondary />
       {/if}
-
-      <CreateBuildButton />
     </div>
   </div>
 </nav>
