@@ -1,5 +1,4 @@
 <script lang="ts">
-  import RandomizerIcon from "$lib/images/randomizer.png";
   import Heroes from "$lib/components/content/Heroes.svelte";
   import BuildsList from "$lib/components/content/BuildsList.svelte";
   import type { CurrentRound } from "$lib/types/round";
@@ -11,6 +10,7 @@
   import type { PageableBuildsSnapshot } from "$src/lib/types/snapshot";
   import TalentsNavigation from "$lib/components/content/TalentsNavigation.svelte";
   import { BUILDS_PAGE_SIZE } from "$lib/constants/page";
+  import ClosureNotification from "$src/lib/components/ClosureNotification.svelte";
 
   const { data } = $props();
 
@@ -65,22 +65,8 @@
 
 <TalentsNavigation />
 
-<div class="randomizer-notif">
-  <a href="/randomizer" target="_blank" class="icon-container">
-    <img src={RandomizerIcon} alt="OW Armory randomizer" height="125" width="125" />
-  </a>
-  <div>
-    <h3>Looking to spice up your Stadium experience?</h3>
-    <p>
-      The <strong>OW Armory Randomizer</strong> is a place where a roll of the dice determines what powers
-      and items you purchase. Do you have the skills and courage to break from the meta builds and adapt
-      your playstyle?
-    </p>
-    <a href="/randomizer" target="_blank"
-      ><button class="button">Roll into the Randomizer</button></a
-    >
-  </div>
-</div>
+<ClosureNotification />
+
 <BuildsList header="Latest Builds" builds={latestBuilds} />
 
 {#if latestBuilds?.length % BUILDS_PAGE_SIZE === 0}
@@ -99,39 +85,3 @@
     </a>
   </center>
 {/if}
-
-<style lang="scss">
-  .randomizer-notif {
-    gap: 1.5rem;
-    align-items: center;
-    margin-top: $vertical-offset-md;
-    margin-bottom: calc($vertical-offset-md - $vertical-offset-large);
-    padding: $gutter;
-    border: 2px solid $color-text-alt;
-    border-radius: $border-radius;
-
-    @include breakpoint(mobile) {
-      display: flex;
-    }
-
-    .icon-container {
-      display: flex;
-      align-self: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-
-      @include breakpoint(mobile) {
-        margin-bottom: 0;
-      }
-    }
-
-    h3 {
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-
-    p {
-      color: $color-text-alt;
-    }
-  }
-</style>
